@@ -1,0 +1,39 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   font-family: "Rubik", sans-serif;
+}
+
+img {
+   max-width: 100%;
+}
+
+a {
+   text-decoration: none;
+}
+
+.App {
+   min-height: 100vh;
+   width: 100vw;
+   display: grid;
+   grid-template-columns: 140px auto;
+   border-radius: 30px;
+}
+
+.App > #left {
+   background-color: #e39066;
+   border-top-left-radius: 30px;
+   border-bottom-left-radius: 30px;
+}
+
+.App > #right {
+   background-image: linear-gradient(to right, #e39066, black);
+}
+
+.App > #right > div {
+   background-color: #1b2434;
+   border-radius: 30px;
+   height: 100%;
+   padding: 1em;
+}

@@ -1,0 +1,35 @@
+#container {
+   display: flex;
+   flex-flow: column;
+   justify-content: space-between;
+   align-items: center;
+   height: 100%;
+   padding-block: 2em;
+}
+
+
+
+#container > nav > a {
+   color: antiquewhite;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 25%;
+   transition: all 0.2s ease-in-out;
+   padding: .7em;
+   border-radius: 20px;
+}
+
+#container > nav > a:hover {
+    color: white;
+}
+
+#container > nav > a > i {
+   font-size: 2em;
+}
+
+#container > nav > a > p {
+   font-size: .9em;
+}
