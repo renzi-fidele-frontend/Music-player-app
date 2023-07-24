@@ -9,6 +9,9 @@ import { AiFillHeart } from "react-icons/ai";
 import { RiLayout2Fill } from "react-icons/ri";
 import { IoLibrarySharp } from "react-icons/io5";
 
+// Imagens
+import avatar from "../../assets/avatar1.gif"
+
 const SideBar = () => {
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgb(200, 116, 75)", scale: "1.1" };
@@ -16,7 +19,7 @@ const SideBar = () => {
    return (
       <div id={styles.container}>
          <div className={styles.imgCont}>
-            <img src="" alt="" />
+            <img src={avatar} alt="user" />
          </div>
 
          <nav>
@@ -52,9 +55,10 @@ const SideBar = () => {
             </NavLink>
          </nav>
 
-         <i>
+         <div id={styles.baixo}>
             <FaSignOutAlt />
-         </i>
+            <p>Deslogar</p>
+         </div>
       </div>
    );
 };
