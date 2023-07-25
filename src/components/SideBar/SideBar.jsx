@@ -11,7 +11,9 @@ import { IoLibrarySharp } from "react-icons/io5";
 
 // Imagens
 import avatar1 from "../../assets/avatar1.gif";
-import { tokenContext } from "../../App";
+
+// token
+const token = localStorage.getItem("token");
 
 const SideBar = () => {
    // Estilo de botao ativo
@@ -19,11 +21,8 @@ const SideBar = () => {
 
    const navegar = useNavigate();
 
-   // Contexto
-   const { token, setToken, logado } = useContext(tokenContext);
-
-   const [nome, setNome] = useState("")
-   const [avatar, setAvatar] = useState(avatar1)
+   const [nome, setNome] = useState("");
+   const [avatar, setAvatar] = useState(avatar1);
 
    async function apanharPerfil() {
       const res = await fetch(`https://api.spotify.com/v1/me`, {
@@ -34,18 +33,22 @@ const SideBar = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res)
-            setNome(res.display_name.split(" ")[0])
-            setAvatar(res.images[0].url)
-         })
-         .catch((err) => console.log(`Ops, aconteceu o erro: ${err}`));
+            if (res.error) {
+               if (res.error.message === "The access token expired") {
+                  localStorage.clear();
+               }
+            }
+            console.log(res);
+            setNome(res.display_name.split(" ")[0]);
+            setAvatar(res.images[0].url);
+         });
    }
 
    useEffect(() => {
-      if (logado === true) {
+      if (token !== null) {
          apanharPerfil();
       }
-   }, [token]);
+   }, []);
 
    return (
       <div id={styles.container}>
