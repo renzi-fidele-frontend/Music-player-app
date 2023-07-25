@@ -1,0 +1,34 @@
+#container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container > i {
+    color: #1db954;
+    font-size: 10em;
+}
+
+#container > a {
+    padding: .5em 4em;
+    font-size: 1.7em;
+    border-radius: 50px;
+    background-color: white;
+    font-weight: 600;
+    color: rgb(41, 39, 39);
+    transition: all 0.2s ease-in-out;
+}
+
+#container > a:hover {
+    cursor: pointer;
+    background-color: #e39066;
+    color: white;
+    transform: translateY(-7px);
+}
+
+#container > p {
+    margin-top: 1.2em;
+    color: rgb(151, 149, 149);
+    font-size: 14px;
+}

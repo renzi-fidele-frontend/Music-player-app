@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./SideBar.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // React Icons
 import { FaGripfire, FaSignOutAlt } from "react-icons/fa";
@@ -10,11 +10,23 @@ import { RiLayout2Fill } from "react-icons/ri";
 import { IoLibrarySharp } from "react-icons/io5";
 
 // Imagens
-import avatar from "../../assets/avatar1.gif"
+import avatar from "../../assets/avatar1.gif";
+import { tokenContext } from "../../App";
 
 const SideBar = () => {
    // Estilo de botao ativo
-   const ativo = { color: "white", backgroundColor: "rgb(200, 116, 75)", scale: "1.1" };
+   const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
+   const navegar = useNavigate();
+
+   const { token, setToken } = useContext(tokenContext);
+
+   useEffect(() => {
+      if (token.length > 10) {
+         console.log(`Token é: ${token} no sideBar`);
+      }
+   }, [token]);
+
+   
 
    return (
       <div id={styles.container}>
@@ -55,7 +67,12 @@ const SideBar = () => {
             </NavLink>
          </nav>
 
-         <div id={styles.baixo}>
+         <div
+            onClick={() => {
+               navegar("/entrar");
+            }}
+            id={styles.baixo}
+         >
             <FaSignOutAlt />
             <p>Deslogar</p>
          </div>

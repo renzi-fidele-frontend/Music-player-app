@@ -5,7 +5,7 @@
    align-items: center;
    height: 100%;
    text-align: center;
-   padding-block: 1em;
+   padding-block: 2em;
 }
 
 #container > nav > a {
@@ -21,7 +21,8 @@
    border-radius: 20px;
 }
 
-#container > nav > a:hover, #baixo:hover {
+#container > nav > a:hover,
+#baixo:hover {
    color: white;
    cursor: pointer;
 }
@@ -41,7 +42,7 @@
 .imgCont > img {
    border-radius: 50%;
    border: 2px solid antiquewhite;
-   width: 85%;
+   width: 70px;
 }
 
 #baixo {
@@ -54,14 +55,13 @@
    transition: all 0.2s ease-in-out;
    padding: 0.7em;
    border-radius: 20px;
-   font-size: 2em;
 }
 
 #baixo > p {
-   font-size: 15px!important;
+   font-size: 0.9em;
    margin-top: 7.3px;
 }
 
-#baixo {
-   
+#baixo svg {
+   font-size: 2em;
 }
