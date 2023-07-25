@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
@@ -10,28 +10,48 @@ import { RiLayout2Fill } from "react-icons/ri";
 import { IoLibrarySharp } from "react-icons/io5";
 
 // Imagens
-import avatar from "../../assets/avatar1.gif";
+import avatar1 from "../../assets/avatar1.gif";
 import { tokenContext } from "../../App";
 
 const SideBar = () => {
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
+
    const navegar = useNavigate();
 
-   const { token, setToken } = useContext(tokenContext);
+   // Contexto
+   const { token, setToken, logado } = useContext(tokenContext);
+
+   const [nome, setNome] = useState("")
+   const [avatar, setAvatar] = useState(avatar1)
+
+   async function apanharPerfil() {
+      const res = await fetch(`https://api.spotify.com/v1/me`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log(res)
+            setNome(res.display_name.split(" ")[0])
+            setAvatar(res.images[0].url)
+         })
+         .catch((err) => console.log(`Ops, aconteceu o erro: ${err}`));
+   }
 
    useEffect(() => {
-      if (token.length > 10) {
-         console.log(`Token é: ${token} no sideBar`);
+      if (logado === true) {
+         apanharPerfil();
       }
    }, [token]);
-
-   
 
    return (
       <div id={styles.container}>
          <div className={styles.imgCont}>
             <img src={avatar} alt="user" />
+            <p>{nome}</p>
          </div>
 
          <nav>

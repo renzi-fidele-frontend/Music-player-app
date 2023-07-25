@@ -45,6 +45,17 @@
    width: 70px;
 }
 
+.imgCont > p {
+   color: white;
+   font-weight: 600;
+   font-size: 15px;
+   letter-spacing: 2px;
+   margin-top: 5px;
+   text-align: center;
+}
+
+
+
 #baixo {
    color: antiquewhite;
    display: flex;

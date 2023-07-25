@@ -6,3 +6,4 @@ const scopes = ["user-library-read", "playlist-read-private"];
 export const loginEndPoint = `${authEndPoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
    "%20"
 )}&response_type=token&show_dialog=true`;
+
