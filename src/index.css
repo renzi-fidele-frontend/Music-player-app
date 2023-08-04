@@ -1,7 +1,10 @@
 :root {
-
+   --cor-texto: white;
+   --cor-tema: #e39066;
+   --fundo-body: #1b2434;
 }
 
 body {
-    background-color: black;
+   background-color: black;
+   color: var(--cor-texto);
 }

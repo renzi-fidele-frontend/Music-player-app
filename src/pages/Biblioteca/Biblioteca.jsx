@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Biblioteca.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const token = localStorage.getItem("token");
 
@@ -9,6 +10,7 @@ const Biblioteca = () => {
    const [playlists, setPlaylists] = useState(null);
    const navegar = useNavigate();
 
+   // Apanhando as playlists do usuário
    async function apanharPlaylists() {
       const res = await fetch(`https://api.spotify.com/v1/me/playlists?limit=10`, {
          headers: {
@@ -24,7 +26,6 @@ const Biblioteca = () => {
                }
             }
             setPlaylists(res.items);
-            console.log(res.items);
          });
    }
 

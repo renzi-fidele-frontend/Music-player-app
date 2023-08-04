@@ -22,17 +22,18 @@ a {
 }
 
 .App > #left {
-   background-color: #e39066;
+   background-color: var(--cor-tema);
    border-top-left-radius: 30px;
    border-bottom-left-radius: 30px;
 }
 
 .App > #right {
-   background-image: linear-gradient(to right, #e39066, black);
+   background-image: linear-gradient(to right, var(--cor-tema), black);
 }
 
 .App > #right > div {
-   background-color: #1b2434;
+   background-color: var(--fundo-body);
+   background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #1e2a3e 20px), repeating-linear-gradient(#23365655, #233656);
    border-radius: 30px;
    height: 100%;
    padding: 3em;

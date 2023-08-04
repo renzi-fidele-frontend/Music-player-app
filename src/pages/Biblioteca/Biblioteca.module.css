@@ -4,7 +4,7 @@
 }
 
 #container > div {
-   background: linear-gradient(160deg, rgb(32, 47, 71) 0%, rgba(46, 69, 108, 0.6390756986388305) 100%);
+   background: linear-gradient(160deg, rgba(70, 87, 116, 0.6278712168461135) 0%, rgba(42, 55, 80, 0.571848807882528) 100%);
    height: fit-content;
    width: fit-content;
    padding: 1em;
@@ -18,40 +18,40 @@
 }
 
 #container > div:hover {
-    cursor: pointer;
-    transform: translateY(-4px);
-    backdrop-filter: blur(100px);
+   cursor: pointer;
+   transform: translateY(-4px);
+   backdrop-filter: blur(100px);
 }
 
 #container > div > img {
-    border-radius: inherit;
+   border-radius: inherit;
 }
 
 #container > div > h6 {
-    color: white;
-    font-size: 22px;
-    margin-block: 7px;
+   color: white;
+   font-size: 22px;
+   margin-block: 7px;
 }
 
 #container > div > p {
-    color: rgb(219, 236, 250);
-    font-size: 14px;
+   color: rgb(219, 236, 250);
+   font-size: 14px;
 }
 
 #container > div > i {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    visibility: hidden;
-    opacity: 0;
-    font-size: 2em;
-    transition: opacity .2s ease-in-out;
+   position: absolute;
+   bottom: 0px;
+   right: 0px;
+   visibility: hidden;
+   opacity: 0;
+   font-size: 2em;
+   transition: opacity 0.2s ease-in-out;
 }
 
 .hover > i {
-    bottom: 12px !important;
-    right: 12px !important;
-    visibility: initial !important;
-    color: #e39066;
-    opacity: 1 !important;
+   bottom: 12px !important;
+   right: 12px !important;
+   visibility: initial !important;
+   color: var(--cor-tema);
+   opacity: 1 !important;
 }
