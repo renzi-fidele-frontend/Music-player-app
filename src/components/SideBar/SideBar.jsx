@@ -38,7 +38,6 @@ const SideBar = () => {
                   localStorage.clear();
                }
             }
-            console.log(res);
             setNome(res.display_name.split(" ")[0]);
             setAvatar(res.images[0].url);
          });

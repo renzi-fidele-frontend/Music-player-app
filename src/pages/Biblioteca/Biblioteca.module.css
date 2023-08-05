@@ -34,7 +34,7 @@
 }
 
 #container > div > p {
-   color: rgb(219, 236, 250);
+   color: var(--cor-texto2);
    font-size: 14px;
 }
 

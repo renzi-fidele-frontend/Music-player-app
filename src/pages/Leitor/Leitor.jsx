@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Leitor.module.css";
 import { useLocation } from "react-router-dom";
+import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
+import FilaContainer from "../../components/FilaContainer/FilaContainer";
 
 const token = localStorage.getItem("token");
 
@@ -27,8 +29,7 @@ const Leitor = () => {
                }
             }
             setItems(res.items);
-            setMusicaAtual(res.items[0].track);
-            console.log(res.items);
+            setMusicaAtual({ ...musicaAtual, track: res.items[0].track });
          });
    }
 
@@ -37,8 +38,12 @@ const Leitor = () => {
    }, [estado]);
 
    return (
-      <div id={styles.container}>
-         <p>pe</p>
+      <div id={styles.cont}>
+         <div id={styles.left}></div>
+         <div id={styles.right}>
+            <AlbumContainer track={musicaAtual?.track} />
+            <FilaContainer />
+         </div>
       </div>
    );
 };

@@ -1,0 +1,12 @@
+#cont {
+   display: grid;
+   grid-template-columns: 75% 25%;
+   padding-right: 0 !important;
+   padding-block: 0 !important;
+}
+
+#cont > #right {
+   display: flex;
+   flex-flow: column;
+   justify-content: space-between;
+}

@@ -1,0 +1,25 @@
+#cont {
+   padding: 2.2em;
+   background-color: #222e42;
+   border-top-left-radius: 30px;
+   border-bottom-left-radius: 30px;
+   color: var(--cor-texto2);
+}
+
+#cont > img {
+   border-radius: 30px;
+}
+
+#cont > h5 {
+   margin-top: 1.2em;
+   font-size: 1.7em;
+}
+
+#cont > p {
+    margin-block: 1em;
+    font-size: 16px;
+}
+
+#cont > span {
+    font-size: 13px;
+}
