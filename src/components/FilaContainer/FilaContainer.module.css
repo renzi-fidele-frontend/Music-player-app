@@ -1,0 +1,56 @@
+#cont {
+   background-color: #3e61d2;
+   opacity: 1;
+   color: var(--cor-texto2);
+   height: 35%;
+   border-top-left-radius: 30px;
+   border-bottom-left-radius: 30px;
+   background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #3e61d2 10px), repeating-linear-gradient(#444cf755, #444cf7);
+   padding: 2.2em;
+   padding-bottom: 0;
+}
+
+#cont > h4 {
+   font-size: 1.7em;
+   margin-bottom: 0.6em;
+}
+
+#cont > div {
+   overflow-y: auto;
+   height: 80%;
+   scrollbar-color: #444cf755 233656;
+   scrollbar-width: none;
+}
+
+#cont > div:hover {
+   scrollbar-width: thin;
+}
+
+#cont > div::-webkit-scrollbar {
+   display: none;
+}
+
+#cont > div > div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    transition: all .2s ease-in-out;
+    
+}
+
+#cont > div > div:hover {
+    padding-inline: 1.1em;
+    cursor: pointer;
+
+}
+
+
+#cont > div > div > p {
+   margin-bottom: 0.7em;
+   width: fit-content;
+   font-size: 15px;
+}
+
+#cont > div > div > p:hover {
+   
+}

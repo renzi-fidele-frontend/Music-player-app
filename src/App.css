@@ -14,7 +14,7 @@ a {
 }
 
 .App {
-   min-height: 100vh;
+   height: 100vh;
    width: 100vw;
    display: grid;
    grid-template-columns: 140px auto;
@@ -29,6 +29,7 @@ a {
 
 .App > #right {
    background-image: linear-gradient(to right, var(--cor-tema), black);
+   overflow-y: hidden;
 }
 
 .App > #right > div {

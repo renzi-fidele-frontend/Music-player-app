@@ -42,7 +42,7 @@ const Leitor = () => {
          <div id={styles.left}></div>
          <div id={styles.right}>
             <AlbumContainer track={musicaAtual?.track} />
-            <FilaContainer />
+            <FilaContainer fila={items} />
          </div>
       </div>
    );
