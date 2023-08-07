@@ -7,12 +7,38 @@ import Favoritos from "./pages/Favoritos/Favoritos";
 import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
-// token
 const token = localStorage.getItem("token");
 
+export const musicContext = createContext();
+
+const reducer = (state, action) => {
+   switch (action.type) {
+      case "setMusicaAtual":
+         return { ...state, musicaAtual: action.payload };
+      case "setTargetAtual":
+         return { ...state, targetAtual: action.payload };
+      case "setaSeguir":
+         return { ...state, aSeguir: action.payload };
+      case "setIdAlbum":
+         return { ...state, idAlbum: action.payload };
+      case "setPlaylists":
+         return { ...state, playlists: action.payload };
+      default:
+         return state;
+   }
+};
+
 function App() {
+   const [estado, dispatch] = useReducer(reducer, {
+      musicaAtual: [],
+      targetAtual: 0,
+      aSeguir: [],
+      idAlbum: "",
+      playlists: [],
+   });
+
    useEffect(() => {
       // Caso esteja logado
       if (token !== null) {
@@ -35,20 +61,23 @@ function App() {
    return (
       <Router>
          <div className="App">
-            <div id="left">
-               <SideBar />
-            </div>
-            <div id="right">
-               <Routes>
-                  <Route exact path="/" element={token !== null ? <Leitor /> : <Login />} />
-                  <Route path="/destaque" element={token !== null ? <Destaque /> : <Login />} />
-                  <Route path="/favoritos" element={token !== null ? <Favoritos /> : <Login />} />
-                  <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
-                  <Route path="/feed" element={token !== null ? <Feed /> : <Login />} />
-                  <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
-                  <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />
-               </Routes>
-            </div>
+            <musicContext.Provider value={{ estado, dispatch }}>
+               {" "}
+               <div id="left">
+                  <SideBar />
+               </div>
+               <div id="right">
+                  <Routes>
+                     <Route exact path="/" element={token !== null ? <Leitor /> : <Login />} />
+                     <Route path="/destaque" element={token !== null ? <Destaque /> : <Login />} />
+                     <Route path="/favoritos" element={token !== null ? <Favoritos /> : <Login />} />
+                     <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
+                     <Route path="/feed" element={token !== null ? <Feed /> : <Login />} />
+                     <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
+                     <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />
+                  </Routes>
+               </div>
+            </musicContext.Provider>
          </div>
       </Router>
    );

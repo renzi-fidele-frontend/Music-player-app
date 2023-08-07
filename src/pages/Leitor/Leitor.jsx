@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Leitor.module.css";
 import { useLocation } from "react-router-dom";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
+import { musicContext } from "../../App";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
-   const estado = useLocation().state;
-   const [musicaAtual, setMusicaAtual] = useState({});
-   const [items, setItems] = useState(null);
-   const [targetAtual, setTargetAtual] = useState(0);
+   const { estado, dispatch } = useContext(musicContext);
 
    // Apanhando os itens da playslist
    async function apanhar(id) {
@@ -28,21 +26,21 @@ const Leitor = () => {
                   localStorage.clear();
                }
             }
-            setItems(res.items);
-            setMusicaAtual({ ...musicaAtual, track: res.items[0].track });
+            dispatch({ type: "setaSeguir", payload: res.items });
+            estado.musicaAtual.length === 0 ? dispatch({ type: "setMusicaAtual", payload: [res.items[0]] }) : undefined;
          });
    }
 
    useEffect(() => {
-      estado ? apanhar(estado.id) : undefined;
-   }, [estado]);
+      estado.idAlbum ? apanhar(estado.idAlbum) : undefined;
+   }, [estado.idAlbum]);
 
    return (
       <div id={styles.cont}>
          <div id={styles.left}></div>
          <div id={styles.right}>
-            <AlbumContainer track={musicaAtual?.track} />
-            <FilaContainer fila={items} />
+            <AlbumContainer track={estado?.musicaAtual[0]?.track} />
+            <FilaContainer fila={estado.aSeguir} />
          </div>
       </div>
    );

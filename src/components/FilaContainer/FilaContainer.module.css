@@ -17,7 +17,7 @@
 
 #cont > div {
    overflow-y: auto;
-   height: 80%;
+   height: 75%;
    scrollbar-color: #444cf755 233656;
    scrollbar-width: none;
 }
@@ -39,8 +39,10 @@
 }
 
 #cont > div > div:hover {
-    padding-inline: 1.1em;
+    padding-inline: .8em;
     cursor: pointer;
+    color: white;
+    font-weight: 500;
 
 }
 
@@ -51,6 +53,4 @@
    font-size: 15px;
 }
 
-#cont > div > div > p:hover {
-   
-}
+

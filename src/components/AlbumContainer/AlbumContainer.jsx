@@ -3,7 +3,7 @@ import styles from "./AlbumContainer.module.css";
 
 const AlbumContainer = ({ track }) => {
    useEffect(() => {
-      console.log(track?.album);
+      console.log(track);
    }, [track]);
 
    return (

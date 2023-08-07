@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Biblioteca.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { musicContext } from "../../App";
 
 const token = localStorage.getItem("token");
 
 const Biblioteca = () => {
-   const [playlists, setPlaylists] = useState(null);
+   // Apanhando os estados do contexto no reducer
+   const { estado, dispatch } = useContext(musicContext);
+
    const navegar = useNavigate();
 
    // Apanhando as playlists do usuário
@@ -25,7 +28,7 @@ const Biblioteca = () => {
                   localStorage.clear();
                }
             }
-            setPlaylists(res.items);
+            dispatch({ type: "setPlaylists", payload: res.items });
          });
    }
 
@@ -35,11 +38,12 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.container}>
-         {playlists?.map((v, k) => {
+         {estado.playlists?.map((v, k) => {
             return (
                <div
                   onClick={() => {
-                     navegar("/leitor", { state: { id: v.id } });
+                     dispatch({ type: "setIdAlbum", payload: v.id });
+                     navegar("/leitor");
                   }}
                   key={k}
                   onMouseEnter={(e) => {
