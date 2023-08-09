@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
+import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 
 const token = localStorage.getItem("token");
 
@@ -37,7 +38,9 @@ const Leitor = () => {
 
    return (
       <div id={styles.cont}>
-         <div id={styles.left}></div>
+         <div id={styles.left}>
+            <AudioPlayer/>
+         </div>
          <div id={styles.right}>
             <AlbumContainer track={estado?.musicaAtual[0]?.track} />
             <FilaContainer fila={estado.aSeguir} />
