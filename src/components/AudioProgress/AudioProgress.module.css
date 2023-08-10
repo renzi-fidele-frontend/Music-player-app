@@ -1,13 +1,28 @@
 #ct {
-    display: flex;
+   width: 300px;
+   height: 300px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-circle {
-    transition: all 1s ease-in-out;
-    transform: rotate(93deg);
-    transform-origin: 50% 50%;
+#ct > div {
+   position: absolute;
+   top: 11.5px;
+   width: 92%;
+   animation: girar 30s infinite linear;
+}
+
+@keyframes girar {
+   from {
+      transform: rotate(0);
+   }
+   to {
+      transform: rotate(359deg);
+   }
 }
 
 .ativo {
-
+   color: #304d80;
 }

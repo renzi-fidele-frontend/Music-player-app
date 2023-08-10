@@ -1,46 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./AudioProgress.module.css";
-import { color } from "framer-motion";
 import disco from "../../assets/vinyl.png";
-
-const Circle = ({ cor, percentagem, size, strokeWidth }) => {
-   const radius = size / 2 - 10;
-   const circ = 2 * Math.PI * radius - 20;
-   const strokePct = (100 - Math.round(percentagem) * circ) / 100;
-
-   return (
-      <circle
-         r={radius}
-         cx="50%"
-         cy="50%"
-         fill="transparent"
-         stroke={strokePct !== circ ? cor : ""}
-         strokeWidth={strokeWidth}
-         strokeDasharray={circ}
-         strokeDashoffset={percentagem ? strokePct : 0}
-         strokeLinecap="round"
-      ></circle>
-   );
-};
+import ProgressBar from "progressbar.js";
 
 const AudioProgress = ({ isPlaying, percentagem, size, cor }) => {
+   // Ref do progressBar no JSX
+   const progressRef = useRef(null);
+   const [estado, setEstado] = useState(null);
+
+   useEffect(() => {
+      if (progressRef.current.children.length === 1) {
+         const progress_bar = new ProgressBar.Circle(progressRef.current, {
+            color: "var(--cor-tema)",
+            strokeWidth: 3,
+            duration: 1000,
+            easing: "linear",
+            trailColor: "#304d80",
+         });
+         setEstado(progress_bar);
+
+         progress_bar.animate(percentagem / 100);
+      }
+   }, []);
+
+   useEffect(() => {
+      console.log(`Aumentor para ${percentagem}`);
+      estado ? estado.animate(percentagem / 100) : undefined;
+   }, [percentagem]);
+
    return (
-      <div id={styles.ct}>
-         <svg width={size} height={size}>
-            <g>
-               <Circle strokeWidth={"0.4rem"} cor="#3b4f73" size={size} />
-               <Circle strokeWidth={"0.6rem"} cor={cor} size={size} percentagem={percentagem} />
-            </g>
-            <defs>
-               <clipPath id="circulo">
-                  <circle cx="50%" cy="50%" r={size / 2 - 30} fill="#FFFFFF"></circle>
-               </clipPath>
-               <clipPath id="circuloDentro">
-                  <circle cx="50%" cy="50%" r={size / 2 - 30} fill="#FFFFFF"></circle>
-               </clipPath>
-            </defs>
-            <img href={disco} x={100} y={100} clipPath={"#circulo"} className={isPlaying ? styles.ativo : undefined} alt="" />
-         </svg>
+      <div ref={progressRef} id={styles.ct}>
+         <div>
+            <img src={disco} alt="" />
+            <img src="" alt="" />
+         </div>
       </div>
    );
 };
