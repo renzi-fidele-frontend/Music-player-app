@@ -1,4 +1,10 @@
-#ct {
-    padding-top: 2em;
+#cont {
+   padding-top: 2em;
 }
 
+#cont > #right {
+   display: flex;
+   justify-content: center;
+   flex-flow: column;
+   align-items: center;
+}

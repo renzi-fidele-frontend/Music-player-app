@@ -7,12 +7,27 @@
    justify-content: center;
 }
 
+#ct > svg {
+   z-index: 2;
+}
+
 #ct > div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
    position: absolute;
-   top: 11.5px;
-   width: 92%;
+   top: 18px;
+   width: 88%;
    animation: girar 30s infinite linear;
 }
+
+#ct > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+ }
 
 @keyframes girar {
    from {

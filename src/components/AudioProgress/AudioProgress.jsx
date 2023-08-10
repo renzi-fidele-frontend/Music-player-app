@@ -3,10 +3,12 @@ import styles from "./AudioProgress.module.css";
 import disco from "../../assets/vinyl.png";
 import ProgressBar from "progressbar.js";
 
-const AudioProgress = ({ isPlaying, percentagem, size, cor }) => {
+const AudioProgress = ({ isPlaying, foto, percentagem, size, cor }) => {
    // Ref do progressBar no JSX
    const progressRef = useRef(null);
    const [estado, setEstado] = useState(null);
+
+   
 
    useEffect(() => {
       if (progressRef.current.children.length === 1) {
@@ -31,8 +33,9 @@ const AudioProgress = ({ isPlaying, percentagem, size, cor }) => {
    return (
       <div ref={progressRef} id={styles.ct}>
          <div>
-            <img src={disco} alt="" />
-            <img src="" alt="" />
+            <div><img src={disco} alt="" />
+            <img src={foto} alt="" /></div>
+            
          </div>
       </div>
    );

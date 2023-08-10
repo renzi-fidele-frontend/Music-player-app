@@ -39,8 +39,9 @@ const Leitor = () => {
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
-            <AudioPlayer/>
+            <AudioPlayer />
          </div>
+
          <div id={styles.right}>
             <AlbumContainer track={estado?.musicaAtual[0]?.track} />
             <FilaContainer fila={estado.aSeguir} />
