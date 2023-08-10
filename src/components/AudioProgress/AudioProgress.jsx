@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./AudioProgress.module.css";
-import disco from "../../assets/vinyl.png";
+import disco from "../../assets/vinyl-blue.png";
 import ProgressBar from "progressbar.js";
 
 const AudioProgress = ({ isPlaying, foto, percentagem, size, cor }) => {
    // Ref do progressBar no JSX
    const progressRef = useRef(null);
    const [estado, setEstado] = useState(null);
-
-   
 
    useEffect(() => {
       if (progressRef.current.children.length === 1) {
@@ -33,9 +31,10 @@ const AudioProgress = ({ isPlaying, foto, percentagem, size, cor }) => {
    return (
       <div ref={progressRef} id={styles.ct}>
          <div>
-            <div><img src={disco} alt="" />
-            <img src={foto} alt="" /></div>
-            
+            <div id={styles.imagens}>
+               <img src={disco} alt="" />
+               <img id={styles.capa} src={foto} alt="" />
+            </div>
          </div>
       </div>
    );

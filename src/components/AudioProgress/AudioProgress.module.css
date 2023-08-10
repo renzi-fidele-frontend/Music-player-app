@@ -7,27 +7,36 @@
    justify-content: center;
 }
 
-#ct > svg {
-   z-index: 2;
-}
-
 #ct > div {
    display: flex;
    align-items: center;
    justify-content: center;
-
    position: absolute;
    top: 18px;
    width: 88%;
-   animation: girar 30s infinite linear;
 }
 
-#ct > div > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
- }
+#imagens {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   width: 100%;
+   animation: girar 30s infinite linear;
+
+}
+
+#capa {
+   position: absolute;
+   z-index: 4;
+   border-radius: 50%;
+   width: 39%;
+
+}
+
+
+#imagens > img {
+}
 
 @keyframes girar {
    from {
