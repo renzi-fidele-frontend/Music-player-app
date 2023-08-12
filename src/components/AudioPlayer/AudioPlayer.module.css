@@ -1,5 +1,9 @@
 #cont {
    padding-top: 2em;
+   padding-right: 2em;
+   display: grid;
+   grid-template-columns: 25% auto;
+   color: var(--cor-texto2);
 }
 
 #cont > #right {
@@ -7,4 +11,31 @@
    justify-content: center;
    flex-flow: column;
    align-items: center;
+}
+
+#cont > #right > h5 {
+   font-size: 3.4em;
+   text-align: center;
+}
+
+#cont > #right > h4 {
+   margin-top: 2.1em;
+   font-size: 1.3em;
+   font-weight: 400;
+   margin-bottom: 1em;
+}
+
+#cont > path {
+   stroke: red !important;
+}
+
+#detalhes {
+   display: flex;
+   flex-flow: row nowrap;
+   align-items: center;
+   justify-content: center;
+}
+
+#detalhes > p {
+   font-size: 17px;
 }

@@ -2,15 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
+import AudioControles from "../AudioControles/AudioControles";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-   useEffect(() => {
-      console.log(estado.musicaAtual[0]?.track.name);
-      console.log(estado.musicaAtual[0]?.track.artists);
-      console.log(estado.musicaAtual[0]?.track.name);
-   }, [estado]);
+   useEffect(() => {}, [estado]);
+
+   // Convertendo millisegundos para minutos
+   function converter(millis) {
+      let minutos = Math.floor(millis / 60000);
+      let segundos = ((millis % 60000) / 1000).toFixed(0);
+      return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+   }
 
    const [perc, setPerc] = useState(25);
 
@@ -26,8 +30,24 @@ const AudioPlayer = () => {
             />
          </div>
          <div id={styles.right}>
-            <h5></h5>
-            <h4></h4>
+            <h5>{estado.musicaAtual[0]?.track?.name}</h5>
+            <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+
+            <div id={styles.detalhes}>
+               <p>0:00</p>
+               <lottie-player
+                  src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
+                  background="transparent"
+                  speed="1"
+                  style={{ height: "170px", width: "400px", marginInline: "-30px" }}
+                  loop
+                  autoplay
+                  direction="1"
+                  mode="bounce"
+               ></lottie-player>
+               <p>{converter(estado.musicaAtual[0]?.track?.duration_ms)}</p>
+            </div>
+            <AudioControles />
          </div>
       </div>
    );

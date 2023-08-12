@@ -53,7 +53,7 @@ const Biblioteca = () => {
                      e.target.classList.remove(styles.hover);
                   }}
                >
-                  <img src={v.images[1].url} alt="" />
+                  <img src={v.images[0]?.url} alt="" />
                   <h6>{v.name}</h6>
                   <p>{v.tracks.total} musicas</p>
                   <i>

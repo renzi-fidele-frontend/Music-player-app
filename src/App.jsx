@@ -37,6 +37,7 @@ function App() {
       aSeguir: [],
       idAlbum: "",
       playlists: [],
+      isPlaying: false
    });
 
    useEffect(() => {
