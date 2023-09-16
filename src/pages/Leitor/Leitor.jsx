@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Leitor.module.css";
-import { useLocation } from "react-router-dom";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
