@@ -32,12 +32,13 @@ const reducer = (state, action) => {
 
 function App() {
    const [estado, dispatch] = useReducer(reducer, {
-      musicaAtual: [],
-      targetAtual: 0,
-      aSeguir: [],
+      musicaAtual: [], // Musica selecionada para tocar
+      targetAtual: 0,   // Index da música atual
+      aSeguir: [],   // Musicas da playlist criada
       idAlbum: "",
-      playlists: [],
-      isPlaying: false
+      playlists: [],    // Playlists do usuário no spotify
+      isPlaying: false,
+      progresso: 0,     // Percentagem do progresso da música
    });
 
    useEffect(() => {

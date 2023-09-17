@@ -22,7 +22,7 @@
    margin-top: 2.1em;
    font-size: 1.3em;
    font-weight: 400;
-   margin-bottom: 1em;
+   margin-bottom: 0em;
 }
 
 #cont > path {
@@ -39,3 +39,4 @@
 #detalhes > p {
    font-size: 17px;
 }
+

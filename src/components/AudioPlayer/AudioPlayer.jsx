@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
@@ -6,6 +6,8 @@ import AudioControles from "../AudioControles/AudioControles";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
+
+   const audioRef = useRef(new Audio(estado.musicaAtual[0]?.track?.preview_url))
 
    useEffect(() => {}, [estado]);
 
@@ -36,10 +38,10 @@ const AudioPlayer = () => {
             <div id={styles.detalhes}>
                <p>0:00</p>
                <lottie-player
+                  class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
                   background="transparent"
                   speed="1"
-                  style={{ height: "170px", width: "400px", marginInline: "-30px" }}
                   loop
                   autoplay
                   direction="1"

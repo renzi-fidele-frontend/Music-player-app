@@ -9,3 +9,9 @@ body {
    background-color: black;
    color: var(--cor-texto);
 }
+
+.lottie {
+   height: 170px;
+   width: 300px;
+   margin-inline: 0;
+}
