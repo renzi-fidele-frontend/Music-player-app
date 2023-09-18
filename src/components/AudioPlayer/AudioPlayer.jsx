@@ -6,10 +6,7 @@ import AudioControles from "../AudioControles/AudioControles";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
-
-   const audioRef = useRef(new Audio(estado.musicaAtual[0]?.track?.preview_url))
-
-   useEffect(() => {}, [estado]);
+   const audioRef = useRef(null);
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -17,6 +14,26 @@ const AudioPlayer = () => {
       let segundos = ((millis % 60000) / 1000).toFixed(0);
       return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
    }
+
+   function tocar() {
+      return
+   }
+
+   function pausar() {
+      return
+   }
+
+   
+
+   useEffect(() => {
+      audioRef.current.src = estado.musicaAtual[0]?.track?.preview_url;
+      audioRef.current.loop = true;
+      console.log();
+   }, [estado]);
+
+   useEffect(() => {
+      dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
+   }, [audioRef.current.ontimeupdate]);
 
    const [perc, setPerc] = useState(25);
 
@@ -36,7 +53,7 @@ const AudioPlayer = () => {
             <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
 
             <div id={styles.detalhes}>
-               <p>0:00</p>
+               <p>{estado.tempoAtual}</p>
                <lottie-player
                   class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"

@@ -25,6 +25,8 @@ const reducer = (state, action) => {
          return { ...state, idAlbum: action.payload };
       case "setPlaylists":
          return { ...state, playlists: action.payload };
+      case "setTempoAtual":
+         return { ...state, tempoAtual: action.payload };
       default:
          return state;
    }
@@ -33,12 +35,13 @@ const reducer = (state, action) => {
 function App() {
    const [estado, dispatch] = useReducer(reducer, {
       musicaAtual: [], // Musica selecionada para tocar
-      targetAtual: 0,   // Index da música atual
-      aSeguir: [],   // Musicas da playlist criada
+      targetAtual: 0, // Index da música atual
+      aSeguir: [], // Musicas da playlist criada
       idAlbum: "",
-      playlists: [],    // Playlists do usuário no spotify
+      playlists: [], // Playlists do usuário no spotify
       isPlaying: false,
-      progresso: 0,     // Percentagem do progresso da música
+      progresso: 0, // Percentagem do progresso da música
+      tempoAtual: 0,
    });
 
    useEffect(() => {
