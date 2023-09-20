@@ -23,6 +23,10 @@ const AudioPlayer = () => {
       return
    }
 
+   function atualizarPercentagem() {
+      dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
+   }
+
    
 
    useEffect(() => {
@@ -32,7 +36,7 @@ const AudioPlayer = () => {
    }, [estado]);
 
    useEffect(() => {
-      dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
+      
    }, [audioRef.current.ontimeupdate]);
 
    const [perc, setPerc] = useState(25);
