@@ -27,13 +27,6 @@ const AudioPlayer = () => {
       dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
    }
 
-   
-
-   useEffect(() => {
-      audioRef.current.src = estado.musicaAtual[0]?.track?.preview_url;
-      audioRef.current.loop = true;
-      console.log();
-   }, [estado]);
 
    useEffect(() => {
       
