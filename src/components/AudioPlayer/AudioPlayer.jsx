@@ -16,23 +16,22 @@ const AudioPlayer = () => {
    }
 
    function tocar() {
-      return
+      dispatch({ type: "setisPlaying", payload: true });
    }
 
    function pausar() {
-      return
+      dispatch({ type: "setisPlaying", payload: false });
    }
+
+   function saltar() {}
+
+   function voltar() {}
+
+   function switchRepetir() {}
 
    function atualizarPercentagem() {
       dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
    }
-
-
-   useEffect(() => {
-      
-   }, [audioRef.current.ontimeupdate]);
-
-   const [perc, setPerc] = useState(25);
 
    return (
       <div id={styles.cont}>
@@ -42,7 +41,7 @@ const AudioPlayer = () => {
                size={300}
                isPlaying={true}
                cor={"var(--cor-tema)"}
-               percentagem={perc}
+               percentagem={estado.progresso}
             />
          </div>
          <div id={styles.right}>

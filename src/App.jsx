@@ -27,6 +27,8 @@ const reducer = (state, action) => {
          return { ...state, playlists: action.payload };
       case "setTempoAtual":
          return { ...state, tempoAtual: action.payload };
+      case "setisPlaying":
+         return { ...state, isPlaying: action.payload}
       default:
          return state;
    }
@@ -34,7 +36,7 @@ const reducer = (state, action) => {
 
 function App() {
    const [estado, dispatch] = useReducer(reducer, {
-      musicaAtual: [], // Musica selecionada para tocar
+      musicaAtual: [], // objecto Musica selecionada para tocar
       targetAtual: 0, // Index da música atual
       aSeguir: [], // Musicas da playlist criada
       idAlbum: "",

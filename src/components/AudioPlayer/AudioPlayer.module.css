@@ -5,6 +5,11 @@
    grid-template-columns: 25% auto;
    color: var(--cor-texto2);
 }
+#cont > #left {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+}
 
 #cont > #right {
    display: flex;
@@ -39,4 +44,3 @@
 #detalhes > p {
    font-size: 17px;
 }
-

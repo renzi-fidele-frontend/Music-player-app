@@ -1,0 +1,18 @@
+#cont {
+   font-size: 50px;
+   display: flex;
+   flex-flow: row nowrap;
+   gap: 45px;
+   align-items: center;
+}
+
+.meio {
+   background-color: var(--cor-tema);
+   border-radius: 40%;
+   font-size: 70px;
+   box-shadow: 0px 0px 20px var(--cor-tema);
+}
+
+#cont > svg:hover {
+   cursor: pointer;
+}
