@@ -46,7 +46,7 @@ function App() {
       playlists: [], // Playlists do usuário no spotify
       isPlaying: false,
       progresso: 0, // Percentagem do progresso da música
-      tempoAtual: 0,
+      tempoAtual: 0, // Tempo de playback da musica atual
       repetir: false,
    });
 

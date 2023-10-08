@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
@@ -8,7 +8,9 @@ const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    // Link da música atual sendo tocada
-   const linkAudio = estado?.aSeguir[estado.targetAtual]?.track?.preview_url;
+   const linkAudio = estado?.aSeguir?.[estado.targetAtual]?.track?.preview_url;
+
+   const audioRef = useRef(new Audio(estado?.aSeguir?.[0]?.track?.preview_url));
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -51,6 +53,10 @@ const AudioPlayer = () => {
       dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
    }
 
+   useEffect(() => {
+      console.log(linkAudio);
+   }, []);
+
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
@@ -67,7 +73,7 @@ const AudioPlayer = () => {
             <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
 
             <div id={styles.detalhes}>
-               <p>{estado.tempoAtual}</p>
+               <p>{converter(estado.tempoAtual)}</p>
                <lottie-player
                   class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"

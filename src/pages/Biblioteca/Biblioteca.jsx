@@ -33,7 +33,7 @@ const Biblioteca = () => {
    }
 
    useEffect(() => {
-      if (estado.aSeguir.length === 0) {
+      if (estado?.aSeguir?.length === 0) {
          apanharPlaylists();
       } else {
          return;

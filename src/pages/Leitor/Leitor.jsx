@@ -20,18 +20,18 @@ const Leitor = () => {
       })
          .then((res) => res.json())
          .then((res) => {
+            dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+            dispatch({ type: "setaSeguir", payload: res.items });
             if (res.error) {
                if (res.error.message === "The access token expired") {
                   localStorage.clear();
                }
             }
-            dispatch({ type: "setaSeguir", payload: res.items });
-            estado.musicaAtual.length === 0 ? dispatch({ type: "setMusicaAtual", payload: [res.items[0]] }) : undefined;
          });
    }
 
    useEffect(() => {
-      apanhar(estado.idAlbum);
+      if (estado.idAlbum.length > 0) apanhar(estado.idAlbum);
    }, [estado.idAlbum]);
 
    return (

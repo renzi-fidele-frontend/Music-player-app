@@ -7,6 +7,7 @@ const FilaContainer = ({ fila }) => {
 
    useEffect(() => {
       console.log(fila);
+      console.log([(1, 2)].includes(2));
    }, [fila]);
 
    // Convertendo millisegundos para minutos
