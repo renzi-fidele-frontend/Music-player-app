@@ -1,14 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
 
 const FilaContainer = ({ fila }) => {
    const { estado, dispatch } = useContext(musicContext);
-
-   useEffect(() => {
-      console.log(fila);
-      console.log([(1, 2)].includes(2));
-   }, [fila]);
 
    // Convertendo millisegundos para minutos
    function converter(millis) {

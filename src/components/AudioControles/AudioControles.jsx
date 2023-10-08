@@ -8,11 +8,19 @@ import { musicContext } from "../../App";
 const AudioControles = () => {
    const { estado, dispatch } = useContext(musicContext);
 
+   function playPause() {
+      dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
+   }
+
    return (
       <div id={styles.cont}>
          <BsShuffle />
          <BsFillSkipStartFill />
-         {estado.isPlaying === true ? <BsFillPauseFill className={styles.meio} /> : <BsFillPlayFill className={styles.meio} />}
+         {estado.isPlaying === true ? (
+            <BsFillPauseFill onClick={playPause} className={styles.meio} />
+         ) : (
+            <BsFillPlayFill onClick={playPause} className={styles.meio} />
+         )}
 
          <BsFillSkipEndFill />
          <BsRepeat />

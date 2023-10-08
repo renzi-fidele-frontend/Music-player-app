@@ -47,6 +47,7 @@ const Biblioteca = () => {
                <div
                   onClick={() => {
                      dispatch({ type: "setIdAlbum", payload: v.id });
+                     dispatch({ type: "setTargetAtual", payload: 0 });
                      navegar("/leitor");
                   }}
                   key={k}

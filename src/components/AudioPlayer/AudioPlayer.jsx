@@ -8,9 +8,31 @@ const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    // Link da música atual sendo tocada
-   const linkAudio = estado?.aSeguir?.[estado.targetAtual]?.track?.preview_url;
+   const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
 
-   const audioRef = useRef(new Audio(estado?.aSeguir?.[0]?.track?.preview_url));
+   // Referência do áudio que será inicializado
+   const audioRef = useRef(new Audio(estado.aSeguir[0]?.track?.preview_url));
+
+   const intervaloRef = useRef();
+
+   const isReady = useRef(false);
+
+   // Duração atual da música
+   const { duration } = audioRef.current;
+
+   // Percentagem atual da música sendo tocada
+   const percentagem = duration ? (estado.progresso / duration) * 100 : 0;
+
+   function startTimer() {
+      clearInterval(intervaloRef.current);
+      intervaloRef.current = setInterval(() => {
+         if (audioRef.current.ended) {
+            saltar();
+         } else {
+            dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
+         }
+      }, [1000]);
+   }
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -20,8 +42,10 @@ const AudioPlayer = () => {
    }
 
    function tocar() {
-      dispatch({ type: "setisPlaying", payload: true });
-      audioRef.current.play();
+      audioRef.current
+         .play()
+         .then(() => dispatch({ type: "setisPlaying", payload: true }))
+         .catch((err) => alert("Houve erro ao reproduzir o áudio"));
    }
 
    function pausar() {
@@ -32,16 +56,12 @@ const AudioPlayer = () => {
    function saltar() {
       if (estado.musicaAtual + 1 < estado.aSeguir.length) {
          dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
-      } else {
-         return;
       }
    }
 
    function voltar() {
       if (estado.musicaAtual + 1 < estado.aSeguir.length) {
          dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
-      } else {
-         return;
       }
    }
 
@@ -49,13 +69,21 @@ const AudioPlayer = () => {
       dispatch({ type: "setRepetir", payload: !estado.repetir });
    }
 
-   function atualizarPercentagem() {
-      dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
-   }
+   useEffect(() => {
+      if (estado.isPlaying === true && audioRef.current) {
+         audioRef.current = new Audio(linkAudio);
+         audioRef.current.play();
+      } else {
+         clearInterval(intervaloRef.current);
+         audioRef.current.pause();
+      }
+   }, [estado.isPlaying]);
 
    useEffect(() => {
-      console.log(linkAudio);
-   }, []);
+      audioRef.current.pause();
+      audioRef.current = new Audio(linkAudio);
+      audioRef.current.play()
+   }, [estado.targetAtual]);
 
    return (
       <div id={styles.cont}>
