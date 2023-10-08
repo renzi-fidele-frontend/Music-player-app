@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
@@ -6,7 +6,9 @@ import AudioControles from "../AudioControles/AudioControles";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
-   const audioRef = useRef(null);
+
+   // Link da música atual sendo tocada
+   const linkAudio = estado?.aSeguir[estado.targetAtual]?.track?.preview_url;
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -17,17 +19,33 @@ const AudioPlayer = () => {
 
    function tocar() {
       dispatch({ type: "setisPlaying", payload: true });
+      audioRef.current.play();
    }
 
    function pausar() {
       dispatch({ type: "setisPlaying", payload: false });
+      audioRef.current.pause();
    }
 
-   function saltar() {}
+   function saltar() {
+      if (estado.musicaAtual + 1 < estado.aSeguir.length) {
+         dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
+      } else {
+         return;
+      }
+   }
 
-   function voltar() {}
+   function voltar() {
+      if (estado.musicaAtual + 1 < estado.aSeguir.length) {
+         dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
+      } else {
+         return;
+      }
+   }
 
-   function switchRepetir() {}
+   function switchRepetir() {
+      dispatch({ type: "setRepetir", payload: !estado.repetir });
+   }
 
    function atualizarPercentagem() {
       dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });

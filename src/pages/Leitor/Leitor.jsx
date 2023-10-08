@@ -7,13 +7,11 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 
 const token = localStorage.getItem("token");
 
-
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    // Apanhando os itens da playslist
    async function apanhar(id) {
-      console.log(`Aqui o token é: ${token}`);
       const res = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=10`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +31,7 @@ const Leitor = () => {
    }
 
    useEffect(() => {
-      estado.idAlbum ? apanhar(estado.idAlbum) : undefined;
+      apanhar(estado.idAlbum);
    }, [estado.idAlbum]);
 
    return (

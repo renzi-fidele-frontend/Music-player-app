@@ -22,15 +22,17 @@ const FilaContainer = ({ fila }) => {
 
          <div>
             {fila?.map((v, key) => {
-               if (key != 0)
-                  return (
-                     <div onClick={() => {
-                        dispatch({type: "setMusicaAtual", payload: [v]} )
-                     }} key={key}>
-                        <p>{v.track.name}</p>
-                        <span>{converter(v.track?.duration_ms)}</span>
-                     </div>
-                  );
+               return (
+                  <div
+                     onClick={() => {
+                        dispatch({ type: "setMusicaAtual", payload: [v] });
+                     }}
+                     key={key}
+                  >
+                     <p>{v.track.name}</p>
+                     <span>{converter(v.track?.duration_ms)}</span>
+                  </div>
+               );
             })}
          </div>
       </div>

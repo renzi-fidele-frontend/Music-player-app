@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./AlbumContainer.module.css";
+import { musicContext } from "../../App";
 
 const AlbumContainer = ({ track }) => {
+   const { estado, dispatch } = useContext(musicContext);
+
    useEffect(() => {
-      console.log(track);
+      dispatch({ type: "setTargetAtual", payload: 0 });
    }, [track]);
 
    return (

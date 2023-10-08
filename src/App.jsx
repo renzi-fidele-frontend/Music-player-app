@@ -28,7 +28,10 @@ const reducer = (state, action) => {
       case "setTempoAtual":
          return { ...state, tempoAtual: action.payload };
       case "setisPlaying":
-         return { ...state, isPlaying: action.payload}
+         return { ...state, isPlaying: action.payload };
+      case "setRepetir":
+         return { ...state, repetir: action.payload };
+
       default:
          return state;
    }
@@ -44,6 +47,7 @@ function App() {
       isPlaying: false,
       progresso: 0, // Percentagem do progresso da música
       tempoAtual: 0,
+      repetir: false,
    });
 
    useEffect(() => {
