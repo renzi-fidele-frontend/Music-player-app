@@ -9,30 +9,23 @@ const AudioPlayer = () => {
 
    // Link da música atual sendo tocada
    const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
-
-   // Referência do áudio que será inicializado
-   const audioRef = useRef(new Audio(estado.aSeguir[0]?.track?.preview_url));
+   useEffect(() => {
+      if (estado.isPlaying === false && estado.aSeguir.length > 0 && estado.audioRef === null) {
+         console.log("Aconteceu");
+         // Referência do áudio que será inicializado
+         dispatch({ type: "setAudioRef", payload: new Audio(estado.aSeguir[0]?.track?.preview_url) });
+      }
+   }, []);
 
    const intervaloRef = useRef();
 
    const isReady = useRef(false);
 
    // Duração atual da música
-   const { duration } = audioRef.current;
+   const duracao = estado.audioRef?.duration;
 
    // Percentagem atual da música sendo tocada
-   const percentagem = duration ? (estado.progresso / duration) * 100 : 0;
-
-   function startTimer() {
-      clearInterval(intervaloRef.current);
-      intervaloRef.current = setInterval(() => {
-         if (audioRef.current.ended) {
-            saltar();
-         } else {
-            dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
-         }
-      }, [1000]);
-   }
+   const percentagem = duracao ? (estado.progresso / duracao) * 100 : 0;
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -69,21 +62,34 @@ const AudioPlayer = () => {
       dispatch({ type: "setRepetir", payload: !estado.repetir });
    }
 
-   useEffect(() => {
-      if (estado.isPlaying === true && audioRef.current) {
-         audioRef.current = new Audio(linkAudio);
-         audioRef.current.play();
-      } else {
-         clearInterval(intervaloRef.current);
-         audioRef.current.pause();
-      }
-   }, [estado.isPlaying]);
+   function startTimer() {
+      clearInterval(intervaloRef.current);
+      intervaloRef.current = setInterval(() => {
+         if (audioRef.current.ended) {
+            saltar();
+         } else {
+            dispatch({ type: "setTempoAtual", payload: audioRef.current.currentTime });
+         }
+      }, [1000]);
+   }
 
    useEffect(() => {
-      audioRef.current.pause();
-      audioRef.current = new Audio(linkAudio);
-      audioRef.current.play()
-   }, [estado.targetAtual]);
+      if (estado.isPlaying === true && estado.audioRef !== null) {
+         estado.audioRef.src = linkAudio;
+         estado.audioRef.play();
+      } else {
+         clearInterval(intervaloRef.current);
+         estado.audioRef?.pause();
+      }
+   }, [estado.isPlaying]);
+   /*
+   useEffect(() => {
+      if (estado.audioRef !== null) {
+         estado.audioRef.pause();
+         estado.audioRef.src = linkAudio;
+         estado.audioRef.play();
+      }
+   }, [estado.targetAtual]);*/
 
    return (
       <div id={styles.cont}>

@@ -31,24 +31,20 @@
 }
 
 #cont > div > div {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    transition: all .2s ease-in-out;
-    
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   transition: all 0.2s ease-in-out;
 }
 
 #cont > div > div:hover {
-    padding-inline: .8em;
-    cursor: pointer;
-    color: white;
+   padding-inline: 0.5em;
+   cursor: pointer;
+   color: white;
 }
-
 
 #cont > div > div > p {
    margin-bottom: 0.7em;
    width: fit-content;
    font-size: 15px;
 }
-
-

@@ -31,6 +31,8 @@ const reducer = (state, action) => {
          return { ...state, isPlaying: action.payload };
       case "setRepetir":
          return { ...state, repetir: action.payload };
+      case "setAudioRef":
+         return { ...state, audioRef: action.payload };
 
       default:
          return state;
@@ -48,6 +50,7 @@ function App() {
       progresso: 0, // Percentagem do progresso da música
       tempoAtual: 0, // Tempo de playback da musica atual
       repetir: false,
+      audioRef: null, // estado do Audio que será inicializado
    });
 
    useEffect(() => {
