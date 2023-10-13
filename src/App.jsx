@@ -7,7 +7,7 @@ import Favoritos from "./pages/Favoritos/Favoritos";
 import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 const token = localStorage.getItem("token");
 
