@@ -5,7 +5,7 @@ import styles from "./AudioControles.module.css";
 import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsRepeat, BsFillPlayFill } from "react-icons/bs";
 import { musicContext } from "../../App";
 
-const AudioControles = () => {
+const AudioControles = ({ saltar, voltar }) => {
    const { estado, dispatch } = useContext(musicContext);
 
    function playPause() {
@@ -15,14 +15,14 @@ const AudioControles = () => {
    return (
       <div id={styles.cont}>
          <BsShuffle />
-         <BsFillSkipStartFill />
+         <BsFillSkipStartFill onClick={voltar} />
          {estado.isPlaying === true ? (
             <BsFillPauseFill onClick={playPause} className={styles.meio} />
          ) : (
             <BsFillPlayFill onClick={playPause} className={styles.meio} />
          )}
 
-         <BsFillSkipEndFill />
+         <BsFillSkipEndFill onClick={saltar} />
          <BsRepeat />
       </div>
    );
