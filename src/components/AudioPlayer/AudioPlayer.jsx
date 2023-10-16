@@ -9,6 +9,8 @@ const AudioPlayer = () => {
 
    // Link da música atual sendo tocada
    const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
+   
+   // Caso nenhuma música tenha sido inicializada e haja uma música selecionada
    useEffect(() => {
       if (estado.isPlaying === false && estado.aSeguir.length > 0 && estado.audioRef === null) {
          console.log("Aconteceu");
@@ -34,32 +36,8 @@ const AudioPlayer = () => {
       return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
    }
 
-   function tocar() {
-      audioRef.current
-         .play()
-         .then(() => dispatch({ type: "setisPlaying", payload: true }))
-         .catch((err) => alert("Houve erro ao reproduzir o áudio"));
-   }
-
-   function pausar() {
-      dispatch({ type: "setisPlaying", payload: false });
-      audioRef.current.pause();
-   }
-
    function saltar() {
-      if (estado.musicaAtual + 1 < estado.aSeguir.length) {
-         dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
-      }
-   }
-
-   function voltar() {
-      if (estado.musicaAtual + 1 < estado.aSeguir.length) {
-         dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
-      }
-   }
-
-   function switchRepetir() {
-      dispatch({ type: "setRepetir", payload: !estado.repetir });
+      dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
    }
 
    function startTimer() {

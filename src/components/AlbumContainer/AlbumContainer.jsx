@@ -6,8 +6,8 @@ const AlbumContainer = ({ track }) => {
    const { estado, dispatch } = useContext(musicContext);
 
    useEffect(() => {
-      dispatch({ type: "setTargetAtual", payload: 0 });
-   }, [track]);
+      console.log("mudei");
+   }, [estado.targetAtual]);
 
    return (
       <div id={styles.cont}>

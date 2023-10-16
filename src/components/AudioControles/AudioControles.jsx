@@ -5,11 +5,36 @@ import styles from "./AudioControles.module.css";
 import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsRepeat, BsFillPlayFill } from "react-icons/bs";
 import { musicContext } from "../../App";
 
-const AudioControles = ({ saltar, voltar }) => {
+const AudioControles = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    function playPause() {
-      dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
+      if (estado.audioRef !== null) {
+         dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
+      }
+   }
+
+   function saltar() {
+      if (estado.targetAtual + 1 < estado.aSeguir.length) {
+         dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual]] });
+         console.log("saltado");
+      } else {
+         dispatch({ type: "setTargetAtual", payload: 0 });
+         console.log("de volta ao zero");
+      }
+   }
+
+   function voltar() {
+      if (estado.targetAtual - 1 > 0) {
+         dispatch({ type: "setTargetAtual", payload: estado.targetAtual - 1 });
+      } else {
+         dispatch({ type: "setTargetAtual", payload: 0 });
+      }
+   }
+
+   function switchRepetir() {
+      dispatch({ type: "setRepetir", payload: !estado.repetir });
    }
 
    return (
@@ -23,7 +48,7 @@ const AudioControles = ({ saltar, voltar }) => {
          )}
 
          <BsFillSkipEndFill onClick={saltar} />
-         <BsRepeat />
+         <BsRepeat onClick={switchRepetir} />
       </div>
    );
 };
