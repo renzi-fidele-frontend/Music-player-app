@@ -17,10 +17,12 @@ const AudioControles = () => {
    function saltar() {
       if (estado.targetAtual + 1 < estado.aSeguir.length) {
          dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
-         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual]] });
-         console.log("saltado");
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
+         console.log("saltado", estado.targetAtual + 1);
       } else {
          dispatch({ type: "setTargetAtual", payload: 0 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
+
          console.log("de volta ao zero");
       }
    }
@@ -28,8 +30,10 @@ const AudioControles = () => {
    function voltar() {
       if (estado.targetAtual - 1 > 0) {
          dispatch({ type: "setTargetAtual", payload: estado.targetAtual - 1 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual - 1]] });
       } else {
          dispatch({ type: "setTargetAtual", payload: 0 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
       }
    }
 
