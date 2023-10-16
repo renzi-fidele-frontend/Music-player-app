@@ -11,6 +11,9 @@ const AudioControles = () => {
    function playPause() {
       if (estado.audioRef !== null) {
          dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
+         estado.audioRef?.play().then(() => {
+            console.log("Play iniciado");
+         });
       }
    }
 
