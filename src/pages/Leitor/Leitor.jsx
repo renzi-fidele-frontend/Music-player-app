@@ -38,6 +38,9 @@ const Leitor = () => {
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
+            <div id={styles.destaques}>
+               
+            </div>
          </div>
 
          <div id={styles.right}>

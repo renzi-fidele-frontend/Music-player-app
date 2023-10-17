@@ -22,6 +22,7 @@ const FilaContainer = ({ fila }) => {
                   <div
                      onClick={() => {
                         dispatch({ type: "setMusicaAtual", payload: [v] });
+                        dispatch({type: "setTargetAtual", payload: key})
                      }}
                      key={key}
                   >

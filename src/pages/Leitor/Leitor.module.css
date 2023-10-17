@@ -5,9 +5,28 @@
    padding-block: 0 !important;
 }
 
+#cont > #left {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding-bottom: 2em;
+}
+
 #cont > #right {
    display: flex;
    flex-flow: column;
    justify-content: space-between;
 }
 
+#destaques {
+   height: 70%;
+   margin-right: 3em;
+   margin-top: 3em;
+   background: rgba(39, 53, 77, 0.25);
+   box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
+   backdrop-filter: blur(4px);
+   -webkit-backdrop-filter: blur(4px);
+   border-radius: 10px;
+   display: grid;
+   grid-template-columns: auto auto auto;
+}
