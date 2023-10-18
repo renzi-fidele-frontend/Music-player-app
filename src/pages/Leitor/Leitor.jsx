@@ -40,7 +40,7 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists }));
+         .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }));
    }
    async function getPlaylistsDestacadas() {
       const res = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
@@ -50,7 +50,7 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items }));
+         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items.slice(0, 3) }));
    }
    async function getLancamentos() {
       const res = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
@@ -60,7 +60,7 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items }));
+         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items.slice(0, 3) }));
    }
 
    useEffect(() => {
@@ -75,14 +75,19 @@ const Leitor = () => {
       }
    }, [estado.musicaAtual]);
 
+   const conteudoSemelhantes = [
+      { img: estado.semelhantes[0]?.images[2].url, subtit: estado.semelhantes[0]?.name, texto: `${estado.semelhantes[0]?.followers?.total} seguidores` },
+   ];
+
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
             <div id={styles.destaques}>
-               {/*<DestaqueCard titulo={"Artistas Semelhantes"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />
-               <DestaqueCard titulo={"Feito para si"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />
-   <DestaqueCard titulo={"Lançamentos"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />*/}
+               <DestaqueCard titulo={"Artistas Semelhantes"} conteudo={conteudoSemelhantes} />
+               <DestaqueCard titulo={"Feito para si"} conteudo={conteudoSemelhantes} />
+               <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoSemelhantes} />
+               
             </div>
          </div>
 
