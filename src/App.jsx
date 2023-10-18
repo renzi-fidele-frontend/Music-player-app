@@ -37,7 +37,8 @@ const reducer = (state, action) => {
          return { ...state, semelhantes: action.payload };
       case "setPlaylistsDestacadas":
          return { ...state, playlistsDestacadas: action.payload };
-
+      case "setLancamentos":
+         return { ...state, lancamentos: action.payload };
 
       default:
          return state;
@@ -58,8 +59,7 @@ function App() {
       audioRef: null, // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes
       playlistsDestacadas: [],
-
-
+      lancamentos: [],
    });
 
    useEffect(() => {

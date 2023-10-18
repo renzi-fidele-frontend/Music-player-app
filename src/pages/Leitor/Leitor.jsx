@@ -33,7 +33,6 @@ const Leitor = () => {
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
-      console.log("A id é:", id);
       const res = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -43,7 +42,6 @@ const Leitor = () => {
          .then((v) => v.json())
          .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists }));
    }
-   
    async function getPlaylistsDestacadas() {
       const res = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
          headers: {
@@ -54,6 +52,16 @@ const Leitor = () => {
          .then((v) => v.json())
          .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items }));
    }
+   async function getLancamentos() {
+      const res = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((v) => v.json())
+         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items }));
+   }
 
    useEffect(() => {
       if (estado.idAlbum.length > 0) apanhar(estado.idAlbum);
@@ -63,6 +71,7 @@ const Leitor = () => {
       if (estado.semelhantes.length === 0 && estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
          getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
          getPlaylistsDestacadas();
+         getLancamentos();
       }
    }, [estado.musicaAtual]);
 
