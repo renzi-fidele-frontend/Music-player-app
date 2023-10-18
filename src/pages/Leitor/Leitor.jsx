@@ -80,9 +80,9 @@ const Leitor = () => {
          <div id={styles.left}>
             <AudioPlayer />
             <div id={styles.destaques}>
-               <DestaqueCard titulo={"Artistas Semelhantes"} />
-               <DestaqueCard titulo={"Feito para si"} />
-               <DestaqueCard titulo={"Lançamentos"} />
+               {/*<DestaqueCard titulo={"Artistas Semelhantes"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />
+               <DestaqueCard titulo={"Feito para si"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />
+   <DestaqueCard titulo={"Lançamentos"} conteudo={[{img: estado.semelhantes}, {img: estado.semelhantes}, {img: estado.semelhantes}]} />*/}
             </div>
          </div>
 
