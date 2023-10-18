@@ -33,6 +33,11 @@ const reducer = (state, action) => {
          return { ...state, repetir: action.payload };
       case "setAudioRef":
          return { ...state, audioRef: action.payload };
+      case "setSemelhantes":
+         return { ...state, semelhantes: action.payload };
+      case "setPlaylistsDestacadas":
+         return { ...state, playlistsDestacadas: action.payload };
+
 
       default:
          return state;
@@ -51,6 +56,10 @@ function App() {
       tempoAtual: 0, // Tempo de playback da musica atual
       repetir: false,
       audioRef: null, // estado do Audio que será inicializado
+      semelhantes: [], // Artistas semelhantes
+      playlistsDestacadas: [],
+
+
    });
 
    useEffect(() => {

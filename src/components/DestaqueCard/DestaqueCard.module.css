@@ -1,0 +1,14 @@
+#ct {
+   background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(42, 55, 80, 0.571848807882528) 100%);
+   border-radius: 10px;
+   box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
+   backdrop-filter: blur(4px);
+   -webkit-backdrop-filter: blur(4px);
+   margin-inline: 1em;
+   padding: 2em;
+   color: var(--cor-texto2);
+}
+
+#ct > h6 {
+   font-size: 1.7em;
+}
