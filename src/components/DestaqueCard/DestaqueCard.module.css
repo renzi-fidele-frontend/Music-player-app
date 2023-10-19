@@ -7,8 +7,46 @@
    margin-inline: 1em;
    padding: 2em;
    color: var(--cor-texto2);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 
 #ct > h6 {
    font-size: 1.7em;
+   margin-bottom: 7px
+}
+
+#dentro {
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
+}
+
+#dentro > div {
+   display: flex;
+   flex-flow: row nowrap;
+   align-items: center;
+}
+
+#dentro #left > img {
+   width: 80px;
+   border-radius: 10px;
+   scale: 1;
+}
+
+#dentro #right {
+   padding-left: 1em;
+}
+
+#dentro #right h5 {
+   font-size: 1.3em;
+   font-weight: 500;
+   margin-bottom: 4px;
+}
+
+#dentro #right p {
+   font-weight: 200;
+   font-size: 15px;
+   text-shadow: 1px 1px 1px black;
 }

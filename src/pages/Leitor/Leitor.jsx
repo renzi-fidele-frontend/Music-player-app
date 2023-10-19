@@ -76,7 +76,21 @@ const Leitor = () => {
    }, [estado.musicaAtual]);
 
    const conteudoSemelhantes = [
-      { img: estado.semelhantes[0]?.images[2].url, subtit: estado.semelhantes[0]?.name, texto: `${estado.semelhantes[0]?.followers?.total} seguidores` },
+      {
+         img: estado.semelhantes[0]?.images[2].url,
+         subtit: estado.semelhantes[0]?.name,
+         texto: `${estado.semelhantes[0]?.followers?.total} Seguidores`,
+      },
+      {
+         img: estado.semelhantes[1]?.images[2].url,
+         subtit: estado.semelhantes[1]?.name,
+         texto: `${estado.semelhantes[1]?.followers?.total} Seguidores`,
+      },
+      {
+         img: estado.semelhantes[2]?.images[2].url,
+         subtit: estado.semelhantes[2]?.name,
+         texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
+      },
    ];
 
    return (
@@ -87,7 +101,6 @@ const Leitor = () => {
                <DestaqueCard titulo={"Artistas Semelhantes"} conteudo={conteudoSemelhantes} />
                <DestaqueCard titulo={"Feito para si"} conteudo={conteudoSemelhantes} />
                <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoSemelhantes} />
-               
             </div>
          </div>
 
