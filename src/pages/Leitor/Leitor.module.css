@@ -27,7 +27,7 @@
    box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
    backdrop-filter: blur(4px);
    -webkit-backdrop-filter: blur(4px);
-   border-radius: 10px;
+   border-radius: 30px;
    display: grid;
    grid-template-columns: 33.3% 33.3% 33.3%;
 }

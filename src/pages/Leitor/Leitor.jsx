@@ -93,14 +93,50 @@ const Leitor = () => {
       },
    ];
 
+   const conteudoPlaylistsDestacadas = [
+      {
+         img: estado.playlistsDestacadas[0]?.images[0]?.url,
+         subtit: estado.playlistsDestacadas[0]?.name,
+         texto: `${estado.playlistsDestacadas[0]?.tracks?.total} Músicas`,
+      },
+      {
+         img: estado.playlistsDestacadas[1]?.images[0]?.url,
+         subtit: estado.playlistsDestacadas[1]?.name,
+         texto: `${estado.playlistsDestacadas[1]?.tracks?.total} Músicas`,
+      },
+      {
+         img: estado.playlistsDestacadas[2]?.images[0]?.url,
+         subtit: estado.playlistsDestacadas[2]?.name,
+         texto: `${estado.playlistsDestacadas[2]?.tracks?.total} Músicas`,
+      },
+   ];
+
+   const conteudoLancamentos = [
+      {
+         img: estado.lancamentos[0]?.images[2]?.url,
+         subtit: estado.lancamentos[0]?.name,
+         texto: estado.lancamentos[0]?.artists[0]?.name,
+      },
+      {
+         img: estado.lancamentos[1]?.images[2]?.url,
+         subtit: estado.lancamentos[1]?.name,
+         texto: estado.lancamentos[1]?.artists[0]?.name,
+      },
+      {
+         img: estado.lancamentos[2]?.images[2]?.url,
+         subtit: estado.lancamentos[2]?.name,
+         texto: estado.lancamentos[2]?.artists[0]?.name,
+      },
+   ];
+
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
             <div id={styles.destaques}>
                <DestaqueCard titulo={"Artistas Semelhantes"} conteudo={conteudoSemelhantes} />
-               <DestaqueCard titulo={"Feito para si"} conteudo={conteudoSemelhantes} />
-               <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoSemelhantes} />
+               <DestaqueCard titulo={"Feito para si"} conteudo={conteudoPlaylistsDestacadas} />
+               <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoLancamentos} />
             </div>
          </div>
 

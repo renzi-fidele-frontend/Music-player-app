@@ -1,6 +1,6 @@
 #ct {
    background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(42, 55, 80, 0.571848807882528) 100%);
-   border-radius: 10px;
+   border-radius: 30px;
    box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
    backdrop-filter: blur(4px);
    -webkit-backdrop-filter: blur(4px);
@@ -10,6 +10,12 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+   transition: scale .2s ease;
+}
+
+#ct:hover {
+   scale: 1.03;
+   cursor: pointer;
 }
 
 #ct > h6 {
@@ -31,8 +37,8 @@
 
 #dentro #left > img {
    width: 80px;
+   height: 80px;
    border-radius: 10px;
-   scale: 1;
 }
 
 #dentro #right {
