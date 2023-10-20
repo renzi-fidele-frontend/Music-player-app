@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./DestaqueCard.module.css";
+import { IoIosArrowForward } from "react-icons/io";
 
 const DestaqueCard = ({ titulo, conteudo = [] }) => {
-
    return (
-      <div id={styles.ct}>
+      <div id={styles.ct} onMouseOver={(e) => e.target.classList.add(styles.entrou)} onMouseLeave={(e) => e.target.classList.remove(styles.entrou)}>
          <h6>{titulo}</h6>
          <div id={styles.dentro}>
             {conteudo[0]?.subtit?.length &&
@@ -22,6 +22,7 @@ const DestaqueCard = ({ titulo, conteudo = [] }) => {
                   );
                })}
          </div>
+         <IoIosArrowForward />
       </div>
    );
 };

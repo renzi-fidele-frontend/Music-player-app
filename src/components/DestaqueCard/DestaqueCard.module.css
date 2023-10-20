@@ -10,17 +10,30 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   transition: scale .2s ease;
+   transition: all 0.2s ease;
+}
+
+.entrou > svg {
+   opacity: 1 !important;
+}
+
+#ct > svg {
+   opacity: 0;
+   align-self: flex-end;
+   font-size: 28px;
+
 }
 
 #ct:hover {
    scale: 1.03;
    cursor: pointer;
+   background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(97, 105, 119, 0.572) 100%);
+
 }
 
 #ct > h6 {
    font-size: 1.7em;
-   margin-bottom: 7px
+   margin-bottom: 7px;
 }
 
 #dentro {
@@ -38,7 +51,7 @@
 #dentro #left > img {
    width: 80px;
    height: 80px;
-   border-radius: 10px;
+   border-radius: 20px;
 }
 
 #dentro #right {
@@ -46,7 +59,7 @@
 }
 
 #dentro #right h5 {
-   font-size: 1.3em;
+   font-size: 1.2em;
    font-weight: 500;
    margin-bottom: 4px;
 }

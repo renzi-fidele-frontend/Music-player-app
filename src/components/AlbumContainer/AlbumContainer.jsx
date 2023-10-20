@@ -1,13 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styles from "./AlbumContainer.module.css";
-import { musicContext } from "../../App";
 
 const AlbumContainer = ({ track }) => {
-   const { estado, dispatch } = useContext(musicContext);
-
-   useEffect(() => {
-      console.log("mudei");
-   }, [estado.targetAtual]);
 
    return (
       <div id={styles.cont}>

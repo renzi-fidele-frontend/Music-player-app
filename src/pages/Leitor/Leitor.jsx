@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styles from "./Leitor.module.css";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
@@ -30,6 +30,7 @@ const Leitor = () => {
             }
          });
    }
+
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
@@ -73,6 +74,8 @@ const Leitor = () => {
          getPlaylistsDestacadas();
          getLancamentos();
       }
+
+      
    }, [estado.musicaAtual]);
 
    const conteudoSemelhantes = [

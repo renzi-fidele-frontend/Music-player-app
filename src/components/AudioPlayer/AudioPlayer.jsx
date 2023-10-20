@@ -9,11 +9,11 @@ const AudioPlayer = () => {
 
    // Link da música atual sendo tocada
    const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
-   
+
    // Caso nenhuma música tenha sido inicializada e haja uma música selecionada
    useEffect(() => {
-      if (estado.isPlaying === false && estado.aSeguir.length > 0 && estado.audioRef === null) {
-         console.log("Aconteceu");
+      console.log(estado.isPlaying === false, estado.aSeguir.length > 0, estado.audioRef === null);
+      if (estado.isPlaying === false && estado.audioRef === null) {
          // Referência do áudio que será inicializado
          dispatch({ type: "setAudioRef", payload: new Audio(estado.aSeguir[0]?.track?.preview_url) });
       }
@@ -38,6 +38,7 @@ const AudioPlayer = () => {
 
    function saltar() {
       dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
+      dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.musicaAtual + 1]] });
    }
 
    function startTimer() {
@@ -96,7 +97,7 @@ const AudioPlayer = () => {
                   direction="1"
                   mode="bounce"
                ></lottie-player>
-               <p>{converter(estado.musicaAtual[0]?.track?.duration_ms)}</p>
+               <p>{converter(estado.audioRef?.duration)}</p>
             </div>
             <AudioControles />
          </div>

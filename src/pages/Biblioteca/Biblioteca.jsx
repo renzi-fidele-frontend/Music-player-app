@@ -42,31 +42,36 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.container}>
-         {estado.playlists?.map((v, k) => {
-            return (
-               <div
-                  onClick={() => {
-                     dispatch({ type: "setIdAlbum", payload: v.id });
-                     dispatch({ type: "setTargetAtual", payload: 0 });
-                     navegar("/leitor");
-                  }}
-                  key={k}
-                  onMouseEnter={(e) => {
-                     e.target.classList.add(styles.hover);
-                  }}
-                  onMouseLeave={(e) => {
-                     e.target.classList.remove(styles.hover);
-                  }}
-               >
-                  <img src={v.images[0]?.url} alt="" />
-                  <h6>{v.name}</h6>
-                  <p>{v.tracks.total} musicas</p>
-                  <i>
-                     <TbPlayerPlayFilled />
-                  </i>
-               </div>
-            );
-         })}
+         <h2>{`Playlists (${estado.playlists?.length})`}</h2>
+         <div id={styles.baixo}>
+            {estado.playlists?.map((v, k) => {
+               return (
+                  <div
+                     className={styles.box}
+                     onClick={() => {
+                        dispatch({ type: "setIdAlbum", payload: v.id });
+                        dispatch({ type: "setTargetAtual", payload: 0 });
+                        navegar("/leitor");
+                     }}
+                     key={k}
+                     onMouseEnter={(e) => {
+                        e.target.classList.add(styles.hover);
+                     }}
+                     onMouseLeave={(e) => {
+                        e.target.classList.remove(styles.hover);
+                     }}
+                  >
+                     <img src={v.images[0]?.url} alt="" />
+                     <h6>{v.name}</h6>
+                     {v.tracks.total === 1 ? <p>{v.tracks.total} Música</p> : <p>{v.tracks.total} Músicas</p>}
+
+                     <i>
+                        <TbPlayerPlayFilled />
+                     </i>
+                  </div>
+               );
+            })}
+         </div>
       </div>
    );
 };
