@@ -4,6 +4,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { musicContext } from "../../App";
+import AlbumCard from "../../components/AlbumCard/AlbumCard";
 
 const token = localStorage.getItem("token");
 
@@ -46,6 +47,18 @@ const Biblioteca = () => {
          <div id={styles.baixo}>
             {estado.playlists?.map((v, k) => {
                return (
+                  <AlbumCard
+                     foto={v.images[0]?.url}
+                     nome={v.name}
+                     nrMusicas={v.tracks.total}
+                     key={k}
+                     acao={() => {
+                        dispatch({ type: "setIdAlbum", payload: v.id });
+                        dispatch({ type: "setTargetAtual", payload: 0 });
+                        navegar("/leitor");
+                     }}
+                  />
+                  /*
                   <div
                      className={styles.box}
                      onClick={() => {
@@ -68,7 +81,7 @@ const Biblioteca = () => {
                      <i>
                         <TbPlayerPlayFilled />
                      </i>
-                  </div>
+                  </div>*/
                );
             })}
          </div>

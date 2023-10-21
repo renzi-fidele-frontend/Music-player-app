@@ -31,7 +31,6 @@ const Leitor = () => {
          });
    }
 
-
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
       const res = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
@@ -69,13 +68,12 @@ const Leitor = () => {
    }, [estado.idAlbum]);
 
    useEffect(() => {
-      if (estado.semelhantes.length === 0 && estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
-         getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
+      getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
+
+      if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
          getPlaylistsDestacadas();
          getLancamentos();
       }
-
-      
    }, [estado.musicaAtual]);
 
    const conteudoSemelhantes = [
