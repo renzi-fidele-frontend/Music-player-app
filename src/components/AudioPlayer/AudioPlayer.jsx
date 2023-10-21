@@ -3,6 +3,7 @@ import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
+import Notificacao from "../Notificacao/Notificacao";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
@@ -52,6 +53,7 @@ const AudioPlayer = () => {
       }, [1000]);
    }
 
+   // Controlador da música
    useEffect(() => {
       if (estado.isPlaying === true && estado.audioRef !== null) {
          estado.audioRef.src = linkAudio;
@@ -61,14 +63,6 @@ const AudioPlayer = () => {
          estado.audioRef?.pause();
       }
    }, [estado.isPlaying]);
-   /*
-   useEffect(() => {
-      if (estado.audioRef !== null) {
-         estado.audioRef.pause();
-         estado.audioRef.src = linkAudio;
-         estado.audioRef.play();
-      }
-   }, [estado.targetAtual]);*/
 
    return (
       <div id={styles.cont}>
@@ -80,6 +74,7 @@ const AudioPlayer = () => {
                cor={"var(--cor-tema)"}
                percentagem={estado.progresso}
             />
+            <Notificacao />
          </div>
          <div id={styles.right}>
             <h5>{estado.musicaAtual[0]?.track?.name}</h5>

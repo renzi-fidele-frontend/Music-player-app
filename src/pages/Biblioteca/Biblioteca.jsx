@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Biblioteca.module.css";
-import { TbPlayerPlayFilled } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import Notificacao from "../../components/Notificacao/Notificacao";
 
 const token = localStorage.getItem("token");
 
@@ -43,7 +42,7 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.container}>
-         <h2>{`Playlists (${estado.playlists?.length})`}</h2>
+         <h2>{`Playlists criadas (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {estado.playlists?.map((v, k) => {
                return (

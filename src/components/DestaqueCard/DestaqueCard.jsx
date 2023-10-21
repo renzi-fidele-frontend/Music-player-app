@@ -10,7 +10,7 @@ const DestaqueCard = ({ titulo, conteudo = [] }) => {
             {conteudo[0]?.subtit?.length &&
                conteudo?.map((v, key) => {
                   return (
-                     <div>
+                     <div key={key}>
                         <div id={styles.left}>
                            <img src={v.img} alt="foto de destaque" />
                         </div>

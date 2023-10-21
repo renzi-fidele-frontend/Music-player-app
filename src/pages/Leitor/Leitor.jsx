@@ -30,6 +30,9 @@ const Leitor = () => {
             }
          });
    }
+   useEffect(() => {
+      if (estado.idAlbum.length > 0) apanhar(estado.idAlbum);
+   }, [estado.idAlbum]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
@@ -40,7 +43,8 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }));
+         .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }))
+         .catch((err) => console.log("Aconteceu o erro"));
    }
    async function getPlaylistsDestacadas() {
       const res = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
@@ -50,7 +54,8 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items.slice(0, 3) }));
+         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items.slice(0, 3) }))
+         .catch((err) => console.log("Aconteceu o erro"));
    }
    async function getLancamentos() {
       const res = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
@@ -60,19 +65,17 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items.slice(0, 3) }));
+         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items.slice(0, 3) }))
+         .catch((err) => console.log("Aconteceu o erro"));
    }
-
    useEffect(() => {
-      if (estado.idAlbum.length > 0) apanhar(estado.idAlbum);
-   }, [estado.idAlbum]);
+      if (estado.aSeguir.length > 0) {
+         getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
 
-   useEffect(() => {
-      getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
-
-      if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
-         getPlaylistsDestacadas();
-         getLancamentos();
+         if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
+            getPlaylistsDestacadas();
+            getLancamentos();
+         }
       }
    }, [estado.musicaAtual]);
 
