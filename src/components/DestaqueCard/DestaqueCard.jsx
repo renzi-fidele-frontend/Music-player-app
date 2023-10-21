@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const DestaqueCard = ({ titulo, conteudo = [] }) => {
    return (
-      <div id={styles.ct} onMouseOver={(e) => e.target.classList.add(styles.entrou)} onMouseLeave={(e) => e.target.classList.remove(styles.entrou)}>
+      <div id={styles.ct} onMouseEnter={(e) => e.target.classList.add(styles.entrou)} onMouseLeave={(e) => e.target.classList.remove(styles.entrou)}>
          <h6>{titulo}</h6>
          <div id={styles.dentro}>
             {conteudo[0]?.subtit?.length &&

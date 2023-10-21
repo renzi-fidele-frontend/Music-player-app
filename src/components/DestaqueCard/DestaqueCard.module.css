@@ -11,6 +11,13 @@
    flex-direction: column;
    justify-content: space-between;
    transition: all 0.2s ease;
+   position: relative;
+}
+
+#ct:hover {
+   scale: 1.03;
+   cursor: pointer;
+   background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(97, 105, 119, 0.572) 100%);
 }
 
 .entrou > svg {
@@ -18,22 +25,16 @@
 }
 
 #ct > svg {
+   position: absolute;
    opacity: 0;
    align-self: flex-end;
    font-size: 28px;
-
-}
-
-#ct:hover {
-   scale: 1.03;
-   cursor: pointer;
-   background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(97, 105, 119, 0.572) 100%);
-
+   bottom: 25px;
 }
 
 #ct > h6 {
    font-size: 1.7em;
-   margin-bottom: 7px;
+   margin-bottom: 20px;
 }
 
 #dentro {

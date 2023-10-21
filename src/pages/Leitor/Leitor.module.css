@@ -19,10 +19,9 @@
 }
 
 #destaques {
-   height: 70%;
    margin-right: 3em;
-   padding: 3em 1em;
-   margin-top: 3em;
+   padding: 2em 1em;
+   margin-top: 2em;
    background: rgba(39, 53, 77, 0.25);
    box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
    backdrop-filter: blur(4px);
