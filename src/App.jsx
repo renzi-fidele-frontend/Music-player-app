@@ -56,7 +56,7 @@ function App() {
       progresso: 0, // Percentagem do progresso da música
       tempoAtual: 0, // Tempo de playback da musica atual
       repetir: false,
-      audioRef: null, // estado do Audio que será inicializado
+      audioRef: new Audio(undefined), // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes
       playlistsDestacadas: [],
       lancamentos: [],

@@ -13,10 +13,10 @@ const AudioPlayer = () => {
 
    // Caso nenhuma música tenha sido inicializada e haja uma música selecionada
    useEffect(() => {
-      console.log(estado.isPlaying === false, estado.aSeguir.length > 0, estado.audioRef === null);
-      if (estado.isPlaying === false && estado.audioRef === null) {
+      
+      if (estado.isPlaying === false && estado.audioRef.src.length === 0) {
          // Referência do áudio que será inicializado
-         dispatch({ type: "setAudioRef", payload: new Audio(estado.aSeguir[0]?.track?.preview_url) });
+         estado.audioRef.src = estado.aSeguir[0]?.track?.preview_url;
       }
    }, []);
 
@@ -53,14 +53,14 @@ const AudioPlayer = () => {
       }, [1000]);
    }
 
-   // Controlador da música
+   // Não atualizar a música caso ela esteja tocando
    useEffect(() => {
-      if (estado.isPlaying === true && estado.audioRef !== null) {
+      if (estado.isPlaying === true) {
          estado.audioRef.src = linkAudio;
          estado.audioRef.play();
       } else {
          clearInterval(intervaloRef.current);
-         estado.audioRef?.pause();
+         estado.audioRef.pause();
       }
    }, [estado.isPlaying]);
 

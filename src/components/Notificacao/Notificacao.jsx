@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef } from "react";
 import { musicContext } from "../../App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoAlertFill } from "react-icons/go";
 
 const Notificacao = () => {
    const { estado, dispatch } = useContext(musicContext);

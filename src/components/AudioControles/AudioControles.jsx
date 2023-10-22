@@ -9,10 +9,10 @@ const AudioControles = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    function playPause() {
-      if (estado.audioRef !== null) {
-         dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
+      if (estado.audioRef.src.length > 0) {
          estado.audioRef?.play().then(() => {
             console.log("Play iniciado");
+            dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
          });
       }
    }
@@ -41,7 +41,6 @@ const AudioControles = () => {
       dispatch({ type: "setRepetir", payload: !estado.repetir });
    }
 
-
    return (
       <div id={styles.cont}>
          <BsShuffle />
@@ -49,9 +48,14 @@ const AudioControles = () => {
          {estado.isPlaying === true ? (
             <BsFillPauseFill onClick={playPause} className={styles.meio} />
          ) : (
-            <BsFillPlayFill onClick={playPause} className={styles.meio} />
+            <BsFillPlayFill
+               onClick={() => {
+                  console.log(estado.audioRef)
+                  playPause();
+               }}
+               className={styles.meio}
+            />
          )}
-
          <BsFillSkipEndFill onClick={saltar} />
          <BsRepeat onClick={switchRepetir} />
       </div>
