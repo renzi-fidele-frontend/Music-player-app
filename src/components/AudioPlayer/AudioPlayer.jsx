@@ -11,9 +11,9 @@ const AudioPlayer = () => {
    // Link da música atual sendo tocada
    const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
 
-   // Caso nenhuma música tenha sido inicializada e haja uma música selecionada
+   // Caso nenhuma música esteja tocando e nehuma url sido entregue o Audio
    useEffect(() => {
-      
+      console.log(estado.audioRef.src);
       if (estado.isPlaying === false && estado.audioRef.src.length === 0) {
          // Referência do áudio que será inicializado
          estado.audioRef.src = estado.aSeguir[0]?.track?.preview_url;
