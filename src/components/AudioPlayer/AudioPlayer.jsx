@@ -11,12 +11,18 @@ const AudioPlayer = () => {
    // Link da música atual sendo tocada
    const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
 
-   // Caso nenhuma música esteja tocando e nehuma url sido entregue o Audio
+   // Link da primeira música da playslist selecionada
+   const prevLink = estado.aSeguir[0]?.track?.preview_url;
+
+   // Caso nenhuma música esteja tocando e nehuma url sido entregue ao Audio
    useEffect(() => {
-      console.log(estado.audioRef.src);
-      if (estado.isPlaying === false && estado.audioRef.src.length === 0) {
+      let existe = estado.audioRef?.attributes?.src?.value;
+      if (estado.isPlaying === false && (existe === undefined || existe === "undefined")) {
          // Referência do áudio que será inicializado
-         estado.audioRef.src = estado.aSeguir[0]?.track?.preview_url;
+         console.log("Primeira da playlist foi adicionada");
+         console.log(prevLink);
+         estado.audioRef.src = prevLink;
+         console.log(estado.audioRef);
       }
    }, []);
 
@@ -53,8 +59,8 @@ const AudioPlayer = () => {
       }, [1000]);
    }
 
-   // Não atualizar a música caso ela esteja tocando
-   useEffect(() => {
+   // Controlador de play e pouse
+   /*useEffect(() => {
       if (estado.isPlaying === true) {
          estado.audioRef.src = linkAudio;
          estado.audioRef.play();
@@ -62,7 +68,7 @@ const AudioPlayer = () => {
          clearInterval(intervaloRef.current);
          estado.audioRef.pause();
       }
-   }, [estado.isPlaying]);
+   }, [estado.isPlaying]);*/
 
    return (
       <div id={styles.cont}>

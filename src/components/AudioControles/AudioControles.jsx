@@ -10,10 +10,17 @@ const AudioControles = () => {
 
    function playPause() {
       if (estado.audioRef.src.length > 0) {
-         estado.audioRef?.play().then(() => {
-            console.log("Play iniciado");
-            dispatch({ type: "setisPlaying", payload: !estado.isPlaying });
-         });
+         if (estado.isPlaying === false) {
+            estado.audioRef?.play().then(() => {
+               console.log("Play iniciado");
+               dispatch({ type: "setisPlaying", payload: true });
+            });
+         } else {
+            estado.audioRef?.pause().then(() => {
+               console.log("Pause feito");
+               dispatch({ type: "setisPlaying", payload: false });
+            });
+         }
       }
    }
 
@@ -50,7 +57,7 @@ const AudioControles = () => {
          ) : (
             <BsFillPlayFill
                onClick={() => {
-                  console.log(estado.audioRef)
+                  console.log(estado.audioRef);
                   playPause();
                }}
                className={styles.meio}
