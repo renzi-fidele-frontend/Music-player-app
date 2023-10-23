@@ -16,15 +16,18 @@ const AudioPlayer = () => {
 
    // Caso nenhuma música esteja tocando e nehuma url sido entregue ao Audio
    useEffect(() => {
-      let existe = estado.audioRef?.attributes?.src?.value;
-      if (estado.isPlaying === false && (existe === undefined || existe === "undefined")) {
-         // Referência do áudio que será inicializado
-         console.log("Primeira da playlist foi adicionada");
-         console.log(prevLink);
-         estado.audioRef.src = prevLink;
-         console.log(estado.audioRef);
+      if (estado.aSeguir.length > 0) {
+         let existe = estado.audioRef?.attributes?.src?.value;
+         if (estado.isPlaying === false && (existe === undefined || existe === "undefined")) {
+            // Referência do áudio que será inicializado
+            console.log("Primeira da playlist foi adicionada");
+            console.log(prevLink);
+            console.log(estado.aSeguir[0]);
+            estado.audioRef.src = prevLink;
+            console.log(estado.audioRef);
+         }
       }
-   }, []);
+   }, [estado.aSeguir]);
 
    const intervaloRef = useRef();
 
