@@ -14,20 +14,26 @@ const AudioPlayer = () => {
    // Link da primeira música da playslist selecionada
    const prevLink = estado.aSeguir[0]?.track?.preview_url;
 
+   const existe = estado.audioRef?.attributes?.src?.value;
+
    // Caso nenhuma música esteja tocando e nehuma url sido entregue ao Audio
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
-         let existe = estado.audioRef?.attributes?.src?.value;
          if (estado.isPlaying === false && (existe === undefined || existe === "undefined")) {
             // Referência do áudio que será inicializado
-            console.log("Primeira da playlist foi adicionada");
-            console.log(prevLink);
-            console.log(estado.aSeguir[0]);
             estado.audioRef.src = prevLink;
             console.log(estado.audioRef);
          }
       }
    }, [estado.aSeguir]);
+
+   // Caso uma nova musica seja selecionada
+   useEffect(() => {
+      console.log(linkAudio);
+      if (linkAudio !== null) {
+         estado.audioRef.src = linkAudio;
+      }
+   }, [estado.musicaAtual]);
 
    const intervaloRef = useRef();
 

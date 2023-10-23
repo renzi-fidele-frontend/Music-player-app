@@ -16,10 +16,13 @@ const AudioControles = () => {
                dispatch({ type: "setisPlaying", payload: true });
             });
          } else {
-            estado.audioRef?.pause().then(() => {
+            console.log("Passei");
+            estado.audioRef?.pause();
+            dispatch({ type: "setisPlaying", payload: false });
+            /*estado.audioRef?.pause().then(() => {
                console.log("Pause feito");
                dispatch({ type: "setisPlaying", payload: false });
-            });
+            });*/
          }
       }
    }
