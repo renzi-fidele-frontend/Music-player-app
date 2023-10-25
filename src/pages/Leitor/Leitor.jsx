@@ -21,8 +21,12 @@ const Leitor = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
-            dispatch({ type: "setaSeguir", payload: res.items });
+            console.log(estado.musicaAtual[0], res.items[0]);
+            // Caso os dados já tenham sido carregados
+            if (estado.aSeguir.toString() !== res.items.toString()) {
+               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+               dispatch({ type: "setaSeguir", payload: res.items });
+            }
             if (res.error) {
                if (res.error.message === "The access token expired") {
                   localStorage.clear();
