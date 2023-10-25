@@ -23,15 +23,15 @@ const AudioPlayer = () => {
    useEffect(() => {
       if (estado.audioRef?.duration > 0) {
          duracao.current = estado.audioRef?.duration;
-         console.log(`Duracao atual é: ${duracao.current}`);
+         console.log(converterSecs(duracao.current));
       }
-   }, [estado.audioRef?.musicaAtual]);
+   }, [estado.audioRef?.duration]);
 
-   // Caso nenhuma música esteja tocando e nehuma url sido entregue ao Audio
+   // Caso nenhuma música esteja tocando e nehuma url valida sido entregue ao Audio
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
          if (estado.isPlaying === false && estado.targetAtual === 0 && (existe === undefined || existe === "undefined")) {
-            // Referência do áudio que será inicializado
+            // Selecionando a primeria musica da playlist
             estado.audioRef.src = prevLink;
          }
       }
@@ -40,13 +40,10 @@ const AudioPlayer = () => {
    // Caso uma nova musica seja selecionada
    useEffect(() => {
       console.log(linkAudio);
-      if (linkAudio !== null) {
+      if (/*linkAudio !== null && */ estado.audioRef.src !== linkAudio) {
          estado.audioRef.src = linkAudio;
-         duracao.current = estado.audioRef?.duration;
       }
    }, [estado.musicaAtual]);
-
-   const isReady = useRef(false);
 
    // Percentagem atual da música sendo tocada
    const percentagem = duracao ? (estado.progresso / duracao) * 100 : 0;
@@ -55,6 +52,13 @@ const AudioPlayer = () => {
    function converter(millis) {
       let minutos = Math.floor(millis / 60000);
       let segundos = ((millis % 60000) / 1000).toFixed(0);
+      return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+   }
+
+   // Convertendo segundos para minutos
+   function converterSecs(secs) {
+      let minutos = Math.floor(secs / 600);
+      let segundos = (secs % 600).toFixed(0);
       return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
    }
 
@@ -115,7 +119,7 @@ const AudioPlayer = () => {
                   direction="1"
                   mode="bounce"
                ></lottie-player>
-               <p>{converter(duracao.current)}</p>
+               <p>{converterSecs(duracao.current)}</p>
             </div>
             <AudioControles />
          </div>
