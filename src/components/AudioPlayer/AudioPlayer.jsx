@@ -74,7 +74,7 @@ const AudioPlayer = () => {
       intervaloRef.current = setInterval(() => {
          console.log("123");
          if (estado.audioRef?.ended) {
-            dispatch({type: "setisPlaying", payload: false})
+            dispatch({ type: "setisPlaying", payload: false });
             saltar();
          } else {
             tempoAtual.current = estado.audioRef?.currentTime;
@@ -120,7 +120,7 @@ const AudioPlayer = () => {
                   direction="1"
                   mode="bounce"
                ></lottie-player>
-               <p>{converterSecs(estado.audioRef?.duration)}</p>
+               <p>{estado.audioRef?.duration > 0 ? converterSecs(estado.audioRef?.duration) : converterSecs(0)}</p>
             </div>
             <AudioControles />
          </div>

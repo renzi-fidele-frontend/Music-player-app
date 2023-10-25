@@ -21,7 +21,6 @@ const Leitor = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(estado.musicaAtual[0], res.items[0]);
             // Caso os dados já tenham sido carregados
             if (estado.aSeguir.toString() !== res.items.toString()) {
                dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
