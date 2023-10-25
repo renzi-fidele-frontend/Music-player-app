@@ -17,15 +17,10 @@ const AudioPlayer = () => {
    const existe = estado.audioRef?.attributes?.src?.value;
 
    // Duração da música atual
-   const duracao = useRef();
+   const duracao = estado.audioRef?.duration;
 
-   // Controlador da duracao
-   useEffect(() => {
-      if (estado.audioRef?.duration > 0) {
-         duracao.current = estado.audioRef?.duration;
-         console.log(converterSecs(duracao.current));
-      }
-   }, [estado.audioRef?.duration]);
+   // Tempo de playback da música atual
+   const tempoAtual = useRef(estado.audioRef?.currentTime);
 
    // Caso nenhuma música esteja tocando e nehuma url valida sido entregue ao Audio
    useEffect(() => {
@@ -63,8 +58,13 @@ const AudioPlayer = () => {
    }
 
    function saltar() {
-      dispatch({ type: "setTargetAtual", payload: estado.musicaAtual + 1 });
-      dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.musicaAtual + 1]] });
+      if (estado.targetAtual + 1 < estado.aSeguir.length) {
+         dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
+      } else {
+         dispatch({ type: "setTargetAtual", payload: 0 });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
+      }
    }
 
    const intervaloRef = useRef();
@@ -72,24 +72,25 @@ const AudioPlayer = () => {
    function startTimer() {
       clearInterval(intervaloRef.current);
       intervaloRef.current = setInterval(() => {
-         if (audioRef.current.ended) {
+         console.log("123");
+         if (estado.audioRef?.ended) {
+            dispatch({type: "setisPlaying", payload: false})
             saltar();
          } else {
-            dispatch({ type: "setTempoAtual", payload: estado.audioRef.currentTime });
+            tempoAtual.current = estado.audioRef?.currentTime;
          }
       }, [1000]);
    }
 
    // Controlador de play e pouse
-   /*useEffect(() => {
+   useEffect(() => {
       if (estado.isPlaying === true) {
-         estado.audioRef.src = linkAudio;
-         estado.audioRef.play();
+         startTimer();
       } else {
          clearInterval(intervaloRef.current);
          estado.audioRef.pause();
       }
-   }, [estado.isPlaying]);*/
+   }, [estado.isPlaying]);
 
    return (
       <div id={styles.cont}>
@@ -108,7 +109,7 @@ const AudioPlayer = () => {
             <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
 
             <div id={styles.detalhes}>
-               <p>{converter(estado.tempoAtual)}</p>
+               <p>{converterSecs(tempoAtual.current)}</p>
                <lottie-player
                   class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
@@ -119,7 +120,7 @@ const AudioPlayer = () => {
                   direction="1"
                   mode="bounce"
                ></lottie-player>
-               <p>{converterSecs(duracao.current)}</p>
+               <p>{converterSecs(estado.audioRef?.duration)}</p>
             </div>
             <AudioControles />
          </div>

@@ -100,7 +100,6 @@ const Leitor = () => {
          texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
       },
    ];
-
    const conteudoPlaylistsDestacadas = [
       {
          img: estado.playlistsDestacadas[0]?.images[0]?.url,
@@ -118,7 +117,6 @@ const Leitor = () => {
          texto: `${estado.playlistsDestacadas[2]?.tracks?.total} Músicas`,
       },
    ];
-
    const conteudoLancamentos = [
       {
          img: estado.lancamentos[0]?.images[2]?.url,

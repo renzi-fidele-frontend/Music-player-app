@@ -25,8 +25,6 @@ const reducer = (state, action) => {
          return { ...state, idAlbum: action.payload };
       case "setPlaylists":
          return { ...state, playlists: action.payload };
-      case "setTempoAtual":
-         return { ...state, tempoAtual: action.payload };
       case "setisPlaying":
          return { ...state, isPlaying: action.payload };
       case "setRepetir":
@@ -54,7 +52,6 @@ function App() {
       playlists: [], // Playlists do usuário no spotify
       isPlaying: false,
       progresso: 0, // Percentagem do progresso da música
-      tempoAtual: 0, // Tempo de playback da musica atual
       repetir: false,
       audioRef: new Audio(undefined), // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes

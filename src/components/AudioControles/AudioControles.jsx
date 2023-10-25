@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import styles from "./AudioControles.module.css";
 
 // React icons
@@ -12,17 +12,12 @@ const AudioControles = () => {
       if (estado.audioRef.src.length > 0) {
          if (estado.isPlaying === false) {
             estado.audioRef?.play().then(() => {
-               console.log("Play iniciado");
                dispatch({ type: "setisPlaying", payload: true });
             });
          } else {
             console.log("Passei");
             estado.audioRef?.pause();
             dispatch({ type: "setisPlaying", payload: false });
-            /*estado.audioRef?.pause().then(() => {
-               console.log("Pause feito");
-               dispatch({ type: "setisPlaying", payload: false });
-            });*/
          }
       }
    }
