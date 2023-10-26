@@ -2,7 +2,7 @@
    color: var(--cor-texto2);
 }
 
-#container > h2 {
+.tit1 {
    margin-bottom: 1em;
    font-size: 2em;
 }

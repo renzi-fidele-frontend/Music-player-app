@@ -42,7 +42,7 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.container}>
-         <h2>{`Playlists criadas (${estado.playlists?.length})`}</h2>
+         <h2 className={styles.tit1}>{`Playlists criadas (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {estado.playlists?.map((v, k) => {
                return (

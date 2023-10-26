@@ -37,6 +37,8 @@ const reducer = (state, action) => {
          return { ...state, playlistsDestacadas: action.payload };
       case "setLancamentos":
          return { ...state, lancamentos: action.payload };
+      case "setAlbumsSalvos":
+         return { ...state, albumsSalvos: action.payload };
 
       default:
          return state;
@@ -50,13 +52,14 @@ function App() {
       aSeguir: [], // Musicas da playlist criada
       idAlbum: "",
       playlists: [], // Playlists do usuário no spotify
-      isPlaying: false,
+      isPlaying: false, // Música tocando ou não
       progresso: 0, // Percentagem do progresso da música
-      repetir: false,
+      repetir: false, // Ativar loop de música ou não
       audioRef: new Audio(undefined), // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes
       playlistsDestacadas: [],
       lancamentos: [],
+      albumsSalvos: [],
    });
 
    useEffect(() => {
