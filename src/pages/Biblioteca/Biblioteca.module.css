@@ -3,7 +3,7 @@
 }
 
 .tit1 {
-   margin-bottom: 1em;
+   margin-bottom: .8em;
    font-size: 2em;
 }
 
@@ -11,4 +11,3 @@
    display: grid;
    grid-template-columns: repeat(5, 20%);
 }
-

@@ -39,6 +39,8 @@ const reducer = (state, action) => {
          return { ...state, lancamentos: action.payload };
       case "setAlbumsSalvos":
          return { ...state, albumsSalvos: action.payload };
+      case "setMusicasCurtidas":
+         return { ...state, musicasCurtidas: action.payload };
 
       default:
          return state;
@@ -60,6 +62,7 @@ function App() {
       playlistsDestacadas: [],
       lancamentos: [],
       albumsSalvos: [],
+      musicasCurtidas: []
    });
 
    useEffect(() => {

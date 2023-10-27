@@ -1,0 +1,8 @@
+#container {
+   color: var(--cor-texto2);
+}
+
+
+#container > section:last-child {
+    margin-top: 1.5em;
+}

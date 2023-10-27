@@ -49,7 +49,7 @@ const Biblioteca = () => {
                   <AlbumCard
                      foto={v.images[0]?.url}
                      nome={v.name}
-                     nrMusicas={v.tracks.total}
+                     subtit={v.tracks.total}
                      key={k}
                      acao={() => {
                         dispatch({ type: "setIdAlbum", payload: v.id });

@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./AlbumCard.module.css"
+import styles from "./AlbumCard.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 
-const AlbumCard = ({ foto, nome, nrMusicas, acao }) => {
+const AlbumCard = ({ foto, nome, subtit, acao }) => {
    return (
       <div
          className={styles.box}
@@ -17,7 +17,7 @@ const AlbumCard = ({ foto, nome, nrMusicas, acao }) => {
       >
          <img src={foto} alt="Imagem do album" />
          <h6>{nome}</h6>
-         {nrMusicas === 1 ? <p>{nrMusicas} Música</p> : <p>{nrMusicas} Músicas</p>}
+         {subtit === 1 ? <p>{subtit} Música</p> : <p>{subtit} Músicas</p>}
 
          <i>
             <TbPlayerPlayFilled />
