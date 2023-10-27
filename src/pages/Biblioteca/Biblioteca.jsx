@@ -49,7 +49,7 @@ const Biblioteca = () => {
                   <AlbumCard
                      foto={v.images[0]?.url}
                      nome={v.name}
-                     subtit={v.tracks.total}
+                     subtit={v.tracks.total === 1 ? `1 Música` : `${v.tracks.total} Músicas`}
                      key={k}
                      acao={() => {
                         dispatch({ type: "setIdAlbum", payload: v.id });
@@ -57,30 +57,6 @@ const Biblioteca = () => {
                         navegar("/leitor");
                      }}
                   />
-                  /*
-                  <div
-                     className={styles.box}
-                     onClick={() => {
-                        dispatch({ type: "setIdAlbum", payload: v.id });
-                        dispatch({ type: "setTargetAtual", payload: 0 });
-                        navegar("/leitor");
-                     }}
-                     key={k}
-                     onMouseEnter={(e) => {
-                        e.target.classList.add(styles.hover);
-                     }}
-                     onMouseLeave={(e) => {
-                        e.target.classList.remove(styles.hover);
-                     }}
-                  >
-                     <img src={v.images[0]?.url} alt="" />
-                     <h6>{v.name}</h6>
-                     {v.tracks.total === 1 ? <p>{v.tracks.total} Música</p> : <p>{v.tracks.total} Músicas</p>}
-
-                     <i>
-                        <TbPlayerPlayFilled />
-                     </i>
-                  </div>*/
                );
             })}
          </div>

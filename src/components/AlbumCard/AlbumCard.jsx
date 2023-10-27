@@ -17,7 +17,7 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
       >
          <img src={foto} alt="Imagem do album" />
          <h6>{nome}</h6>
-         {subtit === 1 ? <p>{subtit} Música</p> : <p>{subtit} Músicas</p>}
+         <p>{subtit}</p>
 
          <i>
             <TbPlayerPlayFilled />

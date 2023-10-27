@@ -12,6 +12,7 @@ const Favoritos = () => {
 
    const navegar = useNavigate();
 
+   // Apanhando os favoritos da api
    async function getAlbumsSalvos() {
       const res = await fetch(`https://api.spotify.com/v1/me/albums?limit=8`, {
          headers: {
@@ -49,7 +50,7 @@ const Favoritos = () => {
             <h2 className={estiloBiblioteca.tit1}>{`Álbums salvos (${estado.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
                {estado.albumsSalvos?.map((v, k) => {
-                  return <AlbumCard foto={v.album.images[0].url} nome={v.album.name} key={k} />;
+                  return <AlbumCard subtit={v.album.artists[0].name} foto={v.album.images[0].url} nome={v.album.name} key={k} />;
                })}
             </div>
          </section>
@@ -57,7 +58,7 @@ const Favoritos = () => {
             <h2 className={estiloBiblioteca.tit1}>{`Músicas curtidas (${estado.musicasCurtidas?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
                {estado.musicasCurtidas?.map((v, k) => {
-                  return <AlbumCard nome={v.track.name} foto={v.track.album.images[0].url} />;
+                  return <AlbumCard subtit={v.track.artists[0].name} nome={v.track.name} foto={v.track.album.images[0].url} />;
                })}
             </div>
          </section>
