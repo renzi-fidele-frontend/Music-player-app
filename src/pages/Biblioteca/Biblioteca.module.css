@@ -10,4 +10,5 @@
 #baixo {
    display: grid;
    grid-template-columns: repeat(5, 20%);
+   grid-auto-rows: 1fr;
 }

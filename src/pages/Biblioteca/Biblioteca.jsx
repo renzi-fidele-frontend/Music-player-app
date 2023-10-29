@@ -54,7 +54,7 @@ const Biblioteca = () => {
                      acao={() => {
                         dispatch({ type: "setIdAlbum", payload: v.id });
                         dispatch({ type: "setTargetAtual", payload: 0 });
-                        navegar("/leitor");
+                        navegar("/leitor", { state: "playlistMode" });
                      }}
                   />
                );

@@ -5,49 +5,89 @@ import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
+import { useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
+   const loc = useLocation();
+
    // Apanhando os itens da playslist
-   async function apanhar(id) {
-      const res = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=10`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            // Caso os dados já tenham sido carregados
-            if (estado.aSeguir.toString() !== res.items.toString()) {
-               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
-               dispatch({ type: "setaSeguir", payload: res.items });
-            }
-            if (res.error) {
-               if (res.error.message === "The access token expired") {
-                  localStorage.clear();
+   async function getItemsPlaylists(id) {
+      if (id.length > 0) {
+         const res = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=10`, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            method: "GET",
+         })
+            .then((res) => res.json())
+            .then((res) => {
+               // Caso os dados já tenham sido carregados
+               if (estado.aSeguir.toString() !== res.items.toString()) {
+                  dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+                  dispatch({ type: "setaSeguir", payload: res.items });
                }
-            }
-         });
+               if (res.error) {
+                  if (res.error.message === "The access token expired") {
+                     localStorage.clear();
+                  }
+               }
+            });
+      }
    }
+
+   // Apanhando items do album
+   async function getItemsAlbum(id) {
+      if (id.length > 0) {
+         const res = await fetch(`https://api.spotify.com/v1/albums/${id}/tracks`, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            method: "GET",
+         })
+            .then((res) => res.json())
+            .then((res) => {
+               console.log(res.items[0]);
+               // Caso os dados já tenham sido carregados
+               if (estado.aSeguir.toString() !== res.items.toString()) {
+                  dispatch({ type: "setMusicaAtual", payload: [{ track: res.items[0] }] });
+                  dispatch({ type: "setaSeguir", payload: res.items });
+               }
+               if (res.error) {
+                  if (res.error.message === "The access token expired") {
+                     localStorage.clear();
+                  }
+               }
+            });
+      }
+   }
+
    useEffect(() => {
-      if (estado.idAlbum.length > 0) apanhar(estado.idAlbum);
-   }, [estado.idAlbum]);
+      // Caso seja passada a id do album
+      if (estado.idAlbum.length > 0 && loc.state === "albumMode") getItemsAlbum(estado.idAlbum);
+
+      // Caso seja passada a id da playlist
+      if (estado.idAlbum.length > 0 && loc.state === "playlistMode") getItemsPlaylists(estado.idAlbum);
+
+      console.log(`Aqui a loc é: ${loc.state}`);
+   }, [estado.idAlbum, loc.state]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
-      const res = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((v) => v.json())
-         .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }))
-         .catch((err) => console.log("Aconteceu o erro"));
+      if (id.length > 0) {
+         const res = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            method: "GET",
+         })
+            .then((v) => v.json())
+            .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }))
+            .catch((err) => console.log("Aconteceu o erro"));
+      }
    }
    async function getPlaylistsDestacadas() {
       const res = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {

@@ -1,7 +1,5 @@
 .box {
     background: linear-gradient(160deg, rgba(70, 87, 116, 0.6278712168461135) 0%, rgba(42, 55, 80, 0.571848807882528) 100%);
-    height: fit-content;
-    width: fit-content;
     padding: 1em;
     border-radius: 10px;
     border: 2px solid rgb(29, 41, 61);
@@ -10,6 +8,9 @@
     margin-top: 0;
     margin-left: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
  }
  
  .box:hover {
@@ -20,11 +21,14 @@
  
  .box > img {
     border-radius: inherit;
+    align-self: baseline;
  }
  
  .box > h6 {
     font-size: 22px;
     margin-block: 7px;
+    align-self: baseline;
+
  }
  
  .box > p {
