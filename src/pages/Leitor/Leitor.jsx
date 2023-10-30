@@ -70,10 +70,10 @@ const Leitor = () => {
       if (estado.idAlbum.length > 0 && loc.state === "albumMode") getItemsAlbum(estado.idAlbum);
 
       // Caso seja passada a id da playlist
-      if (estado.idAlbum.length > 0 && loc.state === "playlistMode") getItemsPlaylists(estado.idAlbum);
+      if (estado.idPlaylist.length > 0 && loc.state === "playlistMode") getItemsPlaylists(estado.idPlaylist);
 
       console.log(`Aqui a loc é: ${loc.state}`);
-   }, [estado.idAlbum, loc.state]);
+   }, [estado.idAlbum, estado.idPlaylist]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {

@@ -23,6 +23,8 @@ const reducer = (state, action) => {
          return { ...state, aSeguir: action.payload };
       case "setIdAlbum":
          return { ...state, idAlbum: action.payload };
+      case "setIdPlaylist":
+         return { ...state, idPlaylist: action.payload };
       case "setPlaylists":
          return { ...state, playlists: action.payload };
       case "setisPlaying":
@@ -55,6 +57,7 @@ function App() {
       targetAtual: 0, // Index da música atual
       aSeguir: [], // Musicas da playlist criada
       idAlbum: "",
+      idPlaylist: "",
       playlists: [], // Playlists do usuário no spotify
       isPlaying: false, // Música tocando ou não
       progresso: 0, // Percentagem do progresso da música
@@ -65,7 +68,7 @@ function App() {
       lancamentos: [],
       albumsSalvos: [],
       musicasCurtidas: [],
-      albumAtual: [],   // Objecto Album adicionado a playlist
+      albumAtual: [], // Objecto Album adicionado a playlist
    });
 
    useEffect(() => {

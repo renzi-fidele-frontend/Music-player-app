@@ -53,9 +53,10 @@ const Favoritos = () => {
                      <AlbumCard
                         acao={() => {
                            dispatch({ type: "setIdAlbum", payload: v.album.id });
+                           dispatch({ type: "setIdPlaylist", payload: "" });
                            dispatch({ type: "setTargetAtual", payload: 0 });
                            dispatch({ type: "setaSeguir", payload: v.album.tracks.items.map((v, k) => v.track) });
-                           dispatch({type: "setAlbumAtual", payload: v.album})
+                           dispatch({ type: "setAlbumAtual", payload: [v.album] });
                            navegar("/leitor", { state: "albumMode" });
                         }}
                         subtit={v.album.artists[0].name}

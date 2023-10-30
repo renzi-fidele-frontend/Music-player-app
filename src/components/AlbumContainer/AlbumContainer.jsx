@@ -35,19 +35,19 @@ const AlbumContainer = ({ track }) => {
       return (
          <div id={styles.cont}>
             <div id={styles.imgsCont}>
-               <img src={estado.albumAtual?.images[0].url} alt="Imagem do album" />
+               <img src={estado.albumAtual[0]?.images[0].url} alt="Imagem do album" />
                <div id={styles.imgSombra}>
-                  <img src={estado.albumAtual?.images[0].url} alt="Imagem do albúm" />
+                  <img src={estado.albumAtual[0]?.images[0].url} alt="Imagem do albúm" />
                </div>
             </div>
 
             <div id={styles.animCont}>
                <div id={styles.deslizar}>
-                  <h5>{estado.albumAtual?.name}</h5>
+                  <h5>{estado.albumAtual[0]?.name}</h5>
                </div>
             </div>
 
-            <p>{`${estado.albumAtual?.name} é um álbum de ${estado.albumAtual?.artists?.map((v) => v.name).join(" e ")}, que possui ${
+            <p>{`${estado.albumAtual[0]?.name} é um álbum de ${estado.albumAtual?.artists?.map((v) => v.name).join(" e ")}, que possui ${
                estado.albumAtual?.total_tracks
             } música(s)`}</p>
 

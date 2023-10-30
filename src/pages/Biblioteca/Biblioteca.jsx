@@ -52,7 +52,8 @@ const Biblioteca = () => {
                      subtit={v.tracks.total === 1 ? `1 Música` : `${v.tracks.total} Músicas`}
                      key={k}
                      acao={() => {
-                        dispatch({ type: "setIdAlbum", payload: v.id });
+                        dispatch({ type: "setIdPlaylist", payload: v.id });
+                        dispatch({ type: "setIdAlbum", payload: "" });
                         dispatch({ type: "setTargetAtual", payload: 0 });
                         navegar("/leitor", { state: "playlistMode" });
                      }}
