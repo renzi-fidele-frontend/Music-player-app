@@ -22,6 +22,7 @@
  .box > img {
     border-radius: inherit;
     align-self: baseline;
+    height: 280px;
  }
  
  .box > h6 {
