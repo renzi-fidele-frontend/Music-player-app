@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
-import { useLocation } from "react-router-dom";
 import { musicContext } from "../../App";
 
 const AlbumContainer = ({ track }) => {
-   const loc = useLocation();
 
    const { estado, dispatch } = useContext(musicContext);
 
-   if (loc.state === "playlistMode") {
+   if (estado.mode === "playlistMode") {
       return (
          <div id={styles.cont}>
             <div id={styles.imgsCont}>
@@ -31,7 +29,7 @@ const AlbumContainer = ({ track }) => {
             <span>{`Lançado em: ${track?.album.release_date}`}</span>
          </div>
       );
-   } else if (loc.state === "albumMode") {
+   } else if (estado.mode === "albumMode") {
       return (
          <div id={styles.cont}>
             <div id={styles.imgsCont}>

@@ -45,7 +45,8 @@ const reducer = (state, action) => {
          return { ...state, musicasCurtidas: action.payload };
       case "setAlbumAtual":
          return { ...state, albumAtual: action.payload };
-
+      case "setMode":
+         return { ...state, mode: action.payload };
       default:
          return state;
    }
@@ -66,6 +67,7 @@ function App() {
       semelhantes: [], // Artistas semelhantes
       playlistsDestacadas: [],
       lancamentos: [],
+      mode: "",
       albumsSalvos: [],
       musicasCurtidas: [],
       albumAtual: [], // Objecto Album adicionado a playlist

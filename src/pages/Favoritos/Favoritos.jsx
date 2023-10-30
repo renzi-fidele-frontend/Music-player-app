@@ -57,7 +57,7 @@ const Favoritos = () => {
                            dispatch({ type: "setTargetAtual", payload: 0 });
                            dispatch({ type: "setaSeguir", payload: v.album.tracks.items.map((v, k) => v.track) });
                            dispatch({ type: "setAlbumAtual", payload: [v.album] });
-                           navegar("/leitor", { state: "albumMode" });
+                           dispatch({type: "setMode", payload: "albumMode"})
                         }}
                         subtit={v.album.artists[0].name}
                         foto={v.album.images[0].url}
@@ -79,7 +79,7 @@ const Favoritos = () => {
                            dispatch({ type: "setIdAlbum", payload: "" });
                            dispatch({ type: "setTargetAtual", payload: 0 });
                            dispatch({ type: "setaSeguir", payload: [v.track] });
-                           navegar("/leitor", { state: "albumMode" });
+                           dispatch({type: "setMode", payload: "albumMode"})
                         }}
                         subtit={v.track.artists[0].name}
                         nome={v.track.name}

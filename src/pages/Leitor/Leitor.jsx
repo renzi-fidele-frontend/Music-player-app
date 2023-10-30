@@ -5,14 +5,12 @@ import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
-import { useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-   const loc = useLocation();
 
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
@@ -67,12 +65,12 @@ const Leitor = () => {
 
    useEffect(() => {
       // Caso seja passada a id do album
-      if (estado.idAlbum.length > 0 && loc.state === "albumMode") getItemsAlbum(estado.idAlbum);
+      if (estado.idAlbum.length > 0 && estado.mode === "albumMode") getItemsAlbum(estado.idAlbum);
 
       // Caso seja passada a id da playlist
-      if (estado.idPlaylist.length > 0 && loc.state === "playlistMode") getItemsPlaylists(estado.idPlaylist);
+      if (estado.idPlaylist.length > 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
 
-      console.log(`Aqui a loc é: ${loc.state}`);
+      console.log(`Aqui o mode é: ${estado.mode}`);
    }, [estado.idAlbum, estado.idPlaylist]);
 
    // Apanhando o conteúdo dos destaques

@@ -3,7 +3,6 @@ import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
-import Notificacao from "../../components/Notificacao/Notificacao";
 
 const token = localStorage.getItem("token");
 
@@ -33,12 +32,12 @@ const Biblioteca = () => {
    }
 
    useEffect(() => {
-      if (estado?.aSeguir?.length === 0) {
+      if (estado?.aSeguir?.length === 0 && estado.idAlbum.length === 0) {
          apanharPlaylists();
       } else {
          return;
       }
-   }, [estado.aSeguir]);
+   }, []);
 
    return (
       <div id={styles.container}>
@@ -55,7 +54,7 @@ const Biblioteca = () => {
                         dispatch({ type: "setIdPlaylist", payload: v.id });
                         dispatch({ type: "setIdAlbum", payload: "" });
                         dispatch({ type: "setTargetAtual", payload: 0 });
-                        navegar("/leitor", { state: "playlistMode" });
+                        dispatch({ type: "setMode", payload: "playlistMode" });
                      }}
                   />
                );

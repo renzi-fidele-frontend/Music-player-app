@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
-import { useLocation } from "react-router-dom";
 
 const FilaContainer = ({ fila }) => {
    const { estado, dispatch } = useContext(musicContext);
-
-   const loc = useLocation();
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -18,7 +15,6 @@ const FilaContainer = ({ fila }) => {
    return (
       <div id={styles.cont}>
          <h4>A seguir </h4>
-
          <div>
             {fila?.map((v, key) => {
                return (
@@ -29,13 +25,13 @@ const FilaContainer = ({ fila }) => {
                      }}
                      key={key}
                   >
-                     {loc.state === "playlistMode" && (
+                     {estado.mode === "playlistMode" && (
                         <>
                            <p>{v?.track.name}</p>
                            <span>{converter(v?.track?.duration_ms)}</span>
                         </>
                      )}
-                     {loc.state === "albumMode" && (
+                     {estado.mode === "albumMode" && (
                         <>
                            <p>{v?.name}</p>
                            <span>{converter(v?.duration_ms)}</span>
