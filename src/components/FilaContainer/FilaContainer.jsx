@@ -27,7 +27,7 @@ const FilaContainer = ({ fila }) => {
                   >
                      {estado.mode === "playlistMode" && (
                         <>
-                           <p>{v?.track.name}</p>
+                           <p>{v?.track?.name}</p>
                            <span>{converter(v?.track?.duration_ms)}</span>
                         </>
                      )}

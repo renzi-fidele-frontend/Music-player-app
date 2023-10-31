@@ -3,7 +3,6 @@ import styles from "./AlbumContainer.module.css";
 import { musicContext } from "../../App";
 
 const AlbumContainer = ({ track }) => {
-
    const { estado, dispatch } = useContext(musicContext);
 
    if (estado.mode === "playlistMode") {
@@ -45,11 +44,11 @@ const AlbumContainer = ({ track }) => {
                </div>
             </div>
 
-            <p>{`${estado.albumAtual[0]?.name} é um álbum de ${estado.albumAtual?.artists?.map((v) => v.name).join(" e ")}, que possui ${
-               estado.albumAtual?.total_tracks
+            <p>{`${estado.albumAtual[0]?.name} é um álbum de ${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}, que possui ${
+               estado.albumAtual[0]?.total_tracks
             } música(s)`}</p>
 
-            <span>{`Lançado em: ${track?.release_date}`}</span>
+            <span>{`Lançado em: ${estado.albumAtual[0]?.release_date}`}</span>
          </div>
       );
    }

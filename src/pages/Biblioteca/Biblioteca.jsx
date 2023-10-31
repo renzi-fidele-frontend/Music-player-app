@@ -55,6 +55,7 @@ const Biblioteca = () => {
                         dispatch({ type: "setIdAlbum", payload: "" });
                         dispatch({ type: "setTargetAtual", payload: 0 });
                         dispatch({ type: "setMode", payload: "playlistMode" });
+                        navegar("/leitor");
                      }}
                   />
                );

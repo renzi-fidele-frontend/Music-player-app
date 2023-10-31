@@ -2,7 +2,7 @@
    background-color: #3e61d2;
    opacity: 1;
    color: var(--cor-texto2);
-   height: 35%;
+   height: 35vh;
    border-top-left-radius: 30px;
    border-bottom-left-radius: 30px;
    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #3e61d2 10px), repeating-linear-gradient(#444cf755, #444cf7);
@@ -28,6 +28,12 @@
 
 #cont > div::-webkit-scrollbar {
    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#cont > div {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
 }
 
 #cont > div > div {

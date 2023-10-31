@@ -11,7 +11,6 @@ const token = localStorage.getItem("token");
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
       if (id.length > 0) {
@@ -36,7 +35,6 @@ const Leitor = () => {
             });
       }
    }
-
    // Apanhando items do album
    async function getItemsAlbum(id) {
       if (id.length > 0) {
@@ -49,6 +47,7 @@ const Leitor = () => {
             .then((res) => res.json())
             .then((res) => {
                console.log(res.items[0]);
+               console.log(estado.albumAtual[0]);
                // Caso os dados já tenham sido carregados
                if (estado.aSeguir.toString() !== res.items.toString()) {
                   dispatch({ type: "setMusicaAtual", payload: [{ track: res.items[0] }] });
@@ -62,7 +61,6 @@ const Leitor = () => {
             });
       }
    }
-
    useEffect(() => {
       // Caso seja passada a id do album
       if (estado.idAlbum.length > 0 && estado.mode === "albumMode") getItemsAlbum(estado.idAlbum);
@@ -120,6 +118,7 @@ const Leitor = () => {
       }
    }, [estado.musicaAtual]);
 
+   // Conteúdo dos cards de destaques
    const conteudoSemelhantes = [
       {
          img: estado.semelhantes[0]?.images[2].url,
