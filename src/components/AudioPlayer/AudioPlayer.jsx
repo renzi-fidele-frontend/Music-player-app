@@ -105,8 +105,19 @@ const AudioPlayer = () => {
             <Notificacao />
          </div>
          <div id={styles.right}>
-            <h5>{estado.musicaAtual[0]?.track?.name}</h5>
-            <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+            {estado.mode === "playlistMode" && (
+               <>
+                  <h5>{estado.musicaAtual[0]?.track?.name}</h5>
+                  <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+               </>
+            )}
+
+            {estado.mode === "albumMode" && (
+               <>
+                  <h5>{estado.musicaAtual[0]?.track?.name}</h5>
+                  <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+               </>
+            )}
 
             <div id={styles.detalhes}>
                <p>{converterSecs(tempoAtual.current)}</p>
