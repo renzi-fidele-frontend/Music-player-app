@@ -109,7 +109,7 @@ const Leitor = () => {
    }
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
-         getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
+         getSemelhantes(estado.mode === "playlistMode" ? estado.musicaAtual[0]?.track?.artists[0]?.id : estado.albumAtual[0]?.artists[0]?.id);
 
          if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
             getPlaylistsDestacadas();

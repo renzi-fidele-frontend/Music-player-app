@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect} from "react";
 import { musicContext } from "../../App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,10 +11,18 @@ const Notificacao = () => {
 
    // Controlador da notificação
    useEffect(() => {
-      if (estado.musicaAtual[0]?.track?.preview_url === null && estado.musicaAtual.length > 0) {
-         toast("Prévia indisponível", { type: "warning", toastId: erroId });
-      } else if (estado.musicaAtual[0]?.track?.preview_url !== undefined) {
-         toast("Prévia disponível", { type: "success", toastId: sucessId });
+      if (estado.mode === "playlistMode") {
+         if (estado.musicaAtual[0]?.track?.preview_url === null && estado.musicaAtual.length > 0) {
+            toast("Prévia indisponível", { type: "warning", toastId: erroId });
+         } else if (estado.musicaAtual[0]?.track?.preview_url !== undefined) {
+            toast("Prévia disponível", { type: "success", toastId: sucessId });
+         }
+      } else if (estado.mode === "AlbumMode") {
+         if (estado.musicaAtual[0]?.preview_url === null && estado.musicaAtual.length > 0) {
+            toast("Prévia indisponível", { type: "warning", toastId: erroId });
+         } else if (estado.musicaAtual[0]?.preview_url !== undefined) {
+            toast("Prévia disponível", { type: "success", toastId: sucessId });
+         }
       }
    }, [estado.musicaAtual]);
 

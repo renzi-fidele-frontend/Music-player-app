@@ -9,11 +9,13 @@ const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    // Link da música atual sendo tocada
-   const linkAudio = estado.aSeguir[estado.targetAtual]?.track?.preview_url;
+   const linkAudio =
+      estado.mode === "playlistMode" ? estado.aSeguir[estado.targetAtual]?.track?.preview_url : estado.aSeguir[estado.targetAtual]?.preview_url;
 
    // Link da primeira música da playslist selecionada
-   const prevLink = estado.aSeguir[0]?.track?.preview_url;
+   const prevLink = estado.mode === "playlistMode" ? estado.aSeguir[0]?.track?.preview_url : estado.aSeguir[0]?.preview_url;
 
+   // Valor do src do áudio inicializado
    const existe = estado.audioRef?.attributes?.src?.value;
 
    // Duração da música atual
@@ -35,7 +37,7 @@ const AudioPlayer = () => {
    // Caso uma nova musica seja selecionada
    useEffect(() => {
       console.log(linkAudio);
-      if (/*linkAudio !== null && */ estado.audioRef.src !== linkAudio) {
+      if (estado.audioRef.src !== linkAudio) {
          estado.audioRef.src = linkAudio;
       }
    }, [estado.musicaAtual]);
@@ -114,7 +116,7 @@ const AudioPlayer = () => {
 
             {estado.mode === "albumMode" && (
                <>
-                  <h5>{estado.musicaAtual[0]?.track?.name}</h5>
+                  <h5>{estado.musicaAtual[0]?.name}</h5>
                   <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
