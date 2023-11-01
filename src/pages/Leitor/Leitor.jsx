@@ -50,7 +50,7 @@ const Leitor = () => {
                console.log(estado.albumAtual[0]);
                // Caso os dados já tenham sido carregados
                if (estado.aSeguir.toString() !== res.items.toString()) {
-                  dispatch({ type: "setMusicaAtual", payload: [{ track: res.items[0] }] });
+                  dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
                   dispatch({ type: "setaSeguir", payload: res.items });
                }
                if (res.error) {
