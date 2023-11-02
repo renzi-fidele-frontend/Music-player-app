@@ -30,6 +30,7 @@ const AudioControles = () => {
          dispatch({ type: "setTargetAtual", payload: 0 });
          dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
       }
+      dispatch({type: "setisPlaying", payload: false})
    }
 
    function voltar() {

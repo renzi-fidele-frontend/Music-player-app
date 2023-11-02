@@ -21,9 +21,6 @@ const AudioPlayer = () => {
    // Duração da música atual
    const duracao = estado.audioRef?.duration;
 
-   // Tempo de playback da música atual
-   const tempoAtual = useRef(estado.audioRef?.currentTime);
-
    // Caso nenhuma música esteja tocando e nehuma url valida sido entregue ao Audio
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
@@ -36,7 +33,6 @@ const AudioPlayer = () => {
 
    // Caso uma nova musica seja selecionada
    useEffect(() => {
-      console.log(linkAudio);
       if (estado.audioRef.src !== linkAudio) {
          estado.audioRef.src = linkAudio;
       }
@@ -69,12 +65,15 @@ const AudioPlayer = () => {
       }
    }
 
+   // Tempo de playback da música atual
+   const tempoAtual = useRef(estado.audioRef?.currentTime);
+
+
    const intervaloRef = useRef();
 
    function startTimer() {
       clearInterval(intervaloRef.current);
       intervaloRef.current = setInterval(() => {
-         console.log("123");
          if (estado.audioRef?.ended) {
             dispatch({ type: "setisPlaying", payload: false });
             saltar();
@@ -122,7 +121,7 @@ const AudioPlayer = () => {
             )}
 
             <div id={styles.detalhes}>
-               <p>{converterSecs(tempoAtual.current)}</p>
+               <p>{converter(tempoAtual.current)}</p>
                <lottie-player
                   class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
@@ -133,7 +132,7 @@ const AudioPlayer = () => {
                   direction="1"
                   mode="bounce"
                ></lottie-player>
-               <p>{estado.audioRef?.duration > 0 ? converterSecs(estado.audioRef?.duration) : converterSecs(0)}</p>
+               <p>{duracao > 0 ? converterSecs(duracao) : converterSecs(0)}</p>
             </div>
             <AudioControles />
          </div>
