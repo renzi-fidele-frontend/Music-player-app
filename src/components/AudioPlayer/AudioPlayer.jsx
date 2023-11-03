@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
@@ -66,8 +66,7 @@ const AudioPlayer = () => {
    }
 
    // Tempo de playback da música atual
-   const tempoAtual = useRef(estado.audioRef?.currentTime);
-
+   const [tempoAtual, setTempoAtual] = useState(estado.audioRef?.currentTime);
 
    const intervaloRef = useRef();
 
@@ -78,7 +77,7 @@ const AudioPlayer = () => {
             dispatch({ type: "setisPlaying", payload: false });
             saltar();
          } else {
-            tempoAtual.current = estado.audioRef?.currentTime;
+            setTempoAtual(estado.audioRef?.currentTime);
          }
       }, [1000]);
    }
@@ -121,7 +120,7 @@ const AudioPlayer = () => {
             )}
 
             <div id={styles.detalhes}>
-               <p>{converter(tempoAtual.current)}</p>
+               <p>{converterSecs(tempoAtual)}</p>
                <lottie-player
                   class="lottie"
                   src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
