@@ -70,11 +70,13 @@ const AudioPlayer = () => {
 
    const intervaloRef = useRef();
 
+   // Temporizador do áudio tocando
    function startTimer() {
       clearInterval(intervaloRef.current);
       intervaloRef.current = setInterval(() => {
          if (estado.audioRef?.ended) {
             dispatch({ type: "setisPlaying", payload: false });
+            setTempoAtual(0);
             saltar();
          } else {
             setTempoAtual(estado.audioRef?.currentTime);
