@@ -20,7 +20,7 @@ const Notificacao = () => {
       } else if (estado.mode === "albumMode") {
          if (estado.musicaAtual[0]?.preview_url === null && estado.musicaAtual.length > 0) {
             toast("Prévia indisponível", { type: "warning", toastId: erroId });
-         } else if (estado.musicaAtual[0]?.preview_url.length > 0 ) {
+         } else if (estado.musicaAtual[0]?.preview_url?.length > 0 ) {
             toast("Prévia disponível", { type: "success", toastId: sucessId });
          }
       }
