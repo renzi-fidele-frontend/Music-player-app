@@ -65,8 +65,6 @@ const Leitor = () => {
 
       // Caso seja passada a id da playlist
       if (estado.idPlaylist.length > 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
-
-      console.log(`Aqui o mode é: ${estado.mode}`);
    }, [estado.idAlbum, estado.idPlaylist]);
 
    // Apanhando o conteúdo dos destaques

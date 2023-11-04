@@ -38,9 +38,6 @@ const AudioPlayer = () => {
       }
    }, [estado.musicaAtual]);
 
-   // Percentagem atual da música sendo tocada
-   const percentagem = duracao ? (estado.progresso / duracao) * 100 : 0;
-
    // Convertendo millisegundos para minutos
    function converter(millis) {
       let minutos = Math.floor(millis / 60000);
@@ -84,6 +81,9 @@ const AudioPlayer = () => {
       }, [1000]);
    }
 
+   // Percentagem atual da música sendo tocada
+   const percentagem = duracao ? (tempoAtual / duracao) * 100 : 0;
+
    // Controlador de play e pouse
    useEffect(() => {
       if (estado.isPlaying === true) {
@@ -102,7 +102,7 @@ const AudioPlayer = () => {
                size={300}
                isPlaying={true}
                cor={"var(--cor-tema)"}
-               percentagem={estado.progresso}
+               percentagem={percentagem}
             />
             <Notificacao />
          </div>

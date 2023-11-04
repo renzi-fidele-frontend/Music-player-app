@@ -24,7 +24,6 @@ const AudioProgress = ({ isPlaying, foto, percentagem, size, cor }) => {
    }, []);
 
    useEffect(() => {
-      console.log(`Aumentor para ${percentagem}`);
       estado ? estado.animate(percentagem / 100) : undefined;
    }, [percentagem]);
 

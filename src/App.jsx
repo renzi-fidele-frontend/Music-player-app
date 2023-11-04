@@ -61,7 +61,6 @@ function App() {
       idPlaylist: "",
       playlists: [], // Playlists do usuário no spotify
       isPlaying: false, // Música tocando ou não
-      progresso: 0, // Percentagem do progresso da música
       repetir: false, // Ativar loop de música ou não
       audioRef: new Audio(undefined), // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes
