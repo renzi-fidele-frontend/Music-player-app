@@ -15,7 +15,6 @@ const AudioControles = () => {
                dispatch({ type: "setisPlaying", payload: true });
             });
          } else {
-            console.log("Passei");
             estado.audioRef?.pause();
             dispatch({ type: "setisPlaying", payload: false });
          }
@@ -56,7 +55,6 @@ const AudioControles = () => {
          ) : (
             <BsFillPlayFill
                onClick={() => {
-                  console.log(estado.audioRef);
                   playPause();
                }}
                className={styles.meio}

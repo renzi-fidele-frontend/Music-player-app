@@ -22,7 +22,6 @@ const Favoritos = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res);
             dispatch({ type: "setAlbumsSalvos", payload: res.items });
          });
    }
@@ -76,7 +75,6 @@ const Favoritos = () => {
                   return (
                      <AlbumCard
                         acao={() => {
-                           console.log(v.track);
                            dispatch({ type: "setIdAlbum", payload: "" });
                            dispatch({ type: "setTargetAtual", payload: 0 });
                            dispatch({ type: "setaSeguir", payload: [v.track] });

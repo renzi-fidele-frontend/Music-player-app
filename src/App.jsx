@@ -65,10 +65,10 @@ function App() {
       repetir: false, // Ativar loop de música ou não
       audioRef: new Audio(undefined), // estado do Audio que será inicializado
       semelhantes: [], // Artistas semelhantes
-      playlistsDestacadas: [],
-      lancamentos: [],
-      mode: "",
-      albumsSalvos: [],
+      playlistsDestacadas: [], // Playlists em destaque
+      lancamentos: [], // Lancamentos em destaque
+      mode: "", //   Modos: playlistMode ou albumMode
+      albumsSalvos: [], // Albuns favoritos da conta do spotify
       musicasCurtidas: [],
       albumAtual: [], // Objecto Album adicionado a playlist
    });
@@ -85,7 +85,6 @@ function App() {
             localStorage.setItem("token", hash.split("&")[0].split("=")[1]);
             window.location.pathname = "/leitor";
             window.location.hash = "";
-            console.log(token);
          } else {
             console.log("Nao logado");
          }
