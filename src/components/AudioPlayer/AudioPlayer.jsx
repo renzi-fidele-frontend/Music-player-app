@@ -4,16 +4,34 @@ import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
+import { useLocation } from "react-router-dom";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
+   const loc = useLocation();
+
    // Link da música atual sendo tocada
-   const linkAudio =
-      estado.mode === "playlistMode" ? estado.aSeguir[estado.targetAtual]?.track?.preview_url : estado.aSeguir[estado.targetAtual]?.preview_url;
+   const linkAudio = () => {
+      if (estado.mode === "playlistMode" && !loc?.state.mode) {
+         return estado.aSeguir[estado.targetAtual]?.track?.preview_url;
+      } else if (estado.mode === "albumMode") {
+         return estado.aSeguir[estado.targetAtual]?.preview_url;
+      } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+         return estado.aSeguir[0]?.preview_url;
+      }
+   };
 
    // Link da primeira música da playslist selecionada
-   const prevLink = estado.mode === "playlistMode" ? estado.aSeguir[0]?.track?.preview_url : estado.aSeguir[0]?.preview_url;
+   const prevLink = () => {
+      if (estado.mode === "playlistMode" && !loc?.state.mode) {
+         return estado.aSeguir[0]?.track?.preview_url;
+      } else if (estado.mode === "albumMode") {
+         return estado.aSeguir[0]?.preview_url;
+      } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+         return estado.aSeguir[0]?.preview_url;
+      }
+   };
 
    // Valor do src do áudio inicializado
    const existe = estado.audioRef?.attributes?.src?.value;
@@ -26,15 +44,15 @@ const AudioPlayer = () => {
       if (estado.aSeguir.length > 0) {
          if (estado.isPlaying === false && estado.targetAtual === 0 && (existe === undefined || existe === "undefined")) {
             // Selecionando a primeria musica da playlist
-            estado.audioRef.src = prevLink;
+            estado.audioRef.src = prevLink();
          }
       }
    }, [estado.aSeguir]);
 
    // Caso uma nova musica seja selecionada
    useEffect(() => {
-      if (estado.audioRef.src !== linkAudio) {
-         estado.audioRef.src = linkAudio;
+      if (estado.audioRef.src !== linkAudio()) {
+         estado.audioRef.src = linkAudio();
       }
    }, [estado.musicaAtual]);
 
@@ -107,7 +125,7 @@ const AudioPlayer = () => {
             <Notificacao />
          </div>
          <div id={styles.right}>
-            {estado.mode === "playlistMode" && (
+            {estado.mode === "playlistMode" && !loc?.state?.mode && (
                <>
                   <h5>{estado.musicaAtual[0]?.track?.name}</h5>
                   <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
@@ -118,6 +136,13 @@ const AudioPlayer = () => {
                <>
                   <h5>{estado.musicaAtual[0]?.name}</h5>
                   <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+               </>
+            )}
+
+            {estado.mode === "playlistMode" && loc?.state?.mode === "single" && (
+               <>
+                  <h5>{estado.musicaAtual[0]?.name}</h5>
+                  <h4>{`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
 
