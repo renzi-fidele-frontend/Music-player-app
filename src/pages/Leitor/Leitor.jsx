@@ -5,11 +5,14 @@ import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
+import { useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
+
+   const loc = useLocation();
 
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
@@ -105,8 +108,16 @@ const Leitor = () => {
    }
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
-         getSemelhantes(estado.mode === "playlistMode" ? estado.musicaAtual[0]?.track?.artists[0]?.id : estado.albumAtual[0]?.artists[0]?.id);
+         if (estado.mode === "playlistMode" && loc.state.mode === null) {
+            getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
+         } else if (estado.mode === "albumMode" && loc.state.mode === null) {
+            getSemelhantes(estado.albumAtual[0]?.artists[0]?.id);
+         } else if (estado.mode === "playlistMode" && loc.state.mode === "single") {
+            console.log("Semelhantes do single fetchados");
+            getSemelhantes(estado.musicaAtual[0]?.artists[0]?.id);
+         }
 
+         // Carregando os dados somente se não tiverem sido carregados
          if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
             getPlaylistsDestacadas();
             getLancamentos();
