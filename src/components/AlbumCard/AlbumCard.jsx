@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./AlbumCard.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 
-const AlbumCard = ({ foto, nome, subtit, acao }) => {
-   //  Reduzindo o texto do conteúdo do post
-   function reduzir(str, maxlength) {
-      return str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str;
-   }
+//  Reduzindo o texto do conteúdo do post
+export function reduzir(str, maxlength) {
+   return str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str;
+}
 
+const AlbumCard = ({ foto, nome, subtit, acao }) => {
    return (
       <div
          className={styles.box}

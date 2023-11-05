@@ -108,11 +108,12 @@ const Leitor = () => {
    }
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
-         if (estado.mode === "playlistMode" && loc.state.mode === null) {
+         if (estado.mode === "playlistMode" && !loc?.state?.mode) {
+            console.log("Semelhantes da playlist fetchados");
             getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
-         } else if (estado.mode === "albumMode" && loc.state.mode === null) {
+         } else if (estado.mode === "albumMode" && !loc?.state?.mode) {
             getSemelhantes(estado.albumAtual[0]?.artists[0]?.id);
-         } else if (estado.mode === "playlistMode" && loc.state.mode === "single") {
+         } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
             console.log("Semelhantes do single fetchados");
             getSemelhantes(estado.musicaAtual[0]?.artists[0]?.id);
          }
