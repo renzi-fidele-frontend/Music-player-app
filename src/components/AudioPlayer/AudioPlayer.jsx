@@ -13,7 +13,7 @@ const AudioPlayer = () => {
 
    // Link da música atual sendo tocada
    const linkAudio = () => {
-      if (estado.mode === "playlistMode" && !loc?.state.mode) {
+      if (estado.mode === "playlistMode" && !loc?.state?.mode) {
          return estado.aSeguir[estado.targetAtual]?.track?.preview_url;
       } else if (estado.mode === "albumMode") {
          return estado.aSeguir[estado.targetAtual]?.preview_url;
@@ -45,7 +45,7 @@ const AudioPlayer = () => {
          if (estado.isPlaying === false && estado.targetAtual === 0 && (existe === undefined || existe === "undefined")) {
             // Selecionando a primeria musica da playlist
             estado.audioRef.src = prevLink();
-         }
+         }  
       }
    }, [estado.aSeguir]);
 
