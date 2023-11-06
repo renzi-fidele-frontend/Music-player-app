@@ -11,7 +11,6 @@ const token = localStorage.getItem("token");
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
       if (id.length > 0) {
@@ -23,11 +22,9 @@ const Leitor = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               // Caso os dados já tenham sido carregados
-               if (estado.aSeguir.toString() !== res.items.toString()) {
-                  dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
-                  dispatch({ type: "setaSeguir", payload: res.items });
-               }
+               console.log("apanhei", res);
+               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+               dispatch({ type: "setaSeguir", payload: res.items });
                if (res.error) {
                   if (res.error.message === "The access token expired") {
                      localStorage.clear();
@@ -47,11 +44,8 @@ const Leitor = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               // Caso os dados já tenham sido carregados
-               if (estado.aSeguir.toString() !== res.items.toString()) {
-                  dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
-                  dispatch({ type: "setaSeguir", payload: res.items });
-               }
+               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+               dispatch({ type: "setaSeguir", payload: res.items });
                if (res.error) {
                   if (res.error.message === "The access token expired") {
                      localStorage.clear();
@@ -66,7 +60,7 @@ const Leitor = () => {
 
       // Caso seja passada a id da playlist
       if (estado.idPlaylist.length > 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
-   }, [estado.idAlbum, estado.idPlaylist]);
+   }, [estado.idPlaylist]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
@@ -108,7 +102,7 @@ const Leitor = () => {
       if (estado.aSeguir.length > 0) {
          if (estado.mode === "playlistMode" && estado.singleMode === false) {
             getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
-         } else if (estado.mode === "albumMode" && estado.singleMode === false) {
+         } else if (estado.mode === "albumMode") {
             getSemelhantes(estado.albumAtual[0]?.artists[0]?.id);
          } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
             getSemelhantes(estado.musicaAtual[0]?.artists[0]?.id);
