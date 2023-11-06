@@ -5,14 +5,12 @@ import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
-import { useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-   const loc = useLocation();
 
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
@@ -108,11 +106,11 @@ const Leitor = () => {
    }
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
-         if (estado.mode === "playlistMode" && !loc?.state?.mode) {
+         if (estado.mode === "playlistMode" && estado.singleMode === false) {
             getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
-         } else if (estado.mode === "albumMode" && !loc?.state?.mode) {
+         } else if (estado.mode === "albumMode" && estado.singleMode === false) {
             getSemelhantes(estado.albumAtual[0]?.artists[0]?.id);
-         } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+         } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
             getSemelhantes(estado.musicaAtual[0]?.artists[0]?.id);
          }
 

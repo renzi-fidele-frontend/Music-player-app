@@ -47,6 +47,8 @@ const reducer = (state, action) => {
          return { ...state, albumAtual: action.payload };
       case "setMode":
          return { ...state, mode: action.payload };
+      case "setSingleMode":
+         return { ...state, singleMode: action.payload };
       default:
          return state;
    }
@@ -67,6 +69,7 @@ function App() {
       playlistsDestacadas: [], // Playlists em destaque
       lancamentos: [], // Lancamentos em destaque
       mode: "", //   Modos: playlistMode ou albumMode
+      singleMode: false,
       albumsSalvos: [], // Albuns favoritos da conta do spotify
       musicasCurtidas: [],
       albumAtual: [], // Objecto Album adicionado a playlist

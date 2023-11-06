@@ -81,7 +81,8 @@ const Favoritos = () => {
                            dispatch({ type: "setaSeguir", payload: [v.track] });
                            dispatch({ type: "setMusicaAtual", payload: [v.track] });
                            dispatch({ type: "setMode", payload: "playlistMode" });
-                           navegar("/leitor", { state: { mode: "single" } });
+                           dispatch({type: "setSingleMode", payload: true})
+                           navegar("/leitor");
                         }}
                         subtit={v.track.artists[0].name}
                         nome={v.track.name}

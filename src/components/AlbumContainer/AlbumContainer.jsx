@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
 import { musicContext } from "../../App";
-import { useLocation } from "react-router-dom";
 import { reduzir } from "../AlbumCard/AlbumCard";
 
 const AlbumContainer = ({ track }) => {
    const { estado, dispatch } = useContext(musicContext);
 
-   const loc = useLocation();
 
-   if (estado.mode === "playlistMode" && !loc?.state?.mode) {
+   if (estado.mode === "playlistMode" && estado.singleMode === false) {
       return (
          <div id={styles.cont}>
             <div id={styles.imgsCont}>
@@ -55,7 +53,7 @@ const AlbumContainer = ({ track }) => {
             <span>{`Lançado em: ${estado.albumAtual[0]?.release_date}`}</span>
          </div>
       );
-   } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+   } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
       return (
          <div id={styles.cont}>
             <div id={styles.imgsCont}>

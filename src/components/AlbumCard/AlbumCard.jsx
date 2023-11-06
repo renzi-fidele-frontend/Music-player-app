@@ -4,7 +4,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 
 //  Reduzindo o texto do conteúdo do post
 export function reduzir(str, maxlength) {
-   return str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str;
+   return str.length > maxlength ? str?.slice(0, maxlength - 1) + "…" : str;
 }
 
 const AlbumCard = ({ foto, nome, subtit, acao }) => {

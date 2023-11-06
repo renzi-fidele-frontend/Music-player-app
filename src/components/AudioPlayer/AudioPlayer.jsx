@@ -4,31 +4,28 @@ import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
-import { useLocation } from "react-router-dom";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-   const loc = useLocation();
-
    // Link da música atual sendo tocada
    const linkAudio = () => {
-      if (estado.mode === "playlistMode" && !loc?.state?.mode) {
+      if (estado.mode === "playlistMode" && estado.singleMode === false) {
          return estado.aSeguir[estado.targetAtual]?.track?.preview_url;
       } else if (estado.mode === "albumMode") {
          return estado.aSeguir[estado.targetAtual]?.preview_url;
-      } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+      } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
          return estado.aSeguir[0]?.preview_url;
       }
    };
 
    // Link da primeira música da playslist selecionada
    const prevLink = () => {
-      if (estado.mode === "playlistMode" && !loc?.state.mode) {
+      if (estado.mode === "playlistMode" && estado.singleMode === false) {
          return estado.aSeguir[0]?.track?.preview_url;
       } else if (estado.mode === "albumMode") {
          return estado.aSeguir[0]?.preview_url;
-      } else if (estado.mode === "playlistMode" && loc?.state?.mode === "single") {
+      } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
          return estado.aSeguir[0]?.preview_url;
       }
    };
@@ -45,7 +42,7 @@ const AudioPlayer = () => {
          if (estado.isPlaying === false && estado.targetAtual === 0 && (existe === undefined || existe === "undefined")) {
             // Selecionando a primeria musica da playlist
             estado.audioRef.src = prevLink();
-         }  
+         }
       }
    }, [estado.aSeguir]);
 
@@ -125,7 +122,7 @@ const AudioPlayer = () => {
             <Notificacao />
          </div>
          <div id={styles.right}>
-            {estado.mode === "playlistMode" && !loc?.state?.mode && (
+            {estado.mode === "playlistMode" && estado.singleMode === false && (
                <>
                   <h5>{estado.musicaAtual[0]?.track?.name}</h5>
                   <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
@@ -139,7 +136,7 @@ const AudioPlayer = () => {
                </>
             )}
 
-            {estado.mode === "playlistMode" && loc?.state?.mode === "single" && (
+            {estado.mode === "playlistMode" && estado.singleMode === true && (
                <>
                   <h5>{estado.musicaAtual[0]?.name}</h5>
                   <h4>{`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
