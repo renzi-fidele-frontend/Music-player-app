@@ -22,7 +22,6 @@ const Leitor = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               console.log("apanhei", res);
                dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
                dispatch({ type: "setaSeguir", payload: res.items });
                if (res.error) {
@@ -72,7 +71,7 @@ const Leitor = () => {
             method: "GET",
          })
             .then((v) => v.json())
-            .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists.slice(0, 3) }))
+            .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists }))
             .catch((err) => console.log("Aconteceu o erro"));
       }
    }
@@ -84,7 +83,7 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items.slice(0, 3) }))
+         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items }))
          .catch((err) => console.log("Aconteceu o erro"));
    }
    async function getLancamentos() {
@@ -95,7 +94,7 @@ const Leitor = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items.slice(0, 3) }))
+         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items }))
          .catch((err) => console.log("Aconteceu o erro"));
    }
    useEffect(() => {
