@@ -3,6 +3,7 @@ import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import { titulo1 } from "../../components/components";
 
 const token = localStorage.getItem("token");
 
