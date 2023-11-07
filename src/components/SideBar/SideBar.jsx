@@ -35,11 +35,16 @@ const SideBar = () => {
          .then((res) => {
             if (res.error) {
                if (res.error.message === "The access token expired") {
+                  console.log("secao expirou");
                   localStorage.clear();
                }
             }
             setNome(res.display_name.split(" ")[0]);
             setAvatar(res.images[0].url);
+         })
+         .catch(err => {
+            console.log("Erro ao apanhar perfil");
+            localStorage.clear();
          });
    }
 

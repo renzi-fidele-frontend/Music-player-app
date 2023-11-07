@@ -81,7 +81,6 @@ function App() {
          console.log("O token existe", token);
       } else {
          let hash = window.location.hash;
-
          if (hash.length > 10) {
             console.log("Logado com sucesso", hash);
             localStorage.setItem("token", hash.split("&")[0].split("=")[1]);

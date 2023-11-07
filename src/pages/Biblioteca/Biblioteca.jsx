@@ -3,7 +3,6 @@ import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
-import { titulo1 } from "../../components/components";
 
 const token = localStorage.getItem("token");
 
@@ -33,10 +32,8 @@ const Biblioteca = () => {
    }
 
    useEffect(() => {
-      if (estado.idPlaylist.length === 0) {
+      if (estado.idPlaylist.length === 0 && estado.playlists.length === 0) {
          apanharPlaylists();
-      } else {
-         return;
       }
    }, []);
 
