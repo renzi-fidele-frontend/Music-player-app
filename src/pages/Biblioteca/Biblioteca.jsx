@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 
+
 const token = localStorage.getItem("token");
 
 const Biblioteca = () => {
@@ -39,6 +40,7 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.container}>
+         
          <h2 className={styles.tit1}>{`Playlists criadas (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {estado.playlists?.map((v, k) => {
@@ -53,7 +55,7 @@ const Biblioteca = () => {
                         dispatch({ type: "setIdAlbum", payload: "" });
                         dispatch({ type: "setTargetAtual", payload: 0 });
                         dispatch({ type: "setMode", payload: "playlistMode" });
-                        dispatch({type: "setSingleMode", payload: false})
+                        dispatch({ type: "setSingleMode", payload: false });
                         navegar("/leitor");
                      }}
                   />
