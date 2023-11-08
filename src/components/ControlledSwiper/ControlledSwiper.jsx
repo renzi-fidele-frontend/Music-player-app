@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./ControlledSwiper.module.css";
 import "./swiper.css";
 
@@ -19,13 +19,26 @@ import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 const ControlledSwiper = ({ tit, arr = [] }) => {
    const swiperRef = useRef();
 
+   const [activeIndex, setActiveIndex] = useState(1);
+
    return (
       <div id={styles.ct}>
          <div id={styles.linha}>
-            <h2 className={estiloBiblioteca.tit1}>{tit}</h2>
+            <h2 className={estiloBiblioteca.tit1}>
+               {tit} <span id={styles.sp}>{`(${activeIndex}/${arr.length})`}</span>
+            </h2>
             <div id="botoes-slider">
-               <MdNavigateBefore onClick={() => swiperRef.current.slidePrev()} />
-               <MdNavigateNext onClick={() => swiperRef.current.slideNext()} />
+               <MdNavigateBefore
+                  onClick={() => {
+                     console.log(swiperRef.current);
+                     swiperRef.current.slidePrev();
+                  }}
+               />
+               <MdNavigateNext
+                  onClick={() => {
+                     swiperRef.current.slideNext();
+                  }}
+               />
             </div>
          </div>
 
@@ -33,12 +46,11 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
             onSwiper={(swiperNovo) => {
                swiperRef.current = swiperNovo;
             }}
+            onSlideChange={(e) => setActiveIndex(e.activeIndex+1)}
             className="swiper"
-         
             spaceBetween={20}
             autoplay={(true, { delay: 8000 })}
             slidesPerView={"auto"}
-            loop={true}
             allowTouchMove={false}
             modules={[Navigation, Pagination, A11y, Autoplay]}
          >

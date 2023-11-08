@@ -3,11 +3,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
  }
  
  #linha > h2 {
      margin-bottom: 0 !important;
  }
  
+ #sp {
+    font-size: 20px;
+    font-weight: 400;
+ }
  
