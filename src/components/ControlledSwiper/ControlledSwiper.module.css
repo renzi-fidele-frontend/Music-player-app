@@ -1,17 +1,27 @@
 #linha {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.2em;
- }
- 
- #linha > h2 {
-     margin-bottom: 0 !important;
- }
- 
- #sp {
-    font-size: 20px;
-    font-weight: 400;
- }
- 
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 1.2em;
+}
+
+#linha > h2 {
+   margin-bottom: 0 !important;
+}
+
+#sp {
+   font-size: 20px;
+   font-weight: 400;
+   animation: trocaCor 1s ease-in-out;
+}
+
+@keyframes trocaCor {
+   from {
+      opacity: 0.5;
+      color: rgb(0, 206, 52);
+   }
+   to {
+      opacity: 1;
+   }
+}

@@ -25,7 +25,7 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
       <div id={styles.ct}>
          <div id={styles.linha}>
             <h2 className={estiloBiblioteca.tit1}>
-               {tit} <span id={styles.sp}>{`(${activeIndex}/${arr.length})`}</span>
+               {tit} <span key={activeIndex} id={styles.sp}>{`(${activeIndex}/${arr.length})`}</span>
             </h2>
             <div id="botoes-slider">
                <MdNavigateBefore
@@ -46,7 +46,7 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
             onSwiper={(swiperNovo) => {
                swiperRef.current = swiperNovo;
             }}
-            onSlideChange={(e) => setActiveIndex(e.activeIndex+1)}
+            onSlideChange={(e) => setActiveIndex(e.activeIndex + 1)}
             className="swiper"
             spaceBetween={20}
             autoplay={(true, { delay: 8000 })}
