@@ -34,9 +34,10 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
                swiperRef.current = swiperNovo;
             }}
             className="swiper"
+         
             spaceBetween={20}
             autoplay={(true, { delay: 8000 })}
-            slidesPerView={5}
+            slidesPerView={"auto"}
             loop={true}
             allowTouchMove={false}
             modules={[Navigation, Pagination, A11y, Autoplay]}
