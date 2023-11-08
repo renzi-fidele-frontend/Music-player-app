@@ -1,0 +1,13 @@
+#linha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+ }
+ 
+ #linha > h2 {
+     margin-bottom: 0 !important;
+ }
+ 
+ 

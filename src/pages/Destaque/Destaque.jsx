@@ -1,12 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import styles from "./Destaque.module.css";
 import { musicContext } from "../../App";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
-
-// Icons
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import { useSwiper } from "swiper/react";
 
 const token = localStorage.getItem("token");
 
@@ -34,16 +29,8 @@ const Destaque = () => {
 
    return (
       <div id={styles.ct}>
-         <div id={styles.linha}>
-            <h2 className={estiloBiblioteca.tit1}>Álbums em destaque</h2>
-            <div id={styles.botoes}>
-               <MdNavigateBefore />
-               <MdNavigateNext  onClick={()=> swiperHook.slideNext()}/>
-            </div>
-         </div>
-
-         <ControlledSwiper arr={estado.lancamentos} />
-         <h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>
+         <ControlledSwiper tit={"Álbums em destaque"} arr={estado.lancamentos} />
+         {/*<h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>*/}
       </div>
    );
 };

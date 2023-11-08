@@ -110,7 +110,8 @@ const Leitor = () => {
          // Carregando os dados somente se não tiverem sido carregados
          if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
             getPlaylistsDestacadas();
-            getLancamentos();
+
+            if (estado.lancamentos.length === 0) getLancamentos();
          }
       }
    }, [estado.musicaAtual]);
