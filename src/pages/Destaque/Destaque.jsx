@@ -2,7 +2,11 @@ import React, { useContext, useEffect } from "react";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import styles from "./Destaque.module.css";
 import { musicContext } from "../../App";
-import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
+
+// Icons
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { useSwiper } from "swiper/react";
 
 const token = localStorage.getItem("token");
 
@@ -29,19 +33,16 @@ const Destaque = () => {
    }, [estado.lancamentos]);
 
    return (
-      <div>
-         <h2 className={estiloBiblioteca.tit1}>Álbums em destaque</h2>
-         {estado.lancamentos.length > 0 &&
-            estado.lancamentos.map((v, k) => {
-               return (
-                  <AlbumCard
-                     foto={v.images[0]?.url}
-                     nome={v.name}
-                     subtit={v.total_tracks === 1 ? `1 Música` : `${v.total_tracks} Músicas`}
-                     key={k}
-                  />
-               );
-            })}
+      <div id={styles.ct}>
+         <div id={styles.linha}>
+            <h2 className={estiloBiblioteca.tit1}>Álbums em destaque</h2>
+            <div id={styles.botoes}>
+               <MdNavigateBefore />
+               <MdNavigateNext  onClick={()=> swiperHook.slideNext()}/>
+            </div>
+         </div>
+
+         <ControlledSwiper arr={estado.lancamentos} />
          <h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>
       </div>
    );

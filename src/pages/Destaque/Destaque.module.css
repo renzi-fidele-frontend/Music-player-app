@@ -1,0 +1,31 @@
+#linha {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 1em;
+}
+
+#linha > h2 {
+    margin-bottom: 0 !important;
+}
+
+#botoes {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1em;
+}
+
+#botoes > svg {
+   font-size: 55px;
+   background: linear-gradient(160deg, rgba(70, 87, 116, 0.6278712168461135) 0%, rgba(42, 55, 80, 0.571848807882528) 100%);
+   padding: 10px;
+   border-radius: 50%;
+}
+
+#botoes > svg:hover {
+    cursor: pointer;
+    color: var(--cor-tema);
+}
