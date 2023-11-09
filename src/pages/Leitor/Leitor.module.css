@@ -30,3 +30,20 @@
    display: grid;
    grid-template-columns: 33.3% 33.3% 33.3%;
 }
+
+#antes {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   width: 100%;
+   margin: 0 auto;
+}
+
+#antes > img {
+   width: 700px;
+}
+
+#antes > h2 {
+   margin-top: 2em;
+}

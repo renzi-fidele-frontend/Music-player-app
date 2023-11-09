@@ -5,6 +5,7 @@ import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
+import foto from "../../assets/bird.svg";
 
 const token = localStorage.getItem("token");
 
@@ -169,7 +170,7 @@ const Leitor = () => {
       },
    ];
 
-   return (
+   return estado.musicaAtual.length > 0 ? (
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
@@ -179,11 +180,15 @@ const Leitor = () => {
                <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoLancamentos} />
             </div>
          </div>
-
          <div id={styles.right}>
             <AlbumContainer track={estado?.musicaAtual[0]?.track} />
             <FilaContainer fila={estado.aSeguir} />
          </div>
+      </div>
+   ) : (
+      <div id={styles.antes}>
+         <img src={foto} alt="Ilustracao" />
+         <h2> Você deve selecionar uma música</h2>
       </div>
    );
 };
