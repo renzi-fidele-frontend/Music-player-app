@@ -23,7 +23,6 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
          <img src={foto} alt="Imagem do album" />
          <h6>{reduzir(nome, 17)}</h6>
          <p>{subtit}</p>
-
          <i>
             <TbPlayerPlayFilled />
          </i>
