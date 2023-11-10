@@ -9,10 +9,7 @@ const Destaque = () => {
    // Apanhando os estados do contexto no reducer
    const { estado, dispatch } = useContext(musicContext);
 
-   const [loading, setLoading] = useState(false);
-
    async function getLancamentos() {
-      setLoading(true);
       const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=10`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -22,20 +19,47 @@ const Destaque = () => {
          .then((v) => v.json())
          .then((v) => {
             dispatch({ type: "setLancamentos", payload: v.albums.items });
-            setLoading(false)
          })
          .catch((err) => console.log("Aconteceu o erro"));
+   }
+
+   // Apanhando os itens da playslist
+   async function getTop50() {
+      const res = await fetch(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=20`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            if (res.error) {
+               if (res.error.message === "The access token expired") {
+                  localStorage.clear();
+               }
+            }
+            dispatch({ type: "setTop50", payload: res.items });
+            console.log(res);
+         });
    }
 
    useEffect(() => {
       if (estado.lancamentos.length === 0) {
          getLancamentos();
       }
-   }, [estado.lancamentos]);
+
+      if (estado.top50.length === 0) getTop50();
+   }, [estado.lancamentos && estado.top50]);
 
    return (
       <div id={styles.ct}>
-         <ControlledSwiper tit={"Álbums em destaque"} arr={estado.lancamentos} />
+         <section>
+            <ControlledSwiper tit={"Novos lançamentos"} arr={estado.lancamentos} />
+         </section>
+         <section>
+            <ControlledSwiper tit={"Top 50 - Global"} arr={estado.lancamentos} />
+         </section>
+
          {/*<h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>*/}
       </div>
    );

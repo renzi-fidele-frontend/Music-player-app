@@ -16,7 +16,7 @@ import AlbumCard from "../AlbumCard/AlbumCard";
 
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 
-const ControlledSwiper = ({ tit, arr = [] }) => {
+const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
    const swiperRef = useRef();
 
    const [activeIndex, setActiveIndex] = useState(1);
@@ -56,11 +56,25 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
          >
             {arr.length > 0 ? (
                arr.map((v, k) => {
-                  return (
-                     <SwiperSlide key={k}>
-                        <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
-                     </SwiperSlide>
-                  );
+                  if (modo === "album") {
+                     return (
+                        <SwiperSlide key={k}>
+                           <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                        </SwiperSlide>
+                     );
+                  } else if (modo === "playlist") {
+                     return (
+                        <SwiperSlide key={k}>
+                           <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                        </SwiperSlide>
+                     );
+                  } else if (modo === "single") {
+                     return (
+                        <SwiperSlide key={k}>
+                           <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                        </SwiperSlide>
+                     );
+                  }
                })
             ) : (
                <>
