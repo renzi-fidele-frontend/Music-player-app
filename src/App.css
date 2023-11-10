@@ -17,7 +17,7 @@ a {
    height: 100vh;
    max-height: 100vh;
    display: grid;
-   grid-template-columns: 140px auto;
+   grid-template-columns: 7.5% 92.5%;
    border-radius: 30px;
 }
 
