@@ -3,6 +3,7 @@ import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import Esqueleto from "../../components/Skeletons/Esqueleto";
 
 const token = localStorage.getItem("token");
 
@@ -45,7 +46,7 @@ const Biblioteca = () => {
       <div id={styles.container}>
          <h2 className={styles.tit1}>{`Playlists criadas (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
-            {loading === true ? (
+            {loading === false ? (
                estado.playlists?.map((v, k) => {
                   return (
                      <AlbumCard
@@ -65,7 +66,12 @@ const Biblioteca = () => {
                   );
                })
             ) : (
-               <p></p>
+               <>
+                  <AlbumCard />
+                  <AlbumCard />
+                  <AlbumCard />
+
+               </>
             )}
          </div>
       </div>
