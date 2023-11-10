@@ -10,7 +10,7 @@ const Destaque = () => {
    const { estado, dispatch } = useContext(musicContext);
 
    async function getLancamentos() {
-      const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=10`, {
+      const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=30`, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
@@ -25,7 +25,7 @@ const Destaque = () => {
 
    // Apanhando os itens da playslist
    async function getTop50() {
-      const res = await fetch(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=20`, {
+      const res = await fetch(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=50`, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
@@ -39,7 +39,6 @@ const Destaque = () => {
                }
             }
             dispatch({ type: "setTop50", payload: res.items });
-            console.log(res);
          });
    }
 
