@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Favoritos.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
@@ -10,10 +10,13 @@ const token = localStorage.getItem("token");
 const Favoritos = () => {
    const { estado, dispatch } = useContext(musicContext);
 
+   const [loading, setLoading] = useState(false);
+
    const navegar = useNavigate();
 
    // Apanhando os favoritos da api
    async function getAlbumsSalvos() {
+      setLoading(true);
       const res = await fetch(`https://api.spotify.com/v1/me/albums?limit=8`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -35,6 +38,7 @@ const Favoritos = () => {
          .then((res) => res.json())
          .then((res) => {
             dispatch({ type: "setMusicasCurtidas", payload: res.items });
+            setLoading(false);
          });
    }
    useEffect(() => {
@@ -47,25 +51,33 @@ const Favoritos = () => {
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`Álbums salvos (${estado.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
-               {estado.albumsSalvos?.map((v, k) => {
-                  return (
-                     <AlbumCard
-                        acao={() => {
-                           dispatch({ type: "setIdAlbum", payload: v.album.id });
-                           dispatch({ type: "setIdPlaylist", payload: "" });
-                           dispatch({ type: "setTargetAtual", payload: 0 });
-                           dispatch({ type: "setaSeguir", payload: v.album.tracks.items.map((v, k) => v.track) });
-                           dispatch({ type: "setAlbumAtual", payload: [v.album] });
-                           dispatch({ type: "setMode", payload: "albumMode" });
-                           navegar("/leitor");
-                        }}
-                        subtit={v.album.artists[0].name}
-                        foto={v.album.images[0].url}
-                        nome={v.album.name}
-                        key={k}
-                     />
-                  );
-               })}
+               {loading === false ? (
+                  estado.albumsSalvos?.map((v, k) => {
+                     return (
+                        <AlbumCard
+                           acao={() => {
+                              dispatch({ type: "setIdAlbum", payload: v.album.id });
+                              dispatch({ type: "setIdPlaylist", payload: "" });
+                              dispatch({ type: "setTargetAtual", payload: 0 });
+                              dispatch({ type: "setaSeguir", payload: v.album.tracks.items.map((v, k) => v.track) });
+                              dispatch({ type: "setAlbumAtual", payload: [v.album] });
+                              dispatch({ type: "setMode", payload: "albumMode" });
+                              navegar("/leitor");
+                           }}
+                           subtit={v.album.artists[0].name}
+                           foto={v.album.images[0].url}
+                           nome={v.album.name}
+                           key={k}
+                        />
+                     );
+                  })
+               ) : (
+                  <>
+                     <AlbumCard />
+                     <AlbumCard />
+                     <AlbumCard />
+                  </>
+               )}
             </div>
          </section>
          <section>
@@ -81,7 +93,7 @@ const Favoritos = () => {
                            dispatch({ type: "setaSeguir", payload: [v.track] });
                            dispatch({ type: "setMusicaAtual", payload: [v.track] });
                            dispatch({ type: "setMode", payload: "playlistMode" });
-                           dispatch({type: "setSingleMode", payload: true})
+                           dispatch({ type: "setSingleMode", payload: true });
                            navegar("/leitor");
                         }}
                         subtit={v.track.artists[0].name}
