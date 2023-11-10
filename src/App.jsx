@@ -50,7 +50,7 @@ const reducer = (state, action) => {
       case "setSingleMode":
          return { ...state, singleMode: action.payload };
       case "setTop50":
-         return { ...state, singleMode: action.payload };
+         return { ...state, top50: action.payload };
 
       default:
          return state;
