@@ -83,25 +83,33 @@ const Favoritos = () => {
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`Músicas curtidas (${estado.musicasCurtidas?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
-               {estado.musicasCurtidas?.map((v, k) => {
-                  return (
-                     <AlbumCard
-                        acao={() => {
-                           dispatch({ type: "setIdAlbum", payload: "" });
-                           dispatch({ type: "setIdPlaylist", payload: "" });
-                           dispatch({ type: "setTargetAtual", payload: 0 });
-                           dispatch({ type: "setaSeguir", payload: [v.track] });
-                           dispatch({ type: "setMusicaAtual", payload: [v.track] });
-                           dispatch({ type: "setMode", payload: "playlistMode" });
-                           dispatch({ type: "setSingleMode", payload: true });
-                           navegar("/leitor");
-                        }}
-                        subtit={v.track.artists[0].name}
-                        nome={v.track.name}
-                        foto={v.track.album.images[0].url}
-                     />
-                  );
-               })}
+               {loading === false ? (
+                  estado.musicasCurtidas?.map((v, k) => {
+                     return (
+                        <AlbumCard
+                           acao={() => {
+                              dispatch({ type: "setIdAlbum", payload: "" });
+                              dispatch({ type: "setIdPlaylist", payload: "" });
+                              dispatch({ type: "setTargetAtual", payload: 0 });
+                              dispatch({ type: "setaSeguir", payload: [v.track] });
+                              dispatch({ type: "setMusicaAtual", payload: [v.track] });
+                              dispatch({ type: "setMode", payload: "playlistMode" });
+                              dispatch({ type: "setSingleMode", payload: true });
+                              navegar("/leitor");
+                           }}
+                           subtit={v.track.artists[0].name}
+                           nome={v.track.name}
+                           foto={v.track.album.images[0].url}
+                        />
+                     );
+                  })
+               ) : (
+                  <>
+                     <AlbumCard />
+                     <AlbumCard />
+                     <AlbumCard />
+                  </>
+               )}
             </div>
          </section>
       </div>
