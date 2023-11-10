@@ -54,14 +54,27 @@ const ControlledSwiper = ({ tit, arr = [] }) => {
             allowTouchMove={false}
             modules={[Navigation, Pagination, A11y, Autoplay]}
          >
-            {arr.length > 0 &&
+            {arr.length > 0 ? (
                arr.map((v, k) => {
                   return (
                      <SwiperSlide key={k}>
                         <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
                      </SwiperSlide>
                   );
-               })}
+               })
+            ) : (
+               <>
+                  <SwiperSlide>
+                     <AlbumCard />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                     <AlbumCard />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                     <AlbumCard />
+                  </SwiperSlide>
+               </>
+            )}
          </Swiper>
       </div>
    );

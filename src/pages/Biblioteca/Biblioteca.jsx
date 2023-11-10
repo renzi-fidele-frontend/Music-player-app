@@ -70,7 +70,6 @@ const Biblioteca = () => {
                   <AlbumCard />
                   <AlbumCard />
                   <AlbumCard />
-
                </>
             )}
          </div>

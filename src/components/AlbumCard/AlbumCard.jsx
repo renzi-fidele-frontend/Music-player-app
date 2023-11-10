@@ -8,7 +8,7 @@ export function reduzir(str, maxlength) {
    return str.length > maxlength ? str?.slice(0, maxlength - 1) + "…" : str;
 }
 
-const AlbumCard = ({ foto="", nome="", subtit="", acao }) => {
+const AlbumCard = ({ foto, nome, subtit, acao }) => {
    return (
       <div
          className={styles.box}
@@ -21,7 +21,7 @@ const AlbumCard = ({ foto="", nome="", subtit="", acao }) => {
          }}
          onMouse
       >
-         {foto.length > 0 && nome.length > 0 && subtit.length > 0 ? (
+         {foto && nome && subtit ? (
             <>
                <img src={foto} alt="Imagem do album" />
                <h6>{reduzir(nome, 17)}</h6>

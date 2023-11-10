@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Destaque.module.css";
 import { musicContext } from "../../App";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
@@ -9,7 +9,10 @@ const Destaque = () => {
    // Apanhando os estados do contexto no reducer
    const { estado, dispatch } = useContext(musicContext);
 
+   const [loading, setLoading] = useState(false);
+
    async function getLancamentos() {
+      setLoading(true);
       const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=10`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -17,7 +20,10 @@ const Destaque = () => {
          method: "GET",
       })
          .then((v) => v.json())
-         .then((v) => dispatch({ type: "setLancamentos", payload: v.albums.items }))
+         .then((v) => {
+            dispatch({ type: "setLancamentos", payload: v.albums.items });
+            setLoading(false)
+         })
          .catch((err) => console.log("Aconteceu o erro"));
    }
 
