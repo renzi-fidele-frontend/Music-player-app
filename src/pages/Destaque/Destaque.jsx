@@ -41,7 +41,6 @@ const Destaque = () => {
             dispatch({ type: "setTop50", payload: res.items });
          });
    }
-
    useEffect(() => {
       if (estado.lancamentos.length === 0) {
          getLancamentos();
