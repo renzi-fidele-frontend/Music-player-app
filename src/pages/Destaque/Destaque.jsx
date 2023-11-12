@@ -39,7 +39,8 @@ const Destaque = () => {
                }
             }
             dispatch({ type: "setTop50", payload: res.items });
-         });
+         })
+         .catch((err) => console.log(`Ops, aconteceu erro ${err} ao apanhar os top 50`));
    }
    useEffect(() => {
       if (estado.lancamentos.length === 0) {
@@ -52,10 +53,10 @@ const Destaque = () => {
    return (
       <div id={styles.ct}>
          <section>
-            <ControlledSwiper tit={"Novos lançamentos"} arr={estado.lancamentos} />
+            <ControlledSwiper tit={"Novos lançamentos"} modo={"album"} arr={estado.lancamentos} />
          </section>
          <section>
-            <ControlledSwiper tit={"Top 50 - Global"} arr={estado.top50} modo={"playlist"} />
+            <ControlledSwiper tit={"Top 50 músicas - Global"} arr={estado.top50} modo={"playlist"} />
          </section>
 
          {/*<h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>*/}

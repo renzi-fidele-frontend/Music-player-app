@@ -59,9 +59,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                   if (modo === "album") {
                      return (
                         <SwiperSlide key={k}>
-                           <AlbumCard acao={()=>{
-                              
-                           }} foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                           <AlbumCard acao={() => {}} foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
                         </SwiperSlide>
                      );
                   } else if (modo === "playlist") {
