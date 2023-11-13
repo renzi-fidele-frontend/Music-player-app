@@ -36,7 +36,6 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
             <div id="botoes-slider">
                <MdNavigateBefore
                   onClick={() => {
-                     console.log(swiperRef.current);
                      swiperRef.current.slidePrev();
                   }}
                />
