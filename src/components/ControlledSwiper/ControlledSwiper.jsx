@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./ControlledSwiper.module.css";
 import "./swiper.css";
 
@@ -15,11 +15,17 @@ import "swiper/css/autoplay";
 import AlbumCard from "../AlbumCard/AlbumCard";
 
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
+import { useNavigate } from "react-router-dom";
+import { musicContext } from "../../App";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
+   const { estado, dispatch } = useContext(musicContext);
+
    const swiperRef = useRef();
 
    const [activeIndex, setActiveIndex] = useState(1);
+
+   const navegar = useNavigate();
 
    return (
       <div id={styles.ct}>
@@ -59,7 +65,19 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                   if (modo === "album") {
                      return (
                         <SwiperSlide key={k}>
-                           <AlbumCard acao={() => {}} foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                           <AlbumCard
+                              acao={() => {
+                                 dispatch({ type: "setIdAlbum", payload: v.id });
+                                 dispatch({ type: "setIdPlaylist", payload: "" });
+                                 dispatch({ type: "setTargetAtual", payload: 0 });
+                                 dispatch({ type: "setMode", payload: "albumMode" });
+                                 dispatch({ type: "setAlbumAtual", payload: [v] });
+                                 navegar("/leitor");
+                              }}
+                              foto={v.images[0]?.url}
+                              nome={v.name}
+                              subtit={v.artists[0].name}
+                           />
                         </SwiperSlide>
                      );
                   } else if (modo === "playlist") {
