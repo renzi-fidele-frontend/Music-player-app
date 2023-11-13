@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styles from "./ControlledSwiper.module.css";
 import "./swiper.css";
 
@@ -6,7 +6,7 @@ import "./swiper.css";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/a11y";
