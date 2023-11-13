@@ -83,7 +83,21 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                   } else if (modo === "playlist") {
                      return (
                         <SwiperSlide key={k}>
-                           <AlbumCard foto={v?.track?.album?.images[0]?.url} nome={v?.track?.name} subtit={v?.track?.artists[0].name} />
+                           <AlbumCard
+                              acao={() => {
+                                 dispatch({ type: "setIdAlbum", payload: "" });
+                                 dispatch({ type: "setIdPlaylist", payload: "" });
+                                 dispatch({ type: "setTargetAtual", payload: 0 });
+                                 dispatch({ type: "setaSeguir", payload: [v.track] });
+                                 dispatch({ type: "setMusicaAtual", payload: [v.track] });
+                                 dispatch({ type: "setMode", payload: "playlistMode" });
+                                 dispatch({ type: "setSingleMode", payload: true });
+                                 navegar("/leitor");
+                              }}
+                              foto={v?.track?.album?.images[0]?.url}
+                              nome={v?.track?.name}
+                              subtit={v?.track?.artists[0].name}
+                           />
                         </SwiperSlide>
                      );
                   } else if (modo === "single") {
