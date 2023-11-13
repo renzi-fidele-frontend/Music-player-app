@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./DestaqueCard.module.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { reduzir } from "../AlbumCard/AlbumCard";
+import Esqueleto from "../Skeletons/Esqueleto";
 
 const DestaqueCard = ({ titulo, conteudo = [] }) => {
    return (
@@ -12,7 +13,7 @@ const DestaqueCard = ({ titulo, conteudo = [] }) => {
       >
          <h6>{titulo}</h6>
          <div id={styles.dentro}>
-            {conteudo[0]?.subtit?.length &&
+            {conteudo[0]?.subtit?.length > 0 ? (
                conteudo?.map((v, key) => {
                   return (
                      <div key={key}>
@@ -25,7 +26,38 @@ const DestaqueCard = ({ titulo, conteudo = [] }) => {
                         </div>
                      </div>
                   );
-               })}
+               })
+            ) : (
+               <>
+                  <div style={{ gap: "1em" }}>
+                     <div style={{ width: "20%" }} id={styles.left}>
+                        <Esqueleto tipo={"imgPeq"} />
+                     </div>
+                     <div style={{ width: "100%" }} id={styles.right}>
+                        <Esqueleto tipo="titulo" />
+                        <Esqueleto tipo="texto" />
+                     </div>
+                  </div>
+                  <div style={{ gap: "1em" }}>
+                     <div style={{ width: "20%" }} id={styles.left}>
+                        <Esqueleto tipo={"imgPeq"} />
+                     </div>
+                     <div style={{ width: "100%" }} id={styles.right}>
+                        <Esqueleto tipo="titulo" />
+                        <Esqueleto tipo="texto" />
+                     </div>
+                  </div>
+                  <div style={{ gap: "1em" }}>
+                     <div style={{ width: "20%" }} id={styles.left}>
+                        <Esqueleto tipo={"imgPeq"} />
+                     </div>
+                     <div style={{ width: "100%" }} id={styles.right}>
+                        <Esqueleto tipo="titulo" />
+                        <Esqueleto tipo="texto" />
+                     </div>
+                  </div>
+               </>
+            )}
          </div>
          <IoIosArrowForward />
       </div>
