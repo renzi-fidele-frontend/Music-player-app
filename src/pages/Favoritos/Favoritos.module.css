@@ -6,3 +6,9 @@
 #container > section:last-child {
     margin-top: 1.5em;
 }
+
+#baixo {
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+}

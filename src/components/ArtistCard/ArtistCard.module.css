@@ -1,0 +1,9 @@
+#ct {
+    text-align: center;
+    width: fit-content;
+    margin-bottom: 3em;
+}
+
+#ct > img {
+   border-radius: 50%;
+}

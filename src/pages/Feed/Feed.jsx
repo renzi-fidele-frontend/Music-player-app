@@ -8,24 +8,6 @@ const token = localStorage.getItem("token");
 const Feed = () => {
    const { estado, dispatch } = useContext(musicContext);
 
-   async function getArtistasTop() {
-      const res = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            console.log(res);
-            dispatch({ type: "setArtistasTop", payload: res.items });
-         })
-         .catch((err) => console.log(err));
-   }
-
-   useEffect(() => {
-      if (estado.artistasTop.length === 0) getArtistasTop();
-   }, [estado.artistasTop]);
 
    return (
       <div id={styles.ct}>
