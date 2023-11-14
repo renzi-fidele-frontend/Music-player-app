@@ -1,0 +1,32 @@
+#ct {
+    display: grid;
+    grid-template-columns: 65% 25%;
+}
+
+#search {
+    color: #030d18;
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 25px;
+    width: 100%;
+    background-color: #93a2b5;
+    padding: 8px .5em;
+    border: none;
+    border-radius: 10px;
+    transition: box-shadow .3s ease;
+}
+
+#search:hover { 
+    box-shadow: 1px 1px 10px #93a2b5;
+}
+
+#search > input {
+    outline: none;
+}
+
+#search > button {
+    font-size: 29px;
+    color: #0d2541;
+    background-color: transparent;
+    border: none;
+}
