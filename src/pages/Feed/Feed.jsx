@@ -46,12 +46,12 @@ const Feed = () => {
                <div id={styles.left}>
                   <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
                   <div id={styles.baixo}>
-                     {loading === true ? (
+                     {loading === false ? (
                         estado.artistasTop?.map((v, k) => {
                            return <ArtistCard key={k} foto={v.images[2]?.url} nome={v.name} />;
                         })
                      ) : (
-                        <div style={{display: "flex", gap: "3em"}}>
+                        <div id={styles.esqueleto}>
                            <ArtistCard />
                            <ArtistCard />
                            <ArtistCard />

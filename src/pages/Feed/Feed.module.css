@@ -43,3 +43,9 @@
 #ct > #left > section {
    margin-bottom: 5em;
 }
+
+#esqueleto {
+    display: flex;
+    gap: 3em;
+
+}
