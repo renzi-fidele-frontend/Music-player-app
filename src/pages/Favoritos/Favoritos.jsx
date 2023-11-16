@@ -43,45 +43,14 @@ const Favoritos = () => {
          });
    }
 
-   async function getArtistasTop() {
-      const res = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            console.log(res);
-            dispatch({ type: "setArtistasTop", payload: res.items });
-         })
-         .catch((err) => console.log(err));
-   }
 
    useEffect(() => {
       if (estado.albumsSalvos.length === 0) getAlbumsSalvos();
       if (estado.musicasCurtidas.length === 0) getMusicasCurtidas();
-      if (estado.artistasTop.length === 0) getArtistasTop();
    }, []);
 
    return (
       <div id={styles.container}>
-         <section>
-            <h2 className={estiloBiblioteca.tit1}>{`Artistas favoritos (${estado.artistasTop?.length})`}</h2>
-            <div id={styles.baixo}>
-               {loading === false ? (
-                  estado.artistasTop?.map((v, k) => {
-                     return <ArtistCard key={k} foto={v.images[2]?.url} nome={v.name} />;
-                  })
-               ) : (
-                  <>
-                     <AlbumCard />
-                     <AlbumCard />
-                     <AlbumCard />
-                  </>
-               )}
-            </div>
-         </section>
 
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`Álbums salvos (${estado.albumsSalvos?.length})`}</h2>
