@@ -36,3 +36,10 @@
    height: 80px;
    border-radius: 20px;
 }
+
+.sk.imgCircular {
+   width: 160px;
+   height: 160px;
+   border-radius: 50%;
+   margin-bottom: 1em;
+}
