@@ -10,7 +10,7 @@
    justify-content: space-between;
    flex-flow: row nowrap;
    background-color: #93a2b5;
-   padding: 8px 0.5em;
+   padding: 8px 0.8em;
    border-radius: 10px;
    transition: box-shadow 0.3s ease;
    margin-bottom: 3em;
@@ -28,6 +28,10 @@
    background-color: inherit;
 }
 
+#search > input::placeholder {
+   color: #030d18;
+}
+
 #search > svg {
    font-size: 29px;
    color: #0d2541;
@@ -41,11 +45,10 @@
 }
 
 #ct > #left > section {
-   margin-bottom: 5em;
+   margin-bottom: 2em;
 }
 
 #esqueleto {
-    display: flex;
-    gap: 3em;
-
+   display: flex;
+   gap: 3em;
 }

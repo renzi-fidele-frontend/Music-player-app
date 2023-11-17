@@ -73,13 +73,13 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                                  dispatch({ type: "setAlbumAtual", payload: [v] });
                                  navegar("/leitor");
                               }}
-                              foto={v.images[0]?.url}
+                              foto={v.images[0].url}
                               nome={v.name}
                               subtit={v.artists[0].name}
                            />
                         </SwiperSlide>
                      );
-                  } else if (modo === "playlist") {
+                  } else if (modo === "single") {
                      return (
                         <SwiperSlide key={k}>
                            <AlbumCard
@@ -93,16 +93,23 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                                  dispatch({ type: "setSingleMode", payload: true });
                                  navegar("/leitor");
                               }}
-                              foto={v?.track?.album?.images[0]?.url}
-                              nome={v?.track?.name}
-                              subtit={v?.track?.artists[0].name}
+                              foto={v.track.album.images[0].url}
+                              nome={v.track.name}
+                              subtit={v.track.artists[0].name}
                            />
                         </SwiperSlide>
                      );
-                  } else if (modo === "single") {
+                  } else if (modo === "playlist") {
                      return (
                         <SwiperSlide key={k}>
-                           <AlbumCard foto={v.images[0]?.url} nome={v.name} subtit={v.artists[0].name} />
+                           <AlbumCard
+                              acao={() => {
+                                 console.log("Entrei");
+                              }}
+                              foto={v.images[0].url}
+                              nome={v.name}
+                              subtit={`${v.tracks.total} músicas`}
+                           />
                         </SwiperSlide>
                      );
                   }

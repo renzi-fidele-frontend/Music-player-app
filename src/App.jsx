@@ -79,7 +79,7 @@ function App() {
       musicasCurtidas: [], // Músicas favoritos da conta do spotify
       albumAtual: [], // Objecto Album adicionado a playlist
       top50: [], // Playlist contendo top 50 músicas mais escutadas
-      artistasTop: []
+      artistasTop: [],
    });
 
    useEffect(() => {

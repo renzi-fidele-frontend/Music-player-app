@@ -56,7 +56,7 @@ const Destaque = () => {
             <ControlledSwiper tit={"Novos lançamentos"} modo={"album"} arr={estado.lancamentos} />
          </section>
          <section>
-            <ControlledSwiper tit={"Top 50 músicas - Global"} arr={estado.top50} modo={"playlist"} />
+            <ControlledSwiper tit={"Top 50 músicas - Global"} arr={estado.top50} modo={"single"} />
          </section>
 
          {/*<h2 className={estiloBiblioteca.tit1}>Músicas em destaque</h2>*/}
