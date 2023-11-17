@@ -77,7 +77,7 @@ const Feed = () => {
             </section>
 
             <section>
-               <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
+               <ControlledSwiper  modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
             </section>
          </div>
          <div id={styles.right}>

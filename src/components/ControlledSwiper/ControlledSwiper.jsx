@@ -102,9 +102,15 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                   } else if (modo === "playlist") {
                      return (
                         <SwiperSlide key={k}>
+                           
                            <AlbumCard
                               acao={() => {
-                                 console.log("Entrei");
+                                 dispatch({ type: "setIdPlaylist", payload: v.id });
+                                 dispatch({ type: "setIdAlbum", payload: "" });
+                                 dispatch({ type: "setTargetAtual", payload: 0 });
+                                 dispatch({ type: "setMode", payload: "playlistMode" });
+                                 dispatch({ type: "setSingleMode", payload: false });
+                                 navegar("/leitor");
                               }}
                               foto={v.images[0].url}
                               nome={v.name}
