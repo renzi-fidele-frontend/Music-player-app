@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
+import Esqueleto from "../../components/Skeletons/Esqueleto";
 
 const token = localStorage.getItem("token");
 
@@ -44,10 +45,29 @@ const Feed = () => {
          .catch((err) => console.log("Aconteceu o erro"));
    }
 
+   // Apanhando as categorias
+   async function getCategorias() {
+      setLoading(true);
+      const res = await fetch(`https://api.spotify.com/v1/browse/categories`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log(res.categories.items);
+            dispatch({ type: "setCategorias", payload: res.categories.items });
+            setLoading(false);
+         })
+         .catch((err) => console.log(err));
+   }
+
    //
    useEffect(() => {
       if (estado.artistasTop.length === 0) getArtistasTop();
       if (estado.playlistsDestacadas.length === 0) getPlaylistsDestacadas();
+      if (estado.categorias.length === 0) getCategorias();
    }, []);
 
    return (
@@ -57,6 +77,7 @@ const Feed = () => {
                <input type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
                <FaSearch />
             </div>
+
 
             <section>
                <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
@@ -77,11 +98,34 @@ const Feed = () => {
             </section>
 
             <section>
-               <ControlledSwiper  modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
+               <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
             </section>
          </div>
          <div id={styles.right}>
             <h2 className={estiloBiblioteca.tit1}>Categorias</h2>
+            <div id={styles.categsCt}>
+               {estado.categorias.length > 0 ? (
+                  estado.categorias.map((v, k) => {
+                     return (
+                        <div className={styles.categCard}>
+                           <img src={v.icons[0].url} alt={`Ilustracao de ${v.name}`} />
+                           <p>{v.name}</p>
+                        </div>
+                     );
+                  })
+               ) : (
+                  <>
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+                     <Esqueleto tipo={"categoriaBox"} />
+               </>
+               )}
+            </div>
          </div>
       </div>
    );

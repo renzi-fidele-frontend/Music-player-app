@@ -1,6 +1,6 @@
 #ct {
    display: grid;
-   grid-template-columns: 65% 35%;
+   grid-template-columns: 63% 37%;
 }
 
 #search {
@@ -40,12 +40,39 @@
 }
 
 #ct > #right {
-   padding-left: 1em;
-   text-align: end;
+   padding-left: 3em;
+   text-align: center;
 }
 
 #ct > #left > section {
-   margin-bottom: 2em;
+   margin-bottom: 4em;
+}
+
+.categCard {
+   margin-inline: 1em;
+   margin-bottom: 1em;
+}
+
+.categCard > img {
+   border-radius: 10px;
+}
+
+#categsCt {
+   display: grid;
+   grid-template-columns: 50% 50%;
+   height: 85vh;
+   overflow-y: auto;
+   scrollbar-width: none;
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}
+
+#categsCt:hover {
+   scrollbar-width: thin;
+}
+
+#categsCt::-webkit-scrollbar {
+   display: none;
 }
 
 #esqueleto {

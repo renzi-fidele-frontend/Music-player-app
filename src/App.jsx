@@ -53,6 +53,8 @@ const reducer = (state, action) => {
          return { ...state, top50: action.payload };
       case "setArtistasTop":
          return { ...state, artistasTop: action.payload };
+      case "setCategorias":
+         return { ...state, categorias: action.payload };
 
       default:
          return state;
@@ -79,7 +81,8 @@ function App() {
       musicasCurtidas: [], // Músicas favoritos da conta do spotify
       albumAtual: [], // Objecto Album adicionado a playlist
       top50: [], // Playlist contendo top 50 músicas mais escutadas
-      artistasTop: [],
+      artistasTop: [], // Artistas favoritos do usuário
+      categorias: [], // Generos disponiveis no spotify
    });
 
    useEffect(() => {
