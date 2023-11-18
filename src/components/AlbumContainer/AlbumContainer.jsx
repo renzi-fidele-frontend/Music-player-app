@@ -73,7 +73,7 @@ const AlbumContainer = ({ track }) => {
                ?.map((v) => v.name)
                .join(" e ")}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
 
-            <span>{`Lançado em: ${estado.musicaAtual[0]?.album.release_date}`}</span>
+            <span>{`Lançado em: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
          </div>
       );
    }

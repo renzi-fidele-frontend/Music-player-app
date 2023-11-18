@@ -7,6 +7,7 @@ import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
+import { useNavigate } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
@@ -70,6 +71,8 @@ const Feed = () => {
       if (estado.categorias.length === 0) getCategorias();
    }, []);
 
+   const navegar = useNavigate();
+
    return (
       <div id={styles.ct}>
          <div id={styles.left}>
@@ -78,13 +81,26 @@ const Feed = () => {
                <FaSearch />
             </div>
 
-
             <section>
                <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
                <div id={styles.baixo}>
                   {loading === false ? (
                      estado.artistasTop?.map((v, k) => {
-                        return <ArtistCard key={k} foto={v.images[2]?.url} nome={v.name} />;
+                        return (
+                           <ArtistCard
+                              acao={() => {
+                                 dispatch({ type: "setMode", payload: "playlistMode" });
+                                 dispatch({ type: "setIdPlaylist", payload: "" });
+                                 dispatch({ type: "setTargetAtual", payload: 0 });
+                                 dispatch({ type: "setIdAlbum", payload: "" });
+                                 dispatch({ type: "setSingleMode", payload: true });
+                                 navegar("/leitor", { state: { idArtistaFavorito: v.id } });
+                              }}
+                              key={k}
+                              foto={v.images[2]?.url}
+                              nome={v.name}
+                           />
+                        );
                      })
                   ) : (
                      <div id={styles.esqueleto}>
@@ -102,7 +118,7 @@ const Feed = () => {
             </section>
          </div>
          <div id={styles.right}>
-            <h2 className={estiloBiblioteca.tit1}>Categorias</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado.categorias.length})`}</h2>
             <div id={styles.categsCt}>
                {estado.categorias.length > 0 ? (
                   estado.categorias.map((v, k) => {
@@ -123,7 +139,7 @@ const Feed = () => {
                      <Esqueleto tipo={"categoriaBox"} />
                      <Esqueleto tipo={"categoriaBox"} />
                      <Esqueleto tipo={"categoriaBox"} />
-               </>
+                  </>
                )}
             </div>
          </div>

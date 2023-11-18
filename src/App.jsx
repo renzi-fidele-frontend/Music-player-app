@@ -83,6 +83,7 @@ function App() {
       top50: [], // Playlist contendo top 50 músicas mais escutadas
       artistasTop: [], // Artistas favoritos do usuário
       categorias: [], // Generos disponiveis no spotify
+
    });
 
    useEffect(() => {

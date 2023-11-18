@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./ArtistCard.module.css";
 import Esqueleto from "../Skeletons/Esqueleto";
 
-const ArtistCard = ({ foto, nome }) => {
+const ArtistCard = ({ foto, nome, acao }) => {
    return (
-      <div id={styles.ct}>
+      <div id={styles.ct} onClick={acao}>
          {foto && nome ? (
             <>
                <img src={foto} alt={`foto de ${nome}`} />

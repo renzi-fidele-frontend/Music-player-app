@@ -5,7 +5,9 @@ import Esqueleto from "../Skeletons/Esqueleto";
 
 //  Reduzindo o texto do conteúdo do post
 export function reduzir(str, maxlength) {
-   return str.length > maxlength ? str?.slice(0, maxlength - 1) + "…" : str;
+   if (str?.length) {
+      return str?.length > maxlength ? str?.slice(0, maxlength - 1) + "…" : str;
+   }
 }
 
 const AlbumCard = ({ foto, nome, subtit, acao }) => {

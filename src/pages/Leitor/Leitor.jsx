@@ -6,11 +6,14 @@ import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
 import foto from "../../assets/bird.svg";
+import { useLocation } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { estado, dispatch } = useContext(musicContext);
+
+   const loc = useLocation();
 
    // Apanhando os itens da playslist
    async function getItemsPlaylists(id) {
@@ -54,13 +57,41 @@ const Leitor = () => {
             });
       }
    }
+
+   // Apanhando top musicas do artista favorito
+   async function getTopMusicas(id) {
+      if (id.length > 0) {
+         const res = await fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            method: "GET",
+         })
+            .then((res) => res.json())
+            .then((res) => {
+               console.log(res.tracks);
+               dispatch({ type: "setaSeguir", payload: res.tracks });
+               dispatch({ type: "setMusicaAtual", payload: [res.tracks[0]] });
+
+               if (res.error) {
+                  if (res.error.message === "The access token expired") {
+                     localStorage.clear();
+                  }
+               }
+            });
+      }
+   }
+
    useEffect(() => {
       // Caso seja passada a id do album
       if (estado.idAlbum.length > 0 && estado.mode === "albumMode") getItemsAlbum(estado.idAlbum);
 
       // Caso seja passada a id da playlist
       if (estado.idPlaylist.length > 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
-   }, [estado.idPlaylist]);
+
+      // Caso seja passado a id do artista favorito
+      if (loc.state?.idArtistaFavorito) getTopMusicas(loc.state?.idArtistaFavorito);
+   }, [estado.idPlaylist && loc.state]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
@@ -111,9 +142,8 @@ const Leitor = () => {
          // Carregando os dados somente se não tiverem sido carregados
          if (estado.playlistsDestacadas.length === 0 && estado.musicaAtual.length > 0) {
             getPlaylistsDestacadas();
-
-            if (estado.lancamentos.length === 0) getLancamentos();
          }
+         if (estado.lancamentos.length === 0) getLancamentos();
       }
    }, [estado.musicaAtual]);
 

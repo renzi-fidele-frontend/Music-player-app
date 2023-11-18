@@ -109,11 +109,19 @@ const AudioPlayer = () => {
       }
    }, [estado.isPlaying]);
 
+   const foto = () => {
+      if (estado.mode === "playlistMode") {
+         return estado?.musicaAtual[0]?.track?.album?.images[0]?.url;
+      } else if (estado.mode === "albumMode") {
+         return estado.albumAtual[0]?.images[0].url;
+      }
+   }
+
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioProgress
-               foto={estado.mode === "playlistMode" ? estado?.musicaAtual[0]?.track?.album?.images[0]?.url : estado.albumAtual[0]?.images[0].url}
+               foto={foto()}
                size={300}
                isPlaying={true}
                cor={"var(--cor-tema)"}
