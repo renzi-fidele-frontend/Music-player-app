@@ -4,9 +4,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { reduzir } from "../AlbumCard/AlbumCard";
 import Esqueleto from "../Skeletons/Esqueleto";
 
-const DestaqueCard = ({ titulo, conteudo = [] }) => {
+const DestaqueCard = ({ titulo, conteudo = [], acao }) => {
    return (
       <div
+         onClick={acao}
          id={styles.ct}
          onMouseEnter={(e) => e.target.classList.add(styles.entrou)}
          onMouseLeave={(e) => e.target.classList.remove(styles.entrou)}

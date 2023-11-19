@@ -6,7 +6,7 @@ import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
 import foto from "../../assets/bird.svg";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const token = localStorage.getItem("token");
 
@@ -200,14 +200,28 @@ const Leitor = () => {
       },
    ];
 
+   const navegar = useNavigate();
+
    return estado.musicaAtual.length > 0 ? (
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
             <div id={styles.destaques}>
                <DestaqueCard titulo={"Artistas Semelhantes"} conteudo={conteudoSemelhantes} />
-               <DestaqueCard titulo={"Feito para si"} conteudo={conteudoPlaylistsDestacadas} />
-               <DestaqueCard titulo={"Lançamentos"} conteudo={conteudoLancamentos} />
+               <DestaqueCard
+                  acao={() => {
+                     navegar("/feed");
+                  }}
+                  titulo={"Feito para si"}
+                  conteudo={conteudoPlaylistsDestacadas}
+               />
+               <DestaqueCard
+                  acao={() => {
+                     navegar("/destaque");
+                  }}
+                  titulo={"Lançamentos"}
+                  conteudo={conteudoLancamentos}
+               />
             </div>
          </div>
          <div id={styles.right}>
