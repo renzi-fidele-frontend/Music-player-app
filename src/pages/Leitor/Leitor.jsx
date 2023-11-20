@@ -95,7 +95,7 @@ const Leitor = () => {
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {
-      if (id.length > 0) {
+      if (id && toString(id).length > 0) {
          const res = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
             headers: {
                Authorization: `Bearer ${token}`,
