@@ -113,7 +113,7 @@ const Feed = () => {
                </div>
             </section>
 
-            <section>
+            <section style={{marginBottom: '0px'}}>
                <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
             </section>
          </div>
