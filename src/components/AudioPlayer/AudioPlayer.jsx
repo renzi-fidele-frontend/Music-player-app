@@ -15,7 +15,7 @@ const AudioPlayer = () => {
       } else if (estado.mode === "albumMode") {
          return estado.aSeguir[estado.targetAtual]?.preview_url;
       } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
-         return estado.aSeguir[0]?.preview_url;
+         return estado.aSeguir[estado.targetAtual]?.preview_url;
       }
    };
 
@@ -49,6 +49,8 @@ const AudioPlayer = () => {
    // Caso uma nova musica seja selecionada
    useEffect(() => {
       if (estado.audioRef.src !== linkAudio()) {
+         console.log("Link atualizado");
+         console.log(linkAudio());
          estado.audioRef.src = linkAudio();
       }
    }, [estado.musicaAtual]);
