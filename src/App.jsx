@@ -8,6 +8,7 @@ import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
 import { createContext, useEffect, useReducer } from "react";
+import Categoria from "./pages/Categoria/Categoria";
 
 const token = localStorage.getItem("token");
 
@@ -55,6 +56,8 @@ const reducer = (state, action) => {
          return { ...state, artistasTop: action.payload };
       case "setCategorias":
          return { ...state, categorias: action.payload };
+      case "setPlaylistsCategoria":
+         return { ...state, playlistsCategoria: action.payload };
 
       default:
          return state;
@@ -83,7 +86,7 @@ function App() {
       top50: [], // Playlist contendo top 50 músicas mais escutadas
       artistasTop: [], // Artistas favoritos do usuário
       categorias: [], // Generos disponiveis no spotify
-
+      playlistsCategoria: [], // Playlists da categoria selecionada
    });
 
    useEffect(() => {
@@ -117,8 +120,8 @@ function App() {
                      <Route path="/destaque" element={token !== null ? <Destaque /> : <Login />} />
                      <Route path="/favoritos" element={token !== null ? <Favoritos /> : <Login />} />
                      <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
-                     <Route path="/feed" element={token !== null ? <Feed /> : <Login />} >
-                        <Route path="/feed/categoria/:id" />
+                     <Route path="/feed" element={token !== null ? <Feed /> : <Login />}>
+                        <Route path="/feed/categoria" element={token !== null ? <Categoria /> : <Login />} />
                      </Route>
                      <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
                      <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />

@@ -7,7 +7,8 @@ import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import foto from "../../assets/mulher.png";
 
 const token = localStorage.getItem("token");
 
@@ -59,7 +60,7 @@ const Feed = () => {
 
    // Apanhando a playlist da categoria selecionada
    async function getCategoriaPlaylist(id) {
-      const res = await fetch(`https://api.spotify.com/v1/browse/categories/{category_id}/playlists`, {
+      const res = await fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
@@ -67,8 +68,8 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res.categories.items);
-            dispatch({ type: "setCategorias", payload: res.categories.items });
+            console.log();
+            dispatch({ type: "setPlaylistsCategoria", payload: res.playlists.items });
          })
          .catch((err) => console.log(err));
    }
@@ -78,9 +79,11 @@ const Feed = () => {
       if (estado.artistasTop.length === 0) getArtistasTop();
       if (estado.playlistsDestacadas.length === 0) getPlaylistsDestacadas();
       if (estado.categorias.length === 0) getCategorias();
+      console.log(loc.pathname);
    }, []);
 
    const navegar = useNavigate();
+   const loc = useLocation();
 
    return (
       <div id={styles.ct}>
@@ -89,42 +92,52 @@ const Feed = () => {
                <input type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
                <FaSearch />
             </div>
-
-            <section>
-               <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
-               <div id={styles.baixo}>
-                  {estado.artistasTop.length > 0 ? (
-                     estado.artistasTop?.map((v, k) => {
-                        return (
-                           <ArtistCard
-                              acao={() => {
-                                 dispatch({ type: "setMode", payload: "playlistMode" });
-                                 dispatch({ type: "setIdPlaylist", payload: "" });
-                                 dispatch({ type: "setTargetAtual", payload: 0 });
-                                 dispatch({ type: "setIdAlbum", payload: "" });
-                                 dispatch({ type: "setSingleMode", payload: true });
-                                 navegar("/leitor", { state: { idArtistaFavorito: v.id } });
-                              }}
-                              key={k}
-                              foto={v.images[2]?.url}
-                              nome={v.name}
-                           />
-                        );
-                     })
-                  ) : (
-                     <div id={styles.esqueleto}>
-                        <ArtistCard />
-                        <ArtistCard />
-                        <ArtistCard />
-                        <ArtistCard />
+            {loc.pathname === "/feed" && (
+               <>
+                  <section>
+                     <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
+                     <div id={styles.baixo}>
+                        {estado.artistasTop.length > 0 ? (
+                           estado.artistasTop?.map((v, k) => {
+                              return (
+                                 <ArtistCard
+                                    acao={() => {
+                                       dispatch({ type: "setMode", payload: "playlistMode" });
+                                       dispatch({ type: "setIdPlaylist", payload: "" });
+                                       dispatch({ type: "setTargetAtual", payload: 0 });
+                                       dispatch({ type: "setIdAlbum", payload: "" });
+                                       dispatch({ type: "setSingleMode", payload: true });
+                                       navegar("/leitor", { state: { idArtistaFavorito: v.id } });
+                                    }}
+                                    key={k}
+                                    foto={v.images[2]?.url}
+                                    nome={v.name}
+                                 />
+                              );
+                           })
+                        ) : (
+                           <div id={styles.esqueleto}>
+                              <ArtistCard />
+                              <ArtistCard />
+                              <ArtistCard />
+                              <ArtistCard />
+                           </div>
+                        )}
                      </div>
-                  )}
-               </div>
-            </section>
+                  </section>
 
-            <section style={{ marginBottom: "0px" }}>
-               <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
-            </section>
+                  <section style={{ marginBottom: "0px" }}>
+                     <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
+                  </section>
+               </>
+            )}
+
+            {loc.pathname.includes("/feed/categoria") && (
+               <>
+                  <ControlledSwiper modo="playlist" arr={estado.playlistsCategoria} tit={`Playlists da categoria: ${loc?.state?.name}`} />
+                  <img id={styles.fixo} src={foto} alt="mulher" />
+               </>
+            )}
          </div>
          <div id={styles.right}>
             <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado.categorias.length})`}</h2>
@@ -134,7 +147,8 @@ const Feed = () => {
                      return (
                         <div
                            onClick={() => {
-                              navegar("/leitor", { state: { mode: "categoriaMode", id: v.id } });
+                              getCategoriaPlaylist(v.id);
+                              navegar(`/feed/categoria`, { state: { name: v.name } });
                            }}
                            className={styles.categCard}
                         >

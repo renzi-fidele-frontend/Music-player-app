@@ -1,4 +1,4 @@
-   #ct {
+#ct {
    display: grid;
    grid-template-columns: 63% 37%;
 }
@@ -90,4 +90,10 @@
 #esqueleto {
    display: flex;
    gap: 3em;
+}
+
+#fixo {
+   width: 250px;
+   position: absolute;
+   bottom: 0;
 }
