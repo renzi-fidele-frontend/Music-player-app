@@ -13,11 +13,9 @@ const token = localStorage.getItem("token");
 
 const Feed = () => {
    const { estado, dispatch } = useContext(musicContext);
-   const [loading, setLoading] = useState(false);
 
    // Apanhando os top artistas
    async function getArtistasTop() {
-      setLoading(true);
       const res = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -26,9 +24,7 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res);
             dispatch({ type: "setArtistasTop", payload: res.items });
-            setLoading(false);
          })
          .catch((err) => console.log(err));
    }
@@ -48,8 +44,22 @@ const Feed = () => {
 
    // Apanhando as categorias
    async function getCategorias() {
-      setLoading(true);
       const res = await fetch(`https://api.spotify.com/v1/browse/categories`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            dispatch({ type: "setCategorias", payload: res.categories.items });
+         })
+         .catch((err) => console.log(err));
+   }
+
+   // Apanhando a playlist da categoria selecionada
+   async function getCategoriaPlaylist(id) {
+      const res = await fetch(`https://api.spotify.com/v1/browse/categories/{category_id}/playlists`, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
@@ -59,7 +69,6 @@ const Feed = () => {
          .then((res) => {
             console.log(res.categories.items);
             dispatch({ type: "setCategorias", payload: res.categories.items });
-            setLoading(false);
          })
          .catch((err) => console.log(err));
    }
@@ -84,7 +93,7 @@ const Feed = () => {
             <section>
                <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
                <div id={styles.baixo}>
-                  {loading === false ? (
+                  {estado.artistasTop.length > 0 ? (
                      estado.artistasTop?.map((v, k) => {
                         return (
                            <ArtistCard
@@ -113,7 +122,7 @@ const Feed = () => {
                </div>
             </section>
 
-            <section style={{marginBottom: '0px'}}>
+            <section style={{ marginBottom: "0px" }}>
                <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
             </section>
          </div>
@@ -123,7 +132,12 @@ const Feed = () => {
                {estado.categorias.length > 0 ? (
                   estado.categorias.map((v, k) => {
                      return (
-                        <div className={styles.categCard}>
+                        <div
+                           onClick={() => {
+                              navegar("/leitor", { state: { mode: "categoriaMode", id: v.id } });
+                           }}
+                           className={styles.categCard}
+                        >
                            <img src={v.icons[0].url} alt={`Ilustracao de ${v.name}`} />
                            <p>{v.name}</p>
                         </div>

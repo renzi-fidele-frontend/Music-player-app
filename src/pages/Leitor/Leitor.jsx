@@ -26,8 +26,9 @@ const Leitor = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
                dispatch({ type: "setaSeguir", payload: res.items });
+               dispatch({ type: "setMusicaAtual", payload: [res.items[0]] });
+
                if (res.error) {
                   if (res.error.message === "The access token expired") {
                      localStorage.clear();
@@ -69,17 +70,33 @@ const Leitor = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               console.log(res.tracks);
                dispatch({ type: "setaSeguir", payload: res.tracks });
                dispatch({ type: "setMusicaAtual", payload: [res.tracks[0]] });
 
-               if (res.error) {
+               if (res.error) {  
                   if (res.error.message === "The access token expired") {
                      localStorage.clear();
                   }
                }
             });
       }
+   }
+
+   // Apanhando a playlist da categoria selecionada
+   async function getCategoriaItems(id) {
+      const res = await fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+         method: "GET",
+      })
+         .then((res) => res.json())
+         .then((res) => {
+            console.log(res);
+            dispatch({ type: "setaSeguir", payload: res?.playlists?.items });
+            dispatch({ type: "setMusicaAtual", payload: [res?.playlists?.items[0]] });
+         })
+         .catch((err) => console.log(err));
    }
 
    useEffect(() => {
@@ -91,6 +108,9 @@ const Leitor = () => {
 
       // Caso seja passado a id do artista favorito
       if (loc.state?.idArtistaFavorito) getTopMusicas(loc.state?.idArtistaFavorito);
+
+      // Caso seja passada a id da categoria
+      if (loc.state?.mode === "categoriaMode") getCategoriaItems(loc.state?.id);
    }, [estado.idPlaylist && loc.state]);
 
    // Apanhando o conteúdo dos destaques

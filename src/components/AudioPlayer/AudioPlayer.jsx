@@ -49,8 +49,6 @@ const AudioPlayer = () => {
    // Caso uma nova musica seja selecionada
    useEffect(() => {
       if (estado.audioRef.src !== linkAudio()) {
-         console.log("Link atualizado");
-         console.log(linkAudio());
          estado.audioRef.src = linkAudio();
       }
    }, [estado.musicaAtual]);
