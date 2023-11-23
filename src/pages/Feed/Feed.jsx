@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import foto from "../../assets/mulher.png";
 
 const token = localStorage.getItem("token");
@@ -146,6 +146,7 @@ const Feed = () => {
                      </div>
                      <div id={styles.right}>
                         <h3>Encontre as melhores recomendações no mundo da música </h3>
+                        <p>- Feito com carinho por <Link>Renzi Fidele</Link></p>
                      </div>
                   </div>
                </section>
