@@ -140,7 +140,14 @@ const Feed = () => {
             {loc.pathname.includes("/feed/categoria") && (
                <section id={styles.categoriaCt}>
                   <ControlledSwiper modo="playlist" arr={estado.playlistsCategoria} tit={`Playlists da categoria: ${loc?.state?.name}`} />
-                  <img id={styles.fixo} src={foto} alt="mulher" />
+                  <div id={styles.fixo}>
+                     <div id={styles.left}>
+                        <img src={foto} alt="mulher" />
+                     </div>
+                     <div id={styles.right}>
+                        <h3>Encontre as melhores recomendações no mundo da música </h3>
+                     </div>
+                  </div>
                </section>
             )}
 
