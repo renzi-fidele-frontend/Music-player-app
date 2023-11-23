@@ -60,7 +60,7 @@ const Leitor = () => {
    }
 
    // Apanhando top musicas do artista favorito
-   async function getTopMusicas(id) {
+   async function getTopMusicas(id) {  
       if (id.length > 0) {
          const res = await fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`, {
             headers: {

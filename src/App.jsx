@@ -8,7 +8,6 @@ import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
 import { createContext, useEffect, useReducer } from "react";
-import Categoria from "./pages/Categoria/Categoria";
 
 const token = localStorage.getItem("token");
 
@@ -121,7 +120,8 @@ function App() {
                      <Route path="/favoritos" element={token !== null ? <Favoritos /> : <Login />} />
                      <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
                      <Route path="/feed" element={token !== null ? <Feed /> : <Login />}>
-                        <Route path="/feed/categoria" element={token !== null ? <Categoria /> : <Login />} />
+                        <Route path="/feed/categoria" />
+                        <Route path="/feed/pesquisa?:id" />
                      </Route>
                      <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
                      <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Destaque.module.css";
 import { musicContext } from "../../App";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";

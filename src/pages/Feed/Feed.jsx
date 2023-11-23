@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styles from "./Feed.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
 import { FaSearch } from "react-icons/fa";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
-import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -74,7 +73,6 @@ const Feed = () => {
          .catch((err) => console.log(err));
    }
 
-   //
    useEffect(() => {
       if (estado.artistasTop.length === 0) getArtistasTop();
       if (estado.playlistsDestacadas.length === 0) getPlaylistsDestacadas();
@@ -82,16 +80,22 @@ const Feed = () => {
       console.log(loc.pathname);
    }, []);
 
+   //  Apanhando os resultados da pesquisa
+   async function pesquisar(query) {}
+
    const navegar = useNavigate();
    const loc = useLocation();
+   const searchRef = useRef();
 
    return (
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.search}>
-               <input type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
-               <FaSearch />
+               <input ref={searchRef} type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
+               <FaSearch onClick={pesquisar(searchRef.value)} />
             </div>
+
+            {/* Caso esteja na pagina do feed */}
             {loc.pathname === "/feed" && (
                <>
                   <section>
@@ -132,10 +136,20 @@ const Feed = () => {
                </>
             )}
 
+            {/* Caso esteja na pagina das categorias */}
             {loc.pathname.includes("/feed/categoria") && (
-               <>
+               <section id={styles.categoriaCt}>
                   <ControlledSwiper modo="playlist" arr={estado.playlistsCategoria} tit={`Playlists da categoria: ${loc?.state?.name}`} />
                   <img id={styles.fixo} src={foto} alt="mulher" />
+               </section>
+            )}
+
+            {/* Caso esteja na pagina de pesquisa */}
+            {loc.pathname.includes("/feed/pesquisa") && (
+               <>
+                  <section>
+                     <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
+                  </section>
                </>
             )}
          </div>

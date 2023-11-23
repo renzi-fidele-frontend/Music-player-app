@@ -4,7 +4,6 @@ import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
-import ArtistCard from "../../components/ArtistCard/ArtistCard";
 
 const token = localStorage.getItem("token");
 
