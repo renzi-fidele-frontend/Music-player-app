@@ -9,11 +9,16 @@
    align-items: center;
    justify-content: space-between;
    flex-flow: row nowrap;
-   background-color: #93a2b5;
+   background: rgba(147, 162, 181, 0.25);
+   box-shadow: 0 8px 32px 0 rgba(48, 48, 54, 0.37);
+   border: 1px solid rgb(25, 21, 31);
+   backdrop-filter: blur(4px);
+   -webkit-backdrop-filter: blur(4px);
+   border-radius: 10px;
    padding: 8px 0.8em;
    border-radius: 10px;
    transition: box-shadow 0.3s ease;
-   margin-bottom: 3em;
+   margin-bottom: 2.5em;
 }
 
 #baixo {
@@ -21,27 +26,32 @@
    gap: 3em;
 }
 
-#search:hover {
-   box-shadow: 1px 1px 10px #93a2b5;
-}
 
 #search > input {
    outline: none;
+   background-color: transparent;
    border: none;
    width: 100%;
    font-size: 25px;
-   background-color: inherit;
 }
 
 #search > input::placeholder {
    color: #030d18;
+   opacity: 1;
 }
 
 #search > svg {
    font-size: 29px;
-   color: #0d2541;
+   color: #030d18;
    background-color: transparent;
    border: none;
+   transition: 0.3s ease-in-out;
+}
+
+#search > svg:hover {
+   cursor: pointer;
+   scale: 1.1;
+   transform: rotateZ(350deg);
 }
 
 #ct > #right {

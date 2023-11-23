@@ -81,7 +81,10 @@ const Feed = () => {
    }, []);
 
    //  Apanhando os resultados da pesquisa
-   async function pesquisar(query) {}
+   async function pesquisar() {
+      console.log(`O query é ${searchRef.current.value}`);
+      navegar("/feed/pesquisa");
+   }
 
    const navegar = useNavigate();
    const loc = useLocation();
@@ -92,7 +95,7 @@ const Feed = () => {
          <div id={styles.left}>
             <div id={styles.search}>
                <input ref={searchRef} type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
-               <FaSearch onClick={pesquisar(searchRef.value)} />
+               <FaSearch onClick={pesquisar} />
             </div>
 
             {/* Caso esteja na pagina do feed */}
@@ -146,7 +149,9 @@ const Feed = () => {
                      </div>
                      <div id={styles.right}>
                         <h3>Encontre as melhores recomendações no mundo da música </h3>
-                        <p>- Feito com carinho por <Link>Renzi Fidele</Link></p>
+                        <p>
+                           - Feito com carinho por <Link>Renzi Fidele</Link>
+                        </p>
                      </div>
                   </div>
                </section>
