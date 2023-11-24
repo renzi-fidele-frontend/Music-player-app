@@ -175,12 +175,17 @@
 }
 
 #barra {
-   height: 10px;
+   height: 6px;
    border: none;
-   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+   background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), var(--cor-texto2));
    margin-bottom: 2em;
 }
 
 #searchCt {
    margin-top: 2em;
+}
+
+#searchCt h2 {
+   margin-bottom: .4em !important;
+
 }

@@ -14,6 +14,7 @@ const token = localStorage.getItem("token");
 const Feed = () => {
    const { estado, dispatch } = useContext(musicContext);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
+   const [loading, setLoading] = useState(false);
 
    // Apanhando os top artistas
    async function getArtistasTop() {
@@ -84,6 +85,7 @@ const Feed = () => {
    //  Apanhando os resultados da pesquisa
    async function pesquisar() {
       if (searchRef.current.value.length > 0) {
+         setLoading(true);
          navegar("/feed/pesquisa");
          const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track,playlist`, {
             headers: {
@@ -95,6 +97,7 @@ const Feed = () => {
             .then((res) => {
                console.log(res);
                setResultadosPesquisa([res]);
+               setLoading(false);
             })
             .catch((err) => console.log(err));
       }
@@ -178,14 +181,15 @@ const Feed = () => {
                      <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
                      <hr id={styles.barra} />
                      <section>
-                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
+                        <ControlledSwiper tit={"Álbuns"} mode="album" arr={!loading && resultadosPesquisa[0]?.albums?.items} />
                      </section>
                      <section>
-                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
+                        <ControlledSwiper tit={"Playlists"} modo="playlist" arr={!loading && resultadosPesquisa[0]?.playlists?.items} />
                      </section>
-                     <section>
-                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
-                     </section>
+                     {/*
+                     <section><ControlledSwiper tit={"Músicas"} modo="album" />
+                        
+            </section>*/}
                   </div>
                </>
             )}
