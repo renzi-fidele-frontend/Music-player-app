@@ -32,11 +32,16 @@
    border: none;
    width: 100%;
    font-size: 25px;
+   transition: all 0.3s ease-out;
 }
 
 #search > input::placeholder {
    color: #030d18;
    opacity: 1;
+}
+
+#search > input:focus {
+   box-shadow: 0 0px 32px 0 rgba(36, 36, 88, 0.37);
 }
 
 #search > svg {
