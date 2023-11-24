@@ -82,8 +82,20 @@ const Feed = () => {
 
    //  Apanhando os resultados da pesquisa
    async function pesquisar() {
-      console.log(`O query é ${searchRef.current.value}`);
-      navegar("/feed/pesquisa");
+      if (searchRef.current.value.length > 0) {
+         navegar("/feed/pesquisa");
+         const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track,playlist`, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            method: "GET",
+         })
+            .then((res) => res.json())
+            .then((res) => {
+               console.log(res);
+            })
+            .catch((err) => console.log(err));
+      }
    }
 
    const navegar = useNavigate();
@@ -162,6 +174,7 @@ const Feed = () => {
                <>
                   <section>
                      <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
+                     <hr id={styles.barra} />
                   </section>
                </>
             )}

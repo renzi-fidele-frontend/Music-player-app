@@ -121,7 +121,7 @@ function App() {
                      <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
                      <Route path="/feed" element={token !== null ? <Feed /> : <Login />}>
                         <Route path="/feed/categoria" />
-                        <Route path="/feed/pesquisa?:id" />
+                        <Route path="/feed/pesquisa" />
                      </Route>
                      <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
                      <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />

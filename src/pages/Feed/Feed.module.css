@@ -157,3 +157,9 @@
    color: var(--cor-texto2);
    font-weight: 800;
 }
+
+#barra {
+   height: 10px;
+   border: none;
+   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
