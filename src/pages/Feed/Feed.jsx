@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Feed.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
@@ -13,6 +13,7 @@ const token = localStorage.getItem("token");
 
 const Feed = () => {
    const { estado, dispatch } = useContext(musicContext);
+   const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
 
    // Apanhando os top artistas
    async function getArtistasTop() {
@@ -93,6 +94,7 @@ const Feed = () => {
             .then((res) => res.json())
             .then((res) => {
                console.log(res);
+               setResultadosPesquisa([res]);
             })
             .catch((err) => console.log(err));
       }
@@ -172,10 +174,19 @@ const Feed = () => {
             {/* Caso esteja na pagina de pesquisa */}
             {loc.pathname.includes("/feed/pesquisa") && (
                <>
-                  <section>
+                  <div id={styles.searchCt}>
                      <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
                      <hr id={styles.barra} />
-                  </section>
+                     <section>
+                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
+                     </section>
+                     <section>
+                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
+                     </section>
+                     <section>
+                        <ControlledSwiper tit={"Playlists"} arr={resultadosPesquisa[0]?.playlists} />
+                     </section>
+                  </div>
                </>
             )}
          </div>
