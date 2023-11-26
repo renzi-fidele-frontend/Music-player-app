@@ -61,7 +61,7 @@ const Feed = () => {
 
    // Apanhando a playlist da categoria selecionada
    async function getCategoriaPlaylist(id) {
-      setLoadingCategoria(true)
+      setLoadingCategoria(true);
       const res = await fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`, {
          headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const Feed = () => {
          .then((res) => {
             console.log();
             dispatch({ type: "setPlaylistsCategoria", payload: res.playlists.items });
-            setLoadingCategoria(false)
+            setLoadingCategoria(false);
          })
          .catch((err) => console.log(err));
    }
@@ -108,7 +108,7 @@ const Feed = () => {
    const navegar = useNavigate();
    const loc = useLocation();
    const searchRef = useRef();
-   const [loadingCategoria, setLoadingCategoria] = useState(false)
+   const [loadingCategoria, setLoadingCategoria] = useState(false);
 
    return (
       <div id={styles.ct}>
@@ -162,7 +162,11 @@ const Feed = () => {
             {/* Caso esteja na pagina das categorias */}
             {loc.pathname.includes("/feed/categoria") && (
                <section id={styles.categoriaCt}>
-                  <ControlledSwiper modo="playlist" arr={!loadingCategoria && estado.playlistsCategoria} tit={`Playlists da categoria: ${loc?.state?.name}`} />
+                  <ControlledSwiper
+                     modo="playlist"
+                     arr={!loadingCategoria && estado.playlistsCategoria}
+                     tit={`Playlists da categoria: ${loc?.state?.name}`}
+                  />
                   <div id={styles.fixo}>
                      <div id={styles.left}>
                         <img src={foto} alt="mulher" />
@@ -184,7 +188,20 @@ const Feed = () => {
                      <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
                      <hr id={styles.barra} />
                      <section>
-                        <ControlledSwiper tit={"Músicas"} modo="playlist"   />
+                        <ControlledSwiper
+                           tit={"Músicas"}
+                           modo="single"
+                           arr={
+                              !loading &&
+                              resultadosPesquisa[0]?.tracks?.items?.map((v) => {
+                                 let obj = {
+                                    track: v,
+                                    id: v.id,
+                                 };
+                                 return obj;
+                              })
+                           }
+                        />
                      </section>
                      <section>
                         <ControlledSwiper tit={"Álbuns"} modo="album" arr={!loading && resultadosPesquisa[0]?.albums?.items} />

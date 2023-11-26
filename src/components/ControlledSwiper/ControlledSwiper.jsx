@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
-   const { estado, dispatch } = useContext(musicContext);
+   const { dispatch } = useContext(musicContext);
 
    const swiperRef = useRef();
 
@@ -93,9 +93,10 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                                  dispatch({ type: "setSingleMode", payload: true });
                                  navegar("/leitor");
                               }}
-                              foto={v.track.album.images[0].url}
-                              nome={v.track.name}
-                              subtit={v.track.artists[0].name}
+                              foto={v?.track?.album?.images[0]?.url}
+                              nome={v?.track?.name}
+                              key={k}
+                              subtit={v?.track?.artists[0]?.name}
                            />
                         </SwiperSlide>
                      );
@@ -137,5 +138,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
       </div>
    );
 };
+
+
 
 export default ControlledSwiper;
