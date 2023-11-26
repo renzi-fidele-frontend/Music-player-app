@@ -13,6 +13,7 @@ export function reduzir(str, maxlength) {
 const AlbumCard = ({ foto, nome, subtit, acao }) => {
    return (
       <div
+         title={nome}
          className={styles.box}
          onClick={acao}
          onMouseOver={(e) => {

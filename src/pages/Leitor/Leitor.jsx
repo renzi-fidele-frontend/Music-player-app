@@ -60,7 +60,7 @@ const Leitor = () => {
    }
 
    // Apanhando top musicas do artista favorito
-   async function getTopMusicas(id) {  
+   async function getTopMusicas(id) {
       if (id.length > 0) {
          const res = await fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=US`, {
             headers: {
@@ -73,7 +73,7 @@ const Leitor = () => {
                dispatch({ type: "setaSeguir", payload: res.tracks });
                dispatch({ type: "setMusicaAtual", payload: [res.tracks[0]] });
 
-               if (res.error) {  
+               if (res.error) {
                   if (res.error.message === "The access token expired") {
                      localStorage.clear();
                   }
@@ -227,7 +227,13 @@ const Leitor = () => {
          <div id={styles.left}>
             <AudioPlayer />
             <div id={styles.destaques}>
-               <DestaqueCard titulo={"Artistas Semelhantes"} conteudo={conteudoSemelhantes} />
+               <DestaqueCard
+                  titulo={"Artistas Semelhantes"}
+                  conteudo={conteudoSemelhantes}
+                  acao={() => {
+                     navegar("#artistas-semelhantes");
+                  }}
+               />
                <DestaqueCard
                   acao={() => {
                      navegar("/feed");

@@ -8,6 +8,7 @@ import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
 import { createContext, useEffect, useReducer } from "react";
+import Modal from "./components/Modal/Modal";
 
 const token = localStorage.getItem("token");
 
@@ -112,6 +113,7 @@ function App() {
                {" "}
                <div id="left">
                   <SideBar />
+                  <Modal/>
                </div>
                <div id="right">
                   <Routes>
