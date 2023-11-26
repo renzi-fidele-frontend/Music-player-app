@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
+import { reduzir } from "../AlbumCard/AlbumCard";
 
 const FilaContainer = ({ fila }) => {
    const { estado, dispatch } = useContext(musicContext);
@@ -29,19 +30,19 @@ const FilaContainer = ({ fila }) => {
                   >
                      {estado.mode === "playlistMode" && estado.singleMode === false && (
                         <>
-                           <p>{v?.track?.name}</p>
+                           <p title={v?.track?.name}>{reduzir(v?.track?.name, 35)}</p>
                            <span>{converter(v?.track?.duration_ms)}</span>
                         </>
                      )}
                      {estado.mode === "albumMode" && (
                         <>
-                           <p>{v?.name}</p>
+                           <p title={v?.name}>{reduzir(v?.name, 35)}</p>
                            <span>{converter(v?.duration_ms)}</span>
                         </>
                      )}
                      {estado.mode === "playlistMode" && estado.singleMode === true && (
                         <>
-                           <p>{v?.name}</p>
+                           <p title={v?.name}>{reduzir(v?.name, 35)}</p>
                            <span>{converter(v?.duration_ms)}</span>
                         </>
                      )}
