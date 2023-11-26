@@ -8,6 +8,7 @@ import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper
 import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import foto from "../../assets/mulher.png";
+import nadaPesquisado from "../../assets/search.svg"
 
 const token = localStorage.getItem("token");
 
@@ -15,6 +16,7 @@ const Feed = () => {
    const { estado, dispatch } = useContext(musicContext);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const [loading, setLoading] = useState(false);
+   const [pesquisaFeita, setPesquisaFeita] = useState(false);
 
    // Apanhando os top artistas
    async function getArtistasTop() {
@@ -87,6 +89,7 @@ const Feed = () => {
    //  Apanhando os resultados da pesquisa
    async function pesquisar() {
       if (searchRef.current.value.length > 0) {
+         setPesquisaFeita(true);
          setLoading(true);
          navegar("/feed/pesquisa");
          const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track,playlist`, {
@@ -182,36 +185,42 @@ const Feed = () => {
             )}
 
             {/* Caso esteja na pagina de pesquisa */}
-            {loc.pathname.includes("/feed/pesquisa") && (
-               <>
-                  <div id={styles.searchCt}>
-                     <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
-                     <hr id={styles.barra} />
-                     <section>
-                        <ControlledSwiper
-                           tit={"Músicas"}
-                           modo="single"
-                           arr={
-                              !loading &&
-                              resultadosPesquisa[0]?.tracks?.items?.map((v) => {
-                                 let obj = {
-                                    track: v,
-                                    id: v.id,
-                                 };
-                                 return obj;
-                              })
-                           }
-                        />
-                     </section>
-                     <section>
-                        <ControlledSwiper tit={"Álbuns"} modo="album" arr={!loading && resultadosPesquisa[0]?.albums?.items} />
-                     </section>
-                     <section>
-                        <ControlledSwiper tit={"Playlists"} modo="playlist" arr={!loading && resultadosPesquisa[0]?.playlists?.items} />
-                     </section>
-                  </div>
-               </>
-            )}
+            {loc.pathname.includes("/feed/pesquisa") &&
+               (pesquisaFeita ? (
+                  <>
+                     <div id={styles.searchCt}>
+                        <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
+                        <hr id={styles.barra} />
+                        <section>
+                           <ControlledSwiper
+                              tit={"Músicas"}
+                              modo="single"
+                              arr={
+                                 !loading &&
+                                 resultadosPesquisa[0]?.tracks?.items?.map((v) => {
+                                    let obj = {
+                                       track: v,
+                                       id: v.id,
+                                    };
+                                    return obj;
+                                 })
+                              }
+                           />
+                        </section>
+                        <section>
+                           <ControlledSwiper tit={"Álbuns"} modo="album" arr={!loading && resultadosPesquisa[0]?.albums?.items} />
+                        </section>
+                        <section>
+                           <ControlledSwiper tit={"Playlists"} modo="playlist" arr={!loading && resultadosPesquisa[0]?.playlists?.items} />
+                        </section>
+                     </div>
+                  </>
+               ) : (
+                  <>
+                     <h2 className={estiloBiblioteca.tit1}>Você não pesquisou por nada</h2>
+                     <img src={nadaPesquisado} id={styles.ndPesquisado} alt="" />
+                  </>
+               ))}
          </div>
          <div id={styles.right}>
             <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado.categorias.length})`}</h2>
