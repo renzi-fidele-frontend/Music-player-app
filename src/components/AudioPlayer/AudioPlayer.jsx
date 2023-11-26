@@ -4,6 +4,7 @@ import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
+import { reduzir } from "../AlbumCard/AlbumCard";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
@@ -128,21 +129,21 @@ const AudioPlayer = () => {
          <div id={styles.right}>
             {estado.mode === "playlistMode" && estado.singleMode === false && (
                <>
-                  <h5>{estado.musicaAtual[0]?.track?.name}</h5>
+                  <h5>{reduzir(estado.musicaAtual[0]?.track?.name, 55)}</h5>
                   <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
 
             {estado.mode === "albumMode" && (
                <>
-                  <h5>{estado.musicaAtual[0]?.name}</h5>
+                  <h5>{reduzir(estado.musicaAtual[0]?.name, 55)}</h5>
                   <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
 
             {estado.mode === "playlistMode" && estado.singleMode === true && (
                <>
-                  <h5>{estado.musicaAtual[0]?.name}</h5>
+                  <h5>{reduzir(estado.musicaAtual[0]?.name, 55)}</h5>
                   <h4>{`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
