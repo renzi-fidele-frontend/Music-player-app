@@ -4,11 +4,12 @@ import styles from "./Modal.module.css";
 import ReactModal from "react-modal";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
+import ArtistCard from "../ArtistCard/ArtistCard";
 
 ReactModal.setAppElement("#root");
 
 const Modal = () => {
-   const { estado, dispatch } = useContext(musicContext)
+   const { estado, dispatch } = useContext(musicContext);
 
    const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +35,6 @@ const Modal = () => {
 
    const contentStyle = {
       background: "rgba(49, 47, 68, 0.8)",
-      boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
       backdropFilter: "blur( 4px )",
       WebkitBackdropFilter: "blur( 4px )",
       borderRadius: "10px",
@@ -58,7 +58,15 @@ const Modal = () => {
          id={styles.ct}
       >
          <h2 className={estiloBiblioteca.tit1}>Artistas semelhantes</h2>
-         <div className={styles.artistsCt}></div>
+         <div className={styles.artistsCt}>
+            {estado.semelhantes.length > 0 ? (
+               estado.semelhantes.map((v) => <ArtistCard nome={v.name} key={v.id} foto={v.images[2].url} />)
+            ) : (
+               <>
+                  <p></p>
+               </>
+            )}
+         </div>
       </ReactModal>
    );
 };

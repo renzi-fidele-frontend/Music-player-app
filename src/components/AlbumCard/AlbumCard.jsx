@@ -22,11 +22,10 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
          onMouseLeave={(e) => {
             e.target.classList.remove(styles.hover);
          }}
-         onMouse
       >
          {foto && nome && subtit ? (
             <>
-               <img src={foto} alt="Imagem do album" />
+               <img  loading="lazy" src={foto} alt="Imagem do album" />
                <h6>{reduzir(nome, 17)}</h6>
                <p>{subtit}</p>
                <i>

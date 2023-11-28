@@ -110,7 +110,6 @@ function App() {
       <Router>
          <div className="App">
             <musicContext.Provider value={{ estado, dispatch }}>
-               {" "}
                <div id="left">
                   <SideBar />
                   <Modal/>
