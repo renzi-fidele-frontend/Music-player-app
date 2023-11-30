@@ -5,6 +5,7 @@ import ReactModal from "react-modal";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
 import ArtistCard from "../ArtistCard/ArtistCard";
+import Swiper3d from "../Swiper3d/Swiper3d";
 
 ReactModal.setAppElement("#root");
 
@@ -39,6 +40,8 @@ const Modal = () => {
       WebkitBackdropFilter: "blur( 4px )",
       borderRadius: "10px",
       border: "1px solid rgba( 255, 255, 255, 0.18 )",
+      paddingInline: "0px",
+      paddingTop: "3em"
    };
 
    const overlayStyle = {
@@ -60,7 +63,7 @@ const Modal = () => {
          <h2 className={estiloBiblioteca.tit1}>Artistas semelhantes</h2>
          <div className={styles.artistsCt}>
             {estado.semelhantes.length > 0 ? (
-               estado.semelhantes.map((v) => <ArtistCard nome={v.name} key={v.id} foto={v.images[2].url} />)
+               <Swiper3d arr={estado.semelhantes} />
             ) : (
                <>
                   <p></p>

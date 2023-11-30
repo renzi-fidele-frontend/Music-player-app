@@ -7,7 +7,7 @@ const ArtistCard = ({ foto, nome, acao }) => {
       <div id={styles.ct} onClick={acao}>
          {foto && nome ? (
             <>
-               <img src={foto} alt={`foto de ${nome}`} />
+               <img loading="lazy" src={foto} alt={`foto de ${nome}`} />
                <p>{nome}</p>
             </>
          ) : (
