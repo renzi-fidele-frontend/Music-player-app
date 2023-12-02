@@ -16,7 +16,7 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
          title={nome}
          className={styles.box}
          onClick={acao}
-         onMouseOver={(e) => {
+         onMouseEnter={(e) => {
             e.target.classList.add(styles.hover);
          }}
          onMouseLeave={(e) => {
@@ -25,7 +25,7 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
       >
          {foto && nome && subtit ? (
             <>
-               <img  loading="lazy" src={foto} alt="Imagem do album" />
+               <img loading="lazy" src={foto} alt="Imagem do album" />
                <h6>{reduzir(nome, 17)}</h6>
                <p>{subtit}</p>
                <i>

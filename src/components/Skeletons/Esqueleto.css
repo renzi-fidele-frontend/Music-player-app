@@ -2,7 +2,28 @@
    background-color: #93a2b5;
    border-radius: 5px;
    margin-block: 7px;
-   animation: piscar 0.7s alternate-reverse infinite ease-in-out;
+   display: inline-block;
+   position: relative;
+   overflow: hidden;
+    animation: piscar 0.7s alternate-reverse infinite ease-in-out;
+}
+
+.sk::after {
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   transform: translateX(-100%);
+   background-color: white;
+   animation: shimmer 1s infinite alternate-reverse;
+   content: "";
+}
+
+@keyframes shimmer {
+   100% {
+      transform: translateX(100%);
+   }
 }
 
 @keyframes piscar {
@@ -13,8 +34,6 @@
       opacity: 1;
    }
 }
-
-
 
 .sk.titulo {
    width: 50%;

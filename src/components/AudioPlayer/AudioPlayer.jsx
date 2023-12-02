@@ -144,7 +144,7 @@ const AudioPlayer = () => {
             {estado.mode === "playlistMode" && estado.singleMode === true && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 55)}</h5>
-                  <h4>{`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`, 55)}</h4>
                </>
             )}
 

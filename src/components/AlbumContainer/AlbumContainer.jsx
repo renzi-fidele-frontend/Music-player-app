@@ -69,9 +69,9 @@ const AlbumContainer = ({ track }) => {
                </div>
             </div>
 
-            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} é um álbum de ${estado.musicaAtual[0]?.artists
+            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} é um álbum de ${reduzir(estado.musicaAtual[0]?.artists
                ?.map((v) => v.name)
-               .join(" e ")}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
+               .join(" e "), 20)}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
 
             <span>{`Lançado em: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
          </div>

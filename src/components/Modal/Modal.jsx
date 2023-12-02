@@ -31,6 +31,8 @@ const Modal = () => {
       console.log(loc.hash);
       if (loc.hash === "#artistas-semelhantes") {
          aberto();
+      } else {
+         setIsOpen(false);
       }
    }, [loc.hash]);
 
@@ -41,7 +43,7 @@ const Modal = () => {
       borderRadius: "10px",
       border: "1px solid rgba( 255, 255, 255, 0.18 )",
       paddingInline: "0px",
-      paddingTop: "3em"
+      paddingTop: "3em",
    };
 
    const overlayStyle = {
