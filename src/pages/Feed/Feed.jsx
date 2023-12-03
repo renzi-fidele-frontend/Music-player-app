@@ -117,7 +117,9 @@ const Feed = () => {
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.search}>
-               <input ref={searchRef} type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
+               <input onKeyDown={(e) => {
+                  if (e.keyCode === 13) pesquisar()
+               }} ref={searchRef} type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
                <FaSearch onClick={pesquisar} />
             </div>
 
