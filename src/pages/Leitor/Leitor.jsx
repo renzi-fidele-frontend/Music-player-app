@@ -55,7 +55,8 @@ const Leitor = () => {
                      localStorage.clear();
                   }
                }
-            });
+            })
+            .catch((err) => console.log(`Ops, aconteceu o erro ${err}`));
       }
    }
 

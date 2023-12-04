@@ -43,7 +43,7 @@ const Feed = () => {
       })
          .then((v) => v.json())
          .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items }))
-         .catch((err) => console.log("Aconteceu o erro"));
+         .catch((err) => console.log("Aconteceu o erro", err));
    }
 
    // Apanhando as categorias
@@ -56,7 +56,7 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            dispatch({ type: "setCategorias", payload: res.categories.items });
+            dispatch({ type: "setCategorias", payload: res?.categories?.items });
          })
          .catch((err) => console.log(err));
    }
@@ -230,7 +230,7 @@ const Feed = () => {
                {estado.categorias.length > 0 ? (
                   estado.categorias.map((v, k) => {
                      return (
-                        <div
+                        <div key={k}
                            onClick={() => {
                               getCategoriaPlaylist(v.id);
                               navegar(`/feed/categoria`, { state: { name: v.name } });
@@ -261,3 +261,4 @@ const Feed = () => {
 };
 
 export default Feed;
+

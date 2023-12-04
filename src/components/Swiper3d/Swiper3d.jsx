@@ -31,7 +31,7 @@ const Swiper3d = ({ arr = [] }) => {
             {arr.map((v, key) => {
                return (
                   <SwiperSlide key={key} className={styles.slide}>
-                     {v.images[1].url && (
+                     {v?.images[1]?.url && (
                         <ArtistCard
                            acao={() => {
                               dispatch({ type: "setMode", payload: "playlistMode" });
@@ -39,10 +39,10 @@ const Swiper3d = ({ arr = [] }) => {
                               dispatch({ type: "setTargetAtual", payload: 0 });
                               dispatch({ type: "setIdAlbum", payload: "" });
                               dispatch({ type: "setSingleMode", payload: true });
-                              navegar("/leitor", { state: { idArtistaFavorito: v.id } });
+                              navegar("/leitor", { state: { idArtistaFavorito: v?.id } });
                            }}
-                           nome={v.name}
-                           foto={v.images[1].url}
+                           nome={v?.name}
+                           foto={v?.images[1]?.url}
                            alt="Imagem do slide"
                         />
                      )}
