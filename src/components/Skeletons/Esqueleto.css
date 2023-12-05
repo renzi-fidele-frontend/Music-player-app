@@ -16,7 +16,7 @@
    left: 0;
    transform: translateX(-100%);
    background: rgb(70,87,116);
-   background: linear-gradient(180deg, rgba(190, 210, 243, 0.353) 0%, rgba(255,255,255,0.2) 100%);   animation: shimmer 1s infinite alternate-reverse;
+   background: linear-gradient(180deg, rgba(190, 210, 243, 0.353) 0%, rgba(255,255,255,0.2) 100%);   animation: shimmer 1s infinite linear alternate-reverse;
    content: "";
 }
 

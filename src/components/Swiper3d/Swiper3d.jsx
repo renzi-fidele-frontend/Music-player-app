@@ -39,7 +39,7 @@ const Swiper3d = ({ arr = [] }) => {
                               dispatch({ type: "setTargetAtual", payload: 0 });
                               dispatch({ type: "setIdAlbum", payload: "" });
                               dispatch({ type: "setSingleMode", payload: true });
-                              navegar("/leitor", { state: { idArtistaFavorito: v?.id } });
+                              navegar("/leitor#", { state: { idArtistaFavorito: v?.id } });
                            }}
                            nome={v?.name}
                            foto={v?.images[1]?.url}

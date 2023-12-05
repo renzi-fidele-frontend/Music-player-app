@@ -112,7 +112,7 @@ const Leitor = () => {
 
       // Caso seja passada a id da categoria
       if (loc.state?.mode === "categoriaMode") getCategoriaItems(loc.state?.id);
-   }, [estado.idPlaylist && loc.state]);
+   }, [estado.idPlaylist, loc.state]);
 
    // Apanhando o conteúdo dos destaques
    async function getSemelhantes(id) {

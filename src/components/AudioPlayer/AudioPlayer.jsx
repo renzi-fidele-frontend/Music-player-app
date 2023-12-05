@@ -54,13 +54,6 @@ const AudioPlayer = () => {
       }
    }, [estado.musicaAtual]);
 
-   // Convertendo millisegundos para minutos
-   function converter(millis) {
-      let minutos = Math.floor(millis / 60000);
-      let segundos = ((millis % 60000) / 1000).toFixed(0);
-      return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
-   }
-
    // Convertendo segundos para minutos
    function converterSecs(secs) {
       let minutos = Math.floor(secs / 600);
