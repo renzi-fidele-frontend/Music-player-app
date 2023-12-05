@@ -28,7 +28,6 @@ const Modal = () => {
    }
 
    useEffect(() => {
-      console.log(loc.hash);
       if (loc.hash === "#artistas-semelhantes") {
          aberto();
       } else {
@@ -49,6 +48,7 @@ const Modal = () => {
    const overlayStyle = {
       zIndex: 5,
       backdropFilter: "blur(7px)",
+      WebkitBackdropFilter: "blur(7px)",
       backgroundColor: "rgba(73, 67, 79, 0.19)",
    };
 

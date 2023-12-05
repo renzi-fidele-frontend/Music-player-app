@@ -28,4 +28,6 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
    );
 };
 
+
+
 export default AlbumCard;

@@ -65,10 +65,11 @@ const AudioPlayer = () => {
       if (estado.targetAtual + 1 < estado.aSeguir.length) {
          dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
          dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
-         console.log(estado.aSeguir[estado.targetAtual + 1]);
       } else {
          dispatch({ type: "setTargetAtual", payload: 0 });
          dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
+         console.log(estado.aSeguir[estado.targetAtual + 1]);
+
       }
    }
 
