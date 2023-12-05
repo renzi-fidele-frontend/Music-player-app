@@ -20,7 +20,7 @@
    background: linear-gradient(160deg, rgba(60, 71, 91, 0.63) 0%, rgba(97, 105, 119, 0.572) 100%);
 }
 
-.entrou > svg {
+#ct:hover > svg {
    opacity: 1 !important;
 }
 

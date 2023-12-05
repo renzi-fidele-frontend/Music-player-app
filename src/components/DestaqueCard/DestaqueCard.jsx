@@ -9,8 +9,6 @@ const DestaqueCard = ({ titulo, conteudo = [], acao }) => {
       <div
          onClick={acao}
          id={styles.ct}
-         onMouseEnter={(e) => e.target.classList.add(styles.entrou)}
-         onMouseLeave={(e) => e.target.classList.remove(styles.entrou)}
       >
          <h6>{titulo}</h6>
          <div id={styles.dentro}>

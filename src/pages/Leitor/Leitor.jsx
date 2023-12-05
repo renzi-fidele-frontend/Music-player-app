@@ -153,11 +153,11 @@ const Leitor = () => {
    useEffect(() => {
       if (estado.aSeguir.length > 0) {
          if (estado.mode === "playlistMode" && estado.singleMode === false) {
-            getSemelhantes(estado.musicaAtual[0]?.track?.artists[0]?.id);
+            getSemelhantes(estado?.musicaAtual[0]?.track?.artists[0]?.id);
          } else if (estado.mode === "albumMode") {
-            getSemelhantes(estado.albumAtual[0]?.artists[0]?.id);
+            getSemelhantes(estado?.albumAtual[0]?.artists[0]?.id);
          } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
-            getSemelhantes(estado.musicaAtual[0]?.artists[0]?.id);
+            getSemelhantes(estado?.musicaAtual[0]?.artists[0]?.id);
          }
 
          // Carregando os dados somente se não tiverem sido carregados
