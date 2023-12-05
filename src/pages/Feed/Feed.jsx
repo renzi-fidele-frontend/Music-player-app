@@ -8,7 +8,7 @@ import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper
 import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import foto from "../../assets/mulher.png";
-import nadaPesquisado from "../../assets/search.svg"
+import nadaPesquisado from "../../assets/search.svg";
 
 const token = localStorage.getItem("token");
 
@@ -117,9 +117,15 @@ const Feed = () => {
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.search}>
-               <input onKeyDown={(e) => {
-                  if (e.keyCode === 13) pesquisar()
-               }} ref={searchRef} type="text" name="pesquisa" placeholder="Busque qualquer coisa" />
+               <input
+                  onKeyDown={(e) => {
+                     if (e.keyCode === 13) pesquisar();
+                  }}
+                  ref={searchRef}
+                  type="text"
+                  name="pesquisa"
+                  placeholder="Busque qualquer coisa"
+               />
                <FaSearch onClick={pesquisar} />
             </div>
 
@@ -129,8 +135,8 @@ const Feed = () => {
                   <section>
                      <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
                      <div id={styles.baixo}>
-                        {estado.artistasTop.length > 0 ? (
-                           estado.artistasTop?.map((v, k) => {
+                        {estado?.artistasTop?.length > 0 ? (
+                           estado?.artistasTop?.map((v, k) => {
                               return (
                                  <ArtistCard
                                     acao={() => {
@@ -149,10 +155,9 @@ const Feed = () => {
                            })
                         ) : (
                            <div id={styles.esqueleto}>
-                              <ArtistCard />
-                              <ArtistCard />
-                              <ArtistCard />
-                              <ArtistCard />
+                              {[1, 2, 3, 4].map((v, k) => {
+                                 return <ArtistCard key={k} />;
+                              })}
                            </div>
                         )}
                      </div>
@@ -230,7 +235,8 @@ const Feed = () => {
                {estado.categorias.length > 0 ? (
                   estado.categorias.map((v, k) => {
                      return (
-                        <div key={k}
+                        <div
+                           key={k}
                            onClick={() => {
                               getCategoriaPlaylist(v.id);
                               navegar(`/feed/categoria`, { state: { name: v.name } });
@@ -261,4 +267,3 @@ const Feed = () => {
 };
 
 export default Feed;
-

@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 // SwiperJs
 import "swiper/css";
 import "swiper/css/autoplay";
-import "swiper/css/scrollbar";
+import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Scrollbar, Navigation } from "swiper/modules";
+import { Autoplay, Pagination , Navigation } from "swiper/modules";
 
 
 const Swiper3d = ({ arr = [] }) => {
@@ -25,11 +25,11 @@ const Swiper3d = ({ arr = [] }) => {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={"auto"}
-            scrollbar={true}
+            pagination={true, {type: "progressbar"}}
             spaceBetween={"30px"}
             navigation={true}
             autoplay={{ pauseOnMouseEnter: false, disableOnInteraction: false }}
-            modules={[Autoplay, Scrollbar, Navigation]}
+            modules={[Autoplay, Pagination , Navigation]}
             className="swiper3d"
             breakpoints={{ 250: { slidesPerView: 1 }, 400: { slidesPerView: 2 }, 900: { slidesPerView: 3 }, 1500: { slidesPerView: "auto" } }}
          >
@@ -38,6 +38,7 @@ const Swiper3d = ({ arr = [] }) => {
                   <SwiperSlide key={key} className={styles.slide}>
                      {v?.images[1]?.url && (
                         <ArtistCard
+                        
                            acao={() => {
                               dispatch({ type: "setMode", payload: "playlistMode" });
                               dispatch({ type: "setIdPlaylist", payload: "" });
