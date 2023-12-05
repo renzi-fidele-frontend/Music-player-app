@@ -48,7 +48,7 @@ const Destaque = () => {
       }
 
       if (estado.top50.length === 0) getTop50();
-   }, [estado.lancamentos && estado.top50]);
+   }, [estado.lancamentos, estado.top50]);
 
    return (
       <div id={styles.ct}>

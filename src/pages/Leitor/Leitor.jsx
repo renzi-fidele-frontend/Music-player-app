@@ -171,17 +171,17 @@ const Leitor = () => {
    // Conteúdo dos cards de destaques
    const conteudoSemelhantes = [
       {
-         img: estado.semelhantes[0]?.images[2].url,
+         img: estado.semelhantes[0]?.images[2]?.url,
          subtit: estado.semelhantes[0]?.name,
          texto: `${estado.semelhantes[0]?.followers?.total} Seguidores`,
       },
       {
-         img: estado.semelhantes[1]?.images[2].url,
+         img: estado.semelhantes[1]?.images[2]?.url,
          subtit: estado.semelhantes[1]?.name,
          texto: `${estado.semelhantes[1]?.followers?.total} Seguidores`,
       },
       {
-         img: estado.semelhantes[2]?.images[2].url,
+         img: estado.semelhantes[2]?.images[2]?.url,
          subtit: estado.semelhantes[2]?.name,
          texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
       },
