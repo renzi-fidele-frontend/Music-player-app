@@ -50,9 +50,13 @@ const AudioControles = () => {
       setLoopAtivo(estado.audioRef.loop);
    }
 
+   function switchAleatorio() {
+      dispatch({ type: "setAleatorio", payload: !estado.aleatorio });
+   }
+
    return (
       <div id={styles.cont}>
-         <BsShuffle title="Aleatório" />
+         <BsShuffle title="Aleatório" className={estado.aleatorio === true && styles.ativo} onClick={switchAleatorio} />
          <BsFillSkipStartFill title="Voltar" onClick={voltar} />
          {estado.isPlaying === true ? (
             <BsFillPauseFill title="Pausar" onClick={playPause} className={styles.meio} />
@@ -67,7 +71,7 @@ const AudioControles = () => {
          )}
          <BsFillSkipEndFill title="Saltar" onClick={saltar} />
 
-         <BsRepeat title="Repetir" className={estado.audioRef.loop === true ? styles.ativo : undefined} onClick={switchRepetir} />
+         <BsRepeat title="Repetir" className={estado.audioRef.loop === true && styles.ativo} onClick={switchRepetir} />
       </div>
    );
 };

@@ -58,6 +58,8 @@ const reducer = (state, action) => {
          return { ...state, categorias: action.payload };
       case "setPlaylistsCategoria":
          return { ...state, playlistsCategoria: action.payload };
+      case "setAleatorio":
+         return { ...state, aleatorio: action.payload };
 
       default:
          return state;
@@ -87,6 +89,7 @@ function App() {
       artistasTop: [], // Artistas favoritos do usuário
       categorias: [], // Generos disponiveis no spotify
       playlistsCategoria: [], // Playlists da categoria selecionada
+      aleatorio: false, // Musicas aleatórias ativas ou não
    });
 
    useEffect(() => {
@@ -112,7 +115,7 @@ function App() {
             <musicContext.Provider value={{ estado, dispatch }}>
                <div id="left">
                   <SideBar />
-                  <Modal/>
+                  <Modal />
                </div>
                <div id="right">
                   <Routes>
