@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./DestaqueCard.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import { reduzir } from "../AlbumCard/AlbumCard";
 import Esqueleto from "../Skeletons/Esqueleto";
+import { reduzir } from "../../hooks/useReduzir";
 
 const DestaqueCard = ({ titulo, conteudo = [], acao }) => {
    return (

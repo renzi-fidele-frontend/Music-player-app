@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
 import { musicContext } from "../../App";
-import { reduzir } from "../AlbumCard/AlbumCard";
+import { reduzir } from "../../hooks/useReduzir";
 
 const AlbumContainer = ({ track }) => {
    const { estado, dispatch } = useContext(musicContext);

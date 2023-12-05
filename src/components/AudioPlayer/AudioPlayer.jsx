@@ -4,7 +4,7 @@ import AudioProgress from "../AudioProgress/AudioProgress";
 import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
-import { reduzir } from "../AlbumCard/AlbumCard";
+import { reduzir } from "../../hooks/useReduzir";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);

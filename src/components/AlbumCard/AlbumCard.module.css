@@ -46,12 +46,16 @@
     font-size: 2em;
     transition: opacity 0.2s ease-in-out;
  }
+
+ .box:hover > i {
+   bottom: 12px !important;
+   right: 12px !important;
+   visibility: initial !important;
+   color: var(--cor-tema);
+   opacity: 1 !important;
+
+ }
  
  .hover > i {
-    bottom: 12px !important;
-    right: 12px !important;
-    visibility: initial !important;
-    color: var(--cor-tema);
-    opacity: 1 !important;
  }
  

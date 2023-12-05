@@ -2,27 +2,12 @@ import React from "react";
 import styles from "./AlbumCard.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import Esqueleto from "../Skeletons/Esqueleto";
+import { reduzir } from "../../hooks/useReduzir";
 
-//  Reduzindo o texto do conteúdo do post
-export function reduzir(str, maxlength) {
-   if (str?.length) {
-      return str?.length > maxlength ? str?.slice(0, maxlength - 1) + "…" : str;
-   }
-}
 
 const AlbumCard = ({ foto, nome, subtit, acao }) => {
    return (
-      <div
-         title={nome}
-         className={styles.box}
-         onClick={acao}
-         onMouseEnter={(e) => {
-            e.target.classList.add(styles.hover);
-         }}
-         onMouseLeave={(e) => {
-            e.target.classList.remove(styles.hover);
-         }}
-      >
+      <div title={nome} className={styles.box} onClick={acao}>
          {foto && nome && subtit ? (
             <>
                <img loading="lazy" src={foto} alt="Imagem do album" />

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
-import { reduzir } from "../AlbumCard/AlbumCard";
+import { reduzir } from "../../hooks/useReduzir";
 
 const FilaContainer = ({ fila }) => {
    const { estado, dispatch } = useContext(musicContext);
