@@ -1,0 +1,15 @@
+.swiper3d {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+
+.swiper3d .swiper-slide {
+    filter: blur(3px) saturate(10px);
+    margin-top: 2em;
+}
+
+.swiper3d .swiper-slide-active {
+    filter: blur(0px) !important;
+}

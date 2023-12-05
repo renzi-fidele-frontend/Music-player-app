@@ -1,20 +1,23 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./Swiper3d.module.css";
-
-// SwiperJs
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/autoplay";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import "./styles.css"
 import ArtistCard from "../ArtistCard/ArtistCard";
 import { musicContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
+// SwiperJs
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/scrollbar";
+import "swiper/css/navigation";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Scrollbar, Navigation } from "swiper/modules";
+
+
 const Swiper3d = ({ arr = [] }) => {
    const { dispatch } = useContext(musicContext);
-   const navegar = useNavigate()
+   const navegar = useNavigate();
 
    return (
       <div id={styles.ct}>
@@ -22,10 +25,12 @@ const Swiper3d = ({ arr = [] }) => {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={"auto"}
+            scrollbar={true}
             spaceBetween={"30px"}
+            navigation={true}
             autoplay={{ pauseOnMouseEnter: false, disableOnInteraction: false }}
-            modules={[Autoplay]}
-            className="swiper_cont"
+            modules={[Autoplay, Scrollbar, Navigation]}
+            className="swiper3d"
             breakpoints={{ 250: { slidesPerView: 1 }, 400: { slidesPerView: 2 }, 900: { slidesPerView: 3 }, 1500: { slidesPerView: "auto" } }}
          >
             {arr.map((v, key) => {
@@ -57,7 +62,5 @@ const Swiper3d = ({ arr = [] }) => {
       </div>
    );
 };
-
-
 
 export default Swiper3d;

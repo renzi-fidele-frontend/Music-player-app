@@ -38,8 +38,8 @@ const Modal = () => {
 
    const contentStyle = {
       background: "rgba(49, 47, 68, 0.8)",
-      backdropFilter: "blur( 4px )",
-      WebkitBackdropFilter: "blur( 4px )",
+      backdropFilter: "blur( 11px )",
+      WebkitBackdropFilter: "blur( 11px )",
       borderRadius: "10px",
       border: "1px solid rgba( 255, 255, 255, 0.18 )",
       paddingInline: "0px",

@@ -8,3 +8,8 @@
 .artistsCt {
     margin-top: 3em;
 }
+
+.artistsCt img {
+    width: 280px !important;
+    height: 280px !important;
+}
