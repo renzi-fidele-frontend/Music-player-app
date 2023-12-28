@@ -24,13 +24,25 @@ const AudioControles = () => {
    }
 
    function saltar() {
-      if (estado.targetAtual + 1 < estado.aSeguir.length) {
-         dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
-         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
+      if (!estado.aleatorio) {
+         if (estado.targetAtual + 1 < estado.aSeguir.length) {
+            dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
+            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
+         } else {
+            dispatch({ type: "setTargetAtual", payload: 0 });
+            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
+         }
       } else {
-         dispatch({ type: "setTargetAtual", payload: 0 });
-         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
+         // Gerando posição aleatória nas músicas selecionadas
+         let randomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+         if (estado.targetAtual === randomIndex) {
+            let otherRandomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+         }
+         console.log(randomIndex);
+         dispatch({ type: "setTargetAtual", payload: randomIndex });
+         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
       }
+
       dispatch({ type: "setisPlaying", payload: false });
    }
 
@@ -45,7 +57,6 @@ const AudioControles = () => {
    }
 
    function switchRepetir() {
-      console.log(estado.audioRef.loop);
       estado.audioRef.loop = !estado.audioRef.loop;
       setLoopAtivo(estado.audioRef.loop);
    }
