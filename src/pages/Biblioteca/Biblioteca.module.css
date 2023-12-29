@@ -25,15 +25,22 @@
    }
 }
 
-@media screen and (max-width: 881px) {
+@media screen and (max-width: 990px) {
    #baixo {
       display: flex;
       flex-flow: row wrap;
    }
 }
 
-@media screen and (max-width: 630px) {
-   #baixo {
-      grid-template-columns: repeat(1, 100%);
+@media screen and (max-width: 800px) {
+   .tit1 {
+      font-size: 1.5em;
    }
 }
+
+@media screen and (max-width: 550px) {
+   .tit1 {
+      font-size: 1.2em;
+   }
+}
+

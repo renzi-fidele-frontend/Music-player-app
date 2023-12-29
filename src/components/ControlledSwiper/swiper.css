@@ -25,3 +25,16 @@
    cursor: pointer;
    color: var(--cor-tema);
 }
+
+
+@media screen and (max-width: 790px) {
+   #botoes-slider > svg {
+      font-size: 48px;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   #botoes-slider > svg {
+      font-size: 43px;
+   }
+}

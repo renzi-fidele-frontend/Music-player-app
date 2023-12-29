@@ -97,12 +97,13 @@
       bottom: 0;
       left: 0;
       background-color: var(--cor-tema);
-      padding-inline: .5em;
+      padding-inline: 0.5em;
       z-index: 2;
    }
 
    #ct > nav > a {
       padding: 1em 1.7em;
+      border: 1px solid antiquewhite;
    }
 
    #ct > nav > a > p {
@@ -155,7 +156,21 @@
 @media screen and (max-width: 919px) {
    #ct > nav > a {
       padding: 1em 1.2em;
-      border: 1px solid antiquewhite;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   #ctMobile > #left > img {
+      width: 150px;
    }
 
+   #ctMobile > #right {
+      font-size: 34px;
+   }
+
+   .ativo {
+      top: 55px;
+   }
 }
+
+

@@ -54,12 +54,26 @@
    opacity: 1 !important;
 }
 
-@media screen and (max-width: 971px) {
+@media screen and (max-width: 981px) {
    .box > h6 {
       font-size: 19px;
    }
 
    .box > img {
       max-height: 220px;
+   }
+}
+
+@media screen and (max-width: 971px) {
+   .box > img {
+      max-height: 170px;
+   }
+
+   .box {
+      margin: 1em;
+      margin-top: 0;
+      margin-left: 0;
+      padding: .6em;
+   
    }
 }
