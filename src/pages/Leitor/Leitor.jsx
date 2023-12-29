@@ -111,7 +111,7 @@ const Leitor = () => {
       if (loc.state?.idArtistaFavorito) getTopMusicas(loc.state?.idArtistaFavorito);
 
       // Caso seja passada a id da categoria
-      if (loc.state?.mode === "categoriaMode") getCategoriaItems(loc.state?.id);
+      if (loc.state?.mode === "categoriaMode" && loc.state?.id) getCategoriaItems(loc.state?.id);
    }, [estado.idPlaylist, loc.state]);
 
    // Apanhando o conteúdo dos destaques

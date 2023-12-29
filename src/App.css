@@ -56,3 +56,39 @@ a {
    height: 100%;
    padding: 3em;
 }
+
+@media screen and (max-width: 1683px) {
+   .App {
+      grid-template-columns: 8.5% 91.5%;
+   }
+}
+
+@media screen and (max-width: 1423px) {
+   .App {
+      grid-template-columns: 10.5% 89.5%;
+   }
+}
+
+@media screen and (max-width: 1163px) {
+   .App {
+      grid-template-columns: 11.5% 88.5%;
+   }
+}
+
+@media screen and (max-width: 1139px) {
+   .App {
+      grid-template-columns: 100%;
+   }
+
+   .App > #left, .App > #right {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;   
+   }
+
+   .App > #right > div {
+      border-radius: 0;
+   }
+}
+
+
+

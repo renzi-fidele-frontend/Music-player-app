@@ -1,14 +1,13 @@
-#container {
+#ct {
    color: var(--cor-texto2);
 }
 
-
-#container > section:last-child {
-    margin-top: 1.5em;
+#ct > section:last-child {
+   margin-top: 1.5em;
 }
 
 #baixo {
-    display: flex;
-    flex-direction: row;
-    gap: 4em;
+   display: flex;
+   flex-direction: row;
+   gap: 4em;
 }

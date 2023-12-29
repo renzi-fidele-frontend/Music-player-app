@@ -1,16 +1,16 @@
-#container {
+#ct {
    display: flex;
    flex-flow: column;
    align-items: center;
    justify-content: center;
 }
 
-#container > i {
+#ct > i {
    color: #1db954;
    font-size: 10em;
 }
 
-#container > a {
+#ct > a {
    padding: 0.5em 4em;
    font-size: 1.7em;
    border-radius: 50px;
@@ -20,14 +20,14 @@
    transition: all 0.2s ease-in-out;
 }
 
-#container > a:hover {
+#ct > a:hover {
    cursor: pointer;
    background-color: var(--cor-tema);
    color: white;
    transform: translateY(-7px);
 }
 
-#container > p {
+#ct > p {
    margin-top: 1.2em;
    color: rgb(151, 149, 149);
    font-size: 14px;

@@ -1,4 +1,4 @@
-#container {
+#ct {
    display: flex;
    flex-flow: column;
    justify-content: space-between;
@@ -8,7 +8,7 @@
    padding-block: 2em;
 }
 
-#container > nav > a {
+#ct > nav > a {
    color: antiquewhite;
    display: flex;
    flex-direction: column;
@@ -21,17 +21,17 @@
    border-radius: 20px;
 }
 
-#container > nav > a:hover,
+#ct > nav > a:hover,
 #baixo:hover {
    color: white;
    cursor: pointer;
 }
 
-#container > nav > a > i {
+#ct > nav > a > i {
    font-size: 2em;
 }
 
-#container > nav > a > p {
+#ct > nav > a > p {
    font-size: 0.9em;
 }
 
@@ -53,8 +53,6 @@
    text-align: center;
 }
 
-
-
 #baixo {
    color: antiquewhite;
    display: flex;
@@ -74,4 +72,56 @@
 
 #baixo svg {
    font-size: 2em;
+}
+
+/* ------------ Container Mobile ------------*/
+#ctMobile {
+   display: none;
+}
+
+#ctMobile > #left > img {
+   width: 200px;
+}
+
+
+@media screen and (max-width: 1139px) {
+   #ct {
+      display: none;
+   }
+
+   .ativo {
+      display: flex !important;
+   }
+
+   #ctMobile {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: aliceblue;
+      width: 100%;
+      padding-block: .6em;
+      padding-inline: 1em;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+   }
+
+   #ctMobile > #right {
+      color: #321a64;  
+      font-size: 45px;    
+   }
+
+   #ctMobile > #right, #ctMobile > #left {
+      display: flex;
+      align-items: center;
+   }
+
+   #ctMobile > #right > svg:hover {
+      cursor: pointer;
+
+   }
+   
+   
 }

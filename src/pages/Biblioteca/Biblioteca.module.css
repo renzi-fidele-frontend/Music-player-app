@@ -1,9 +1,9 @@
-#container {
+#ct {
    color: var(--cor-texto2);
 }
 
 .tit1 {
-   margin-bottom: .8em;
+   margin-bottom: 0.8em;
    font-size: 2em;
 }
 
@@ -11,4 +11,28 @@
    display: grid;
    grid-template-columns: repeat(5, 20%);
    grid-auto-rows: 1fr;
+}
+
+@media screen and (max-width: 1705px) {
+   #baixo {
+      grid-template-columns: repeat(4, 25%);
+   }
+}
+
+@media screen and (max-width: 1150px) {
+   #baixo {
+      grid-template-columns: repeat(3, 33.3%);
+   }
+}
+
+@media screen and (max-width: 881px) {
+   #baixo {
+      grid-template-columns: repeat(2, 50%);
+   }
+}
+
+@media screen and (max-width: 630px) {
+   #baixo {
+      grid-template-columns: repeat(1, 100%);
+   }
 }

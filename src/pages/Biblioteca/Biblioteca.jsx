@@ -42,7 +42,7 @@ const Biblioteca = () => {
    }, []);
 
    return (
-      <div id={styles.container}>
+      <div id={styles.ct}>
          <h2 className={styles.tit1}>{`Playlists criadas (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {loading === false ? (

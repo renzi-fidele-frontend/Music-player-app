@@ -42,15 +42,13 @@ const Favoritos = () => {
          });
    }
 
-
    useEffect(() => {
       if (estado.albumsSalvos.length === 0) getAlbumsSalvos();
       if (estado.musicasCurtidas.length === 0) getMusicasCurtidas();
    }, []);
 
    return (
-      <div id={styles.container}>
-
+      <div id={styles.ct}>
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`Álbums salvos (${estado.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>

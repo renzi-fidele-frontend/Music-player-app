@@ -5,7 +5,7 @@ import { loginEndPoint } from "../../../spotify";
 
 const Login = () => {
    return (
-      <div id={styles.container}>
+      <div id={styles.ct}>
          <i>
             <RiSpotifyFill />
          </i>
