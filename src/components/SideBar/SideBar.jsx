@@ -98,15 +98,18 @@ const SideBar = () => {
                   <p>Biblioteca</p>
                </NavLink>
             </nav>
-
             <div
                onClick={() => {
                   navegar("/entrar");
                }}
                id={styles.baixo}
             >
-               <FaSignOutAlt />
-               <p>Deslogar</p>
+               {token && (
+                  <>
+                     <FaSignOutAlt />
+                     <p>Deslogar</p>
+                  </>
+               )}
             </div>
          </div>
 

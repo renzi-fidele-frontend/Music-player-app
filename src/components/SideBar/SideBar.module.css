@@ -83,14 +83,40 @@
    width: 200px;
 }
 
-
 @media screen and (max-width: 1139px) {
    #ct {
       display: none;
+      height: auto;
+      padding-inline: 1em;
    }
 
    .ativo {
       display: flex !important;
+      position: fixed;
+      top: 65px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--cor-tema);
+      padding-inline: .5em;
+   }
+
+   #ct > nav > a {
+      padding: 1em 1.7em;
+   }
+
+   #ct > nav > a > p {
+      display: none;
+   }
+
+   #ct > nav > a > i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+   }
+
+   .imgCont > img {
+      width: 60px;
    }
 
    #ctMobile {
@@ -100,7 +126,7 @@
       align-items: center;
       background-color: aliceblue;
       width: 100%;
-      padding-block: .6em;
+      padding-block: 0.6em;
       padding-inline: 1em;
       position: absolute;
       top: 0;
@@ -109,19 +135,20 @@
    }
 
    #ctMobile > #right {
-      color: #321a64;  
-      font-size: 45px;    
+      color: #321a64;
+      font-size: 45px;
    }
 
-   #ctMobile > #right, #ctMobile > #left {
+   #ctMobile > #right,
+   #ctMobile > #left {
       display: flex;
       align-items: center;
    }
 
    #ctMobile > #right > svg:hover {
       cursor: pointer;
-
    }
-   
-   
+}
+
+@media screen and (max-width: 919px) {
 }
