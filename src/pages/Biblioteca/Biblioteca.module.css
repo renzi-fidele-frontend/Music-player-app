@@ -27,7 +27,8 @@
 
 @media screen and (max-width: 881px) {
    #baixo {
-      grid-template-columns: repeat(2, 50%);
+      display: flex;
+      flex-flow: row wrap;
    }
 }
 

@@ -98,6 +98,7 @@
       left: 0;
       background-color: var(--cor-tema);
       padding-inline: .5em;
+      z-index: 2;
    }
 
    #ct > nav > a {
@@ -132,6 +133,7 @@
       top: 0;
       right: 0;
       left: 0;
+      z-index: 4;
    }
 
    #ctMobile > #right {
@@ -151,4 +153,9 @@
 }
 
 @media screen and (max-width: 919px) {
+   #ct > nav > a {
+      padding: 1em 1.2em;
+      border: 1px solid antiquewhite;
+   }
+
 }

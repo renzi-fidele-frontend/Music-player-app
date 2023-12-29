@@ -58,4 +58,8 @@
    .box > h6 {
       font-size: 19px;
    }
+
+   .box > img {
+      max-height: 220px;
+   }
 }

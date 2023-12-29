@@ -80,15 +80,25 @@ a {
       grid-template-columns: 100%;
    }
 
-   .App > #left, .App > #right {
+   .App > #left,
+   .App > #right {
       border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;   
+      border-bottom-left-radius: 0px;
    }
 
    .App > #right > div {
       border-radius: 0;
    }
+
+   .App > #right {
+      padding-top: 2em;
+   }
 }
 
 
+@media screen and (max-width: 919px) {
+   .App > #right > div {
+      padding-inline: 1.5em;
 
+   }
+}
