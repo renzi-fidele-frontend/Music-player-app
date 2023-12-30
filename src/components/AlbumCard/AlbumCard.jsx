@@ -4,10 +4,11 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 import Esqueleto from "../Skeletons/Esqueleto";
 import { reduzir } from "../../hooks/useReduzir";
 
+// varientes são: normal, swiper
 
-const AlbumCard = ({ foto, nome, subtit, acao }) => {
+const AlbumCard = ({ foto, nome, subtit, acao, variante = "normal" }) => {
    return (
-      <div title={nome} className={styles.box} onClick={acao}>
+      <div title={nome} className={`${styles.box} ${variante === "swiper" && styles.boxSwiper}`} onClick={acao}>
          {foto && nome && subtit ? (
             <>
                <img loading="lazy" src={foto} alt="Imagem do album" />
@@ -27,7 +28,5 @@ const AlbumCard = ({ foto, nome, subtit, acao }) => {
       </div>
    );
 };
-
-
 
 export default AlbumCard;

@@ -66,6 +66,22 @@
    opacity: 1 !important;
 }
 
+.boxSwiper > img {
+   max-height: 285px;
+}
+
+@media screen and (max-width: 1750px) {
+   .boxSwiper > img {
+      max-height: 245px;
+   } 
+}
+
+@media screen and (max-width: 1500px) {
+   .boxSwiper > img {
+      max-height: 205px;
+   } 
+}
+
 @media screen and (max-width: 981px) {
    .box > h6 {
       font-size: 19px;
@@ -74,12 +90,19 @@
    .box > img {
       max-height: 220px;
    }
+
+   .boxSwiper > img {
+      max-height: 165px;
+   } 
+
 }
 
 @media screen and (max-width: 971px) {
    .box > img {
       max-height: 170px;
    }
+
+
 
    .box {
       margin: 1em;

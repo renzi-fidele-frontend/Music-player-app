@@ -191,8 +191,7 @@
 }
 
 #searchCt h2 {
-   margin-bottom: .4em !important;
-
+   margin-bottom: 0.4em !important;
 }
 
 #ndPesquisado {
@@ -204,7 +203,16 @@
    #categsCt {
       grid-template-columns: 100%;
    }
-  
+}
+
+.categCard > figure {
+   display: flex;
+   flex-flow: column;
+   max-height: 260px;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid  rgb(81, 103, 129);
+   z-index: 2;
 }
 
 @media screen and (max-width: 1100px) {
@@ -214,5 +222,13 @@
       border-radius: 6px;
       margin-bottom: 5px;
    }
-  
+}
+
+@media screen and (max-width: 978px) {
+   #search {
+      margin-bottom: 1.5em;
+   }
+}
+
+@media screen and (max-width: 882px) {
 }

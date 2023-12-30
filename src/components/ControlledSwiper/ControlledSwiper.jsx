@@ -113,6 +113,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                                  dispatch({ type: "setSingleMode", payload: false });
                                  navegar("/leitor");
                               }}
+                              variante="swiper"
                               foto={v?.images[0]?.url}
                               nome={v?.name}
                               subtit={`${v?.tracks?.total} músicas`}
