@@ -74,6 +74,11 @@
    font-size: 2em;
 }
 
+#baixo:hover {
+   color: red;
+
+}
+
 /* ------------ Container Mobile ------------*/
 #ctMobile {
    display: none;
@@ -88,6 +93,7 @@
       display: none;
       height: auto;
       padding-inline: 1em;
+      transition: all 0.3s ease-in-out;
    }
 
    .ativo {
@@ -99,6 +105,21 @@
       background-color: var(--cor-tema);
       padding-inline: 0.5em;
       z-index: 2;
+      animation: fade 0.3s ease-in-out;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+
+   }
+
+   @keyframes fade {
+      from {
+         opacity: 0;
+         transform: translateX(-100px);
+      }
+      to {
+         opacity: 1;
+         transform: translateX(0);
+      }
    }
 
    #ct > nav > a {
@@ -172,5 +193,3 @@
       top: 55px;
    }
 }
-
-

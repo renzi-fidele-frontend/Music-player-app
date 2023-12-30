@@ -242,8 +242,11 @@ const Feed = () => {
                               navegar(`/feed/categoria`, { state: { name: v.name } });
                            }}
                            className={styles.categCard}
-                        >
-                           <img src={v.icons[0].url} alt={`Ilustracao de ${v.name}`} />
+                        >  
+                           <figure>
+                              <img src={v.icons[0].url} alt={`Ilustracao de ${v.name}`} />
+                           </figure>
+                           
                            <p>{v.name}</p>
                         </div>
                      );

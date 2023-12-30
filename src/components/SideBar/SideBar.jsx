@@ -21,7 +21,6 @@ const SideBar = () => {
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
 
-   const navegar = useNavigate();
 
    const [nome, setNome] = useState("");
    const [avatar, setAvatar] = useState(avatar1);
@@ -100,7 +99,8 @@ const SideBar = () => {
             </nav>
             <div
                onClick={() => {
-                  navegar("/entrar");
+                  console.log("deslogado com sucesso");
+                  localStorage.clear();
                }}
                id={styles.baixo}
             >

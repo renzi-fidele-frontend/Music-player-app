@@ -23,6 +23,10 @@
    #baixo {
       grid-template-columns: repeat(3, 33.3%);
    }
+
+   .tit1 {
+      font-size: 1.7em;
+   }
 }
 
 @media screen and (max-width: 990px) {

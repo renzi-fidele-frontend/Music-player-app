@@ -7,10 +7,8 @@ import Favoritos from "./pages/Favoritos/Favoritos";
 import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import Modal from "./components/Modal/Modal";
-
-const token = localStorage.getItem("token");
 
 export const musicContext = createContext();
 
@@ -67,6 +65,9 @@ const reducer = (state, action) => {
 };
 
 function App() {
+   const token = localStorage.getItem("token");
+   const [state, setState] = useState(token);
+
    const [estado, dispatch] = useReducer(reducer, {
       musicaAtual: [], // objecto Musica selecionada para tocar
       targetAtual: 0, // Index da música atual
@@ -93,6 +94,7 @@ function App() {
    });
 
    useEffect(() => {
+      console.log("Token mudou");
       // Caso esteja logado
       if (token !== null) {
          console.log("O token existe", token);
@@ -107,7 +109,7 @@ function App() {
             console.log("Nao logado");
          }
       }
-   }, [token]);
+   }, [state]);
 
    return (
       <Router>

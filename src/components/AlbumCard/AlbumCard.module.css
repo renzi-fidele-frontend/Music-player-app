@@ -19,6 +19,17 @@
    backdrop-filter: blur(100px);
 }
 
+.box:hover::after {
+   content: "";
+   bottom: 0;
+   right: 0;
+   left: 0;
+   background: linear-gradient(to bottom, transparent, #83a9f05d 150px, #4c618888 calc(100% - 150px), transparent);
+   height: 100px;
+   position: absolute;
+   border-radius: inherit;
+}
+
 .box > img {
    border-radius: inherit;
    align-self: baseline;
@@ -44,6 +55,7 @@
    opacity: 0;
    font-size: 2em;
    transition: opacity 0.2s ease-in-out;
+   z-index: 2;
 }
 
 .box:hover > i {
@@ -73,7 +85,13 @@
       margin: 1em;
       margin-top: 0;
       margin-left: 0;
-      padding: .6em;
-   
+      padding: 0.6em;
    }
+}
+
+@media screen and (max-width: 700px) {
+   .box > h6 {
+      font-size: 16px;
+   }
+  
 }
