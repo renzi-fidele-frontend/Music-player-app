@@ -37,10 +37,14 @@ const AudioControles = () => {
          let randomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
          if (estado.targetAtual === randomIndex) {
             let otherRandomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+            dispatch({ type: "setTargetAtual", payload: otherRandomIndex });
+            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[otherRandomIndex]] });
+         } else {
+            dispatch({ type: "setTargetAtual", payload: randomIndex });
+            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
          }
          console.log(randomIndex);
-         dispatch({ type: "setTargetAtual", payload: randomIndex });
-         dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
+         
       }
 
       dispatch({ type: "setisPlaying", payload: false });

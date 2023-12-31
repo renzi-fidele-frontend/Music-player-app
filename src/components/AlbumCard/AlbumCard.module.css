@@ -82,6 +82,7 @@
    } 
 }
 
+
 @media screen and (max-width: 981px) {
    .box > h6 {
       font-size: 19px;
@@ -95,14 +96,9 @@
       max-height: 165px;
    } 
 
-}
-
-@media screen and (max-width: 971px) {
    .box > img {
       max-height: 170px;
    }
-
-
 
    .box {
       margin: 1em;
@@ -110,7 +106,11 @@
       margin-left: 0;
       padding: 0.6em;
    }
+
+  
 }
+
+
 
 @media screen and (max-width: 700px) {
    .box > h6 {

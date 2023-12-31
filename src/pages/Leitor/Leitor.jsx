@@ -7,6 +7,7 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
 import foto from "../../assets/bird.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import { GiConsoleController } from "react-icons/gi";
 
 const token = localStorage.getItem("token");
 
@@ -124,7 +125,7 @@ const Leitor = () => {
             method: "GET",
          })
             .then((v) => v.json())
-            .then((v) => dispatch({ type: "setSemelhantes", payload: v.artists }))
+            .then((v) => dispatch({ type: "setSemelhantes", payload: v?.artists }))
             .catch((err) => console.log("Aconteceu o erro"));
       }
    }
@@ -157,7 +158,12 @@ const Leitor = () => {
          } else if (estado.mode === "albumMode") {
             getSemelhantes(estado?.albumAtual[0]?.artists[0]?.id);
          } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
-            getSemelhantes(estado?.musicaAtual[0]?.artists[0]?.id);
+            try {
+               getSemelhantes(estado?.musicaAtual[0]?.artists[0]?.id);
+            } catch {
+               console.error("Ops, houve erro")
+            }
+            
          }
 
          // Carregando os dados somente se não tiverem sido carregados
