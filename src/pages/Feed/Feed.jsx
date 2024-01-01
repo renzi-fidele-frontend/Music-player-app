@@ -10,6 +10,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 
+// Icones
+import { GoSidebarExpand } from "react-icons/go";
+import { IoMdCloseCircle } from "react-icons/io";
+
 const token = localStorage.getItem("token");
 
 const Feed = () => {
@@ -85,6 +89,8 @@ const Feed = () => {
       if (estado.categorias.length === 0) getCategorias();
       console.log(loc.pathname);
    }, []);
+
+   const categsCtRef = useRef(null);
 
    //  Apanhando os resultados da pesquisa
    async function pesquisar() {
@@ -228,8 +234,25 @@ const Feed = () => {
                      <img src={nadaPesquisado} id={styles.ndPesquisado} alt="" />
                   </>
                ))}
+
+            <i
+               id={styles.abrirCategs}
+               onClick={() => {
+                  categsCtRef.current.classList.add(styles.ativo);
+               }}
+            >
+               <GoSidebarExpand color="var(--cor-texto2)" />
+            </i>
          </div>
-         <div id={styles.right}>
+         <div id={styles.right} ref={categsCtRef}>
+            <i
+               id={styles.botaoFechar}
+               onClick={() => {
+                  categsCtRef.current.classList.remove(styles.ativo);
+               }}
+            >
+               <IoMdCloseCircle />
+            </i>
             <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado.categorias.length})`}</h2>
             <div id={styles.categsCt}>
                {estado.categorias.length > 0 ? (
@@ -242,11 +265,11 @@ const Feed = () => {
                               navegar(`/feed/categoria`, { state: { name: v.name } });
                            }}
                            className={styles.categCard}
-                        >  
+                        >
                            <figure>
                               <img src={v.icons[0].url} alt={`Ilustracao de ${v.name}`} />
                            </figure>
-                           
+
                            <p>{v.name}</p>
                         </div>
                      );

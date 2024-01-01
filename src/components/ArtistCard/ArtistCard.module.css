@@ -35,3 +35,10 @@
       margin-bottom: 1em;
    }
 }
+
+@media screen and (max-width: 950px) {
+   #ct > img {
+      width: 90px;
+      height: 90px;
+   }
+}
