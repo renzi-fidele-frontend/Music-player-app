@@ -42,3 +42,10 @@
       height: 90px;
    }
 }
+
+@media screen and (max-width: 500px) {
+   #ct > img {
+      width: 65px;
+      height: 65px;
+   }
+}
