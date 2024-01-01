@@ -101,6 +101,7 @@ const Favoritos = () => {
                            subtit={v.track.artists[0].name}
                            nome={v.track.name}
                            foto={v.track.album.images[0].url}
+                           key={k}  
                         />
                      );
                   })

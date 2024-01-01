@@ -76,7 +76,6 @@
 
 #baixo:hover {
    color: red;
-
 }
 
 /* ------------ Container Mobile ------------*/
@@ -108,7 +107,6 @@
       animation: fade 0.3s ease-in-out;
       border-top-right-radius: 7px;
       border-bottom-right-radius: 7px;
-
    }
 
    @keyframes fade {
@@ -161,6 +159,10 @@
    #ctMobile > #right {
       color: #321a64;
       font-size: 45px;
+   }
+
+   #ctMobile > #left > img:hover {
+      cursor: pointer;
    }
 
    #ctMobile > #right,

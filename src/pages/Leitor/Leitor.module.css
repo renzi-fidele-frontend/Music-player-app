@@ -10,6 +10,18 @@
    flex-direction: column;
    justify-content: space-between;
    padding-bottom: 1.2em;
+   overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#cont > #left::-webkit-scrollbar {
+   display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#cont > #left {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
 }
 
 #cont > #right {

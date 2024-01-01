@@ -25,3 +25,9 @@
       opacity: 1;
    }
 }
+
+@media screen and (max-width: 535px) {
+   #sp {
+      font-size: 17px;
+   }
+}

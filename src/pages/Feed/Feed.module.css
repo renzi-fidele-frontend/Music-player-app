@@ -240,6 +240,10 @@
    }
 }
 
+#abrirCategs {
+   display: none;
+}
+
 @media screen and (max-width: 882px) {
    #ct {
       grid-template-columns: 100%;
@@ -293,6 +297,7 @@
       border-bottom-left-radius: 10px;
       border-top-left-radius: 10px;
       z-index: 2;
+      display: initial;
    }
 
    #abrirCategs:hover {
@@ -321,5 +326,4 @@
    #search > input {
       font-size: 17px;
    }
-
 }
