@@ -73,17 +73,16 @@
 @media screen and (max-width: 1750px) {
    .boxSwiper > img {
       max-height: 245px;
-   } 
+   }
 }
 
 @media screen and (max-width: 1500px) {
    .boxSwiper > img {
       max-height: 205px;
-   } 
+   }
 }
 
-
-@media screen and (max-width: 981px) {
+@media screen and (max-width: 990px) {
    .box > h6 {
       font-size: 19px;
    }
@@ -94,27 +93,25 @@
 
    .boxSwiper > img {
       max-height: 165px;
-   } 
+   }
 
    .box > img {
       max-height: 170px;
    }
 
    .box {
-      margin: 1em;
-      margin-top: 0;
-      margin-left: 0;
-      padding: 0.6em;
+      margin: 0;
    }
-
-  
 }
-
-
 
 @media screen and (max-width: 700px) {
    .box > h6 {
       font-size: 16px;
    }
-  
+}
+
+@media screen and (max-width: 500px) {
+   .box > img {
+      max-height: 140px;
+   }
 }

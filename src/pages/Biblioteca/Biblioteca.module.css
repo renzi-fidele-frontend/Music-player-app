@@ -35,7 +35,10 @@
    #baixo {
       display: flex;
       flex-flow: row wrap;
+      gap: 1em;
    }
+
+
 }
 
 @media screen and (max-width: 800px) {
