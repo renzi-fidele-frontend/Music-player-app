@@ -5,7 +5,7 @@
    display: inline-block;
    position: relative;
    overflow: hidden;
-    animation: piscar 0.7s alternate-reverse infinite ease-in-out;
+   animation: piscar 0.7s alternate-reverse infinite ease-in-out;
 }
 
 .sk::after {
@@ -15,8 +15,9 @@
    bottom: 0;
    left: 0;
    transform: translateX(-100%);
-   background: rgb(70,87,116);
-   background: linear-gradient(180deg, rgba(190, 210, 243, 0.353) 0%, rgba(255,255,255,0.2) 100%);   animation: shimmer 1s infinite linear alternate-reverse;
+   background: rgb(70, 87, 116);
+   background: linear-gradient(180deg, rgba(190, 210, 243, 0.353) 0%, rgba(255, 255, 255, 0.2) 100%);
+   animation: shimmer 1s infinite linear alternate-reverse;
    content: "";
 }
 
@@ -71,30 +72,51 @@
    border-radius: 10px;
 }
 
+@media screen and (max-width: 1650px) {
+   .sk.imgCircular {
+      width: 120px;
+      height: 120px;
+   }
+}
 
 @media screen and (max-width: 1400px) {
    .sk.albumCard {
       width: 100%;
       height: 230px;
-   }  
+   }
+
+   .sk.imgCircular {
+      width: 100px;
+      height: 100px;
+      margin-bottom: .7em;
+
+   }
+
 }
 
 @media screen and (max-width: 1257px) {
    .sk.albumCard {
       height: 200px;
-   }  
+   }
 }
 
 @media screen and (max-width: 1149px) {
    .sk.albumCard {
       height: 230px;
-   }  
+   }
 }
 
 @media screen and (max-width: 990px) {
    .sk.albumCard {
       height: 200px;
       width: 190px;
+   }
+
+   .sk.imgCircular {
+      width: 80px;
+      height: 80px;
+      margin-bottom: .3em;
+
    }
 }
 
@@ -109,5 +131,11 @@
    .sk.albumCard {
       height: 150px;
       width: 140px;
+   }
+
+   .sk.imgCircular {
+      width: 60px;
+      height: 60px;
+
    }
 }
