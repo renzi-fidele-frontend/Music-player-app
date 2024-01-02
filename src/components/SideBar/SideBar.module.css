@@ -145,7 +145,12 @@
       flex-flow: row wrap;
       justify-content: space-between;
       align-items: center;
-      background-color: aliceblue;
+      background-color: #ffffff;
+      opacity: 1;
+      background-image: repeating-linear-gradient(45deg, #f5f7ff 25%, transparent 25%, transparent 75%, #f5f7ff 75%, #f5f7ff),
+         repeating-linear-gradient(45deg, #f5f7ff 25%, #ffffff 25%, #ffffff 75%, #f5f7ff 75%, #f5f7ff);
+      background-position: 0 0, 4px 4px;
+      background-size: 8px 8px;
       width: 100%;
       padding-block: 0.6em;
       padding-inline: 1em;
@@ -191,7 +196,6 @@
       font-size: 23px;
    }
 }
-
 
 @media screen and (max-width: 550px) {
    #ctMobile > #left > img {

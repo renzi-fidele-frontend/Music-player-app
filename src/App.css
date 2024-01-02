@@ -95,10 +95,9 @@ a {
    }
 }
 
-
 @media screen and (max-width: 919px) {
    .App > #right > div {
       padding-inline: 1.5em;
-
+      padding-bottom: 0;
    }
 }
