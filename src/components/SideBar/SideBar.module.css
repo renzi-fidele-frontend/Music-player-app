@@ -182,6 +182,17 @@
    }
 }
 
+@media screen and (max-width: 650px) {
+   #ct > nav > a > i {
+      font-size: 23px;
+   }
+
+   #baixo svg {
+      font-size: 23px;
+   }
+}
+
+
 @media screen and (max-width: 550px) {
    #ctMobile > #left > img {
       width: 150px;
