@@ -76,6 +76,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                               foto={v.images[0].url}
                               nome={v.name}
                               subtit={v.artists[0].name}
+                              variante="swiper"
                            />
                         </SwiperSlide>
                      );
@@ -97,13 +98,13 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                               nome={v?.track?.name}
                               key={k}
                               subtit={v?.track?.artists[0]?.name}
+                              variante="swiper"
                            />
                         </SwiperSlide>
                      );
                   } else if (modo === "playlist") {
                      return (
                         <SwiperSlide key={k}>
-                           
                            <AlbumCard
                               acao={() => {
                                  dispatch({ type: "setIdPlaylist", payload: v.id });
@@ -139,7 +140,5 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
       </div>
    );
 };
-
-
 
 export default ControlledSwiper;

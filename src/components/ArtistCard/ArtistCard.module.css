@@ -21,13 +21,14 @@
    #ct {
       margin-bottom: 2em;
    }
-}
 
-@media screen and (max-width: 1300px) {
    #ct > img {
       width: 110px;
       height: 110px;
    }
+}
+
+@media screen and (max-width: 1300px) {
 }
 
 @media screen and (max-width: 1150px) {

@@ -57,6 +57,8 @@ const SideBar = () => {
       }
    }, []);
 
+   const navegar = useNavigate()
+
    return (
       <>
          <div ref={sidebarRef} id={styles.ct}>
@@ -115,7 +117,9 @@ const SideBar = () => {
 
          <header id={styles.ctMobile}>
             <div id={styles.left}>
-               <img src={logo} alt="Logo do Musify App" />
+               <img onClick={()=> {
+                  navegar("/feed")
+               }} src={logo} alt="Logo do Musify App" />
             </div>
             <div id={styles.right}>
                <GiHamburgerMenu
