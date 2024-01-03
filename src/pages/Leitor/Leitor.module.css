@@ -59,3 +59,9 @@
 #antes > h2 {
    margin-top: 2em;
 }
+
+@media screen and (max-width: 1700px) {
+   #destaques {
+      margin-top: 1.4em;
+   }
+}

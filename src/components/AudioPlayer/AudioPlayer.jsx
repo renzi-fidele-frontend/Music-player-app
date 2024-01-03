@@ -139,22 +139,22 @@ const AudioPlayer = () => {
          <div id={styles.right}>
             {estado.mode === "playlistMode" && estado.singleMode === false && (
                <>
-                  <h5>{reduzir(estado.musicaAtual[0]?.track?.name, 55)}</h5>
+                  <h5>{reduzir(estado.musicaAtual[0]?.track?.name, 45)}</h5>
                   <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
 
             {estado.mode === "albumMode" && (
                <>
-                  <h5>{reduzir(estado.musicaAtual[0]?.name, 55)}</h5>
+                  <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
                   <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
                </>
             )}
 
             {estado.mode === "playlistMode" && estado.singleMode === true && (
                <>
-                  <h5>{reduzir(estado.musicaAtual[0]?.name, 55)}</h5>
-                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`, 55)}</h4>
+                  <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
+                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`, 45)}</h4>
                </>
             )}
 

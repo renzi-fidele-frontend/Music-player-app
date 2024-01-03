@@ -70,3 +70,13 @@
    font-size: 15px;
    text-shadow: 1px 1px 1px black;
 }
+
+@media screen and (max-width: 1700px) {
+   #ct > h6 {
+      font-size: 1.5em;
+   }
+
+   #dentro #right h5 {
+      font-size: 1em;
+   }
+}
