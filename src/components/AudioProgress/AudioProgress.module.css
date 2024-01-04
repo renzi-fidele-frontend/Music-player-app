@@ -1,6 +1,5 @@
 #ct {
-   width: 350px;
-   height: 350px;
+   width: 105%;
    position: relative;
    display: flex;
    align-items: center;
@@ -23,7 +22,6 @@
    position: relative;
    width: 100%;
    animation: girar 30s infinite linear;
-
 }
 
 #capa {
@@ -31,9 +29,7 @@
    z-index: 4;
    border-radius: 50%;
    width: 39%;
-
 }
-
 
 #imagens > img {
 }
@@ -49,4 +45,16 @@
 
 .ativo {
    color: #304d80;
+}
+
+@media screen and (max-width: 1700px) {
+   #ct {
+      width: 108%;
+   }
+}
+
+@media screen and (max-width: 1500px) {
+   #imagens {
+      width: 90%;
+   }
 }

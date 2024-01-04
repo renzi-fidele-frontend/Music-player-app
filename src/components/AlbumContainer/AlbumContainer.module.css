@@ -69,3 +69,16 @@
    font-size: 13px;
 }
 
+@media screen and (max-width: 1700px) {
+   #imgSombra {
+      top: 2.3em;
+   }
+
+   #deslizar > h5 {
+      font-size: 1.4em;
+   }
+
+   #cont > p {
+      font-size: 14px;
+   }
+}

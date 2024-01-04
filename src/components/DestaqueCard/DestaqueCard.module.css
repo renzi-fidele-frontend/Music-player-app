@@ -79,4 +79,26 @@
    #dentro #right h5 {
       font-size: 1em;
    }
+
+   #dentro #right p {
+      font-size: 14px;
+   }
+}
+
+@media screen and (max-width: 1500px) {
+   #ct {
+      padding: 1.2em;
+   }
+
+   #ct > h6 {
+      font-size: 1.3em;
+   }
+
+   #dentro #right h5 {
+      font-size: 0.9em;
+   }
+
+   #dentro #right p {
+      font-size: 13px;
+   }
 }

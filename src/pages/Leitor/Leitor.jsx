@@ -161,9 +161,8 @@ const Leitor = () => {
             try {
                getSemelhantes(estado?.musicaAtual[0]?.artists[0]?.id);
             } catch {
-               console.error("Ops, houve erro")
+               console.error("Ops, houve erro");
             }
-            
          }
 
          // Carregando os dados somente se não tiverem sido carregados
@@ -175,57 +174,67 @@ const Leitor = () => {
    }, [estado.musicaAtual]);
 
    // Conteúdo dos cards de destaques
-   const conteudoSemelhantes = [
-      {
-         img: estado.semelhantes[0]?.images[2]?.url,
-         subtit: estado.semelhantes[0]?.name,
-         texto: `${estado.semelhantes[0]?.followers?.total} Seguidores`,
-      },
-      {
-         img: estado.semelhantes[1]?.images[2]?.url,
-         subtit: estado.semelhantes[1]?.name,
-         texto: `${estado.semelhantes[1]?.followers?.total} Seguidores`,
-      },
-      {
-         img: estado.semelhantes[2]?.images[2]?.url,
-         subtit: estado.semelhantes[2]?.name,
-         texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
-      },
-   ];
-   const conteudoPlaylistsDestacadas = [
-      {
-         img: estado.playlistsDestacadas[0]?.images[0]?.url,
-         subtit: estado.playlistsDestacadas[0]?.name,
-         texto: `${estado.playlistsDestacadas[0]?.tracks?.total} Músicas`,
-      },
-      {
-         img: estado.playlistsDestacadas[1]?.images[0]?.url,
-         subtit: estado.playlistsDestacadas[1]?.name,
-         texto: `${estado.playlistsDestacadas[1]?.tracks?.total} Músicas`,
-      },
-      {
-         img: estado.playlistsDestacadas[2]?.images[0]?.url,
-         subtit: estado.playlistsDestacadas[2]?.name,
-         texto: `${estado.playlistsDestacadas[2]?.tracks?.total} Músicas`,
-      },
-   ];
-   const conteudoLancamentos = [
-      {
-         img: estado.lancamentos[0]?.images[2]?.url,
-         subtit: estado.lancamentos[0]?.name,
-         texto: estado.lancamentos[0]?.artists[0]?.name,
-      },
-      {
-         img: estado.lancamentos[1]?.images[2]?.url,
-         subtit: estado.lancamentos[1]?.name,
-         texto: estado.lancamentos[1]?.artists[0]?.name,
-      },
-      {
-         img: estado.lancamentos[2]?.images[2]?.url,
-         subtit: estado.lancamentos[2]?.name,
-         texto: estado.lancamentos[2]?.artists[0]?.name,
-      },
-   ];
+   const conteudoSemelhantes =
+      estado.semelhantes.length > 0
+         ? [
+              {
+                 img: estado.semelhantes[0]?.images[2]?.url,
+                 subtit: estado.semelhantes[0]?.name,
+                 texto: `${estado.semelhantes[0]?.followers?.total} Seguidores`,
+              },
+              {
+                 img: estado.semelhantes[1]?.images[2]?.url,
+                 subtit: estado.semelhantes[1]?.name,
+                 texto: `${estado.semelhantes[1]?.followers?.total} Seguidores`,
+              },
+              {
+                 img: estado.semelhantes[2]?.images[2]?.url,
+                 subtit: estado.semelhantes[2]?.name,
+                 texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
+              },
+           ]
+         : [];
+
+   const conteudoPlaylistsDestacadas =
+      estado.playlistsDestacadas.length > 0
+         ? [
+              {
+                 img: estado.playlistsDestacadas[0]?.images[0]?.url,
+                 subtit: estado.playlistsDestacadas[0]?.name,
+                 texto: `${estado.playlistsDestacadas[0]?.tracks?.total} Músicas`,
+              },
+              {
+                 img: estado.playlistsDestacadas[1]?.images[0]?.url,
+                 subtit: estado.playlistsDestacadas[1]?.name,
+                 texto: `${estado.playlistsDestacadas[1]?.tracks?.total} Músicas`,
+              },
+              {
+                 img: estado.playlistsDestacadas[2]?.images[0]?.url,
+                 subtit: estado.playlistsDestacadas[2]?.name,
+                 texto: `${estado.playlistsDestacadas[2]?.tracks?.total} Músicas`,
+              },
+           ]
+         : [];
+   const conteudoLancamentos =
+      estado.lancamentos.length > 0
+         ? [
+              {
+                 img: estado.lancamentos[0]?.images[2]?.url,
+                 subtit: estado.lancamentos[0]?.name,
+                 texto: estado.lancamentos[0]?.artists[0]?.name,
+              },
+              {
+                 img: estado.lancamentos[1]?.images[2]?.url,
+                 subtit: estado.lancamentos[1]?.name,
+                 texto: estado.lancamentos[1]?.artists[0]?.name,
+              },
+              {
+                 img: estado.lancamentos[2]?.images[2]?.url,
+                 subtit: estado.lancamentos[2]?.name,
+                 texto: estado.lancamentos[2]?.artists[0]?.name,
+              },
+           ]
+         : [];
 
    const navegar = useNavigate();
 

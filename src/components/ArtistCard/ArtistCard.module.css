@@ -17,7 +17,7 @@
    height: 160px;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1700px) {
    #ct {
       margin-bottom: 2em;
    }
