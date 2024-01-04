@@ -75,3 +75,19 @@
       grid-template-columns: 270px auto;
    }
 }
+
+@media screen and (max-width: 1300px) {
+   #cont > #right > h5 {
+      font-size: 1.9em;
+   }
+
+   #cont {
+      grid-template-columns: 230px auto;
+   }
+}
+
+@media screen and (max-width: 1140px) {
+  #cont {
+   padding-top: 3em;
+  }
+}

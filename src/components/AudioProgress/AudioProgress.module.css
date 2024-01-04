@@ -58,3 +58,9 @@
       width: 90%;
    }
 }
+
+@media screen and (max-width: 1000px) {
+   #ct {
+      width: 100%;
+   }
+}

@@ -7,7 +7,10 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
 import foto from "../../assets/bird.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GiConsoleController } from "react-icons/gi";
+import estiloFeed from "../Feed/Feed.module.css";
+import { GoSidebarExpand } from "react-icons/go";
+import { RiPlayList2Fill } from "react-icons/ri";
+import { TbInfoSquareRounded } from "react-icons/tb";
 
 const token = localStorage.getItem("token");
 
@@ -238,6 +241,8 @@ const Leitor = () => {
 
    const navegar = useNavigate();
 
+   const rightCt = useRef(null);
+
    return estado.musicaAtual.length > 0 ? (
       <div id={styles.cont}>
          <div id={styles.left}>
@@ -265,8 +270,28 @@ const Leitor = () => {
                   conteudo={conteudoLancamentos}
                />
             </div>
+
+            <i
+               className={styles.iconeDetalhes}
+               
+               onClick={() => {
+                  rightCt.current.classList.add(styles.ativo);
+               }}
+            >
+               <TbInfoSquareRounded color="var(--cor-texto2)" />
+            </i>
+
+            <i
+               className={styles.iconePlaylists}
+               
+               onClick={() => {
+                  rightCt.current.classList.add(styles.ativo);
+               }}
+            >
+               <RiPlayList2Fill />
+            </i>
          </div>
-         <div id={styles.right}>
+         <div ref={rightCt} id={styles.right}>
             <AlbumContainer track={estado?.musicaAtual[0]?.track} />
             <FilaContainer fila={estado.aSeguir} />
          </div>

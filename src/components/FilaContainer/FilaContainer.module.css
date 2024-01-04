@@ -54,3 +54,23 @@
    width: fit-content;
    font-size: 15px;
 }
+
+@media screen and (max-width: 1500px) {
+   #cont {
+      height: 40vh;
+   }
+
+   #cont > h4 {
+      font-size: 1.4em;
+   }
+
+   #cont > div > div > p {
+      font-size: 14px;
+   }
+}
+
+@media screen and (max-width: 1140px) {
+   #cont {
+      height: 35vh;
+   }
+}

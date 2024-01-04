@@ -102,3 +102,10 @@
       font-size: 13px;
    }
 }
+
+
+@media screen and (max-width: 1000px) {
+   #ct {
+      margin-inline: .4em;
+   }  
+}

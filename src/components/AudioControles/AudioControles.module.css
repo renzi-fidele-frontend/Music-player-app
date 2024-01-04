@@ -30,3 +30,19 @@
 .ativo {
    color: var(--cor-tema);
 }
+
+@media screen and (max-width: 1500px) {
+  #cont {
+   font-size: 40px;
+  }
+
+  .meio {
+   font-size: 55px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+   #cont {
+    font-size: 35px;
+   }
+ }

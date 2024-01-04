@@ -82,3 +82,27 @@
       font-size: 14px;
    }
 }
+
+@media screen and (max-width: 1500px) {
+   #cont {
+      height: 55vh;
+   }  
+}
+
+@media screen and (max-width: 1140px) {
+   #cont {
+      height: 57vh;
+   }  
+
+}
+
+@media screen and (max-width: 1000px) {
+   #imgSombra {
+      top: 1.8em;
+   }
+
+   #cont {
+      height: 62vh;
+   }  
+
+}
