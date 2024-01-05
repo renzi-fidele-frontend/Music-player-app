@@ -103,9 +103,14 @@
    }
 }
 
-
 @media screen and (max-width: 1000px) {
    #ct {
-      margin-inline: .4em;
-   }  
+      margin-inline: 0.4em;
+   }
+}
+
+@media screen and (max-width: 750px) {
+   #ct {
+      margin: 0;
+   }
 }

@@ -75,6 +75,10 @@
    }
 }
 
+#botaoFechar {
+   display: none;
+}
+
 @media screen and (max-width: 1000px) {
    #botaoFechar {
       display: initial;
@@ -83,5 +87,9 @@
 
    #botaoFechar:hover {
       cursor: pointer;
+   }
+
+   #cont > h4 {
+      margin-bottom: 1em;
    }
 }

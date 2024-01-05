@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Leitor.module.css";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
-import foto from "../../assets/bird.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import estiloFeed from "../Feed/Feed.module.css";
-import { GoSidebarExpand } from "react-icons/go";
+
+// Icones
 import { RiPlayList2Fill } from "react-icons/ri";
 import { TbInfoSquareRounded } from "react-icons/tb";
+import foto from "../../assets/bird.svg";
+import DestaquesContainer from "../../components/DestaquesContainer/DestaquesContainer";
 
 const token = localStorage.getItem("token");
 
@@ -176,70 +176,9 @@ const Leitor = () => {
       }
    }, [estado.musicaAtual]);
 
-   // Conteúdo dos cards de destaques
-   const conteudoSemelhantes =
-      estado.semelhantes.length > 0
-         ? [
-              {
-                 img: estado.semelhantes[0]?.images[2]?.url,
-                 subtit: estado.semelhantes[0]?.name,
-                 texto: `${estado.semelhantes[0]?.followers?.total} Seguidores`,
-              },
-              {
-                 img: estado.semelhantes[1]?.images[2]?.url,
-                 subtit: estado.semelhantes[1]?.name,
-                 texto: `${estado.semelhantes[1]?.followers?.total} Seguidores`,
-              },
-              {
-                 img: estado.semelhantes[2]?.images[2]?.url,
-                 subtit: estado.semelhantes[2]?.name,
-                 texto: `${estado.semelhantes[2]?.followers?.total} Seguidores`,
-              },
-           ]
-         : [];
 
-   const conteudoPlaylistsDestacadas =
-      estado.playlistsDestacadas.length > 0
-         ? [
-              {
-                 img: estado.playlistsDestacadas[0]?.images[0]?.url,
-                 subtit: estado.playlistsDestacadas[0]?.name,
-                 texto: `${estado.playlistsDestacadas[0]?.tracks?.total} Músicas`,
-              },
-              {
-                 img: estado.playlistsDestacadas[1]?.images[0]?.url,
-                 subtit: estado.playlistsDestacadas[1]?.name,
-                 texto: `${estado.playlistsDestacadas[1]?.tracks?.total} Músicas`,
-              },
-              {
-                 img: estado.playlistsDestacadas[2]?.images[0]?.url,
-                 subtit: estado.playlistsDestacadas[2]?.name,
-                 texto: `${estado.playlistsDestacadas[2]?.tracks?.total} Músicas`,
-              },
-           ]
-         : [];
-   const conteudoLancamentos =
-      estado.lancamentos.length > 0
-         ? [
-              {
-                 img: estado.lancamentos[0]?.images[2]?.url,
-                 subtit: estado.lancamentos[0]?.name,
-                 texto: estado.lancamentos[0]?.artists[0]?.name,
-              },
-              {
-                 img: estado.lancamentos[1]?.images[2]?.url,
-                 subtit: estado.lancamentos[1]?.name,
-                 texto: estado.lancamentos[1]?.artists[0]?.name,
-              },
-              {
-                 img: estado.lancamentos[2]?.images[2]?.url,
-                 subtit: estado.lancamentos[2]?.name,
-                 texto: estado.lancamentos[2]?.artists[0]?.name,
-              },
-           ]
-         : [];
 
-   const navegar = useNavigate();
+   
 
    const filaCtRef = useRef(null);
    const albumCtRef = useRef(null);
@@ -248,29 +187,7 @@ const Leitor = () => {
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
-            <div id={styles.destaques}>
-               <DestaqueCard
-                  titulo={"Artistas Semelhantes"}
-                  conteudo={conteudoSemelhantes}
-                  acao={() => {
-                     navegar("#artistas-semelhantes");
-                  }}
-               />
-               <DestaqueCard
-                  acao={() => {
-                     navegar("/feed");
-                  }}
-                  titulo={"Feito para si"}
-                  conteudo={conteudoPlaylistsDestacadas}
-               />
-               <DestaqueCard
-                  acao={() => {
-                     navegar("/destaque");
-                  }}
-                  titulo={"Lançamentos"}
-                  conteudo={conteudoLancamentos}
-               />
-            </div>
+            <DestaquesContainer/>
 
             <i
                className={styles.iconeDetalhes}

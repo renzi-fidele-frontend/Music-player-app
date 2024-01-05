@@ -30,18 +30,7 @@
    justify-content: space-between;
 }
 
-#destaques {
-   margin-right: 3em;
-   padding: 2em 1em;
-   margin-top: 2em;
-   background: rgba(39, 53, 77, 0.25);
-   box-shadow: 0 8px 32px 0 rgba(32, 34, 66, 0.37);
-   backdrop-filter: blur(4px);
-   -webkit-backdrop-filter: blur(4px);
-   border-radius: 30px;
-   display: grid;
-   grid-template-columns: 33.3% 33.3% 33.3%;
-}
+
 
 #antes {
    display: flex;
@@ -60,11 +49,7 @@
    margin-top: 2em;
 }
 
-@media screen and (max-width: 1700px) {
-   #destaques {
-      margin-top: 1.4em;
-   }
-}
+
 
 @media screen and (max-width: 1500px) {
    #cont {
@@ -77,17 +62,9 @@
       padding: 1em;
    }
 
-   #destaques {
-      margin-right: 1em;
-   }
+  
 }
 
-@media screen and (max-width: 1140px) {
-   #destaques {
-      margin-top: 1em;
-      padding: 1em 1em;
-   }
-}
 
 .iconeDetalhes {
    display: none;
@@ -193,4 +170,8 @@
       display: flex !important;
       opacity: 1 !important;
    }
+}
+
+@media screen and (max-width: 750px) {
+ 
 }
