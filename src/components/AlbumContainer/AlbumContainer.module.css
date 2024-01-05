@@ -86,14 +86,17 @@
 @media screen and (max-width: 1500px) {
    #cont {
       height: 55vh;
-   }  
+   }
 }
 
 @media screen and (max-width: 1140px) {
    #cont {
       height: 57vh;
-   }  
+   }
+}
 
+#botaoFechar {
+   display: none;
 }
 
 @media screen and (max-width: 1000px) {
@@ -103,6 +106,14 @@
 
    #cont {
       height: 62vh;
-   }  
+   }
 
+   #botaoFechar {
+      display: initial;
+      font-size: 25px;
+   }
+
+   #botaoFechar:hover {
+      cursor: pointer;
+   }
 }

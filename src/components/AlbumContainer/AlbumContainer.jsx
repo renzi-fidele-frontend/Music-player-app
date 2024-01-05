@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
 import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";
+import { IoMdCloseCircle } from "react-icons/io";
 
-const AlbumContainer = ({ track }) => {
+const AlbumContainer = ({ track, propRef }) => {
    const { estado, dispatch } = useContext(musicContext);
-
 
    if (estado.mode === "playlistMode" && estado.singleMode === false) {
       return (
-         <div id={styles.cont}>
+         <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
                <img src={track?.album.images[0].url} alt="Imagem do albúm" />
                <div id={styles.imgSombra}>
@@ -28,11 +28,21 @@ const AlbumContainer = ({ track }) => {
             } música(s)`}</p>
 
             <span>{`Lançado em: ${track?.album.release_date}`}</span>
+
+            {/*Icone de fechar escondido */}
+            <i
+               id={styles.botaoFechar}
+               onClick={() => {
+                  propRef.current.className = "";
+               }}
+            >
+               <IoMdCloseCircle />
+            </i>
          </div>
       );
    } else if (estado.mode === "albumMode") {
       return (
-         <div id={styles.cont}>
+         <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
                <img src={estado.albumAtual[0]?.images[0].url} alt="Imagem do album" />
                <div id={styles.imgSombra}>
@@ -55,7 +65,7 @@ const AlbumContainer = ({ track }) => {
       );
    } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
       return (
-         <div id={styles.cont}>
+         <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
                <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt="Imagem do albúm" />
                <div id={styles.imgSombra}>
@@ -69,9 +79,10 @@ const AlbumContainer = ({ track }) => {
                </div>
             </div>
 
-            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} é um álbum de ${reduzir(estado.musicaAtual[0]?.artists
-               ?.map((v) => v.name)
-               .join(" e "), 20)}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
+            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} é um álbum de ${reduzir(
+               estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e "),
+               20
+            )}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
 
             <span>{`Lançado em: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
          </div>

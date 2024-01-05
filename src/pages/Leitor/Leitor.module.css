@@ -89,33 +89,73 @@
    }
 }
 
+.iconeDetalhes {
+   display: none;
+}
+.iconeFila {
+   display: none;
+}
+
 @media screen and (max-width: 1000px) {
    #cont {
       grid-template-columns: 100%;
    }
 
    #cont > #right {
+      width: 0;
+      height: 0;
+   }
+
+   #cont > #right > div {
       position: absolute;
       right: 0;
       z-index: 2;
-      background: rgba(60, 73, 92, 0.25);
-      box-shadow: 0 8px 32px 0 rgba(59, 62, 104, 0.37);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-radius: 10px;
-      padding-left: .5em;
-      width: 400px !important;
       opacity: 0;
-      visibility: hidden;
       transition: all 0.3s ease-in-out;
       display: none;
+   }
+
+   #cont > #right > .detalhesAtivo,
+   #cont > #right > .filaAtivo {
+      display: initial;
+      opacity: 1;
+      top: 15%;
+      width: 400px;
+      height: fit-content;
+      border: 1px solid rgb(81, 103, 129);
+      border-right: 0;
+      box-shadow: 0 0 5px rgb(81, 103, 129);
+      animation: fade 0.3s ease-in-out;
+   }
+
+   #cont > #right > .detalhesAtivo > i,
+   #cont > #right > .filaAtivo > i {
+      display: initial;
+      opacity: 1;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+   }
+
+   #cont > #right > .filaAtivo {
+      height: 400px;
+      top: 25%;
+   }
+
+   @keyframes fade {
+      from {
+         transform: translateX(1000px);
+      }
+      to {
+         transform: translateX(0);
+      }
    }
 
    .iconeDetalhes {
       position: absolute;
       right: 0;
-      top: 30%;
-      font-size: 4em;
+      top: 43%;
+      font-size: 3em;
       transition: 0.2s ease-in-out;
       background: linear-gradient(160deg, rgba(70, 87, 116, 1) 0%, rgba(42, 55, 80, 1) 100%);
       line-height: 20px;
@@ -127,11 +167,11 @@
       display: initial !important;
    }
 
-   .iconePlaylists {
+   .iconeFila {
       position: absolute;
       right: 0;
-      top: 45%;
-      font-size: 4em;
+      top: 55%;
+      font-size: 3em;
       transition: 0.2s ease-in-out;
       background: linear-gradient(160deg, rgba(70, 87, 116, 1) 0%, rgba(42, 55, 80, 1) 100%);
       line-height: 20px;
@@ -141,10 +181,10 @@
       border-top-left-radius: 10px;
       z-index: 2;
       display: initial !important;
-
    }
 
-   .iconePlaylists:hover, .iconeDetalhes {
+   .iconeFila:hover,
+   .iconeDetalhes {
       cursor: pointer;
    }
 

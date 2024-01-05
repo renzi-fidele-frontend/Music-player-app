@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";
+import {IoMdCloseCircle} from "react-icons/io"
 
-const FilaContainer = ({ fila }) => {
+const FilaContainer = ({ fila, propRef }) => {
    const { estado, dispatch } = useContext(musicContext);
-
 
    // Convertendo millisegundos para minutos
    function converter(millis) {
@@ -15,7 +15,7 @@ const FilaContainer = ({ fila }) => {
    }
 
    return (
-      <div id={styles.cont}>
+      <div ref={propRef} id={styles.cont}>
          <h4>A seguir </h4>
          <div>
             {fila?.map((v, key) => {
@@ -50,6 +50,16 @@ const FilaContainer = ({ fila }) => {
                );
             })}
          </div>
+
+         {/*Icone de fechar escondido */}
+         <i
+            id={styles.botaoFechar}
+            onClick={() => {
+               propRef.current.className = "";
+            }}
+         >
+            <IoMdCloseCircle />
+         </i>
       </div>
    );
 };

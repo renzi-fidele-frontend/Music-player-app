@@ -241,7 +241,8 @@ const Leitor = () => {
 
    const navegar = useNavigate();
 
-   const rightCt = useRef(null);
+   const filaCtRef = useRef(null);
+   const albumCtRef = useRef(null);
 
    return estado.musicaAtual.length > 0 ? (
       <div id={styles.cont}>
@@ -273,27 +274,25 @@ const Leitor = () => {
 
             <i
                className={styles.iconeDetalhes}
-               
                onClick={() => {
-                  rightCt.current.classList.add(styles.ativo);
+                  albumCtRef.current.classList.add(styles.detalhesAtivo);
                }}
             >
                <TbInfoSquareRounded color="var(--cor-texto2)" />
             </i>
 
             <i
-               className={styles.iconePlaylists}
-               
+               className={styles.iconeFila}
                onClick={() => {
-                  rightCt.current.classList.add(styles.ativo);
+                  filaCtRef.current.classList.add(styles.filaAtivo);
                }}
             >
                <RiPlayList2Fill />
             </i>
          </div>
-         <div ref={rightCt} id={styles.right}>
-            <AlbumContainer track={estado?.musicaAtual[0]?.track} />
-            <FilaContainer fila={estado.aSeguir} />
+         <div id={styles.right}>
+            <AlbumContainer propRef={albumCtRef} track={estado?.musicaAtual[0]?.track} />
+            <FilaContainer propRef={filaCtRef} fila={estado.aSeguir} />
          </div>
       </div>
    ) : (

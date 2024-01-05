@@ -74,3 +74,14 @@
       height: 35vh;
    }
 }
+
+@media screen and (max-width: 1000px) {
+   #botaoFechar {
+      display: initial;
+      font-size: 25px;
+   }
+
+   #botaoFechar:hover {
+      cursor: pointer;
+   }
+}
