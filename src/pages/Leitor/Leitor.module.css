@@ -166,5 +166,26 @@
 }
 
 @media screen and (max-width: 650px) {
-   
+   .iconeDetalhes {
+      top: 23%;
+   }
+
+   .iconeFila {
+      top: 35%;
+   }
+
+   #cont {
+      padding-right: 0 !important;
+      padding-inline: 0 !important;
+   }
+}
+
+@media screen and (max-width: 450px) {
+   .iconeDetalhes {
+      top: 38%;
+   }
+
+   .iconeFila {
+      top: 50%;
+   }
 }

@@ -56,3 +56,9 @@
       font-size: 45px;
    }
 }
+
+@media screen and (max-width: 450px) {
+     #cont {
+      gap: 25px;
+     }
+}

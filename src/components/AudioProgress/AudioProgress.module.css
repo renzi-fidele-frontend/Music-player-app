@@ -74,3 +74,9 @@
       width: 89%;
    }
 }
+
+@media screen and (max-width: 450px) {
+   #ct {
+      width: 250px;
+   }
+}

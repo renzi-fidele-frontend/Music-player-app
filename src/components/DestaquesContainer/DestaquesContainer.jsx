@@ -112,6 +112,7 @@ const DestaquesContainer = () => {
                grabCursor={true}
                slidesPerView={"auto"}
                spaceBetween={"20px"}
+            
                navigation={true}
                modules={[Navigation]}
                className="swiperDestaques"
@@ -134,7 +135,7 @@ const DestaquesContainer = () => {
                      conteudo={conteudoPlaylistsDestacadas}
                   />
                </SwiperSlide>
-               <SwiperSlide>
+               <SwiperSlide className="lastSlide">
                   <DestaqueCard
                      acao={() => {
                         navegar("/destaque");
