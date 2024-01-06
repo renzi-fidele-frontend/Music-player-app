@@ -26,6 +26,12 @@
    color: var(--cor-tema);
 }
 
+@media screen and (max-width: 882px) {
+   #botoes-slider {
+      margin-right: 1.5em;
+   }
+}
+
 @media screen and (max-width: 790px) {
    #botoes-slider > svg {
       font-size: 48px;
@@ -35,5 +41,9 @@
 @media screen and (max-width: 550px) {
    #botoes-slider > svg {
       font-size: 43px;
+   }
+
+   #botoes-slider {
+      margin-right: .5em;
    }
 }

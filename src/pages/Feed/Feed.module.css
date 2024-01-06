@@ -243,12 +243,6 @@
    }
 }
 
-@media screen and (max-width: 880px) {
-   #fixo {
-      width: 90%;
-   }
-}
-
 @media screen and (max-width: 1100px) {
    .categCard > figure {
       max-height: 150px;
@@ -261,6 +255,7 @@
 @media screen and (max-width: 978px) {
    #search {
       margin-bottom: 1.5em;
+      margin-right: 1.5em;
    }
 
    #categsCt {
@@ -280,6 +275,7 @@
 @media screen and (max-width: 882px) {
    #ct {
       grid-template-columns: 100%;
+      padding-right: 0 !important;
    }
 
    #ct > #right {
@@ -342,6 +338,12 @@
       position: absolute;
       right: 15px;
       top: 10px;
+   }
+}
+
+@media screen and (max-width: 880px) {
+   #fixo {
+      width: 90%;
    }
 }
 
