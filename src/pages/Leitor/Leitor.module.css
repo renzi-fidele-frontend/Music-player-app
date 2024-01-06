@@ -178,6 +178,11 @@
       padding-right: 0 !important;
       padding-inline: 0 !important;
    }
+
+   #cont > #right > .detalhesAtivo,
+   #cont > #right > .filaAtivo {
+      width: 350px;
+   }
 }
 
 @media screen and (max-width: 450px) {
@@ -188,4 +193,20 @@
    .iconeFila {
       top: 50%;
    }
+}
+
+@media screen and (max-width: 426px) {
+   #cont > #right > .detalhesAtivo,
+   #cont > #right > .filaAtivo {
+      width: 310px;
+   }
+  
+}
+
+@media screen and (max-width: 360px) {
+   #cont > #right > .detalhesAtivo,
+   #cont > #right > .filaAtivo {
+      width: 280px;
+   }
+  
 }
