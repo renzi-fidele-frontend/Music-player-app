@@ -1,4 +1,4 @@
-#destaques {
+#ct {
    margin-right: 3em;
    padding: 2em 1em;
    margin-top: 2em;
@@ -12,27 +12,41 @@
 }
 
 @media screen and (max-width: 1700px) {
-   #destaques {
+   #ct {
       margin-top: 1.4em;
    }
 }
 
 @media screen and (max-width: 1200px) {
-   #destaques {
+   #ct {
       margin-right: 1em;
       display: flex;
    }
 }
 
 @media screen and (max-width: 1140px) {
-   #destaques {
+   #ct {
       margin-top: 1em;
       padding: 1em 1em;
    }
 }
 
 @media screen and (max-width: 750px) {
-   #destaques {
+   #ct {
       gap: 0.5em;
+   }
+}
+
+#ctMobile {
+   display: none;
+}
+
+@media screen and (max-width: 650px) {
+   #ct {
+      display: none;
+   }
+
+   #ctMobile {
+      display: initial;
    }
 }

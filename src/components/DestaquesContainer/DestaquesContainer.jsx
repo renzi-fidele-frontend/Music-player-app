@@ -3,6 +3,15 @@ import styles from "./DestaquesContainer.module.css";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
 import { musicContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "./swiperDestaques.css";
+
+// SwiperJs
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const DestaquesContainer = () => {
    const { estado } = useContext(musicContext);
@@ -73,29 +82,70 @@ const DestaquesContainer = () => {
          : [];
 
    return (
-      <div id={styles.destaques}>
-         <DestaqueCard
-            titulo={"Artistas Semelhantes"}
-            conteudo={conteudoSemelhantes}
-            acao={() => {
-               navegar("#artistas-semelhantes");
-            }}
-         />
-         <DestaqueCard
-            acao={() => {
-               navegar("/feed");
-            }}
-            titulo={"Feito para si"}
-            conteudo={conteudoPlaylistsDestacadas}
-         />
-         <DestaqueCard
-            acao={() => {
-               navegar("/destaque");
-            }}
-            titulo={"Lançamentos"}
-            conteudo={conteudoLancamentos}
-         />
-      </div>
+      <>
+         <div id={styles.ct}>
+            <DestaqueCard
+               titulo={"Artistas Semelhantes"}
+               conteudo={conteudoSemelhantes}
+               acao={() => {
+                  navegar("#artistas-semelhantes");
+               }}
+            />
+            <DestaqueCard
+               acao={() => {
+                  navegar("/feed");
+               }}
+               titulo={"Feito para si"}
+               conteudo={conteudoPlaylistsDestacadas}
+            />
+            <DestaqueCard
+               acao={() => {
+                  navegar("/destaque");
+               }}
+               titulo={"Lançamentos"}
+               conteudo={conteudoLancamentos}
+            />
+         </div>
+
+         <div id={styles.ctMobile}>
+            <Swiper
+               grabCursor={true}
+               slidesPerView={"auto"}
+               spaceBetween={"20px"}
+               navigation={true}
+               modules={[Navigation]}
+               className="swiperDestaques"
+            >
+               <SwiperSlide>
+                  <DestaqueCard
+                     titulo={"Artistas Semelhantes"}
+                     conteudo={conteudoSemelhantes}
+                     acao={() => {
+                        navegar("#artistas-semelhantes");
+                     }}
+                  />
+               </SwiperSlide>
+               <SwiperSlide>
+                  <DestaqueCard
+                     acao={() => {
+                        navegar("/feed");
+                     }}
+                     titulo={"Feito para si"}
+                     conteudo={conteudoPlaylistsDestacadas}
+                  />
+               </SwiperSlide>
+               <SwiperSlide>
+                  <DestaqueCard
+                     acao={() => {
+                        navegar("/destaque");
+                     }}
+                     titulo={"Lançamentos"}
+                     conteudo={conteudoLancamentos}
+                  />
+               </SwiperSlide>
+            </Swiper>
+         </div>
+      </>
    );
 };
 

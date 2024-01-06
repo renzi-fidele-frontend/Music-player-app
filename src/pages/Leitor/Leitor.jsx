@@ -176,10 +176,6 @@ const Leitor = () => {
       }
    }, [estado.musicaAtual]);
 
-
-
-   
-
    const filaCtRef = useRef(null);
    const albumCtRef = useRef(null);
 
@@ -187,7 +183,7 @@ const Leitor = () => {
       <div id={styles.cont}>
          <div id={styles.left}>
             <AudioPlayer />
-            <DestaquesContainer/>
+            <DestaquesContainer />
 
             <i
                className={styles.iconeDetalhes}

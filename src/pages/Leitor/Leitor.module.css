@@ -30,8 +30,6 @@
    justify-content: space-between;
 }
 
-
-
 #antes {
    display: flex;
    align-items: center;
@@ -49,8 +47,6 @@
    margin-top: 2em;
 }
 
-
-
 @media screen and (max-width: 1500px) {
    #cont {
       padding-left: 1em !important;
@@ -61,10 +57,7 @@
    #cont {
       padding: 1em;
    }
-
-  
 }
-
 
 .iconeDetalhes {
    display: none;
@@ -172,6 +165,6 @@
    }
 }
 
-@media screen and (max-width: 750px) {
- 
+@media screen and (max-width: 650px) {
+   
 }

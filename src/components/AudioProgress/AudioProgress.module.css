@@ -64,3 +64,13 @@
       width: 100%;
    }
 }
+
+@media screen and (max-width: 650px) {
+   #ct {
+      width: 300px;
+   }
+
+   #capa {
+      width: 89%;
+   }
+}
