@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styles from "./Leitor.module.css";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
 import { musicContext } from "../../App";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // Icones
 import { RiPlayList2Fill } from "react-icons/ri";

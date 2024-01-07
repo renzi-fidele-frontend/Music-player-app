@@ -6,10 +6,68 @@
 }
 
 .artistsCt {
-    margin-top: 3em;
+   margin-top: 3em;
 }
 
 .artistsCt img {
-    width: 280px !important;
-    height: 280px !important;
+   width: 280px !important;
+   height: 280px !important;
 }
+
+@media screen and (max-width: 1500px) {
+   #ct {
+      margin-inline: 15%;
+   }
+}
+
+@media screen and (max-width: 1200px) {
+   #ct {
+      margin-inline: 8%;
+   }
+
+   .artistsCt img {
+      width: 230px !important;
+      height: 230px !important;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   #ct {
+      margin-inline: 4%;
+   }
+
+   .artistsCt img {
+      width: 190px !important;
+
+      height: 190px !important;
+   }
+}
+
+@media screen and (max-width: 650px) {
+   #ct {
+      margin-inline: 0%;
+   }
+
+   .artistsCt img {
+      width: 140px !important;
+
+      height: 140px !important;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .artistsCt img {
+      width: 100px !important;
+
+      height: 100px !important;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .artistsCt img {
+      width: 80px !important;
+
+      height: 80px !important;
+   }
+}
+
