@@ -73,6 +73,13 @@
    border-radius: 10px;
 }
 
+@media screen and (max-width: 1950px) {
+   .sk.albumCard.swiper {
+      width: 235px;
+      height: 230px;
+   }
+}
+
 @media screen and (max-width: 1650px) {
    .sk.imgCircular {
       width: 120px;
@@ -89,15 +96,23 @@
    .sk.imgCircular {
       width: 100px;
       height: 100px;
-      margin-bottom: .7em;
-
+      margin-bottom: 0.7em;
    }
 
+   .sk.albumCard.swiper {
+      width: 225px;
+      height: 210px;
+   }
 }
 
 @media screen and (max-width: 1257px) {
    .sk.albumCard {
       height: 200px;
+   }
+
+   .sk.albumCard.swiper {
+      width: 185px;
+      height: 180px;
    }
 }
 
@@ -116,8 +131,12 @@
    .sk.imgCircular {
       width: 80px;
       height: 80px;
-      margin-bottom: .3em;
+      margin-bottom: 0.3em;
+   }
 
+   .sk.albumCard.swiper {
+      width: 165px;
+      height: 160px;
    }
 }
 
@@ -137,6 +156,5 @@
    .sk.imgCircular {
       width: 60px;
       height: 60px;
-
    }
 }

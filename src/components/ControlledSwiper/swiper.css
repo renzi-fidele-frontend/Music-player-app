@@ -1,3 +1,7 @@
+.swiperControlado {
+   mask-image: linear-gradient(to left,transparent 0,transparent 51px,#000 77px,#000 100%);
+}
+
 .swiper-slide {
    width: fit-content !important;
 }

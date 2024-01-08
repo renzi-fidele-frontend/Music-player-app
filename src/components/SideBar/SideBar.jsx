@@ -21,7 +21,6 @@ const SideBar = () => {
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
 
-
    const [nome, setNome] = useState("");
    const [avatar, setAvatar] = useState(avatar1);
 
@@ -34,6 +33,7 @@ const SideBar = () => {
       })
          .then((res) => res.json())
          .then((res) => {
+            console.log(res);
             if (res.error) {
                if (res.error.message === "The access token expired") {
                   console.log("secao expirou");
@@ -44,8 +44,9 @@ const SideBar = () => {
             setAvatar(res.images[0].url);
          })
          .catch((err) => {
-            console.log("Erro ao apanhar perfil");
-            localStorage.clear();
+            if (err.message === "The access token expired") {
+               localStorage.clear();
+            }
          });
    }
 
@@ -57,7 +58,7 @@ const SideBar = () => {
       }
    }, []);
 
-   const navegar = useNavigate()
+   const navegar = useNavigate();
 
    return (
       <>
@@ -117,9 +118,13 @@ const SideBar = () => {
 
          <header id={styles.ctMobile}>
             <div id={styles.left}>
-               <img onClick={()=> {
-                  navegar("/feed")
-               }} src={logo} alt="Logo do Musify App" />
+               <img
+                  onClick={() => {
+                     navegar("/feed");
+                  }}
+                  src={logo}
+                  alt="Logo do Musify App"
+               />
             </div>
             <div id={styles.right}>
                <GiHamburgerMenu

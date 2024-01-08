@@ -52,7 +52,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                swiperRef.current = swiperNovo;
             }}
             onSlideChange={(e) => setActiveIndex(e.activeIndex + 1)}
-            className="swiper"
+            className="swiperControlado"
             spaceBetween={20}
             autoplay={(true, { delay: 8000 })}
             slidesPerView={"auto"}
