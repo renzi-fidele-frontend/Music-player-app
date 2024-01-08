@@ -112,7 +112,6 @@ const DestaquesContainer = () => {
                grabCursor={true}
                slidesPerView={"auto"}
                spaceBetween={"20px"}
-            
                navigation={true}
                modules={[Navigation]}
                className="swiperDestaques"

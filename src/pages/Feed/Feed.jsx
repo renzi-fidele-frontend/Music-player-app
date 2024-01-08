@@ -181,7 +181,6 @@ const Feed = () => {
                   <ControlledSwiper
                      modo="playlist"
                      arr={!loadingCategoria && estado.playlistsCategoria}
-                     
                      tit={`Playlists da categoria: ${loc?.state?.name}`}
                   />
                   <div id={styles.fixo}>

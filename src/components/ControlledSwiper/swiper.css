@@ -1,5 +1,5 @@
 .swiperControlado {
-   mask-image: linear-gradient(to left,transparent 0,transparent 51px,#000 77px,#000 100%);
+   mask-image: linear-gradient(to left, transparent 0, transparent 21px, #000 77px, #000 100%);
 }
 
 .swiper-slide {
@@ -30,9 +30,19 @@
    color: var(--cor-tema);
 }
 
+@media screen and (max-width: 1100px) {
+   .swiperControlado {
+      mask-image: linear-gradient(to left, transparent 0, transparent 21px, #000 77px, #000 100%);
+   }
+}
+
 @media screen and (max-width: 882px) {
    #botoes-slider {
       margin-right: 1.5em;
+   }
+
+   .swiperControlado {
+      mask-image: initial;
    }
 }
 
@@ -48,6 +58,6 @@
    }
 
    #botoes-slider {
-      margin-right: .5em;
+      margin-right: 0.5em;
    }
 }
