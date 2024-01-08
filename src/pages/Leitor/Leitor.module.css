@@ -45,17 +45,26 @@
 
 #antes > h2 {
    margin-top: 2em;
+   text-align: center;
 }
 
 @media screen and (max-width: 1500px) {
    #cont {
       padding-left: 1em !important;
    }
+
+   #antes > img {
+      width: 600px;
+   }
 }
 
 @media screen and (max-width: 1200px) {
    #cont {
       padding: 1em;
+   }
+
+   #antes > img {
+      width: 500px;
    }
 }
 
@@ -183,6 +192,14 @@
    #cont > #right > .filaAtivo {
       width: 350px;
    }
+
+   #antes > img {
+      width: 400px;
+   }
+
+   #antes > h2 {
+      font-size: 1.2em;
+   }
 }
 
 @media screen and (max-width: 450px) {
@@ -193,6 +210,10 @@
    .iconeFila {
       top: 50%;
    }
+
+   #antes > img {
+      width: 300px;
+   }
 }
 
 @media screen and (max-width: 426px) {
@@ -200,7 +221,6 @@
    #cont > #right > .filaAtivo {
       width: 310px;
    }
-  
 }
 
 @media screen and (max-width: 360px) {
@@ -208,5 +228,4 @@
    #cont > #right > .filaAtivo {
       width: 280px;
    }
-  
 }

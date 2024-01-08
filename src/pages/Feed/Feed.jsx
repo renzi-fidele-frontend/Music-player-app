@@ -24,7 +24,7 @@ const Feed = () => {
 
    // Apanhando os top artistas
    async function getArtistasTop() {
-      const res = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
+      const res = await fetch(`https://api.spotify.com/v1/me/top/artists?limit=3`, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
