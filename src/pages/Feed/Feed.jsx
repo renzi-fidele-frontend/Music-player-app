@@ -259,10 +259,10 @@ const Feed = () => {
             >
                <IoMdCloseCircle />
             </i>
-            <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado.categorias.length})`}</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado?.categorias?.length})`}</h2>
             <div id={styles.categsCt}>
-               {estado.categorias.length > 0 ? (
-                  estado.categorias.map((v, k) => {
+               {estado?.categorias?.length > 0 ? (
+                  estado?.categorias?.map((v, k) => {
                      return (
                         <div
                            key={k}
