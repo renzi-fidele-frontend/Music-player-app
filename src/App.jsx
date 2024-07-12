@@ -87,7 +87,7 @@ function App() {
       musicasCurtidas: [], // Músicas favoritos da conta do spotify
       albumAtual: [], // Objecto Album adicionado a playlist
       top50: [], // Playlist contendo top 50 músicas mais escutadas
-      artistasTop: [], // Artistas favoritos do usuário
+      artistasTop: null, // Artistas favoritos do usuário
       categorias: [], // Generos disponiveis no spotify
       playlistsCategoria: [], // Playlists da categoria selecionada
       aleatorio: false, // Musicas aleatórias ativas ou não

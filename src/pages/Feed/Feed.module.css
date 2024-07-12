@@ -58,6 +58,18 @@
    transform: rotateZ(350deg);
 }
 
+#semArtista {
+   height: 230px;
+}
+
+#artistCt {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 1em;
+}
+
 #ct > #right {
    padding-left: 3em;
    text-align: center;
@@ -246,6 +258,10 @@
       margin-bottom: 1.5em;
       margin-right: 1.5em;
    }
+
+   #semArtista {
+      height: 190px;
+   }
 }
 
 @media screen and (max-width: 1100px) {
@@ -359,6 +375,10 @@
    #search > input {
       font-size: 20px;
    }
+
+   #semArtista {
+      height: 130px;
+   }
 }
 
 @media screen and (max-width: 547px) {
@@ -369,6 +389,10 @@
    #fixo > #right > p {
       font-size: 16px;
       margin-bottom: 5px;
+   }
+
+   #semArtista {
+      height: 120px;
    }
 }
 
@@ -395,6 +419,10 @@
 
    #fixo > #left > img {
       width: 50%;
+   }
+
+   #semArtista {
+      height: 100px;
    }
 }
 

@@ -9,6 +9,7 @@ import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
+import semArtista from "../../assets/noArtist.png";
 
 // Icones
 import { GoSidebarExpand } from "react-icons/go";
@@ -32,7 +33,7 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            dispatch({ type: "setArtistasTop", payload: res.items });
+            if (res.items.length > 0) dispatch({ type: "setArtistasTop", payload: res.items });
          })
          .catch((err) => console.log(err));
    }
@@ -84,10 +85,9 @@ const Feed = () => {
    }
 
    useEffect(() => {
-      if (estado.artistasTop.length === 0) getArtistasTop();
+      if (!estado.artistasTop) getArtistasTop();
       if (estado.playlistsDestacadas.length === 0) getPlaylistsDestacadas();
       if (estado.categorias.length === 0) getCategorias();
-      console.log(loc.pathname);
    }, []);
 
    const categsCtRef = useRef(null);
@@ -141,7 +141,7 @@ const Feed = () => {
                   <section>
                      <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
                      <div id={styles.baixo}>
-                        {estado?.artistasTop?.length > 0 ? (
+                        {estado?.artistasTop?.length > 0 &&
                            estado?.artistasTop?.map((v, k) => {
                               return (
                                  <ArtistCard
@@ -158,12 +158,18 @@ const Feed = () => {
                                     nome={v.name}
                                  />
                               );
-                           })
-                        ) : (
+                           })}
+                        {estado?.artistasTop?.length === 0 && (
                            <div id={styles.esqueleto}>
                               {[1, 2, 3, 4].map((v, k) => {
                                  return <ArtistCard key={k} />;
                               })}
+                           </div>
+                        )}
+                        {!estado?.artistasTop && (
+                           <div id={styles.artistCt}>
+                              <img id={styles.semArtista} src={semArtista} />
+                              Você ainda não possúi artista favorito!
                            </div>
                         )}
                      </div>
