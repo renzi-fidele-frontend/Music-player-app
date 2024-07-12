@@ -88,7 +88,7 @@
    #cont > #right > div {
       position: absolute;
       right: 0;
-      z-index: 2;
+      z-index: 7;
       opacity: 0;
       transition: all 0.3s ease-in-out;
       display: none;
@@ -213,6 +213,10 @@
 
    #antes > img {
       width: 300px;
+   }
+
+   #cont > #left {
+      padding-bottom: 3em;
    }
 }
 

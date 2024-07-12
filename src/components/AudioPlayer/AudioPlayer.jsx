@@ -8,6 +8,7 @@ import { reduzir } from "../../hooks/useReduzir";
 
 const AudioPlayer = () => {
    const { estado, dispatch } = useContext(musicContext);
+   const sliderRef = useRef(null);
 
    // Link da música atual sendo tocada
    const linkAudio = () => {
@@ -72,9 +73,9 @@ const AudioPlayer = () => {
          }
       } else {
          // Gerando posição aleatória nas músicas selecionadas
-         let randomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+         let randomIndex = Math.floor(Math.random() * estado.aSeguir.length);
          if (estado.targetAtual === randomIndex) {
-            let otherRandomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+            let otherRandomIndex = Math.floor(Math.random() * estado.aSeguir.length);
             dispatch({ type: "setTargetAtual", payload: otherRandomIndex });
             dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[otherRandomIndex]] });
          } else {
@@ -82,7 +83,6 @@ const AudioPlayer = () => {
             dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
          }
          console.log(randomIndex);
-         
       }
 
       dispatch({ type: "setisPlaying", payload: false });
@@ -133,7 +133,7 @@ const AudioPlayer = () => {
    return (
       <div id={styles.cont}>
          <div id={styles.left}>
-            <AudioProgress foto={foto()} size={300} isPlaying={true} cor={"var(--cor-tema)"} percentagem={percentagem} />
+            <AudioProgress foto={foto()} size={300} isPlaying={estado?.isPlaying} cor={"var(--cor-tema)"} percentagem={percentagem} />
             <Notificacao />
          </div>
          <div id={styles.right}>
@@ -160,16 +160,22 @@ const AudioPlayer = () => {
 
             <div id={styles.detalhes}>
                <p>{converterSecs(tempoAtual)}</p>
-               <lottie-player
-                  class="lottie"
-                  src="https://lottie.host/19cf84dd-29ff-45ff-848d-6348925d9877/ISHIZTFG2V.json"
-                  background="transparent"
-                  speed="1"
-                  loop
-                  autoplay
-                  direction="1"
-                  mode="bounce"
-               ></lottie-player>
+
+               <div>
+                  <input
+                     max={30}
+                     min={0}
+                     value={tempoAtual}
+                     onChange={(e) => {
+                        setTempoAtual(e.target.value);
+                        estado.audioRef.currentTime = e.target.value;
+                     }}
+                     ref={sliderRef}
+                     type="range"
+                     id={styles.slider}
+                  />
+               </div>
+
                <p>{duracao > 0 ? converterSecs(duracao) : converterSecs(0)}</p>
             </div>
             <AudioControles />

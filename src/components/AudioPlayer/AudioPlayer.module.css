@@ -43,10 +43,18 @@
    flex-flow: row nowrap;
    align-items: center;
    justify-content: center;
+   padding-top: 2.5em;
+   padding-bottom: 3em;
+   gap: 10px;
 }
 
 #detalhes > p {
    font-size: 17px;
+}
+
+#slider {
+   width: 600px;
+   cursor: pointer;
 }
 
 @media screen and (max-width: 1700px) {
@@ -64,6 +72,10 @@
       font-size: 1.1em;
       margin-top: 1.7em;
    }
+
+   #slider {
+      width: 450px;
+   }
 }
 
 @media screen and (max-width: 1500px) {
@@ -74,6 +86,10 @@
    #cont {
       grid-template-columns: 270px auto;
    }
+
+   #slider {
+      width: 400px;
+   }
 }
 
 @media screen and (max-width: 1300px) {
@@ -83,6 +99,15 @@
 
    #cont {
       grid-template-columns: 230px auto;
+   }
+
+   #slider {
+      width: 300px;
+   }
+
+   #detalhes {
+      padding-top: 2em;
+      padding-bottom: 2em;
    }
 }
 
@@ -112,5 +137,16 @@
       flex-direction: column;
       gap: 1em;
       margin-bottom: 2.5em;
+   }
+
+   #detalhes {
+      padding-top: 2em;
+      padding-bottom: 1em;
+   }
+}
+
+@media screen and (max-width: 450px) {
+   #slider {
+      width: 200px;
    }
 }

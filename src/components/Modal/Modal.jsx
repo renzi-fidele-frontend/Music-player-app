@@ -4,7 +4,6 @@ import styles from "./Modal.module.css";
 import ReactModal from "react-modal";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
-import ArtistCard from "../ArtistCard/ArtistCard";
 import Swiper3d from "../Swiper3d/Swiper3d";
 
 ReactModal.setAppElement("#root");

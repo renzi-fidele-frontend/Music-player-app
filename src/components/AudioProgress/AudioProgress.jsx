@@ -30,7 +30,7 @@ const AudioProgress = ({ isPlaying, foto, percentagem, size, cor }) => {
    return (
       <div ref={progressRef} id={styles.ct}>
          <div>
-            <div id={styles.imagens}>
+            <div className={isPlaying && styles.tocando} id={styles.imagens}>
                <img src={disco} alt="" />
                <img id={styles.capa} src={foto} alt="" />
             </div>
