@@ -34,9 +34,9 @@ const AudioControles = () => {
          }
       } else {
          // Gerando posição aleatória nas músicas selecionadas
-         let randomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+         let randomIndex = Math.floor(Math.random() * estado.aSeguir.length);
          if (estado.targetAtual === randomIndex) {
-            let otherRandomIndex = Math.floor(Math.random() * (estado.aSeguir.length));
+            let otherRandomIndex = Math.floor(Math.random() * estado.aSeguir.length);
             dispatch({ type: "setTargetAtual", payload: otherRandomIndex });
             dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[otherRandomIndex]] });
          } else {
@@ -44,7 +44,6 @@ const AudioControles = () => {
             dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
          }
          console.log(randomIndex);
-         
       }
 
       dispatch({ type: "setisPlaying", payload: false });
