@@ -1,5 +1,5 @@
 const clientId = "5f4f8177ee944622bed39c2fdb3e87c0";
-const redirectUri = ["https://musify-pro.vercel.app/"];
+const redirectUri = [import.meta.env.VITE_REDIRECT_URI];
 const authEndPoint = "https://accounts.spotify.com/authorize?";
 const scopes = ["user-library-read", "playlist-read-private", "user-top-read"];
 
