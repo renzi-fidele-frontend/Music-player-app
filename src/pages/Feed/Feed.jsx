@@ -33,7 +33,8 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            if (res.items.length > 0) dispatch({ type: "setArtistasTop", payload: res.items });
+            console.log(res);
+            dispatch({ type: "setArtistasTop", payload: res.items });
          })
          .catch((err) => console.log(err));
    }
@@ -159,14 +160,14 @@ const Feed = () => {
                                  />
                               );
                            })}
-                        {estado?.artistasTop?.length === 0 && (
+                        {!estado?.artistasTop && (
                            <div id={styles.esqueleto}>
                               {[1, 2, 3, 4].map((v, k) => {
                                  return <ArtistCard key={k} />;
                               })}
                            </div>
                         )}
-                        {!estado?.artistasTop && (
+                        {estado?.artistasTop?.length === 0 && (
                            <div id={styles.artistCt}>
                               <img id={styles.semArtista} src={semArtista} />
                               Você ainda não possúi artista favorito!
