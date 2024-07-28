@@ -21,10 +21,12 @@
    justify-content: center;
    position: relative;
    width: 100%;
+   animation: girar 30s infinite linear;
+   animation-play-state: paused;
 }
 
 .tocando {
-   animation: girar 30s infinite linear;
+   animation-play-state: running !important;
 }
 
 #capa {
