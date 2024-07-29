@@ -121,16 +121,16 @@ function App() {
                </div>
                <div id="right">
                   <Routes>
-                     <Route exact path="/" element={token !== null ? <Leitor /> : <Login />} />
-                     <Route path="/destaque" element={token !== null ? <Destaque /> : <Login />} />
-                     <Route path="/favoritos" element={token !== null ? <Favoritos /> : <Login />} />
-                     <Route path="/biblioteca" element={token !== null ? <Biblioteca /> : <Login />} />
-                     <Route path="/feed" element={token !== null ? <Feed /> : <Login />}>
+                     <Route exact path="/" element={token ? <Leitor /> : <Login />} />
+                     <Route path="/destaque" element={token ? <Destaque /> : <Login />} />
+                     <Route path="/favoritos" element={token ? <Favoritos /> : <Login />} />
+                     <Route path="/biblioteca" element={token ? <Biblioteca /> : <Login />} />
+                     <Route path="/feed" element={token ? <Feed /> : <Login />}>
                         <Route path="/feed/categoria" />
                         <Route path="/feed/pesquisa" />
                      </Route>
-                     <Route path="/leitor" element={token !== null ? <Leitor /> : <Login />} />
-                     <Route path="/entrar" element={token !== null ? <Navigate to={"/leitor"} /> : <Login />} />
+                     <Route path="/leitor" element={token ? <Leitor /> : <Login />} />
+                     <Route path="/entrar" element={token ? <Navigate to={"/leitor"} /> : <Login />} />
                   </Routes>
                </div>
             </musicContext.Provider>
