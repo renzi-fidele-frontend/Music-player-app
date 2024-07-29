@@ -53,6 +53,8 @@ const AudioPlayer = () => {
       if (estado.audioRef.src !== linkAudio()) {
          estado.audioRef.src = linkAudio();
       }
+      // Pausando a música
+      dispatch({ type: "setisPlaying", payload: false });
    }, [estado.musicaAtual]);
 
    // Convertendo segundos para minutos
@@ -110,7 +112,7 @@ const AudioPlayer = () => {
    // Percentagem atual da música sendo tocada
    const percentagem = duracao ? (tempoAtual / duracao) * 100 : 0;
 
-   // Controlador de play e pouse
+   // Controlador de play e pause
    useEffect(() => {
       if (estado.isPlaying === true) {
          startTimer();
