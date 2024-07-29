@@ -61,6 +61,16 @@ const AlbumContainer = ({ track, propRef }) => {
             } música(s)`}</p>
 
             <span>{`Lançado em: ${estado.albumAtual[0]?.release_date}`}</span>
+
+            {/*Icone de fechar escondido */}
+            <i
+               id={styles.botaoFechar}
+               onClick={() => {
+                  propRef.current.className = "";
+               }}
+            >
+               <IoMdCloseCircle />
+            </i>
          </div>
       );
    } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
@@ -85,6 +95,16 @@ const AlbumContainer = ({ track, propRef }) => {
             )}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
 
             <span>{`Lançado em: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
+
+            {/*Icone de fechar escondido */}
+            <i
+               id={styles.botaoFechar}
+               onClick={() => {
+                  propRef.current.className = "";
+               }}
+            >
+               <IoMdCloseCircle />
+            </i>
          </div>
       );
    }
