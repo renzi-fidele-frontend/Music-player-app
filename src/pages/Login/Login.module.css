@@ -32,3 +32,31 @@
    color: rgb(151, 149, 149);
    font-size: 14px;
 }
+
+#info {
+   display: flex;
+   padding-top: 3rem;
+   flex-direction: column;
+   gap: 1rem;
+   align-items: center;
+}
+
+#info > div {
+   display: inherit;
+   align-items: center;
+   gap: 1rem;
+}
+
+#info h3 {
+   text-decoration: underline 1px white;
+}
+
+#info > div h6 {
+   font-size: 18px;
+}
+
+#info > div p {
+   background-color: black;
+   border-radius: 5px;
+   padding: 5px;
+}

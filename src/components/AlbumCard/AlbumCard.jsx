@@ -6,6 +6,9 @@ import { reduzir } from "../../hooks/useReduzir";
 
 // varientes são: normal, swiper
 
+// TODO: Adicionar funcionalidade de seguir uma playlist
+// TODO: Adicionar funcionalidade de remover uma playlist dos favoritos
+
 const AlbumCard = ({ foto, nome, subtit, acao, variante = "normal" }) => {
    return (
       <div title={nome} className={`${styles.box} ${variante === "swiper" && styles.boxSwiper}`} onClick={acao}>
