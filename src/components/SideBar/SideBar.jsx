@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./SideBar.module.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 // React Icons
@@ -13,11 +13,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 // Imagens
 import avatar1 from "../../assets/avatar1.gif";
+import { useTranslation } from "react-i18next";
 
 // token
 const token = localStorage.getItem("token");
 
 const SideBar = () => {
+   const { t } = useTranslation();
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
 
@@ -73,31 +75,31 @@ const SideBar = () => {
                   <i>
                      <RiLayout2Fill />
                   </i>
-                  <p>Feed</p>
+                  <p>{t("nav.0")}</p>
                </NavLink>
                <NavLink style={({ isActive }) => (isActive ? ativo : undefined)} to={"/destaque"}>
                   <i>
                      <FaGripfire />
                   </i>
-                  <p>Destaque</p>
+                  <p>{t("nav.1")}</p>
                </NavLink>
                <NavLink style={({ isActive }) => (isActive ? ativo : undefined)} to={"/leitor"}>
                   <i>
                      <TbPlayerPlayFilled />
                   </i>
-                  <p>Leitor</p>
+                  <p>{t("nav.2")}</p>
                </NavLink>
                <NavLink style={({ isActive }) => (isActive ? ativo : undefined)} to={"/favoritos"}>
                   <i>
                      <AiFillHeart />
                   </i>
-                  <p>Favoritos</p>
+                  <p>{t("nav.3")}</p>
                </NavLink>
                <NavLink style={({ isActive }) => (isActive ? ativo : undefined)} to={"/biblioteca"}>
                   <i>
                      <IoLibrarySharp />
                   </i>
-                  <p>Biblioteca</p>
+                  <p>{t("nav.4")}</p>
                </NavLink>
             </nav>
             <div
@@ -110,7 +112,7 @@ const SideBar = () => {
                {token && (
                   <>
                      <FaSignOutAlt />
-                     <p>Deslogar</p>
+                     <p>{t("nav.5")}</p>
                   </>
                )}
             </div>
