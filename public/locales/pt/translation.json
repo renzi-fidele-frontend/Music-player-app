@@ -4,8 +4,11 @@
          "btn": "Entrar",
          "h3": "Memorize estes dados para fazer login",
          "h6": "Senha:"
+      },
+      "biblioteca": {
+         "tit": "Playlists criadas"
       }
    },
-   "comps": {},
+   "comps": { "albumCard": { "one": "Música", "many": "Músicas" } },
    "nav": ["Feed", "Destaque", "Leitor", "Favoritos", "Biblioteca", "Deslogar"]
 }

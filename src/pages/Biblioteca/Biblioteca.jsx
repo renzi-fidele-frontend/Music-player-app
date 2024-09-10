@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { musicContext } from "../../App";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
 const Biblioteca = () => {
+   const { t } = useTranslation();
    // Apanhando os estados do contexto no reducer
    const { estado, dispatch } = useContext(musicContext);
 
