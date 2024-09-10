@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Favoritos.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 import { musicContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
+import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
 const Favoritos = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = useContext(musicContext);
 
    const [loading, setLoading] = useState(false);
@@ -50,7 +52,7 @@ const Favoritos = () => {
    return (
       <div id={styles.ct}>
          <section>
-            <h2 className={estiloBiblioteca.tit1}>{`Álbums salvos (${estado.albumsSalvos?.length})`}</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit")} (${estado.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
                {loading === false ? (
                   estado.albumsSalvos?.map((v, k) => {
@@ -82,7 +84,7 @@ const Favoritos = () => {
             </div>
          </section>
          <section>
-            <h2 className={estiloBiblioteca.tit1}>{`Músicas curtidas (${estado.musicasCurtidas?.length})`}</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit2")} (${estado.musicasCurtidas?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
                {loading === false ? (
                   estado.musicasCurtidas?.map((v, k) => {

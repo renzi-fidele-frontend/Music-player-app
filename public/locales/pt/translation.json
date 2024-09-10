@@ -8,7 +8,8 @@
       "biblioteca": {
          "tit": "Playlists criadas",
          "albumCard": { "one": "Música", "many": "Músicas" }
-      }
+      },
+      "favoritos": { "tit": "Álbums salvos", "tit2": "Músicas curtidas" }
    },
    "comps": {},
    "nav": ["Feed", "Destaque", "Leitor", "Favoritos", "Biblioteca", "Deslogar"]
