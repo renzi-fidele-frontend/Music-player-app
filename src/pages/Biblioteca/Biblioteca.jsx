@@ -45,7 +45,7 @@ const Biblioteca = () => {
 
    return (
       <div id={styles.ct}>
-         <h2 className={styles.tit1}>{`Playlists criadas (${estado.playlists?.length})`}</h2>
+         <h2 className={styles.tit1}>{`${t("pages.biblioteca.tit")} (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {loading === false ? (
                estado.playlists?.map((v, k) => {
@@ -53,7 +53,11 @@ const Biblioteca = () => {
                      <AlbumCard
                         foto={v.images[0]?.url}
                         nome={v.name}
-                        subtit={v.tracks.total === 1 ? `1 Música` : `${v.tracks.total} Músicas`}
+                        subtit={
+                           v.tracks.total === 1
+                              ? `1 ${t("pages.biblioteca.albumCard.one")}`
+                              : `${v.tracks.total} ${t("pages.biblioteca.albumCard.many")}`
+                        }
                         key={k}
                         acao={() => {
                            dispatch({ type: "setIdPlaylist", payload: v.id });

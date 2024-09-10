@@ -6,9 +6,10 @@
          "h6": "Senha:"
       },
       "biblioteca": {
-         "tit": "Playlists criadas"
+         "tit": "Playlists criadas",
+         "albumCard": { "one": "Música", "many": "Músicas" }
       }
    },
-   "comps": { "albumCard": { "one": "Música", "many": "Músicas" } },
+   "comps": {},
    "nav": ["Feed", "Destaque", "Leitor", "Favoritos", "Biblioteca", "Deslogar"]
 }
