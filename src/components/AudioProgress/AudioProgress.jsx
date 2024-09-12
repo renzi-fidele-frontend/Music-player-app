@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./AudioProgress.module.css";
 import disco from "../../assets/vinyl-blue.png";
 import ProgressBar from "progressbar.js";

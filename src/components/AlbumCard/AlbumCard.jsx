@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./AlbumCard.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import Esqueleto from "../Skeletons/Esqueleto";

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { musicContext } from "../../App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Notificacao = () => {
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado } = useContext(musicContext);
 
    const erroId = "erro-id";
    const sucessId = "sucesso-id";

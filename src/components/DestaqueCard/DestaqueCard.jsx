@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./DestaqueCard.module.css";
 import { IoIosArrowForward } from "react-icons/io";
 import Esqueleto from "../Skeletons/Esqueleto";

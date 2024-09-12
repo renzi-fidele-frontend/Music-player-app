@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";

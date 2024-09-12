@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ArtistCard.module.css";
 import Esqueleto from "../Skeletons/Esqueleto";
 
