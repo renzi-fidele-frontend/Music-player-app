@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./Leitor.module.css";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
-import { musicContext } from "../../App";
+
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import { useLocation } from "react-router-dom";
 
@@ -12,6 +12,7 @@ import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 import DestaquesContainer from "../../components/DestaquesContainer/DestaquesContainer";
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
 
 const token = localStorage.getItem("token");
 
@@ -19,7 +20,7 @@ const token = localStorage.getItem("token");
 
 const Leitor = () => {
    const { t } = useTranslation();
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
 
    const loc = useLocation();
 

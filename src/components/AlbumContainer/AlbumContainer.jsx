@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
-import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
 
 const AlbumContainer = ({ track, propRef }) => {
    const { t } = useTranslation();
-   const { estado } = useContext(musicContext);
+   const { estado } = MusicValue();
 
    // TODO: Adicionar funcionalidade de adicionar artista aos favoritos
    // TODO: Adicionar funcionalidade de remover artista dos favoritos

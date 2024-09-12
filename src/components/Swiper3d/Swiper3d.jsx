@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
 import styles from "./Swiper3d.module.css";
 import "./styles.css";
 import ArtistCard from "../ArtistCard/ArtistCard";
-import { musicContext } from "../../App";
+
 import { useNavigate } from "react-router-dom";
 
 // SwiperJs
@@ -13,9 +12,10 @@ import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { MusicValue } from "../../context/musicContext";
 
 const Swiper3d = ({ arr = [] }) => {
-   const { dispatch } = useContext(musicContext);
+   const { dispatch } = MusicValue();
    const navegar = useNavigate();
 
    return (

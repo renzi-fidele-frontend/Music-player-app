@@ -1,13 +1,13 @@
-import { useContext } from "react";
 import styles from "./FilaContainer.module.css";
-import { musicContext } from "../../App";
+
 import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
 
 const FilaContainer = ({ fila, propRef }) => {
    const { t } = useTranslation();
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
 
    // Convertendo millisegundos para minutos
    function converter(millis) {

@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styles from "./AudioControles.module.css";
 
 // React icons
 import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsRepeat, BsFillPlayFill } from "react-icons/bs";
-import { musicContext } from "../../App";
+
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
 
 const AudioControles = () => {
    const { t } = useTranslation();
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
 
    const [loopAtivo, setLoopAtivo] = useState(estado.audioRef.loop);
 

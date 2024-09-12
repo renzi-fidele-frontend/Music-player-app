@@ -1,13 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Destaque.module.css";
-import { musicContext } from "../../App";
+
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
+import { MusicValue } from "../../context/musicContext";
 
 const token = localStorage.getItem("token");
 
 const Destaque = () => {
    // Apanhando os estados do contexto no reducer
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
 
    async function getLancamentos() {
       const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=30`, {
@@ -58,7 +59,6 @@ const Destaque = () => {
          <section>
             <ControlledSwiper tit={"Top 50 músicas - Global"} arr={estado.top50} modo={"single"} />
          </section>
-
       </div>
    );
 };

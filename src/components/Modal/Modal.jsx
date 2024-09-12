@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Modal.module.css";
 import ReactModal from "react-modal";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
-import { musicContext } from "../../App";
+
 import Swiper3d from "../Swiper3d/Swiper3d";
+import { MusicValue } from "../../context/musicContext";
 
 ReactModal.setAppElement("#root");
 
 const Modal = () => {
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado } = MusicValue();
 
    const [isOpen, setIsOpen] = useState(false);
 

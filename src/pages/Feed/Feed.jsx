@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Feed.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
-import { musicContext } from "../../App";
+
 import { FaSearch } from "react-icons/fa";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
@@ -14,11 +14,12 @@ import semArtista from "../../assets/noArtist.png";
 // Icones
 import { GoSidebarExpand } from "react-icons/go";
 import { IoMdCloseCircle } from "react-icons/io";
+import { MusicValue } from "../../context/musicContext";
 
 const token = localStorage.getItem("token");
 
 const Feed = () => {
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const [loading, setLoading] = useState(false);
    const [pesquisaFeita, setPesquisaFeita] = useState(false);

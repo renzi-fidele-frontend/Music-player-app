@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./ControlledSwiper.module.css";
 import "./swiper.css";
 
@@ -16,10 +16,10 @@ import AlbumCard from "../AlbumCard/AlbumCard";
 
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
-import { musicContext } from "../../App";
+import { MusicValue } from "../../context/musicContext";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
-   const { dispatch } = useContext(musicContext);
+   const { dispatch } = MusicValue();
 
    const swiperRef = useRef();
 

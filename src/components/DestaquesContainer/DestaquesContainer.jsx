@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import styles from "./DestaquesContainer.module.css";
 import DestaqueCard from "../../components/DestaqueCard/DestaqueCard";
-import { musicContext } from "../../App";
+
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -13,10 +12,11 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
 
 const DestaquesContainer = () => {
    const { t } = useTranslation();
-   const { estado } = useContext(musicContext);
+   const { estado } = MusicValue();
 
    const navegar = useNavigate();
 

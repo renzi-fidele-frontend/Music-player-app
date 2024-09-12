@@ -1,15 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
-import { musicContext } from "../../App";
+
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
 import { reduzir } from "../../hooks/useReduzir";
 import { useTranslation } from "react-i18next";
+import { MusicValue } from "../../context/musicContext";
+
+// TODO: Corrigir erro quando a musica estiver tocando ao se navegar para leitor a musica para
 
 const AudioPlayer = () => {
    const { t } = useTranslation();
-   const { estado, dispatch } = useContext(musicContext);
+   const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
 
    // Link da música atual sendo tocada
