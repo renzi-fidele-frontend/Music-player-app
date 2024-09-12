@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styles from "./Leitor.module.css";
 import AlbumContainer from "../../components/AlbumContainer/AlbumContainer";
 import FilaContainer from "../../components/FilaContainer/FilaContainer";
@@ -11,10 +11,14 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 import DestaquesContainer from "../../components/DestaquesContainer/DestaquesContainer";
+import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
+// TODO: Resetar slider e o progress do Vinyl ao se saltar de música
+
 const Leitor = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = useContext(musicContext);
 
    const loc = useLocation();
@@ -211,7 +215,7 @@ const Leitor = () => {
    ) : (
       <div id={styles.antes}>
          <img src={foto} alt="Ilustracao" />
-         <h2> Você deve selecionar uma música</h2>
+         <h2>{t("pages.leitor.noMusic")}</h2>
       </div>
    );
 };

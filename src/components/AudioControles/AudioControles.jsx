@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./AudioControles.module.css";
 
 // React icons
 import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsRepeat, BsFillPlayFill } from "react-icons/bs";
 import { musicContext } from "../../App";
+import { useTranslation } from "react-i18next";
 
 const AudioControles = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = useContext(musicContext);
 
    const [loopAtivo, setLoopAtivo] = useState(estado.audioRef.loop);
@@ -70,22 +72,16 @@ const AudioControles = () => {
 
    return (
       <div id={styles.cont}>
-         <BsShuffle title="Aleatório" className={estado.aleatorio === true && styles.ativo} onClick={switchAleatorio} />
-         <BsFillSkipStartFill title="Voltar" onClick={voltar} />
+         <BsShuffle title={t("comps.controles.0")} className={estado.aleatorio === true && styles.ativo} onClick={switchAleatorio} />
+         <BsFillSkipStartFill title={t("comps.controles.1")} onClick={voltar} />
          {estado.isPlaying === true ? (
-            <BsFillPauseFill title="Pausar" onClick={playPause} className={styles.meio} />
+            <BsFillPauseFill title={t("comps.controles.2")} onClick={playPause} className={styles.meio} />
          ) : (
-            <BsFillPlayFill
-               title="Tocar"
-               onClick={() => {
-                  playPause();
-               }}
-               className={styles.meio}
-            />
+            <BsFillPlayFill title={t("comps.controles.3")} onClick={playPause} className={styles.meio} />
          )}
-         <BsFillSkipEndFill title="Saltar" onClick={saltar} />
+         <BsFillSkipEndFill title={t("comps.controles.4")} onClick={saltar} />
 
-         <BsRepeat title="Repetir" className={estado.audioRef.loop === true && styles.ativo} onClick={switchRepetir} />
+         <BsRepeat title={t("comps.controles.5")} className={estado.audioRef.loop === true && styles.ativo} onClick={switchRepetir} />
       </div>
    );
 };

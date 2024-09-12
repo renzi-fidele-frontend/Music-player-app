@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from "react";
 import styles from "./FilaContainer.module.css";
 import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";
-import {IoMdCloseCircle} from "react-icons/io"
+import { IoMdCloseCircle } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const FilaContainer = ({ fila, propRef }) => {
+   const { t } = useTranslation();
    const { estado, dispatch } = useContext(musicContext);
 
    // Convertendo millisegundos para minutos
@@ -16,7 +18,7 @@ const FilaContainer = ({ fila, propRef }) => {
 
    return (
       <div ref={propRef} id={styles.cont}>
-         <h4>A seguir </h4>
+         <h4>{t("comps.filaCt")}</h4>
          <div>
             {fila?.map((v, key) => {
                return (

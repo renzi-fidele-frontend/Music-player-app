@@ -5,8 +5,10 @@ import { musicContext } from "../../App";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
 import { reduzir } from "../../hooks/useReduzir";
+import { useTranslation } from "react-i18next";
 
 const AudioPlayer = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = useContext(musicContext);
    const sliderRef = useRef(null);
 
@@ -142,21 +144,21 @@ const AudioPlayer = () => {
             {estado.mode === "playlistMode" && estado.singleMode === false && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.track?.name, 45)}</h5>
-                  <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+                  <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`}</h4>
                </>
             )}
 
             {estado.mode === "albumMode" && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
-                  <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}`}</h4>
+                  <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`}</h4>
                </>
             )}
 
             {estado.mode === "playlistMode" && estado.singleMode === true && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
-                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e ")}`, 45)}</h4>
+                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`, 45)}</h4>
                </>
             )}
 

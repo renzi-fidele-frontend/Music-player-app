@@ -9,8 +9,26 @@
          "tit": "Playlists criadas",
          "albumCard": { "one": "Música", "many": "Músicas" }
       },
-      "favoritos": { "tit": "Álbums salvos", "tit2": "Músicas curtidas" }
+      "favoritos": { "tit": "Álbums salvos", "tit2": "Músicas curtidas" },
+      "leitor": {
+         "noMusic": "Você deve selecionar uma música",
+         "prefix": "e",
+         "followers": "Seguidores",
+         "musics": "Músicas",
+         "destaqueCard": ["Artistas Semelhantes", "Feito para si", "Lançamentos"]
+      }
    },
-   "comps": {},
+   "comps": {
+      "controles": ["Aleatório", "Voltar", "Pausar", "Tocar", "Saltar", "Repetir"],
+      "albumCt": {
+         "imgAlt": "Imagem do álbum",
+         "what": "é um álbum de",
+         "prefix": "e",
+         "has": "que possui",
+         "music": "música",
+         "release": "Lançado em"
+      },
+      "filaCt": "A seguir"
+   },
    "nav": ["Feed", "Destaque", "Leitor", "Favoritos", "Biblioteca", "Deslogar"]
 }

@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styles from "./AlbumContainer.module.css";
 import { musicContext } from "../../App";
 import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const AlbumContainer = ({ track, propRef }) => {
-   const { estado, dispatch } = useContext(musicContext);
+   const { t } = useTranslation();
+   const { estado } = useContext(musicContext);
 
    // TODO: Adicionar funcionalidade de adicionar artista aos favoritos
    // TODO: Adicionar funcionalidade de remover artista dos favoritos
@@ -14,9 +16,9 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
-               <img src={track?.album.images[0].url} alt="Imagem do albúm" />
+               <img src={track?.album.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
-                  <img src={track?.album.images[0].url} alt="Imagem do albúm" />
+                  <img src={track?.album.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                </div>
             </div>
 
@@ -26,11 +28,11 @@ const AlbumContainer = ({ track, propRef }) => {
                </div>
             </div>
 
-            <p>{`${track?.album.name} é um álbum de ${track?.album.artists?.map((v) => v.name).join(" e ")}, que possui ${
-               track?.album.total_tracks
-            } música(s)`}</p>
+            <p>{`${track?.album.name} ${t("comps.albumCt.what")} ${track?.album.artists
+               ?.map((v) => v.name)
+               .join(t("comps.albumCt.prefix"))}, ${t("comps.albumCt.has")} ${track?.album.total_tracks} ${t("comps.albumCt.music")}(s)`}</p>
 
-            <span>{`Lançado em: ${track?.album.release_date}`}</span>
+            <span>{`${t("comps.albumCt.release")}: ${track?.album.release_date}`}</span>
 
             {/*Icone de fechar escondido */}
             <i
@@ -47,9 +49,9 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
-               <img src={estado.albumAtual[0]?.images[0].url} alt="Imagem do album" />
+               <img src={estado.albumAtual[0]?.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
-                  <img src={estado.albumAtual[0]?.images[0].url} alt="Imagem do albúm" />
+                  <img src={estado.albumAtual[0]?.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                </div>
             </div>
 
@@ -59,11 +61,13 @@ const AlbumContainer = ({ track, propRef }) => {
                </div>
             </div>
 
-            <p>{`${estado.albumAtual[0]?.name} é um álbum de ${estado.albumAtual[0]?.artists?.map((v) => v.name).join(" e ")}, que possui ${
-               estado.albumAtual[0]?.total_tracks
-            } música(s)`}</p>
+            <p>{`${estado.albumAtual[0]?.name} ${t("comps.albumCt.what")} ${estado.albumAtual[0]?.artists
+               ?.map((v) => v.name)
+               .join(t("comps.albumCt.prefix"))}, ${t("comps.albumCt.has")} ${estado.albumAtual[0]?.total_tracks} ${t(
+               "comps.albumCt.music"
+            )}(s)`}</p>
 
-            <span>{`Lançado em: ${estado.albumAtual[0]?.release_date}`}</span>
+            <span>{`${t("comps.albumCt.release")}: ${estado.albumAtual[0]?.release_date}`}</span>
 
             {/*Icone de fechar escondido */}
             <i
@@ -80,9 +84,9 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
-               <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt="Imagem do albúm" />
+               <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
-                  <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt="Imagem do albúm" />
+                  <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                </div>
             </div>
 
@@ -92,12 +96,12 @@ const AlbumContainer = ({ track, propRef }) => {
                </div>
             </div>
 
-            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} é um álbum de ${reduzir(
-               estado.musicaAtual[0]?.artists?.map((v) => v.name).join(" e "),
+            <p>{`${reduzir(estado.musicaAtual[0]?.album?.name, 20)} ${t("comps.albumCt.what")} ${reduzir(
+               estado.musicaAtual[0]?.artists?.map((v) => v.name).join(t("comps.albumCt.prefix")),
                20
-            )}, que possui ${estado.musicaAtual[0]?.album?.total_tracks} música(s)`}</p>
+            )}, ${t("comps.albumCt.has")} ${estado.musicaAtual[0]?.album?.total_tracks} ${t("comps.albumCt.music")}(s)`}</p>
 
-            <span>{`Lançado em: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
+            <span>{`${t("comps.albumCt.release")}: ${estado.musicaAtual[0]?.album?.release_date}`}</span>
 
             {/*Icone de fechar escondido */}
             <i
