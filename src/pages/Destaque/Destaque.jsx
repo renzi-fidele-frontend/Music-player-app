@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "./Destaque.module.css";
 
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const token = localStorage.getItem("token");
 

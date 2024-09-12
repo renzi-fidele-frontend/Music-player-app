@@ -16,7 +16,7 @@ import AlbumCard from "../AlbumCard/AlbumCard";
 
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
    const { dispatch } = MusicValue();

@@ -3,7 +3,7 @@ import styles from "./FilaContainer.module.css";
 import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const FilaContainer = ({ fila, propRef }) => {
    const { t } = useTranslation();

@@ -12,7 +12,7 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const DestaquesContainer = () => {
    const { t } = useTranslation();

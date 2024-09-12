@@ -6,7 +6,7 @@ import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
 import { reduzir } from "../../hooks/useReduzir";
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 // TODO: Corrigir erro quando a musica estiver tocando ao se navegar para leitor a musica para
 

@@ -5,7 +5,7 @@ import ReactModal from "react-modal";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 
 import Swiper3d from "../Swiper3d/Swiper3d";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 ReactModal.setAppElement("#root");
 

@@ -1,11 +1,11 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Favoritos.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 
 import { useNavigate } from "react-router-dom";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const token = localStorage.getItem("token");
 

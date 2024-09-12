@@ -5,7 +5,7 @@ import styles from "./AudioControles.module.css";
 import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsRepeat, BsFillPlayFill } from "react-icons/bs";
 
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const AudioControles = () => {
    const { t } = useTranslation();

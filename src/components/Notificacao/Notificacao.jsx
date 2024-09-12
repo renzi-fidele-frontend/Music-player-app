@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const Notificacao = () => {
    const { estado } = MusicValue();

@@ -12,7 +12,7 @@ import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 import DestaquesContainer from "../../components/DestaquesContainer/DestaquesContainer";
 import { useTranslation } from "react-i18next";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const token = localStorage.getItem("token");
 

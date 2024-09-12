@@ -14,7 +14,7 @@ import semArtista from "../../assets/noArtist.png";
 // Icones
 import { GoSidebarExpand } from "react-icons/go";
 import { IoMdCloseCircle } from "react-icons/io";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const token = localStorage.getItem("token");
 

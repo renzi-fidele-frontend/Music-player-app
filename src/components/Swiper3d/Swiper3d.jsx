@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { MusicValue } from "../../context/musicContext";
+import { MusicValue } from "../../context/MusicContext";
 
 const Swiper3d = ({ arr = [] }) => {
    const { dispatch } = MusicValue();
