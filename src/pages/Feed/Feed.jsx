@@ -15,10 +15,12 @@ import semArtista from "../../assets/noArtist.png";
 import { GoSidebarExpand } from "react-icons/go";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MusicValue } from "../../context/MusicContext";
+import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
 const Feed = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const [loading, setLoading] = useState(false);
@@ -132,7 +134,7 @@ const Feed = () => {
                   ref={searchRef}
                   type="text"
                   name="pesquisa"
-                  placeholder="Busque qualquer coisa"
+                  placeholder={t("pages.feed.placeholder")}
                />
                <FaSearch onClick={pesquisar} />
             </div>
@@ -141,7 +143,7 @@ const Feed = () => {
             {loc.pathname === "/feed" && (
                <>
                   <section>
-                     <h2 className={estiloBiblioteca.tit1}>Escute as melhores músicas de seus artistas favoritos</h2>
+                     <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.tit1")}</h2>
                      <div id={styles.baixo}>
                         {estado?.artistasTop?.length > 0 &&
                            estado?.artistasTop?.map((v, k) => {
@@ -171,14 +173,14 @@ const Feed = () => {
                         {estado?.artistasTop?.length === 0 && (
                            <div id={styles.artistCt}>
                               <img id={styles.semArtista} src={semArtista} />
-                              Você ainda não possúi artista favorito!
+                              {t("pages.feed.noArtist")}
                            </div>
                         )}
                      </div>
                   </section>
 
                   <section style={{ marginBottom: "0px" }}>
-                     <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={"Feito para si"} />
+                     <ControlledSwiper modo={"playlist"} arr={estado.playlistsDestacadas} tit={t("pages.feed.titRecomended")} />
                   </section>
                </>
             )}
@@ -189,16 +191,16 @@ const Feed = () => {
                   <ControlledSwiper
                      modo="playlist"
                      arr={!loadingCategoria && estado.playlistsCategoria}
-                     tit={`Playlists da categoria: ${loc?.state?.name}`}
+                     tit={`${t("pages.feed.titCategory")}: ${loc?.state?.name}`}
                   />
                   <div id={styles.fixo}>
                      <div id={styles.left}>
                         <img src={foto} alt="mulher" />
                      </div>
                      <div id={styles.right}>
-                        <h3>Encontre as melhores recomendações no mundo da música </h3>
+                        <h3>{t("pages.feed.bannerText")}</h3>
                         <p>
-                           - Feito com carinho por <Link>Renzi Fidele</Link>
+                           - {t("pages.feed.author")} <Link>Renzi Fidele</Link>
                         </p>
                      </div>
                   </div>
@@ -210,11 +212,11 @@ const Feed = () => {
                (pesquisaFeita ? (
                   <>
                      <div id={styles.searchCt}>
-                        <h2 className={estiloBiblioteca.tit1}>Resultados da pesquisa</h2>
+                        <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
                         <hr id={styles.barra} />
                         <section>
                            <ControlledSwiper
-                              tit={"Músicas"}
+                              tit={t("pages.feed.titMusics")}
                               modo="single"
                               arr={
                                  !loading &&
@@ -229,16 +231,24 @@ const Feed = () => {
                            />
                         </section>
                         <section>
-                           <ControlledSwiper tit={"Álbuns"} modo="album" arr={!loading && resultadosPesquisa[0]?.albums?.items} />
+                           <ControlledSwiper
+                              tit={t("pages.feed.titAlbum")}
+                              modo="album"
+                              arr={!loading && resultadosPesquisa[0]?.albums?.items}
+                           />
                         </section>
                         <section>
-                           <ControlledSwiper tit={"Playlists"} modo="playlist" arr={!loading && resultadosPesquisa[0]?.playlists?.items} />
+                           <ControlledSwiper
+                              tit={t("pages.feed.titPlaylist")}
+                              modo="playlist"
+                              arr={!loading && resultadosPesquisa[0]?.playlists?.items}
+                           />
                         </section>
                      </div>
                   </>
                ) : (
                   <>
-                     <h2 className={estiloBiblioteca.tit1}>Você não pesquisou por nada</h2>
+                     <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.noSearch")}</h2>
                      <img src={nadaPesquisado} id={styles.ndPesquisado} alt="" />
                   </>
                ))}
@@ -261,7 +271,7 @@ const Feed = () => {
             >
                <IoMdCloseCircle />
             </i>
-            <h2 className={estiloBiblioteca.tit1}>{`Categorias (${estado?.categorias?.length})`}</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`${t("pages.feed.categories")} (${estado?.categorias?.length})`}</h2>
             <div id={styles.categsCt}>
                {estado?.categorias?.length > 0 ? (
                   estado?.categorias?.map((v, k) => {

@@ -20,6 +20,21 @@
       "destaque": {
          "tit1": "Novos lançamentos",
          "tit2": "Top 50 músicas - Global"
+      },
+      "feed": {
+         "placeholder": "Busque qualquer coisa",
+         "tit1": "Escute as melhores músicas de seus artistas favoritos",
+         "titRecomended": "Feito para si",
+         "titCategory": "Playlists da categoria",
+         "noArtist": "Você ainda não possúi artista favorito!",
+         "bannerText": "Encontre as melhores recomendações no mundo da música",
+         "author": "Feito com carinho por",
+         "titSearch": "Resultados da pesquisa",
+         "titMusics": "Músicas",
+         "titAlbum": "Álbuns",
+         "titPlaylist": "Playlists",
+         "noSearch": "Você não pesquisou por nada",
+         "categories": "Categorias"
       }
    },
    "comps": {
