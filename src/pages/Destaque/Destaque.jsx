@@ -3,11 +3,12 @@ import styles from "./Destaque.module.css";
 
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import { MusicValue } from "../../context/MusicContext";
+import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
 const Destaque = () => {
-   // Apanhando os estados do contexto no reducer
+   const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
 
    async function getLancamentos() {
@@ -54,10 +55,10 @@ const Destaque = () => {
    return (
       <div id={styles.ct}>
          <section>
-            <ControlledSwiper tit={"Novos lançamentos"} modo={"album"} arr={estado.lancamentos} />
+            <ControlledSwiper tit={t("pages.destaque.tit1")} modo={"album"} arr={estado.lancamentos} />
          </section>
          <section>
-            <ControlledSwiper tit={"Top 50 músicas - Global"} arr={estado.top50} modo={"single"} />
+            <ControlledSwiper tit={t("pages.destaque.tit2")} arr={estado.top50} modo={"single"} />
          </section>
       </div>
    );

@@ -16,6 +16,10 @@
          "followers": "Seguidores",
          "musics": "Músicas",
          "destaqueCard": ["Artistas Semelhantes", "Feito para si", "Lançamentos"]
+      },
+      "destaque": {
+         "tit1": "Novos lançamentos",
+         "tit2": "Top 50 músicas - Global"
       }
    },
    "comps": {
