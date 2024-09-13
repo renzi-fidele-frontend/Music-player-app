@@ -6,10 +6,12 @@ import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 
 import Swiper3d from "../Swiper3d/Swiper3d";
 import { MusicValue } from "../../context/MusicContext";
+import { useTranslation } from "react-i18next";
 
 ReactModal.setAppElement("#root");
 
 const Modal = () => {
+   const { t } = useTranslation();
    const { estado } = MusicValue();
 
    const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +64,7 @@ const Modal = () => {
          onRequestClose={fechado}
          id={styles.ct}
       >
-         <h2 className={estiloBiblioteca.tit1}>Artistas semelhantes</h2>
+         <h2 className={estiloBiblioteca.tit1}>{t("pages.leitor.modal")}</h2>
          <div className={styles.artistsCt}>
             {estado.semelhantes.length > 0 ? (
                <Swiper3d arr={estado.semelhantes} />
