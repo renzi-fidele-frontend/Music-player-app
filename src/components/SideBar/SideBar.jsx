@@ -37,7 +37,6 @@ const SideBar = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res);
             if (res.error) {
                if (res.error.message === "The access token expired") {
                   console.log("secao expirou");

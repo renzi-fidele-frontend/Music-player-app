@@ -36,7 +36,6 @@ const Feed = () => {
       })
          .then((res) => res.json())
          .then((res) => {
-            console.log(res);
             dispatch({ type: "setArtistasTop", payload: res.items });
          })
          .catch((err) => console.log(err));

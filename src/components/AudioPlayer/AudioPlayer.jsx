@@ -89,7 +89,6 @@ const AudioPlayer = () => {
             dispatch({ type: "setTargetAtual", payload: randomIndex });
             dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
          }
-         console.log(randomIndex);
       }
 
       dispatch({ type: "setisPlaying", payload: false });
