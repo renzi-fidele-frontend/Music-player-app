@@ -17,8 +17,10 @@ import AlbumCard from "../AlbumCard/AlbumCard";
 import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { MusicValue } from "../../context/MusicContext";
+import { useTranslation } from "react-i18next";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
+   const { t } = useTranslation();
    const { dispatch } = MusicValue();
 
    const swiperRef = useRef();
@@ -117,7 +119,7 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                               variante="swiper"
                               foto={v?.images[0]?.url}
                               nome={v?.name}
-                              subtit={`${v?.tracks?.total} músicas`}
+                              subtit={`${v?.tracks?.total} ${t("pages.biblioteca.albumCard.many")}`}
                            />
                         </SwiperSlide>
                      );

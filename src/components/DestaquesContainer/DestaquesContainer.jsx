@@ -77,7 +77,7 @@ const DestaquesContainer = () => {
       <>
          <div id={styles.ct}>
             <DestaqueCard
-               titulo={"Artistas Semelhantes"}
+               titulo={t("pages.leitor.destaqueCard.0")}
                conteudo={conteudoSemelhantes}
                acao={() => {
                   navegar("#artistas-semelhantes");
@@ -87,14 +87,14 @@ const DestaquesContainer = () => {
                acao={() => {
                   navegar("/feed");
                }}
-               titulo={"Feito para si"}
+               titulo={t("pages.leitor.destaqueCard.1")}
                conteudo={conteudoPlaylistsDestacadas}
             />
             <DestaqueCard
                acao={() => {
                   navegar("/destaque");
                }}
-               titulo={"Lançamentos"}
+               titulo={t("pages.leitor.destaqueCard.2")}
                conteudo={conteudoLancamentos}
             />
          </div>
