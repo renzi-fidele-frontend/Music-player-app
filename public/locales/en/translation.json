@@ -1,1 +1,54 @@
-{}
+{
+   "pages": {
+      "login": {
+         "btn": "Sign in",
+         "h3": "Remember these details to log in",
+         "h6": "Password:"
+      },
+      "biblioteca": {
+         "tit": "Created playlists",
+         "albumCard": { "one": "Song", "many": "Songs" }
+      },
+      "favoritos": { "tit": "Saved albums", "tit2": "Liked songs" },
+      "leitor": {
+         "noMusic": "You must select a song",
+         "prefix": "and",
+         "followers": "Followers",
+         "musics": "Musics",
+         "destaqueCard": ["Similar Artists", "Made for you", "Releases"],
+         "modal": "Similar Artists"
+      },
+      "destaque": {
+         "tit1": "New releases",
+         "tit2": "Top 50 songs - Global"
+      },
+      "feed": {
+         "placeholder": "Search for anything",
+         "tit1": "Listen to the best songs from your favorite artists",
+         "titRecomended": "Made for you",
+         "titCategory": "Category Playlists",
+         "noArtist": "You don't have a favorite artist yet!",
+         "bannerText": "Find the best recommendations in the world of music",
+         "author": "Made with love by",
+         "titSearch": "Search results",
+         "titMusics": "Songs",
+         "titAlbum": "Albums",
+         "titPlaylist": "Playlists",
+         "noSearch": "You didn't search for anything",
+         "categories": "Categories"
+      }
+   },
+   "comps": {
+      "controles": ["Shuffle", "Back", "Pause", "Play", "Skip", "Repeat"],
+      "albumCt": {
+         "imgAlt": "Album image",
+         "what": "is an album by",
+         "prefix": "and",
+         "has": "that has",
+         "music": "song",
+         "release": "Released on"
+      },
+      "filaCt": "Up Next"
+   },
+   "nav": ["Feed", "Featured", "Player", "Favorites", "Library"]
+}
