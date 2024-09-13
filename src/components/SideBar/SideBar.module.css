@@ -140,6 +140,16 @@
       display: none;
    }
 
+   #langCt > p {
+      display: initial;
+      margin-top: 8px;
+   }
+
+   #langCt {
+      padding: 0;
+      border: none;
+   }
+
    .btnCt > i {
       display: flex;
       justify-content: center;
@@ -205,6 +215,11 @@
 
    #baixo svg {
       font-size: 23px;
+   }
+
+   .btnCt span:hover,
+   .langAtivo {
+      font-size: 1rem;
    }
 }
 

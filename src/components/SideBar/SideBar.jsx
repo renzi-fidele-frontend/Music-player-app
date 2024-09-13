@@ -112,7 +112,7 @@ const SideBar = () => {
                </NavLink>
             </nav>
 
-            <div className={styles.btnCt}>
+            <div id={styles.langCt} className={styles.btnCt}>
                <i>
                   <FaGlobe />
                </i>
