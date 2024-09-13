@@ -34,6 +34,18 @@
    font-size: 0.9em;
 }
 
+.btnCt span {
+   cursor: pointer;
+}
+
+.btnCt span:hover,
+.langAtivo {
+   font-weight: 800;
+   font-size: 1.1rem;
+   color: white;
+   text-shadow: 0 0 2px black;
+}
+
 .imgCont {
    padding-block: 0 !important;
 }

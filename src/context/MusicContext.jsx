@@ -48,6 +48,8 @@ export const MusicReducer = (state, action) => {
          return { ...state, playlistsCategoria: action.payload };
       case "setAleatorio":
          return { ...state, aleatorio: action.payload };
+      case "setIdioma":
+         return { ...state, idioma: action.payload };
 
       default:
          return state;
@@ -74,9 +76,10 @@ export const MusicInitialState = {
    albumAtual: [], // Objecto Album adicionado a playlist
    top50: [], // Playlist contendo top 50 músicas mais escutadas
    artistasTop: null, // Artistas favoritos do usuário
-   categorias: [], // Generos disponiveis no spotify
+   categorias: [], // Gêneros disponíveis no spotify
    playlistsCategoria: [], // Playlists da categoria selecionada
-   aleatorio: false, // Musicas aleatórias ativas ou não
+   aleatorio: false, // Musicas aleatórias ativas ou não,
+   idioma: "pt", // Idioma da aplicação
 };
 
 export const MusicProvider = ({ value, children }) => <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

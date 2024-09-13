@@ -20,10 +20,10 @@ import { MusicValue } from "../../context/MusicContext";
 const token = localStorage.getItem("token");
 
 const SideBar = () => {
-   const { t } = useTranslation();
+   const { t, i18n } = useTranslation();
    // Estilo de botao ativo
    const ativo = { color: "white", backgroundColor: "rgba(200, 116, 75, 0.5)", scale: "1.1" };
-   const { estado } = MusicValue();
+   const { estado, dispatch } = MusicValue();
 
    const [nome, setNome] = useState("");
    const [avatar, setAvatar] = useState(avatar1);
@@ -63,6 +63,13 @@ const SideBar = () => {
    }, []);
 
    const navegar = useNavigate();
+
+   i18n.on("languageChanged", (idiomaNovo) => {
+      dispatch({ type: "setIdioma", payload: idiomaNovo });
+   });
+   function mudarIdioma(idiomaNovo) {
+      i18n.changeLanguage(idiomaNovo);
+   }
 
    return (
       <>
@@ -110,7 +117,13 @@ const SideBar = () => {
                   <FaGlobe />
                </i>
                <p>
-                  <span className={estado.idioma === "en"}>EN</span> / <span className={estado.idioma === "pt"}>PT</span>
+                  <span onClick={() => mudarIdioma("en")} className={estado.idioma === "en" && styles.langAtivo}>
+                     EN
+                  </span>{" "}
+                  /{" "}
+                  <span onClick={() => mudarIdioma("pt")} className={estado.idioma === "pt" && styles.langAtivo}>
+                     PT
+                  </span>
                </p>
             </div>
          </div>
