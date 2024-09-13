@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^10.15.0",
     "i18next": "^23.15.0",
     "i18next-http-backend": "^2.6.1",
     "progressbar.js": "^1.1.0",
