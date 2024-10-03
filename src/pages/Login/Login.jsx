@@ -20,7 +20,7 @@ const Login = () => {
             </div>
             <div>
                <h6>{t("pages.login.h6")}</h6>
-               <p>Spotify1234</p>
+               <p>Ratinho000</p>
             </div>
          </div>
       </div>
