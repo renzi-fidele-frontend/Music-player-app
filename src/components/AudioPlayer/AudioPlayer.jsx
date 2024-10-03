@@ -7,6 +7,7 @@ import Notificacao from "../Notificacao/Notificacao";
 import { reduzir } from "../../hooks/useReduzir";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
+import useControles from "../../hooks/useControles";
 
 // TODO: Corrigir erro quando a musica estiver tocando ao se navegar para leitor a musica para
 // TODO: Adicionar feat de gostar/salvar de uma musica
@@ -15,11 +16,11 @@ import { MusicValue } from "../../context/MusicContext";
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando
 // TODO: Adicionar feat de pesquisar por shows locais
 
-
 const AudioPlayer = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
+   const { saltar } = useControles();
 
    // Link da música atual sendo tocada
    const linkAudio = () => {
@@ -73,31 +74,6 @@ const AudioPlayer = () => {
       let minutos = Math.floor(secs / 600);
       let segundos = (secs % 600).toFixed(0);
       return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
-   }
-
-   function saltar() {
-      if (!estado.aleatorio) {
-         if (estado.targetAtual + 1 < estado.aSeguir.length) {
-            dispatch({ type: "setTargetAtual", payload: estado.targetAtual + 1 });
-            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[estado.targetAtual + 1]] });
-         } else {
-            dispatch({ type: "setTargetAtual", payload: 0 });
-            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[0]] });
-         }
-      } else {
-         // Gerando posição aleatória nas músicas selecionadas
-         let randomIndex = Math.floor(Math.random() * estado.aSeguir.length);
-         if (estado.targetAtual === randomIndex) {
-            let otherRandomIndex = Math.floor(Math.random() * estado.aSeguir.length);
-            dispatch({ type: "setTargetAtual", payload: otherRandomIndex });
-            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[otherRandomIndex]] });
-         } else {
-            dispatch({ type: "setTargetAtual", payload: randomIndex });
-            dispatch({ type: "setMusicaAtual", payload: [estado.aSeguir[randomIndex]] });
-         }
-      }
-
-      dispatch({ type: "setisPlaying", payload: false });
    }
 
    // Tempo de playback da música atual
