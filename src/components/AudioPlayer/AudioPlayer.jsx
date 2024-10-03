@@ -9,6 +9,12 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 
 // TODO: Corrigir erro quando a musica estiver tocando ao se navegar para leitor a musica para
+// TODO: Adicionar feat de gostar/salvar de uma musica
+// TODO: Adicionar feat de pesquisar por artistas
+// TODO: Adicionar feat de seguir artistas
+// TODO: Adicionar feat de cta para seguir o artista da musica tocando
+// TODO: Adicionar feat de pesquisar por shows locais
+
 
 const AudioPlayer = () => {
    const { t } = useTranslation();

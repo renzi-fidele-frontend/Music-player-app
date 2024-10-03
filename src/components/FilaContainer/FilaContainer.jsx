@@ -19,8 +19,6 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
    }
 
-   // TODO: Verificar se o user segue a playlist
-
    useEffect(() => {
       console.log(playlistId);
       async function checkIsFollowing() {

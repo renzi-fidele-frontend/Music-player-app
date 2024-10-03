@@ -8,9 +8,6 @@ const AlbumContainer = ({ track, propRef }) => {
    const { t } = useTranslation();
    const { estado } = MusicValue();
 
-   // TODO: Adicionar funcionalidade de adicionar artista aos favoritos
-   // TODO: Adicionar funcionalidade de remover artista dos favoritos
-
    if (estado.mode === "playlistMode" && estado.singleMode === false) {
       return (
          <div ref={propRef} id={styles.cont}>
