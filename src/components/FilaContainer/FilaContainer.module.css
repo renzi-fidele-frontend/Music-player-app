@@ -10,46 +10,57 @@
    padding-bottom: 0;
 }
 
-#cont > h4 {
+.titCt > h4 {
    font-size: 1.7em;
-   margin-bottom: 0.6em;
 }
 
-#cont > div {
+.titCt {
+   display: flex;
+   align-items: center;
+   margin-bottom: 1em;
+   justify-content: space-between;
+}
+
+.titCt svg {
+   font-size: 1.85rem;
+   cursor: pointer;
+}
+
+.wrapper {
    overflow-y: auto;
    height: 75%;
    scrollbar-color: #444cf755 233656;
    scrollbar-width: none;
 }
 
-#cont > div:hover {
+.wrapper:hover {
    scrollbar-width: thin;
 }
 
-#cont > div::-webkit-scrollbar {
+.wrapper::-webkit-scrollbar {
    display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-#cont > div {
+.wrapper {
    -ms-overflow-style: none; /* IE and Edge */
    scrollbar-width: none; /* Firefox */
 }
 
-#cont > div > div {
+.wrapper > div {
    display: flex;
    flex-flow: row nowrap;
    justify-content: space-between;
    transition: all 0.2s ease-in-out;
 }
 
-#cont > div > div:hover {
+.wrapper > div:hover {
    padding-inline: 0.5em;
    cursor: pointer;
    color: white;
 }
 
-#cont > div > div > p {
+.wrapper > div > p {
    margin-bottom: 0.7em;
    width: fit-content;
    font-size: 15px;
@@ -60,11 +71,11 @@
       height: 40vh;
    }
 
-   #cont > h4 {
+   .titCt > h4 {
       font-size: 1.4em;
    }
 
-   #cont > div > div > p {
+   .wrapper > div > p {
       font-size: 14px;
    }
 }
@@ -89,7 +100,7 @@
       cursor: pointer;
    }
 
-   #cont > h4 {
+   .titCt {
       margin-bottom: 1em;
    }
 }

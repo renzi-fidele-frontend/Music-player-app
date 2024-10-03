@@ -210,7 +210,7 @@ const Leitor = () => {
          </div>
          <div id={styles.right}>
             <AlbumContainer propRef={albumCtRef} track={estado?.musicaAtual[0]?.track} />
-            <FilaContainer propRef={filaCtRef} fila={estado.aSeguir} />
+            <FilaContainer propRef={filaCtRef} fila={estado.aSeguir} playlistId={estado.mode === "playlistMode" && estado.idPlaylist} />
          </div>
       </div>
    ) : (
