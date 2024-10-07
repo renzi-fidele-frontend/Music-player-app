@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 
-// TODO: Corrigir erro quando a musica estiver tocando ao se navegar para leitor a musica para
+
 // TODO: Adicionar feat de gostar/salvar de uma musica
 // TODO: Adicionar feat de pesquisar por artistas
 // TODO: Adicionar feat de seguir artistas
@@ -65,8 +65,10 @@ const AudioPlayer = () => {
       if (estado.audioRef.src !== linkAudio()) {
          estado.audioRef.src = linkAudio();
       }
-      // Pausando a música
-      dispatch({ type: "setisPlaying", payload: false });
+      if (!estado.isPlaying) {
+         // Pausando a música
+         dispatch({ type: "setisPlaying", payload: false });
+      }
    }, [estado.musicaAtual]);
 
    // Convertendo segundos para minutos
