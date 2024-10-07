@@ -111,16 +111,16 @@ const Leitor = () => {
 
    useEffect(() => {
       // Caso seja passada a id do album
-      if (estado.idAlbum.length > 0 && estado.mode === "albumMode") getItemsAlbum(estado.idAlbum);
+      if (estado.idAlbum.length > 0 && estado.targetAtual === 0 && estado.mode === "albumMode") getItemsAlbum(estado.idAlbum);
 
       // Caso seja passada a id da playlist
-      if (estado.idPlaylist.length > 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
+      if (estado.idPlaylist.length > 0 && estado.targetAtual === 0 && estado.mode === "playlistMode") getItemsPlaylists(estado.idPlaylist);
 
       // Caso seja passado a id do artista favorito
       if (loc.state?.idArtistaFavorito) getTopMusicas(loc.state?.idArtistaFavorito);
 
       // Caso seja passada a id da categoria
-      if (loc.state?.mode === "categoriaMode" && loc.state?.id) getCategoriaItems(loc.state?.id);
+      if (loc.state?.mode === "categoriaMode" && estado.targetAtual === 0 && loc.state?.id) getCategoriaItems(loc.state?.id);
    }, [estado.idPlaylist, loc.state]);
 
    // Apanhando o conteúdo dos destaques

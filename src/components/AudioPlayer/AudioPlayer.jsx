@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 
-
 // TODO: Adicionar feat de gostar/salvar de uma musica
 // TODO: Adicionar feat de pesquisar por artistas
 // TODO: Adicionar feat de seguir artistas
