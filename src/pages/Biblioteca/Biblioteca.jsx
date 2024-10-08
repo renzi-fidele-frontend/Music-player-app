@@ -1,48 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
-
-const token = localStorage.getItem("token");
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 const Biblioteca = () => {
    const { t } = useTranslation();
    // Apanhando os estados do contexto no reducer
    const { estado, dispatch } = MusicValue();
 
-   const [loading, setLoading] = useState(false);
-
    const navegar = useNavigate();
 
    // Apanhando as playlists do usuário
-   async function apanharPlaylists() {
-      setLoading(true);
-      const res = await fetch(`https://api.spotify.com/v1/me/playlists?limit=10`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            if (res.error) {
-               if (res.error.message === "The access token expired") {
-                  localStorage.clear();
-               }
-            }
-            dispatch({ type: "setPlaylists", payload: res.items });
-            setLoading(false);
-         });
-   }
+   const { apanharDados, loading } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
+      dispatch({ type: "setPlaylists", payload: v.items });
+   });
 
    useEffect(() => {
-      if (estado.playlists.length === 0) {
-         apanharPlaylists();
+      if (estado?.playlists?.length === 0) {
+         apanharDados();
       }
-   }, []);
+   }, [estado?.playlists]);
 
    return (
       <div id={styles.ct}>

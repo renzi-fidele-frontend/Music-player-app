@@ -57,6 +57,7 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       })
          .then(() => {
             setPlaylistFavorita(false);
+            
          })
          .catch((err) => console.log(err.message));
    }
