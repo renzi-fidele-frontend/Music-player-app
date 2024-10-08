@@ -6,18 +6,13 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect, useState } from "react";
+import { milliToMin } from "../../utils/milliToMin";
 const token = localStorage.getItem("token");
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const [playlistFavorita, setPlaylistFavorita] = useState(null);
-   // Convertendo millisegundos para minutos
-   function converter(millis) {
-      let minutos = Math.floor(millis / 60000);
-      let segundos = ((millis % 60000) / 1000).toFixed(0);
-      return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
-   }
 
    useEffect(() => {
       console.log(playlistId);
@@ -57,7 +52,6 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       })
          .then(() => {
             setPlaylistFavorita(false);
-            
          })
          .catch((err) => console.log(err.message));
    }
@@ -87,19 +81,19 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
                      {estado.mode === "playlistMode" && estado.singleMode === false && (
                         <>
                            <p title={v?.track?.name}>{reduzir(v?.track?.name, 35)}</p>
-                           <span>{converter(v?.track?.duration_ms)}</span>
+                           <span>{milliToMin(v?.track?.duration_ms)}</span>
                         </>
                      )}
                      {estado.mode === "albumMode" && (
                         <>
                            <p title={v?.name}>{reduzir(v?.name, 35)}</p>
-                           <span>{converter(v?.duration_ms)}</span>
+                           <span>{milliToMin(v?.duration_ms)}</span>
                         </>
                      )}
                      {estado.mode === "playlistMode" && estado.singleMode === true && (
                         <>
                            <p title={v?.name}>{reduzir(v?.name, 35)}</p>
-                           <span>{converter(v?.duration_ms)}</span>
+                           <span>{milliToMin(v?.duration_ms)}</span>
                         </>
                      )}
                   </div>

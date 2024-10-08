@@ -8,6 +8,7 @@ import { reduzir } from "../../hooks/useReduzir";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
+import { secToMin } from "../../utils/secToMin";
 
 // TODO: Adicionar feat de gostar/salvar de uma musica
 // TODO: Adicionar feat de pesquisar por artistas
@@ -69,13 +70,7 @@ const AudioPlayer = () => {
          dispatch({ type: "setisPlaying", payload: false });
       }
    }, [estado.musicaAtual]);
-
-   // Convertendo segundos para minutos
-   function converterSecs(secs) {
-      let minutos = Math.floor(secs / 600);
-      let segundos = (secs % 600).toFixed(0);
-      return minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
-   }
+   
 
    // Tempo de playback da música atual
    const [tempoAtual, setTempoAtual] = useState(estado.audioRef?.currentTime);
@@ -148,7 +143,7 @@ const AudioPlayer = () => {
             )}
 
             <div id={styles.detalhes}>
-               <p>{converterSecs(tempoAtual)}</p>
+               <p>{secToMin(tempoAtual)}</p>
 
                <div>
                   <input
@@ -165,7 +160,7 @@ const AudioPlayer = () => {
                   />
                </div>
 
-               <p>{duracao > 0 ? converterSecs(duracao) : converterSecs(0)}</p>
+               <p>{duracao > 0 ? secToMin(duracao) : secToMin(0)}</p>
             </div>
             <AudioControles />
          </div>
