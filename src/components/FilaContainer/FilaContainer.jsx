@@ -1,5 +1,4 @@
 import styles from "./FilaContainer.module.css";
-
 import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle, IoMdHeart } from "react-icons/io";
 import { useTranslation } from "react-i18next";
@@ -7,54 +6,28 @@ import { MusicValue } from "../../context/MusicContext";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
-const token = localStorage.getItem("token");
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const [playlistFavorita, setPlaylistFavorita] = useState(null);
 
+   const { apanharDados: checkIsFollowing } = useSpotifyApi(`playlists/${playlistId}/followers/contains`, "GET", (v) => {
+      setPlaylistFavorita(v[0]);
+   });
+
+   const { apanharDados: guardarPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "PUT", () => {
+      setPlaylistFavorita(true);
+   });
+
+   const { apanharDados: removerPlaylist } = useSpotifyApi(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, "DELETE", () => {
+      setPlaylistFavorita(false);
+   });
+
    useEffect(() => {
-      console.log(playlistId);
-      async function checkIsFollowing() {
-         const res = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/followers/contains`, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-            method: "GET",
-         })
-            .then((v) => v.json())
-            .then((data) => console.log(data[0]))
-            .catch((err) => console.log(err));
-      }
-      checkIsFollowing();
+      if (!estado.singleMode) checkIsFollowing();
    }, [playlistId]);
-
-   async function guardarPlaylist() {
-      const res = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "PUT",
-      })
-         .then(() => {
-            setPlaylistFavorita(true);
-         })
-         .catch((err) => console.log(err.message));
-   }
-
-   async function removerPlaylist() {
-      const res = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "DELETE",
-      })
-         .then(() => {
-            setPlaylistFavorita(false);
-         })
-         .catch((err) => console.log(err.message));
-   }
 
    return (
       <div ref={propRef} id={styles.cont}>

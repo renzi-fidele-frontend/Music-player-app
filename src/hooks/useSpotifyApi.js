@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const token = localStorage.getItem("token");
 
-const useSpotifyApi = (endpoint, method, onSucess) => {
+const useSpotifyApi = (endpoint, method, onSuccess) => {
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState(null);
    const [data, setData] = useState(null);
@@ -22,7 +22,7 @@ const useSpotifyApi = (endpoint, method, onSucess) => {
             if (v?.error && v?.error?.message === "The access token expired") {
                return localStorage.clear();
             }
-            onSucess(v);
+            onSuccess(v);
          })
          .catch((err) => {
             setError(err);
