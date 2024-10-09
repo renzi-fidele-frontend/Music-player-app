@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Favoritos.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
 
@@ -6,44 +6,20 @@ import { useNavigate } from "react-router-dom";
 import AlbumCard from "../../components/AlbumCard/AlbumCard";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
-
-const token = localStorage.getItem("token");
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 const Favoritos = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
-
-   const [loading, setLoading] = useState(false);
-
    const navegar = useNavigate();
 
-   // Apanhando os favoritos da api
-   async function getAlbumsSalvos() {
-      setLoading(true);
-      const res = await fetch(`https://api.spotify.com/v1/me/albums?limit=8`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            dispatch({ type: "setAlbumsSalvos", payload: res.items });
-         });
-   }
-   async function getMusicasCurtidas() {
-      const res = await fetch(`https://api.spotify.com/v1/me/tracks?limit=8`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            dispatch({ type: "setMusicasCurtidas", payload: res.items });
-            setLoading(false);
-         });
-   }
+   const { apanharDados: getAlbumsSalvos, loading: loadingAlbums } = useSpotifyApi("me/albums?limit=8", "GET", (v) => {
+      dispatch({ type: "setAlbumsSalvos", payload: v.items });
+   });
+
+   const { apanharDados: getMusicasCurtidas, loading: loadingTracks } = useSpotifyApi("me/tracks?limit=8", "GET", (v) => {
+      dispatch({ type: "setMusicasCurtidas", payload: v.items });
+   });
 
    useEffect(() => {
       if (estado.albumsSalvos.length === 0) getAlbumsSalvos();
@@ -55,7 +31,7 @@ const Favoritos = () => {
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit")} (${estado.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
-               {loading === false ? (
+               {!loadingAlbums ? (
                   estado.albumsSalvos?.map((v, k) => {
                      return (
                         <AlbumCard
@@ -87,7 +63,7 @@ const Favoritos = () => {
          <section>
             <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit2")} (${estado.musicasCurtidas?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
-               {loading === false ? (
+               {!loadingTracks ? (
                   estado.musicasCurtidas?.map((v, k) => {
                      return (
                         <AlbumCard
