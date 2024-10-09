@@ -1,49 +1,22 @@
 import { useEffect } from "react";
 import styles from "./Destaque.module.css";
-
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import { MusicValue } from "../../context/MusicContext";
 import { useTranslation } from "react-i18next";
-
-const token = localStorage.getItem("token");
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 const Destaque = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
 
-   async function getLancamentos() {
-      const res = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=30`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((v) => v.json())
-         .then((v) => {
-            dispatch({ type: "setLancamentos", payload: v.albums.items });
-         })
-         .catch((err) => console.log("Aconteceu o erro"));
-   }
+   const { apanharDados: getLancamentos } = useSpotifyApi("browse/new-releases?limit=30", "GET", (v) => {
+      dispatch({ type: "setLancamentos", payload: v.albums.items });
+   });
 
-   // Apanhando os itens da playslist
-   async function getTop50() {
-      const res = await fetch(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=50`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            if (res.error) {
-               if (res.error.message === "The access token expired") {
-                  localStorage.clear();
-               }
-            }
-            dispatch({ type: "setTop50", payload: res.items });
-         })
-         .catch((err) => console.log(`Ops, aconteceu erro ${err} ao apanhar os top 50`));
-   }
+   const { apanharDados: getTop50 } = useSpotifyApi("playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=50", "GET", (v) => {
+      dispatch({ type: "setTop50", payload: v.items });
+   });
+
    useEffect(() => {
       if (estado.lancamentos.length === 0) {
          getLancamentos();
