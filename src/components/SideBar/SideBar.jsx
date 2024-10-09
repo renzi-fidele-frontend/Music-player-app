@@ -15,6 +15,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import avatar1 from "../../assets/avatar1.gif";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 // token
 const token = localStorage.getItem("token");
@@ -28,30 +29,10 @@ const SideBar = () => {
    const [nome, setNome] = useState("");
    const [avatar, setAvatar] = useState(avatar1);
 
-   async function apanharPerfil() {
-      const res = await fetch(`https://api.spotify.com/v1/me`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            if (res.error) {
-               if (res.error.message === "The access token expired") {
-                  console.log("secao expirou");
-                  localStorage.clear();
-               }
-            }
-            setNome(res.display_name.split(" ")[0]);
-            setAvatar(res.images[0].url);
-         })
-         .catch((err) => {
-            if (err.message === "The access token expired") {
-               localStorage.clear();
-            }
-         });
-   }
+   const { apanharDados: apanharPerfil } = useSpotifyApi("me", "GET", (v) => {
+      setNome(v.display_name.split(" ")[0]);
+      setAvatar(v.images[0].url);
+   });
 
    const sidebarRef = useRef(null);
 
