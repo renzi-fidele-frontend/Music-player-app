@@ -27,9 +27,6 @@ const Feed = () => {
    const categsCtRef = useRef(null);
    const searchRef = useRef();
 
-   // Id da categoria selecionada
-   const category_id = useRef(null);
-
    // Requisições
    const { apanharDados: getArtistasTop } = useSpotifyApi("me/top/artists?limit=3", "GET", (v) => {
       dispatch({ type: "setArtistasTop", payload: v.items });
@@ -40,13 +37,9 @@ const Feed = () => {
    const { apanharDados: getCategorias } = useSpotifyApi("browse/categories", "GET", (v) => {
       dispatch({ type: "setCategorias", payload: v?.categories?.items });
    });
-   const { apanharDados: getCategoriaPlaylist, loading: loadingCategoria } = useSpotifyApi(
-      `browse/categories/${category_id.current}/playlists`,
-      "GET",
-      (v) => {
-         dispatch({ type: "setPlaylistsCategoria", payload: v.playlists.items });
-      }
-   );
+   const { apanharDadosComParam: getCategoriaPlaylist, loading: loadingCategoria } = useSpotifyApi(null, "GET", (v) => {
+      dispatch({ type: "setPlaylistsCategoria", payload: v.playlists.items });
+   });
    const { apanharDadosComParam: pesquisar, loading: loadingPesquisa } = useSpotifyApi(null, "GET", (v) => {
       setResultadosPesquisa([v]);
    });
@@ -227,8 +220,7 @@ const Feed = () => {
                         <div
                            key={k}
                            onClick={() => {
-                              category_id.current = v.id;
-                              getCategoriaPlaylist();
+                              getCategoriaPlaylist(`browse/categories/${v.id}/playlists`);
                               navegar(`/feed/categoria`, { state: { name: v.name } });
                            }}
                            className={styles.categCard}

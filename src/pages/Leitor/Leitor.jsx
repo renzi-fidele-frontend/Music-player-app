@@ -20,8 +20,6 @@ const Leitor = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const loc = useLocation();
-   const filaCtRef = useRef(null);
-   const albumCtRef = useRef(null);
 
    // Requisições
    const { apanharDados: getItemsPlaylists } = useSpotifyApi(`playlists/${estado.idPlaylist}/tracks?limit=10`, "GET", (v) => {
@@ -65,11 +63,7 @@ const Leitor = () => {
          } else if (estado.mode === "albumMode") {
             getSemelhantes(`artists/${estado?.albumAtual[0]?.artists[0]?.id}/related-artists`);
          } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
-            try {
-               getSemelhantes(`artists/${estado?.musicaAtual[0]?.artists[0]?.id}/related-artists`);
-            } catch {
-               console.error("Ops, houve erro");
-            }
+            getSemelhantes(`artists/${estado?.musicaAtual[0]?.artists[0]?.id}/related-artists`);
          }
 
          // Carregando os dados somente se não tiverem sido carregados
