@@ -50,6 +50,8 @@ export const MusicReducer = (state, action) => {
          return { ...state, aleatorio: action.payload };
       case "setIdioma":
          return { ...state, idioma: action.payload };
+      case "setLogado":
+         return { ...state, logado: action.payload };
 
       default:
          return state;

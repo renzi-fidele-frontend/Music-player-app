@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
-
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
 import { reduzir } from "../../hooks/useReduzir";
@@ -11,6 +10,7 @@ import useControles from "../../hooks/useControles";
 import { secToMin } from "../../utils/secToMin";
 
 // TODO: Adicionar feat de gostar/salvar de uma musica
+// TODO: Adicionar feat de gostar/salvar de um album
 // TODO: Adicionar feat de pesquisar por artistas
 // TODO: Adicionar feat de seguir artistas
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando

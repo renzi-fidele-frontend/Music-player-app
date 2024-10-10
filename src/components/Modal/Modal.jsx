@@ -66,8 +66,8 @@ const Modal = () => {
       >
          <h2 className={estiloBiblioteca.tit1}>{t("pages.leitor.modal")}</h2>
          <div className={styles.artistsCt}>
-            {estado.semelhantes.length > 0 ? (
-               <Swiper3d arr={estado.semelhantes} />
+            {estado?.semelhantes?.length > 0 ? (
+               <Swiper3d arr={estado?.semelhantes} />
             ) : (
                <>
                   <p></p>
