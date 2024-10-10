@@ -1,91 +1,55 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Feed.module.css";
 import estiloBiblioteca from "../Biblioteca/Biblioteca.module.css";
-
-import { FaSearch } from "react-icons/fa";
+import { MusicValue } from "../../context/MusicContext";
+import { useTranslation } from "react-i18next";
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// Assets
+import { FaSearch } from "react-icons/fa";
+import { GoSidebarExpand } from "react-icons/go";
+import { IoMdCloseCircle } from "react-icons/io";
 import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 import semArtista from "../../assets/noArtist.png";
-
-// Icones
-import { GoSidebarExpand } from "react-icons/go";
-import { IoMdCloseCircle } from "react-icons/io";
-import { MusicValue } from "../../context/MusicContext";
-import { useTranslation } from "react-i18next";
 
 const token = localStorage.getItem("token");
 
 const Feed = () => {
    const { t } = useTranslation();
+   const navegar = useNavigate();
+   const loc = useLocation();
    const { estado, dispatch } = MusicValue();
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
-   const [loading, setLoading] = useState(false);
    const [pesquisaFeita, setPesquisaFeita] = useState(false);
+   const categsCtRef = useRef(null);
+   const searchRef = useRef();
+   const [loadingPesquisa, setLoadingPesquisa] = useState(false);
 
-   // Apanhando os top artistas
-   async function getArtistasTop() {
-      const res = await fetch(`https://api.spotify.com/v1/me/top/artists?limit=3`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            dispatch({ type: "setArtistasTop", payload: res.items });
-         })
-         .catch((err) => console.log(err));
-   }
+   // Id da categoria selecionada
+   const category_id = useRef(null);
 
-   // Apanhando as recomendacoes
-   async function getPlaylistsDestacadas() {
-      const res = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((v) => v.json())
-         .then((v) => dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items }))
-         .catch((err) => console.log("Aconteceu o erro", err));
-   }
-
-   // Apanhando as categorias
-   async function getCategorias() {
-      const res = await fetch(`https://api.spotify.com/v1/browse/categories`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            dispatch({ type: "setCategorias", payload: res?.categories?.items });
-         })
-         .catch((err) => console.log(err));
-   }
-
-   // Apanhando a playlist da categoria selecionada
-   async function getCategoriaPlaylist(id) {
-      setLoadingCategoria(true);
-      const res = await fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`, {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-         method: "GET",
-      })
-         .then((res) => res.json())
-         .then((res) => {
-            console.log();
-            dispatch({ type: "setPlaylistsCategoria", payload: res.playlists.items });
-            setLoadingCategoria(false);
-         })
-         .catch((err) => console.log(err));
-   }
+   // Requisições
+   const { apanharDados: getArtistasTop } = useSpotifyApi("me/top/artists?limit=3", "GET", (v) => {
+      dispatch({ type: "setArtistasTop", payload: v.items });
+   });
+   const { apanharDados: getPlaylistsDestacadas } = useSpotifyApi("browse/featured-playlists", "GET", (v) => {
+      dispatch({ type: "setPlaylistsDestacadas", payload: v.playlists.items });
+   });
+   const { apanharDados: getCategorias } = useSpotifyApi("browse/categories", "GET", (v) => {
+      dispatch({ type: "setCategorias", payload: v?.categories?.items });
+   });
+   const { apanharDados: getCategoriaPlaylist, loading: loadingCategoria } = useSpotifyApi(
+      `browse/categories/${category_id.current}/playlists`,
+      "GET",
+      (v) => {
+         dispatch({ type: "setPlaylistsCategoria", payload: v.playlists.items });
+      }
+   );
 
    useEffect(() => {
       if (!estado.artistasTop) getArtistasTop();
@@ -93,13 +57,10 @@ const Feed = () => {
       if (estado.categorias.length === 0) getCategorias();
    }, []);
 
-   const categsCtRef = useRef(null);
-
-   //  Apanhando os resultados da pesquisa
    async function pesquisar() {
       if (searchRef.current.value.length > 0) {
          setPesquisaFeita(true);
-         setLoading(true);
+         setLoadingPesquisa(true);
          navegar("/feed/pesquisa");
          const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track,playlist`, {
             headers: {
@@ -109,18 +70,12 @@ const Feed = () => {
          })
             .then((res) => res.json())
             .then((res) => {
-               console.log(res);
                setResultadosPesquisa([res]);
-               setLoading(false);
+               setLoadingPesquisa(false);
             })
             .catch((err) => console.log(err));
       }
    }
-
-   const navegar = useNavigate();
-   const loc = useLocation();
-   const searchRef = useRef();
-   const [loadingCategoria, setLoadingCategoria] = useState(false);
 
    return (
       <div id={styles.ct}>
@@ -218,7 +173,7 @@ const Feed = () => {
                               tit={t("pages.feed.titMusics")}
                               modo="single"
                               arr={
-                                 !loading &&
+                                 !loadingPesquisa &&
                                  resultadosPesquisa[0]?.tracks?.items?.map((v) => {
                                     let obj = {
                                        track: v,
@@ -233,14 +188,14 @@ const Feed = () => {
                            <ControlledSwiper
                               tit={t("pages.feed.titAlbum")}
                               modo="album"
-                              arr={!loading && resultadosPesquisa[0]?.albums?.items}
+                              arr={!loadingPesquisa && resultadosPesquisa[0]?.albums?.items}
                            />
                         </section>
                         <section>
                            <ControlledSwiper
                               tit={t("pages.feed.titPlaylist")}
                               modo="playlist"
-                              arr={!loading && resultadosPesquisa[0]?.playlists?.items}
+                              arr={!loadingPesquisa && resultadosPesquisa[0]?.playlists?.items}
                            />
                         </section>
                      </div>
@@ -278,7 +233,8 @@ const Feed = () => {
                         <div
                            key={k}
                            onClick={() => {
-                              getCategoriaPlaylist(v.id);
+                              category_id.current = v.id;
+                              getCategoriaPlaylist();
                               navegar(`/feed/categoria`, { state: { name: v.name } });
                            }}
                            className={styles.categCard}
