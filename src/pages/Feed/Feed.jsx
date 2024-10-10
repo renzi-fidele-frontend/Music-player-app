@@ -17,8 +17,6 @@ import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 import semArtista from "../../assets/noArtist.png";
 
-const token = localStorage.getItem("token");
-
 const Feed = () => {
    const { t } = useTranslation();
    const navegar = useNavigate();
@@ -28,7 +26,6 @@ const Feed = () => {
    const [pesquisaFeita, setPesquisaFeita] = useState(false);
    const categsCtRef = useRef(null);
    const searchRef = useRef();
-   const [loadingPesquisa, setLoadingPesquisa] = useState(false);
 
    // Id da categoria selecionada
    const category_id = useRef(null);
@@ -50,6 +47,9 @@ const Feed = () => {
          dispatch({ type: "setPlaylistsCategoria", payload: v.playlists.items });
       }
    );
+   const { apanharDadosComParam: pesquisar, loading: loadingPesquisa } = useSpotifyApi(null, "GET", (v) => {
+      setResultadosPesquisa([v]);
+   });
 
    useEffect(() => {
       if (!estado.artistasTop) getArtistasTop();
@@ -57,40 +57,34 @@ const Feed = () => {
       if (estado.categorias.length === 0) getCategorias();
    }, []);
 
-   async function pesquisar() {
-      if (searchRef.current.value.length > 0) {
-         setPesquisaFeita(true);
-         setLoadingPesquisa(true);
-         navegar("/feed/pesquisa");
-         const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track,playlist`, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-            method: "GET",
-         })
-            .then((res) => res.json())
-            .then((res) => {
-               setResultadosPesquisa([res]);
-               setLoadingPesquisa(false);
-            })
-            .catch((err) => console.log(err));
-      }
-   }
-
    return (
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.search}>
                <input
                   onKeyDown={(e) => {
-                     if (e.keyCode === 13) pesquisar();
+                     if (e.keyCode === 13) {
+                        if (searchRef.current.value.length > 0) {
+                           setPesquisaFeita(true);
+                           navegar("/feed/pesquisa");
+                           pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist`);
+                        }
+                     }
                   }}
                   ref={searchRef}
                   type="text"
                   name="pesquisa"
                   placeholder={t("pages.feed.placeholder")}
                />
-               <FaSearch onClick={pesquisar} />
+               <FaSearch
+                  onClick={() => {
+                     if (searchRef.current.value.length > 0) {
+                        setPesquisaFeita(true);
+                        navegar("/feed/pesquisa");
+                        pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist`);
+                     }
+                  }}
+               />
             </div>
 
             {/* Caso esteja na pagina do feed */}
