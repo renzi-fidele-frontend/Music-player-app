@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
+// TODO: Adicionar feat de gostar/salvar de uma musica
+// TODO: Adicionar feat de gostar/salvar de um album
+
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();

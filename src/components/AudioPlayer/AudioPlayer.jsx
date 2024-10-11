@@ -9,12 +9,12 @@ import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 import { secToMin } from "../../utils/secToMin";
 
-// TODO: Adicionar feat de gostar/salvar de uma musica
-// TODO: Adicionar feat de gostar/salvar de um album
+
 // TODO: Adicionar feat de pesquisar por artistas
 // TODO: Adicionar feat de seguir artistas
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando
 // TODO: Adicionar feat de pesquisar por shows locais
+// TODO: Adicionar feat de refresh do token de autenticação
 
 const AudioPlayer = () => {
    const { t } = useTranslation();

@@ -9,19 +9,16 @@ import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 const Biblioteca = () => {
    const { t } = useTranslation();
-   // Apanhando os estados do contexto no reducer
    const { estado, dispatch } = MusicValue();
-
    const navegar = useNavigate();
 
-   // Apanhando as playlists do usuário
-   const { apanharDados, loading } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
+   const { apanharDados: getPlaylistsDoUsuario, loading } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
       dispatch({ type: "setPlaylists", payload: v.items });
    });
 
    useEffect(() => {
       if (estado?.playlists?.length === 0) {
-         apanharDados();
+         getPlaylistsDoUsuario();
       }
    }, [estado?.playlists]);
 
