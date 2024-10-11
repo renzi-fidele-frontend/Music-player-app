@@ -45,9 +45,9 @@ const Feed = () => {
    });
 
    useEffect(() => {
-      if (!estado.artistasTop) getArtistasTop();
-      if (estado.playlistsDestacadas.length === 0) getPlaylistsDestacadas();
-      if (estado.categorias.length === 0) getCategorias();
+      if (!estado?.artistasTop) getArtistasTop();
+      if (estado?.playlistsDestacadas?.length === 0) getPlaylistsDestacadas();
+      if (estado?.categorias?.length === 0) getCategorias();
    }, []);
 
    return (

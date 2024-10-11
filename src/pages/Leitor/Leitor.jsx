@@ -74,6 +74,9 @@ const Leitor = () => {
       }
    }, [estado.musicaAtual]);
 
+   const albumCtRef = useRef(null);
+   const filaCtRef = useRef(null);
+
    return estado.musicaAtual.length > 0 ? (
       <div id={styles.cont}>
          <div id={styles.left}>

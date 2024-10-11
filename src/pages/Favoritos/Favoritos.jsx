@@ -22,14 +22,14 @@ const Favoritos = () => {
    });
 
    useEffect(() => {
-      if (estado.albumsSalvos.length === 0) getAlbumsSalvos();
-      if (estado.musicasCurtidas.length === 0) getMusicasCurtidas();
+      if (estado?.albumsSalvos?.length === 0) getAlbumsSalvos();
+      if (estado?.musicasCurtidas?.length === 0) getMusicasCurtidas();
    }, []);
 
    return (
       <div id={styles.ct}>
          <section>
-            <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit")} (${estado.albumsSalvos?.length})`}</h2>
+            <h2 className={estiloBiblioteca.tit1}>{`${t("pages.favoritos.tit")} (${estado?.albumsSalvos?.length})`}</h2>
             <div id={estiloBiblioteca.baixo}>
                {!loadingAlbums ? (
                   estado.albumsSalvos?.map((v, k) => {

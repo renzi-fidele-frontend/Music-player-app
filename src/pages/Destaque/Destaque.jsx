@@ -18,20 +18,20 @@ const Destaque = () => {
    });
 
    useEffect(() => {
-      if (estado.lancamentos.length === 0) {
+      if (estado?.lancamentos?.length === 0) {
          getLancamentos();
       }
 
-      if (estado.top50.length === 0) getTop50();
-   }, [estado.lancamentos, estado.top50]);
+      if (estado?.top50?.length === 0) getTop50();
+   }, [estado?.lancamentos, estado?.top50]);
 
    return (
       <div id={styles.ct}>
          <section>
-            <ControlledSwiper tit={t("pages.destaque.tit1")} modo={"album"} arr={estado.lancamentos} />
+            <ControlledSwiper tit={t("pages.destaque.tit1")} modo={"album"} arr={estado?.lancamentos} />
          </section>
          <section>
-            <ControlledSwiper tit={t("pages.destaque.tit2")} arr={estado.top50} modo={"single"} />
+            <ControlledSwiper tit={t("pages.destaque.tit2")} arr={estado?.top50} modo={"single"} />
          </section>
       </div>
    );

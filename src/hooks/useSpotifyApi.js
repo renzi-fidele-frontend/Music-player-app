@@ -28,8 +28,9 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
             onSuccess(v);
          })
          .catch((err) => {
+            console.log("Erro ao fetchar o spotify");
             setError(err);
-            console.log(err);
+            console.log(err.message);
          })
          .finally(() => {
             setLoading(false);
@@ -49,11 +50,14 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
          .then(async (v) => {
             setData(v);
             if (v?.error && v?.error?.message === "The access token expired") {
+               console.log("TOken expirou");
+               setLogado(false);
                return localStorage.clear();
             }
             onSuccess(v);
          })
          .catch((err) => {
+            console.log("Erro ao fetchar o spotify");
             setError(err);
             console.log(err);
          })
