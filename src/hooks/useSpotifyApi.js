@@ -18,12 +18,17 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
          },
          method: method,
       })
-         .then((v) => v?.json())
+         .then((v) =>
+            v
+               .clone()
+               .json()
+               .catch(() => v.text())
+         )
          .then(async (v) => {
             setData(v);
             if (v?.error && v?.error?.message === "The access token expired") {
                // TODO: Resolver atualização do estado setLogado
-               console.log("Expirou sessão")
+               console.log("Expirou sessão");
                setLogado(false);
                return localStorage.clear();
             }
@@ -48,7 +53,12 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
          },
          method: method,
       })
-         .then((v) => v?.json())
+         .then((v) =>
+            v
+               .clone()
+               .json()
+               .catch(() => v.text())
+         )
          .then(async (v) => {
             setData(v);
             if (v?.error && v?.error?.message === "The access token expired") {

@@ -33,7 +33,11 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       setGuardado(true);
    });
 
-   const { apanharDados: removerPlaylist } = useSpotifyApi(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, "DELETE", () => {
+   const { apanharDados: removerPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "DELETE", () => {
+      setGuardado(false);
+   });
+
+   const { apanharDados: removerAlbum } = useSpotifyApi(`me/albums?ids=${estado.idAlbum}`, "DELETE", () => {
       setGuardado(false);
    });
 
@@ -48,7 +52,8 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    }
 
    function handleRemove() {
-      if (estado.singleMode) removerPlaylist();
+      if (estado.mode === "playlistMode") removerPlaylist();
+      if (estado.mode === "albumMode") removerAlbum();
    }
 
    return (
