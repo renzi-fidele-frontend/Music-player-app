@@ -9,44 +9,53 @@ import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 // TODO: Adicionar feat de gostar/salvar de uma musica
-// TODO: Adicionar feat de gostar/salvar de um album
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
-   const [playlistFavorita, setPlaylistFavorita] = useState(null);
+   const [guardado, setGuardado] = useState(null);
 
    const { apanharDados: checkIsFollowingPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers/contains`, "GET", (v) => {
-      setPlaylistFavorita(v[0]);
+      setGuardado(v[0]);
    });
 
    const { apanharDados: checkIsFollowingAlbum } = useSpotifyApi(`me/albums/contains?ids=${estado.idAlbum}`, "GET", (v) => {
       console.log(v);
-      setPlaylistFavorita(v[0]);
+      setGuardado(v[0]);
    });
 
    const { apanharDados: guardarPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "PUT", () => {
-      setPlaylistFavorita(true);
+      setGuardado(true);
+   });
+
+   const { apanharDados: guardarAlbum } = useSpotifyApi(`me/albums?ids=${estado.idAlbum}`, "PUT", () => {
+      console.log("Album guardado com sucesso");
+      setGuardado(true);
    });
 
    const { apanharDados: removerPlaylist } = useSpotifyApi(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, "DELETE", () => {
-      setPlaylistFavorita(false);
+      setGuardado(false);
    });
 
    useEffect(() => {
-      if (!estado.singleMode) checkIsFollowingPlaylist();
+      if (estado.mode === "playlistMode") checkIsFollowingPlaylist();
       if (estado.mode === "albumMode") checkIsFollowingAlbum();
    }, [playlistId]);
+
+   function handleSave() {
+      if (estado.mode === "playlistMode") guardarPlaylist();
+      if (estado.mode === "albumMode") guardarAlbum();
+   }
+
+   function handleRemove() {
+      if (estado.singleMode) removerPlaylist();
+   }
 
    return (
       <div ref={propRef} id={styles.cont}>
          <div className={styles.titCt}>
             <h4>{t("comps.filaCt")}</h4>
-            {playlistFavorita ? (
-               <IoMdHeart onClick={removerPlaylist} />
-            ) : (
-               <IoMdHeartEmpty onClick={guardarPlaylist} title="Adicionar aos favoritos" />
-            )}
+            {guardado ? <IoMdHeart onClick={handleRemove} /> : <IoMdHeartEmpty onClick={handleSave} title="Adicionar aos favoritos" />}
          </div>
 
          <div className={styles.wrapper}>
