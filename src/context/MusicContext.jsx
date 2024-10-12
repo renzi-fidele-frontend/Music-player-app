@@ -62,8 +62,8 @@ export const MusicInitialState = {
    musicaAtual: [], // objecto Musica selecionada para tocar
    targetAtual: 0, // Index da música atual
    aSeguir: [], // Musicas da playlist criada
-   idAlbum: "",
-   idPlaylist: "",
+   idAlbum: "", // Id do Album selecionado
+   idPlaylist: "", // Id da playlist selecionado
    playlists: [], // Playlists do usuário no spotify
    isPlaying: false, // Música tocando ou não
    repetir: false, // Ativar loop de música ou não

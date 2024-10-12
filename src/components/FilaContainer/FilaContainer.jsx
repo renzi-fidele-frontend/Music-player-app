@@ -16,7 +16,12 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { estado, dispatch } = MusicValue();
    const [playlistFavorita, setPlaylistFavorita] = useState(null);
 
-   const { apanharDados: checkIsFollowing } = useSpotifyApi(`playlists/${playlistId}/followers/contains`, "GET", (v) => {
+   const { apanharDados: checkIsFollowingPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers/contains`, "GET", (v) => {
+      setPlaylistFavorita(v[0]);
+   });
+
+   const { apanharDados: checkIsFollowingAlbum } = useSpotifyApi(`me/albums/contains?ids=${estado.idAlbum}`, "GET", (v) => {
+      console.log(v);
       setPlaylistFavorita(v[0]);
    });
 
@@ -29,7 +34,8 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    useEffect(() => {
-      if (!estado.singleMode) checkIsFollowing();
+      if (!estado.singleMode) checkIsFollowingPlaylist();
+      if (estado.mode === "albumMode") checkIsFollowingAlbum();
    }, [playlistId]);
 
    return (
