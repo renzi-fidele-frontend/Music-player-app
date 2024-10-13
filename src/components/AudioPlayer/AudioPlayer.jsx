@@ -20,11 +20,22 @@ const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
    const { saltar } = useControles();
-   const [following, setFollowing] = useState(null);
+   const [following, setFollowing] = useState([]);
 
    const { apanharDadosComParam: seguirArtista } = useSpotifyApi(null, "PUT", () => {
-      setFollowing(true);
+      setFollowing([true]);
    });
+   const { apanharDados: checkIsFollowingArtist } = useSpotifyApi(
+      `me/following/contains?type=artist&ids=${estado.albumAtual[0]?.artists?.map((v) => v?.id).join(",")}`,
+      "GET",
+      (v) => {
+         setFollowing(v);
+      }
+   );
+
+   useEffect(() => {
+      if (estado?.mode === "albumMode") checkIsFollowingArtist();
+   }, []);
 
    // Link da música atual sendo tocada
    const linkAudio = () => {
@@ -132,6 +143,7 @@ const AudioPlayer = () => {
             )}
 
             {estado.mode === "albumMode" && (
+               // TODO: Adicionar feat de verificar se o usuário segue o artista
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
                   <h4>
@@ -139,7 +151,7 @@ const AudioPlayer = () => {
                         <>
                            <span className={styles.artistText} key={k}>
                               {v?.name}
-                              {!following ? (
+                              {!following[k] ? (
                                  <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
                               ) : (
                                  <IoMdHeart />

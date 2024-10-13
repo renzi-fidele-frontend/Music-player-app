@@ -22,6 +22,8 @@ const Biblioteca = () => {
       }
    }, [estado?.playlists]);
 
+   // TODO: Adicionar de artistas seguidos 
+
    return (
       <div id={styles.ct}>
          <h2 className={styles.tit1}>{`${t("pages.biblioteca.tit")} (${estado.playlists?.length})`}</h2>
