@@ -18,6 +18,7 @@ import estiloBiblioteca from "../../pages/Biblioteca/Biblioteca.module.css";
 import { useNavigate } from "react-router-dom";
 import { MusicValue } from "../../context/MusicContext";
 import { useTranslation } from "react-i18next";
+import ArtistCard from "../ArtistCard/ArtistCard";
 
 const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
    const { t } = useTranslation();
@@ -121,6 +122,12 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
                               nome={v?.name}
                               subtit={`${v?.tracks?.total} ${t("pages.biblioteca.albumCard.many")}`}
                            />
+                        </SwiperSlide>
+                     );
+                  } else if (modo === "artist") {
+                     return (
+                        <SwiperSlide key={k}>
+                           <ArtistCard foto={v?.images[1]?.url} nome={v?.name} idArtista={v?.id} />
                         </SwiperSlide>
                      );
                   }

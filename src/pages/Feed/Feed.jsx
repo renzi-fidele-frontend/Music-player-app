@@ -60,7 +60,7 @@ const Feed = () => {
                         if (searchRef.current.value.length > 0) {
                            setPesquisaFeita(true);
                            navegar("/feed/pesquisa");
-                           pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist`);
+                           pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist,artist`);
                         }
                      }
                   }}
@@ -74,7 +74,7 @@ const Feed = () => {
                      if (searchRef.current.value.length > 0) {
                         setPesquisaFeita(true);
                         navegar("/feed/pesquisa");
-                        pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist`);
+                        pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist,artist`);
                      }
                   }}
                />
@@ -88,21 +88,7 @@ const Feed = () => {
                      <div id={styles.baixo}>
                         {estado?.artistasTop?.length > 0 &&
                            estado?.artistasTop?.map((v, k) => {
-                              return (
-                                 <ArtistCard
-                                    acao={() => {
-                                       dispatch({ type: "setMode", payload: "playlistMode" });
-                                       dispatch({ type: "setIdPlaylist", payload: "" });
-                                       dispatch({ type: "setTargetAtual", payload: 0 });
-                                       dispatch({ type: "setIdAlbum", payload: "" });
-                                       dispatch({ type: "setSingleMode", payload: true });
-                                       navegar("/leitor", { state: { idArtistaFavorito: v.id } });
-                                    }}
-                                    key={k}
-                                    foto={v.images[2]?.url}
-                                    nome={v.name}
-                                 />
-                              );
+                              return <ArtistCard idArtista={v?.id} key={k} foto={v.images[2]?.url} nome={v.name} />;
                            })}
                         {!estado?.artistasTop && (
                            <div id={styles.esqueleto}>
@@ -151,42 +137,52 @@ const Feed = () => {
             {/* Caso esteja na pagina de pesquisa */}
             {loc.pathname.includes("/feed/pesquisa") &&
                (pesquisaFeita ? (
-                  <>
-                     <div id={styles.searchCt}>
-                        <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
-                        <hr id={styles.barra} />
-                        <section>
-                           <ControlledSwiper
-                              tit={t("pages.feed.titMusics")}
-                              modo="single"
-                              arr={
-                                 !loadingPesquisa &&
-                                 resultadosPesquisa[0]?.tracks?.items?.map((v) => {
-                                    let obj = {
-                                       track: v,
-                                       id: v.id,
-                                    };
-                                    return obj;
-                                 })
-                              }
-                           />
-                        </section>
-                        <section>
-                           <ControlledSwiper
-                              tit={t("pages.feed.titAlbum")}
-                              modo="album"
-                              arr={!loadingPesquisa && resultadosPesquisa[0]?.albums?.items}
-                           />
-                        </section>
-                        <section>
-                           <ControlledSwiper
-                              tit={t("pages.feed.titPlaylist")}
-                              modo="playlist"
-                              arr={!loadingPesquisa && resultadosPesquisa[0]?.playlists?.items}
-                           />
-                        </section>
-                     </div>
-                  </>
+                  // TODO: Adicionar feat de pesquisar por shows locais
+                  <div id={styles.searchCt}>
+                     <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
+                     <hr id={styles.barra} />
+                     <section>
+                        {/*  Artistas */}
+                        <ControlledSwiper
+                           tit={t("pages.feed.titArtists")}
+                           modo="artist"
+                           arr={!loadingPesquisa && resultadosPesquisa[0]?.artists?.items}
+                        />
+                     </section>
+                     <section>
+                        {/*  Músicas */}
+                        <ControlledSwiper
+                           tit={t("pages.feed.titMusics")}
+                           modo="single"
+                           arr={
+                              !loadingPesquisa &&
+                              resultadosPesquisa[0]?.tracks?.items?.map((v) => {
+                                 let obj = {
+                                    track: v,
+                                    id: v.id,
+                                 };
+                                 return obj;
+                              })
+                           }
+                        />
+                     </section>
+                     <section>
+                        {/*  Albums */}
+                        <ControlledSwiper
+                           tit={t("pages.feed.titAlbum")}
+                           modo="album"
+                           arr={!loadingPesquisa && resultadosPesquisa[0]?.albums?.items}
+                        />
+                     </section>
+                     <section>
+                        {/*  Playlists */}
+                        <ControlledSwiper
+                           tit={t("pages.feed.titPlaylist")}
+                           modo="playlist"
+                           arr={!loadingPesquisa && resultadosPesquisa[0]?.playlists?.items}
+                        />
+                     </section>
+                  </div>
                ) : (
                   <>
                      <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.noSearch")}</h2>
