@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
-// TODO: Adicionar feat de gostar/salvar de uma musica
+// TODO: 
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
@@ -20,6 +20,10 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    const { apanharDados: checkIsFollowingAlbum } = useSpotifyApi(`me/albums/contains?ids=${estado.idAlbum}`, "GET", (v) => {
+      setGuardado(v[0]);
+   });
+
+   const { apanharDados: checkIsFollowingTrack } = useSpotifyApi(`me/tracks/contains?ids=${estado?.musicaAtual[0]?.id}`, "GET", (v) => {
       setGuardado(v[0]);
    });
 
@@ -47,6 +51,7 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    useEffect(() => {
       if (estado.mode === "playlistMode" && !estado.singleMode) checkIsFollowingPlaylist();
       if (estado.mode === "albumMode") checkIsFollowingAlbum();
+      if (estado.singleMode) checkIsFollowingTrack();
    }, [playlistId]);
 
    function handleSave() {
