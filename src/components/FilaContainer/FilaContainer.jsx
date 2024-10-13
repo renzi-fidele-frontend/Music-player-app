@@ -8,8 +8,6 @@ import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
-// TODO: 
-
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
@@ -28,7 +26,6 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    const { apanharDados: guardarMusica } = useSpotifyApi(`me/tracks?ids=${estado?.musicaAtual[0]?.id}`, "PUT", () => {
-      console.log(estado?.musicaAtual[0]?.id);
       setGuardado(true);
    });
 
@@ -48,6 +45,10 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       setGuardado(false);
    });
 
+   const { apanharDados: removerMusica } = useSpotifyApi(`me/tracks?ids=${estado?.musicaAtual[0]?.id}`, "DELETE", () => {
+      setGuardado(false);
+   });
+
    useEffect(() => {
       if (estado.mode === "playlistMode" && !estado.singleMode) checkIsFollowingPlaylist();
       if (estado.mode === "albumMode") checkIsFollowingAlbum();
@@ -63,6 +64,7 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    function handleRemove() {
       if (estado.mode === "playlistMode" && !estado.singleMode) removerPlaylist();
       if (estado.mode === "albumMode") removerAlbum();
+      if (estado.singleMode) removerMusica();
    }
 
    return (
