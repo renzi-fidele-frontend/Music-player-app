@@ -20,8 +20,12 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    const { apanharDados: checkIsFollowingAlbum } = useSpotifyApi(`me/albums/contains?ids=${estado.idAlbum}`, "GET", (v) => {
-      console.log(v);
       setGuardado(v[0]);
+   });
+
+   const { apanharDados: guardarMusica } = useSpotifyApi(`me/tracks?ids=${estado?.musicaAtual[0]?.id}`, "PUT", () => {
+      console.log(estado?.musicaAtual[0]?.id);
+      setGuardado(true);
    });
 
    const { apanharDados: guardarPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "PUT", () => {
@@ -29,7 +33,6 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    const { apanharDados: guardarAlbum } = useSpotifyApi(`me/albums?ids=${estado.idAlbum}`, "PUT", () => {
-      console.log("Album guardado com sucesso");
       setGuardado(true);
    });
 
@@ -42,17 +45,18 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    });
 
    useEffect(() => {
-      if (estado.mode === "playlistMode") checkIsFollowingPlaylist();
+      if (estado.mode === "playlistMode" && !estado.singleMode) checkIsFollowingPlaylist();
       if (estado.mode === "albumMode") checkIsFollowingAlbum();
    }, [playlistId]);
 
    function handleSave() {
-      if (estado.mode === "playlistMode") guardarPlaylist();
+      if (estado.mode === "playlistMode" && !estado.singleMode) guardarPlaylist();
       if (estado.mode === "albumMode") guardarAlbum();
+      if (estado.singleMode) guardarMusica();
    }
 
    function handleRemove() {
-      if (estado.mode === "playlistMode") removerPlaylist();
+      if (estado.mode === "playlistMode" && !estado.singleMode) removerPlaylist();
       if (estado.mode === "albumMode") removerAlbum();
    }
 
