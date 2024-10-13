@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ArtistCard = ({ foto, nome, idArtista }) => {
    const { dispatch } = MusicValue();
    const navegar = useNavigate();
-
+   
    return (
       <div
          id={styles.ct}
@@ -19,11 +19,14 @@ const ArtistCard = ({ foto, nome, idArtista }) => {
             navegar("/leitor", { state: { idArtistaFavorito: idArtista } });
          }}
       >
-         {foto && nome ? (
-            <>
-               <img loading="lazy" src={foto} alt={`foto de ${nome}`} />
-               <p>{nome}</p>
-            </>
+         {nome ? (
+            nome &&
+            foto && (
+               <>
+                  <img loading="lazy" src={foto} alt={`foto de ${nome}`} />
+                  <p>{nome}</p>
+               </>
+            )
          ) : (
             <>
                <Esqueleto tipo={"imgCircular"} />

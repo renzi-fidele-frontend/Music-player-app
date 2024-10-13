@@ -17,6 +17,10 @@
    height: 160px;
 }
 
+.noArtist {
+   opacity: 0.3;
+}
+
 @media screen and (max-width: 1700px) {
    #ct {
       margin-bottom: 2em;
