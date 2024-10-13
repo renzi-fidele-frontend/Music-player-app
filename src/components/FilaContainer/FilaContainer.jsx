@@ -13,38 +13,31 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { estado, dispatch } = MusicValue();
    const [guardado, setGuardado] = useState(null);
 
+   // Requisições
    const { apanharDados: checkIsFollowingPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers/contains`, "GET", (v) => {
       setGuardado(v[0]);
    });
-
    const { apanharDados: checkIsFollowingAlbum } = useSpotifyApi(`me/albums/contains?ids=${estado.idAlbum}`, "GET", (v) => {
       setGuardado(v[0]);
    });
-
    const { apanharDados: checkIsFollowingTrack } = useSpotifyApi(`me/tracks/contains?ids=${estado?.musicaAtual[0]?.id}`, "GET", (v) => {
       setGuardado(v[0]);
    });
-
    const { apanharDados: guardarMusica } = useSpotifyApi(`me/tracks?ids=${estado?.musicaAtual[0]?.id}`, "PUT", () => {
       setGuardado(true);
    });
-
    const { apanharDados: guardarPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "PUT", () => {
       setGuardado(true);
    });
-
    const { apanharDados: guardarAlbum } = useSpotifyApi(`me/albums?ids=${estado.idAlbum}`, "PUT", () => {
       setGuardado(true);
    });
-
    const { apanharDados: removerPlaylist } = useSpotifyApi(`playlists/${playlistId}/followers`, "DELETE", () => {
       setGuardado(false);
    });
-
    const { apanharDados: removerAlbum } = useSpotifyApi(`me/albums?ids=${estado.idAlbum}`, "DELETE", () => {
       setGuardado(false);
    });
-
    const { apanharDados: removerMusica } = useSpotifyApi(`me/tracks?ids=${estado?.musicaAtual[0]?.id}`, "DELETE", () => {
       setGuardado(false);
    });
@@ -83,6 +76,7 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
                         dispatch({ type: "setTargetAtual", payload: key });
                         dispatch({ type: "setisPlaying", payload: false });
                      }}
+                     className={key === estado.targetAtual && styles.ativo}
                      key={key}
                   >
                      {estado.mode === "playlistMode" && estado.singleMode === false && (
