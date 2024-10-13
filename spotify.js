@@ -8,6 +8,7 @@ const scopes = [
    "playlist-modify-public",
    "playlist-modify-private",
    "user-library-modify",
+   "user-follow-modify",
 ];
 
 export const loginEndPoint = `${authEndPoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(

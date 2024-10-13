@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 import { secToMin } from "../../utils/secToMin";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import useSpotifyApi from "../../hooks/useSpotifyApi";
 
 // TODO: Adicionar feat de seguir artistas
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando
@@ -18,6 +20,11 @@ const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
    const { saltar } = useControles();
+   const [following, setFollowing] = useState(null);
+
+   const { apanharDadosComParam: seguirArtista } = useSpotifyApi(null, "PUT", () => {
+      setFollowing(true);
+   });
 
    // Link da música atual sendo tocada
    const linkAudio = () => {
@@ -127,7 +134,21 @@ const AudioPlayer = () => {
             {estado.mode === "albumMode" && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
-                  <h4>{`${estado.albumAtual[0]?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`}</h4>
+                  <h4>
+                     {estado.albumAtual[0]?.artists?.map((v, k) => (
+                        <>
+                           <span className={styles.artistText} key={k}>
+                              {v?.name}
+                              {!following ? (
+                                 <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                              ) : (
+                                 <IoMdHeart />
+                              )}
+                           </span>
+                           {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `}
+                        </>
+                     ))}
+                  </h4>
                </>
             )}
 

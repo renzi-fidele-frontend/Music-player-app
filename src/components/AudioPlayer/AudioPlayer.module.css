@@ -57,6 +57,16 @@
    cursor: pointer;
 }
 
+.artistText {
+   display: flex;
+   align-items: center;
+   gap: 3px;
+}
+
+.artistText svg {
+   cursor: pointer;
+}
+
 @media screen and (max-width: 1700px) {
    #cont > #right > h5 {
       font-size: 2.8em;
