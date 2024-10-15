@@ -1,5 +1,4 @@
 import styles from "./FilaContainer.module.css";
-import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle, IoMdHeart } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
@@ -7,6 +6,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
+import { reduzir } from "../../utils/reduzirTexto";
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();

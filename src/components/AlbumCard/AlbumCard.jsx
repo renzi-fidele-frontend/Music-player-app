@@ -1,7 +1,8 @@
 import styles from "./AlbumCard.module.css";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import Esqueleto from "../Skeletons/Esqueleto";
-import { reduzir } from "../../hooks/useReduzir";
+import { reduzir } from "../../utils/reduzirTexto";
+
 
 // varientes são: normal, swiper
 

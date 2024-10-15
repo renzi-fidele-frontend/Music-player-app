@@ -3,13 +3,14 @@ import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
-import { reduzir } from "../../hooks/useReduzir";
+
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 import { secToMin } from "../../utils/secToMin";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
+import { reduzir } from "../../utils/reduzirTexto";
 
 // TODO: Adicionar feat de seguir artistas
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando

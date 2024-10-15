@@ -1,8 +1,8 @@
 import styles from "./AlbumContainer.module.css";
-import { reduzir } from "../../hooks/useReduzir";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
+import { reduzir } from "../../utils/reduzirTexto";
 
 const AlbumContainer = ({ track, propRef }) => {
    const { t } = useTranslation();
