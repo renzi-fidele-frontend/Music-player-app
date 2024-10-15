@@ -84,6 +84,15 @@
    margin-inline: 1em;
    margin-bottom: 1em;
    transition: all 0.3s ease-out;
+   position: relative;
+   display: flex;
+   justify-content: center;
+}
+
+.categCard > p {
+   position: absolute;
+   bottom: 2rem;
+   font-weight: 800;
 }
 
 .categCard:hover {
@@ -261,6 +270,10 @@
 
    #semArtista {
       height: 190px;
+   }
+
+   .categCard > p {
+      bottom: 1rem;
    }
 }
 
