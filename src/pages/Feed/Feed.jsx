@@ -17,6 +17,9 @@ import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 import semArtista from "../../assets/noArtist.png";
 
+// TODO: Adicionar feat de seguir artistas no modo playlist
+// TODO: Adicionar feat de seguir artistas no modo single
+// TODO: Adicionar a logo ao lado do campo de pesquisa nos dispositivos largos
 const Feed = () => {
    const { t } = useTranslation();
    const navegar = useNavigate();
@@ -138,6 +141,7 @@ const Feed = () => {
             {loc.pathname.includes("/feed/pesquisa") &&
                (pesquisaFeita ? (
                   // TODO: Adicionar feat de pesquisar por shows locais
+                  // TODO: Corrigir o loading do card de artista na página de pesquisa
                   <div id={styles.searchCt}>
                      <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
                      <hr id={styles.barra} />

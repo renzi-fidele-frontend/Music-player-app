@@ -31,7 +31,12 @@
    font-size: 1.3em;
    font-weight: 400;
    margin-bottom: 0em;
+   margin-inline: 1.7rem;
    text-align: center;
+   display: flex;
+   gap: 1.2rem;
+   flex-wrap: wrap;
+   justify-content: center;
 }
 
 #cont > path {

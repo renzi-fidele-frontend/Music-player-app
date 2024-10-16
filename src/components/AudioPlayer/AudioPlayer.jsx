@@ -12,22 +12,30 @@ import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
 
-// TODO: Adicionar feat de seguir artistas
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando
 // TODO: Adicionar feat de refresh do token de autenticação
 
 const AudioPlayer = () => {
-   const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
    const { saltar } = useControles();
    const [following, setFollowing] = useState([]);
 
    const { apanharDadosComParam: seguirArtista } = useSpotifyApi(null, "PUT", () => {
-      setFollowing([true]);
+      // if (estado?.mode === "playlistMode" && estado?.singleMode)
+      if (estado?.mode === "albumMode") setFollowing([true]);
+      if (estado?.mode === "playlistMode" && estado?.singleMode) checkIsFollowingArtist();
    });
+
+   const idsArtistas = () => {
+      if (estado?.mode === "playlistMode" && !estado?.singleMode) return [];
+      if (estado?.mode === "albumMode") return estado?.albumAtual[0]?.artists;
+      if (estado?.mode === "playlistMode" && estado?.singleMode) return estado?.musicaAtual[0]?.artists;
+   };
    const { apanharDados: checkIsFollowingArtist } = useSpotifyApi(
-      `me/following/contains?type=artist&ids=${estado.albumAtual[0]?.artists?.map((v) => v?.id).join(",")}`,
+      `me/following/contains?type=artist&ids=${idsArtistas()
+         ?.map((v) => v?.id)
+         .join(",")}`,
       "GET",
       (v) => {
          setFollowing(v);
@@ -35,7 +43,7 @@ const AudioPlayer = () => {
    );
 
    useEffect(() => {
-      if (estado?.mode === "albumMode") checkIsFollowingArtist();
+      checkIsFollowingArtist();
    }, []);
 
    // Link da música atual sendo tocada
@@ -136,15 +144,28 @@ const AudioPlayer = () => {
             <Notificacao />
          </div>
          <div id={styles.right}>
-            {estado.mode === "playlistMode" && estado.singleMode === false && (
+            {estado.mode === "playlistMode" && !estado.singleMode && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.track?.name, 45)}</h5>
-                  <h4>{`${estado.musicaAtual[0]?.track?.album?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`}</h4>
+                  <h4>
+                     {estado.musicaAtual[0]?.track?.album?.artists?.map((v, k) => (
+                        <>
+                           <span className={styles.artistText} key={k}>
+                              {v?.name}
+                              {!following[k] ? (
+                                 <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                              ) : (
+                                 <IoMdHeart />
+                              )}
+                           </span>
+                           {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `}
+                        </>
+                     ))}
+                  </h4>
                </>
             )}
 
             {estado.mode === "albumMode" && (
-               // TODO: Adicionar feat de verificar se o usuário segue o artista
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
                   <h4>
@@ -165,10 +186,29 @@ const AudioPlayer = () => {
                </>
             )}
 
-            {estado.mode === "playlistMode" && estado.singleMode === true && (
+            {estado.mode === "playlistMode" && estado.singleMode && (
                <>
                   <h5>{reduzir(estado.musicaAtual[0]?.name, 45)}</h5>
-                  <h4>{reduzir(`${estado.musicaAtual[0]?.artists?.map((v) => v.name).join(` ${t("pages.leitor.prefix")} `)}`, 45)}</h4>
+                  <h4>
+                     {estado.musicaAtual[0]?.artists?.map((v, k) => (
+                        <>
+                           <span className={styles.artistText} key={k}>
+                              {v?.name}
+                              {!following[k] ? (
+                                 <IoMdHeartEmpty
+                                    onClick={() => {
+                                       // setKeySelecionado(k);
+                                       seguirArtista(`me/following?ids=${v?.id}&type=artist`);
+                                    }}
+                                 />
+                              ) : (
+                                 <IoMdHeart />
+                              )}
+                           </span>
+                           {/* {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `} */}
+                        </>
+                     ))}
+                  </h4>
                </>
             )}
 
