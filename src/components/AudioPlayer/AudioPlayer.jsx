@@ -3,8 +3,6 @@ import styles from "./AudioPlayer.module.css";
 import AudioProgress from "../AudioProgress/AudioProgress";
 import AudioControles from "../AudioControles/AudioControles";
 import Notificacao from "../Notificacao/Notificacao";
-
-import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useControles from "../../hooks/useControles";
 import { secToMin } from "../../utils/secToMin";
@@ -14,6 +12,7 @@ import { reduzir } from "../../utils/reduzirTexto";
 
 // TODO: Adicionar feat de cta para seguir o artista da musica tocando
 // TODO: Adicionar feat de refresh do token de autenticação
+// TODO: Corrigir erro ao se estar no single mode e no playlist mode o app faz Crash
 
 const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();
@@ -158,7 +157,6 @@ const AudioPlayer = () => {
                                  <IoMdHeart />
                               )}
                            </span>
-                           {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `}
                         </>
                      ))}
                   </h4>
@@ -179,7 +177,6 @@ const AudioPlayer = () => {
                                  <IoMdHeart />
                               )}
                            </span>
-                           {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `}
                         </>
                      ))}
                   </h4>
@@ -197,7 +194,6 @@ const AudioPlayer = () => {
                               {!following[k] ? (
                                  <IoMdHeartEmpty
                                     onClick={() => {
-                                       // setKeySelecionado(k);
                                        seguirArtista(`me/following?ids=${v?.id}&type=artist`);
                                     }}
                                  />
@@ -205,7 +201,6 @@ const AudioPlayer = () => {
                                  <IoMdHeart />
                               )}
                            </span>
-                           {/* {k + 1 !== estado.albumAtual[0]?.artists?.length && ` | `} */}
                         </>
                      ))}
                   </h4>

@@ -22,7 +22,7 @@ const Biblioteca = () => {
       }
    }, [estado?.playlists]);
 
-   // TODO: Adicionar de artistas seguidos 
+   // TODO: Adicionar de artistas seguidos
 
    return (
       <div id={styles.ct}>
