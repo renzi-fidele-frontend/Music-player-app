@@ -59,7 +59,7 @@
 }
 
 #semArtista {
-   height: 230px;
+   height: 200px;
 }
 
 #artistCt {
@@ -436,6 +436,9 @@
 
    #semArtista {
       height: 100px;
+   }
+   #artistCt {
+      align-items: start;
    }
 }
 
