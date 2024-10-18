@@ -21,25 +21,30 @@ const AudioPlayer = () => {
    const [following, setFollowing] = useState([]);
 
    const { apanharDadosComParam: seguirArtista } = useSpotifyApi(null, "PUT", () => {
-      if (estado?.mode === "playlistMode" && !estado?.singleMode) setFollowing([true]);
+      if (estado?.mode === "playlistMode" && !estado?.singleMode) {
+         checkIsFollowingArtist();
+      }
+
       if (estado?.mode === "albumMode") setFollowing([true]);
       if (estado?.mode === "playlistMode" && estado?.singleMode) checkIsFollowingArtist();
    });
 
    const idsArtistas = () => {
-      if (estado?.mode === "playlistMode" && !estado?.singleMode) return [];
-      if (estado?.mode === "albumMode") return estado?.albumAtual[0]?.artists;
-      if (estado?.mode === "playlistMode" && estado?.singleMode) return estado?.musicaAtual[0]?.artists;
-   };
-   const { apanharDados: checkIsFollowingArtist } = useSpotifyApi(
-      `me/following/contains?type=artist&ids=${idsArtistas()
-         ?.map((v) => v?.id)
-         .join(",")}`,
-      "GET",
-      (v) => {
-         setFollowing(v);
+      let ids = "";
+      if (estado?.mode === "playlistMode" && !estado?.singleMode) {
+         ids = estado?.musicaAtual[0]?.track?.artists;
       }
-   );
+      if (estado?.mode === "albumMode") {
+         ids = estado?.albumAtual[0]?.artists;
+      }
+      if (estado?.mode === "playlistMode" && estado?.singleMode) {
+         ids = estado?.musicaAtual[0]?.artists;
+      }
+      return ids?.map((v) => v?.id).join(",");
+   };
+   const { apanharDados: checkIsFollowingArtist } = useSpotifyApi(`me/following/contains?type=artist&ids=${idsArtistas()}`, "GET", (v) => {
+      setFollowing(v);
+   });
 
    useEffect(() => {
       checkIsFollowingArtist();
