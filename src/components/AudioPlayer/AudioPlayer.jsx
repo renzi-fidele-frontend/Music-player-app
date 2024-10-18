@@ -10,9 +10,9 @@ import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
 
-// TODO: Adicionar feat de cta para seguir o artista da musica tocando
 // TODO: Adicionar feat de refresh do token de autenticação
 // TODO: Corrigir erro ao se estar no single mode e no playlist mode o app faz Crash
+// TODO: Adicionar feat de parar de seguir artista
 
 const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();
@@ -44,6 +44,10 @@ const AudioPlayer = () => {
    };
    const { apanharDados: checkIsFollowingArtist } = useSpotifyApi(`me/following/contains?type=artist&ids=${idsArtistas()}`, "GET", (v) => {
       setFollowing(v);
+   });
+
+   const { apanharDadosComParam: pararDeSeguirArtista } = useSpotifyApi(null, "DELETE", () => {
+      checkIsFollowingArtist();
    });
 
    useEffect(() => {
@@ -159,7 +163,11 @@ const AudioPlayer = () => {
                               {!following[k] ? (
                                  <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
                               ) : (
-                                 <IoMdHeart />
+                                 <IoMdHeart
+                                    onClick={() => {
+                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                    }}
+                                 />
                               )}
                            </span>
                         </>
@@ -179,7 +187,11 @@ const AudioPlayer = () => {
                               {!following[k] ? (
                                  <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
                               ) : (
-                                 <IoMdHeart />
+                                 <IoMdHeart
+                                    onClick={() => {
+                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                    }}
+                                 />
                               )}
                            </span>
                         </>
@@ -203,7 +215,11 @@ const AudioPlayer = () => {
                                     }}
                                  />
                               ) : (
-                                 <IoMdHeart />
+                                 <IoMdHeart
+                                    onClick={() => {
+                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                    }}
+                                 />
                               )}
                            </span>
                         </>

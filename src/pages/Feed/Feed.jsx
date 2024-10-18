@@ -8,7 +8,6 @@ import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import ControlledSwiper from "../../components/ControlledSwiper/ControlledSwiper";
 import Esqueleto from "../../components/Skeletons/Esqueleto";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 // Assets
 import { FaSearch } from "react-icons/fa";
 import { GoSidebarExpand } from "react-icons/go";
@@ -17,8 +16,6 @@ import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 import semArtista from "../../assets/noArtist.png";
 
-// TODO: Adicionar feat de seguir artistas no modo playlist
-// TODO: Adicionar feat de seguir artistas no modo single
 // TODO: Adicionar a logo ao lado do campo de pesquisa nos dispositivos largos
 const Feed = () => {
    const { t } = useTranslation();
