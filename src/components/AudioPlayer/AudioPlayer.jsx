@@ -21,7 +21,7 @@ const AudioPlayer = () => {
    const [following, setFollowing] = useState([]);
 
    const { apanharDadosComParam: seguirArtista } = useSpotifyApi(null, "PUT", () => {
-      // if (estado?.mode === "playlistMode" && estado?.singleMode)
+      if (estado?.mode === "playlistMode" && !estado?.singleMode) setFollowing([true]);
       if (estado?.mode === "albumMode") setFollowing([true]);
       if (estado?.mode === "playlistMode" && estado?.singleMode) checkIsFollowingArtist();
    });
