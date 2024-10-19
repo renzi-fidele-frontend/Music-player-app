@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useAuth from "./useAuth";
+import { MusicValue } from "../context/MusicContext";
 
 const token = localStorage.getItem("token");
 
@@ -7,7 +7,7 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState(null);
    const [data, setData] = useState(null);
-   const { setLogado } = useAuth();
+   const { dispatch } = MusicValue();
 
    async function apanharDados() {
       let url = "https://api.spotify.com/v1/" + endpoint;
@@ -25,19 +25,17 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
                .catch(() => v.text())
          )
          .then(async (v) => {
-            setData(v);
-            if (v?.error && v?.error?.message === "The access token expired") {
-               // TODO: Resolver atualização do estado setLogado
-               console.log("Expirou sessão");
-               setLogado(false);
+            if (v?.error?.status === 401) {
+               dispatch({ type: "setLogado", payload: false });
                return localStorage.clear();
             }
+            setData(v);
             onSuccess(v);
          })
          .catch((err) => {
             console.log("Erro ao fetchar o spotify");
             setError(err);
-            console.log(err.message);
+            console.log(err.status);
          })
          .finally(() => {
             setLoading(false);
@@ -63,13 +61,17 @@ const useSpotifyApi = (endpoint, method, onSuccess) => {
             setData(v);
             if (v?.error && v?.error?.message === "The access token expired") {
                console.log("TOken expirou");
-               setLogado(false);
+               dispatch({ type: "setLogado", payload: false });
                return localStorage.clear();
             }
             onSuccess(v);
          })
          .catch((err) => {
             console.log("Erro ao fetchar o spotify");
+            if (err.status === 401) {
+               dispatch({ type: "setLogado", payload: false });
+               localStorage.clear();
+            }
             setError(err);
             console.log(err);
          })

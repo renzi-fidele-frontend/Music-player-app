@@ -12,7 +12,6 @@ import { reduzir } from "../../utils/reduzirTexto";
 
 // TODO: Adicionar feat de refresh do token de autenticação
 // TODO: Corrigir erro ao se estar no single mode e no playlist mode o app faz Crash
-// TODO: Adicionar feat de parar de seguir artista
 
 const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();

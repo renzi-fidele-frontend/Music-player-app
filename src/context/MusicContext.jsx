@@ -82,6 +82,7 @@ export const MusicInitialState = {
    playlistsCategoria: [], // Playlists da categoria selecionada
    aleatorio: false, // Musicas aleatórias ativas ou não,
    idioma: "pt", // Idioma da aplicação
+   logado: false,
 };
 
 export const MusicProvider = ({ value, children }) => <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

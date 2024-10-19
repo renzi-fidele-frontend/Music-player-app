@@ -7,16 +7,32 @@ import Favoritos from "./pages/Favoritos/Favoritos";
 import Feed from "./pages/Feed/Feed";
 import SideBar from "./components/SideBar/SideBar";
 import Login from "./pages/Login/Login";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import Modal from "./components/Modal/Modal";
 import { MusicInitialState, MusicProvider, MusicReducer } from "./context/MusicContext";
-import useAuth from "./hooks/useAuth";
 
 // TODO: Adicionar scrollbar, pois nos laptops o App não é transmite boa UX
 
 function App() {
    const [estado, dispatch] = useReducer(MusicReducer, MusicInitialState);
-   const { logado } = useAuth();
+
+   useEffect(() => {
+      const token = localStorage.getItem("token");
+      // Caso esteja logado
+      if (token) {
+         dispatch({ type: "setLogado", payload: true });
+      } else {
+         let hash = window.location.hash;
+         if (hash.length > 10) {
+            localStorage.setItem("token", hash.split("&")[0].split("=")[1]);
+            dispatch({ type: "setLogado", payload: true });
+            window.location.pathname = "/leitor";
+            window.location.hash = "";
+         } else {
+            dispatch({ type: "setLogado", payload: false });
+         }
+      }
+   }, []);
 
    return (
       <Router>
@@ -28,16 +44,16 @@ function App() {
                </div>
                <div id="right">
                   <Routes>
-                     <Route exact path="/" element={logado ? <Leitor /> : <Login />} />
-                     <Route path="/destaque" element={logado ? <Destaque /> : <Login />} />
-                     <Route path="/favoritos" element={logado ? <Favoritos /> : <Login />} />
-                     <Route path="/biblioteca" element={logado ? <Biblioteca /> : <Login />} />
-                     <Route path="/feed" element={logado ? <Feed /> : <Login />}>
+                     <Route exact path="/" element={estado?.logado ? <Leitor /> : <Login />} />
+                     <Route path="/destaque" element={estado?.logado ? <Destaque /> : <Login />} />
+                     <Route path="/favoritos" element={estado?.logado ? <Favoritos /> : <Login />} />
+                     <Route path="/biblioteca" element={estado?.logado ? <Biblioteca /> : <Login />} />
+                     <Route path="/feed" element={estado?.logado ? <Feed /> : <Login />}>
                         <Route path="/feed/categoria" />
                         <Route path="/feed/pesquisa" />
                      </Route>
-                     <Route path="/leitor" element={logado ? <Leitor /> : <Login />} />
-                     <Route path="/entrar" element={logado ? <Navigate to={"/leitor"} /> : <Login />} />
+                     <Route path="/leitor" element={estado?.logado ? <Leitor /> : <Login />} />
+                     <Route path="/entrar" element={estado?.logado ? <Navigate to={"/leitor"} /> : <Login />} />
                   </Routes>
                </div>
             </MusicProvider>
