@@ -62,89 +62,87 @@ const ControlledSwiper = ({ tit, arr = [], modo = "album" }) => {
             allowTouchMove={false}
             modules={[Navigation, Pagination, A11y, Autoplay]}
          >
-            {arr.length > 0 ? (
-               arr.map((v, k) => {
-                  if (modo === "album") {
-                     return (
-                        <SwiperSlide key={k}>
-                           <AlbumCard
-                              acao={() => {
-                                 dispatch({ type: "setIdAlbum", payload: v.id });
-                                 dispatch({ type: "setIdPlaylist", payload: "" });
-                                 dispatch({ type: "setTargetAtual", payload: 0 });
-                                 dispatch({ type: "setMode", payload: "albumMode" });
-                                 dispatch({ type: "setAlbumAtual", payload: [v] });
-                                 navegar("/leitor");
-                              }}
-                              foto={v.images[0].url}
-                              nome={v.name}
-                              subtit={v.artists[0].name}
-                              variante="swiper"
-                           />
-                        </SwiperSlide>
-                     );
-                  } else if (modo === "single") {
-                     return (
-                        <SwiperSlide key={k}>
-                           <AlbumCard
-                              acao={() => {
-                                 dispatch({ type: "setIdAlbum", payload: "" });
-                                 dispatch({ type: "setIdPlaylist", payload: "" });
-                                 dispatch({ type: "setTargetAtual", payload: 0 });
-                                 dispatch({ type: "setaSeguir", payload: [v.track] });
-                                 dispatch({ type: "setMusicaAtual", payload: [v.track] });
-                                 dispatch({ type: "setMode", payload: "playlistMode" });
-                                 dispatch({ type: "setSingleMode", payload: true });
-                                 navegar("/leitor");
-                              }}
-                              foto={v?.track?.album?.images[0]?.url}
-                              nome={v?.track?.name}
-                              key={k}
-                              subtit={v?.track?.artists[0]?.name}
-                              variante="swiper"
-                           />
-                        </SwiperSlide>
-                     );
-                  } else if (modo === "playlist") {
-                     return (
-                        <SwiperSlide key={k}>
-                           <AlbumCard
-                              acao={() => {
-                                 dispatch({ type: "setIdPlaylist", payload: v.id });
-                                 dispatch({ type: "setIdAlbum", payload: "" });
-                                 dispatch({ type: "setTargetAtual", payload: 0 });
-                                 dispatch({ type: "setMode", payload: "playlistMode" });
-                                 dispatch({ type: "setSingleMode", payload: false });
-                                 navegar("/leitor");
-                              }}
-                              variante="swiper"
-                              foto={v?.images[0]?.url}
-                              nome={v?.name}
-                              subtit={`${v?.tracks?.total} ${t("pages.biblioteca.albumCard.many")}`}
-                           />
-                        </SwiperSlide>
-                     );
-                  } else if (modo === "artist") {
-                     return (
-                        <SwiperSlide key={k}>
-                           <ArtistCard foto={v?.images[1]?.url} nome={v?.name} idArtista={v?.id} />
-                        </SwiperSlide>
-                     );
-                  }
-               })
-            ) : (
-               <>
-                  <SwiperSlide>
-                     <AlbumCard />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <AlbumCard />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <AlbumCard />
-                  </SwiperSlide>
-               </>
-            )}
+            {arr.length > 0
+               ? arr.map((v, k) => {
+                    if (modo === "album") {
+                       return (
+                          <SwiperSlide key={k}>
+                             <AlbumCard
+                                acao={() => {
+                                   dispatch({ type: "setIdAlbum", payload: v.id });
+                                   dispatch({ type: "setIdPlaylist", payload: "" });
+                                   dispatch({ type: "setTargetAtual", payload: 0 });
+                                   dispatch({ type: "setMode", payload: "albumMode" });
+                                   dispatch({ type: "setAlbumAtual", payload: [v] });
+                                   navegar("/leitor");
+                                }}
+                                foto={v.images[0].url}
+                                nome={v.name}
+                                subtit={v.artists[0].name}
+                                variante="swiper"
+                             />
+                          </SwiperSlide>
+                       );
+                    } else if (modo === "single") {
+                       return (
+                          <SwiperSlide key={k}>
+                             <AlbumCard
+                                acao={() => {
+                                   dispatch({ type: "setIdAlbum", payload: "" });
+                                   dispatch({ type: "setIdPlaylist", payload: "" });
+                                   dispatch({ type: "setTargetAtual", payload: 0 });
+                                   dispatch({ type: "setaSeguir", payload: [v.track] });
+                                   dispatch({ type: "setMusicaAtual", payload: [v.track] });
+                                   dispatch({ type: "setMode", payload: "playlistMode" });
+                                   dispatch({ type: "setSingleMode", payload: true });
+                                   navegar("/leitor");
+                                }}
+                                foto={v?.track?.album?.images[0]?.url}
+                                nome={v?.track?.name}
+                                key={k}
+                                subtit={v?.track?.artists[0]?.name}
+                                variante="swiper"
+                             />
+                          </SwiperSlide>
+                       );
+                    } else if (modo === "playlist") {
+                       return (
+                          <SwiperSlide key={k}>
+                             <AlbumCard
+                                acao={() => {
+                                   dispatch({ type: "setIdPlaylist", payload: v.id });
+                                   dispatch({ type: "setIdAlbum", payload: "" });
+                                   dispatch({ type: "setTargetAtual", payload: 0 });
+                                   dispatch({ type: "setMode", payload: "playlistMode" });
+                                   dispatch({ type: "setSingleMode", payload: false });
+                                   navegar("/leitor");
+                                }}
+                                variante="swiper"
+                                foto={v?.images[0]?.url}
+                                nome={v?.name}
+                                subtit={`${v?.tracks?.total} ${t("pages.biblioteca.albumCard.many")}`}
+                             />
+                          </SwiperSlide>
+                       );
+                    } else if (modo === "artist") {
+                       return (
+                          <SwiperSlide key={k}>
+                             <ArtistCard foto={v?.images[1]?.url} nome={v?.name} idArtista={v?.id} />
+                          </SwiperSlide>
+                       );
+                    }
+                 })
+               : modo === "artist"
+               ? [1, 2, 3, 4, 5, 6, 7, 8].map((v, k) => (
+                    <SwiperSlide key={k}>
+                       <ArtistCard />
+                    </SwiperSlide>
+                 ))
+               : [1, 2, 3, 4].map((v, k) => (
+                    <SwiperSlide key={k}>
+                       <AlbumCard />
+                    </SwiperSlide>
+                 ))}
          </Swiper>
       </div>
    );

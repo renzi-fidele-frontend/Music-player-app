@@ -138,7 +138,6 @@ const Feed = () => {
             {loc.pathname.includes("/feed/pesquisa") &&
                (pesquisaFeita ? (
                   // TODO: Adicionar feat de pesquisar por shows locais
-                  // TODO: Corrigir o loading do card de artista na página de pesquisa
                   <div id={styles.searchCt}>
                      <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
                      <hr id={styles.barra} />
