@@ -26,6 +26,8 @@ export const MusicReducer = (state, action) => {
          return { ...state, semelhantes: action.payload };
       case "setPlaylistsDestacadas":
          return { ...state, playlistsDestacadas: action.payload };
+      case "setArtistasSeguidos":
+         return { ...state, artistasSeguidos: action.payload };
       case "setLancamentos":
          return { ...state, lancamentos: action.payload };
       case "setAlbumsSalvos":
@@ -70,6 +72,7 @@ export const MusicInitialState = {
    audioRef: new Audio(undefined), // estado do Audio que será inicializado
    semelhantes: [], // Artistas semelhantes
    playlistsDestacadas: [], // Playlists em destaque
+   artistasSeguidos: [],
    lancamentos: [], // Lancamentos em destaque
    mode: "", //   Modos: playlistMode ou albumMode
    singleMode: false,

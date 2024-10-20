@@ -7,10 +7,15 @@
    font-size: 2em;
 }
 
+#artistCt {
+   margin-bottom: 3rem;
+}
+
 #baixo {
    display: grid;
    grid-template-columns: repeat(5, 20%);
    grid-auto-rows: 1fr;
+   margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1705px) {
