@@ -64,7 +64,7 @@ const AudioPlayer = () => {
       }
    };
 
-   // Link da primeira música da playslist selecionada
+   // Link da primeira música da playlist selecionada
    const prevLink = () => {
       if (estado.mode === "playlistMode" && estado.singleMode === false) {
          return estado.aSeguir[0]?.track?.preview_url;
@@ -102,10 +102,10 @@ const AudioPlayer = () => {
       }
    }, [estado.musicaAtual]);
 
+   const intervaloRef = useRef();
+
    // Tempo de playback da música atual
    const [tempoAtual, setTempoAtual] = useState(estado.audioRef?.currentTime);
-
-   const intervaloRef = useRef();
 
    // Temporizador do áudio tocando
    function startTimer() {

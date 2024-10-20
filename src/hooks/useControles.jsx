@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { MusicValue } from "../context/MusicContext";
 
 const useControles = () => {
    const { estado, dispatch } = MusicValue();
-
-   const [loopAtivo, setLoopAtivo] = useState(estado.audioRef.loop);
 
    function playPause() {
       if (estado.audioRef.src.length > 0) {
@@ -56,7 +53,6 @@ const useControles = () => {
 
    function switchRepetir() {
       estado.audioRef.loop = !estado.audioRef.loop;
-      setLoopAtivo(estado.audioRef.loop);
    }
 
    function switchAleatorio() {

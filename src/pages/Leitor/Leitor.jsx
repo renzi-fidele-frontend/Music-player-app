@@ -14,7 +14,6 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 
-// TODO: Resetar slider e o progress do Vinyl ao se saltar de música
 // TODO: Adicionar tooltip aos elementos do App para melhorar a UX
 
 const Leitor = () => {
