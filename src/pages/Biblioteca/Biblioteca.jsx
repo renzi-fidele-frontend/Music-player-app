@@ -33,7 +33,7 @@ const Biblioteca = () => {
       <div id={styles.ct}>
          {/*  Artistas */}
          <div id={styles.artistCt}>
-            <ControlledSwiper tit="Artistas seguidos" modo="artist" arr={estado?.artistasSeguidos} />
+            <ControlledSwiper tit={t("pages.biblioteca.titArtists")} modo="artist" arr={estado?.artistasSeguidos} />
          </div>
 
          <h2 className={styles.tit1}>{`${t("pages.biblioteca.tit")} (${estado.playlists?.length})`}</h2>

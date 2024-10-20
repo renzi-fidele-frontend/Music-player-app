@@ -7,7 +7,8 @@
       },
       "biblioteca": {
          "tit": "Playlists criadas",
-         "albumCard": { "one": "Música", "many": "Músicas" }
+         "albumCard": { "one": "Música", "many": "Músicas" },
+         "titArtists": "Artistas seguidos"
       },
       "favoritos": { "tit": "Álbums salvos", "tit2": "Músicas curtidas" },
       "leitor": {
