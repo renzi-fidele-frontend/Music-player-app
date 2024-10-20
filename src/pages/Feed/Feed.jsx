@@ -15,8 +15,8 @@ import { IoMdCloseCircle } from "react-icons/io";
 import foto from "../../assets/mulher.png";
 import nadaPesquisado from "../../assets/search.svg";
 import semArtista from "../../assets/noArtist.png";
+import logo from "../../assets/logo_desktop.png";
 
-// TODO: Adicionar a logo ao lado do campo de pesquisa nos dispositivos largos
 const Feed = () => {
    const { t } = useTranslation();
    const navegar = useNavigate();
@@ -54,30 +54,33 @@ const Feed = () => {
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.search}>
-               <input
-                  onKeyDown={(e) => {
-                     if (e.keyCode === 13) {
+               <img style={{ cursor: "pointer" }} onClick={() => navegar("/feed")} src={logo} alt="Logo do site" />
+               <div>
+                  <input
+                     onKeyDown={(e) => {
+                        if (e.keyCode === 13) {
+                           if (searchRef.current.value.length > 0) {
+                              setPesquisaFeita(true);
+                              navegar("/feed/pesquisa");
+                              pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist,artist`);
+                           }
+                        }
+                     }}
+                     ref={searchRef}
+                     type="text"
+                     name="pesquisa"
+                     placeholder={t("pages.feed.placeholder")}
+                  />
+                  <FaSearch
+                     onClick={() => {
                         if (searchRef.current.value.length > 0) {
                            setPesquisaFeita(true);
                            navegar("/feed/pesquisa");
                            pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist,artist`);
                         }
-                     }
-                  }}
-                  ref={searchRef}
-                  type="text"
-                  name="pesquisa"
-                  placeholder={t("pages.feed.placeholder")}
-               />
-               <FaSearch
-                  onClick={() => {
-                     if (searchRef.current.value.length > 0) {
-                        setPesquisaFeita(true);
-                        navegar("/feed/pesquisa");
-                        pesquisar(`search?q=${searchRef.current.value}&type=album,track,playlist,artist`);
-                     }
-                  }}
-               />
+                     }}
+                  />
+               </div>
             </div>
 
             {/* Caso esteja na pagina do feed */}

@@ -3,7 +3,8 @@
    grid-template-columns: 63% 37%;
 }
 
-#search {
+#search > div {
+   flex-basis: 50%;
    color: #030d18;
    display: flex;
    align-items: center;
@@ -18,7 +19,19 @@
    padding: 8px 0.8em;
    border-radius: 10px;
    transition: box-shadow 0.3s ease;
+}
+
+#search {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 5%;
    margin-bottom: 2.5em;
+}
+
+#search img {
+   width: 200px;
+   filter: grayscale(60%);
 }
 
 #baixo {
@@ -26,7 +39,7 @@
    gap: 3em;
 }
 
-#search > input {
+#search input {
    outline: none;
    background-color: transparent;
    border: none;
@@ -35,16 +48,16 @@
    transition: all 0.3s ease-out;
 }
 
-#search > input::placeholder {
+#search input::placeholder {
    color: #030d18;
    opacity: 1;
 }
 
-#search > input:focus {
+#search input:focus {
    box-shadow: 0 0px 32px 0 rgba(36, 36, 88, 0.37);
 }
 
-#search > svg {
+#search svg {
    font-size: 29px;
    color: #030d18;
    background-color: transparent;
@@ -52,7 +65,7 @@
    transition: 0.3s ease-in-out;
 }
 
-#search > svg:hover {
+#search svg:hover {
    cursor: pointer;
    scale: 1.1;
    transform: rotateZ(350deg);
@@ -277,6 +290,17 @@
    }
 }
 
+@media screen and (max-width: 1139px) {
+   #search img {
+      display: none;
+   }
+
+   #search > div {
+      flex-basis: 100%;
+   }
+  
+}
+
 @media screen and (max-width: 1100px) {
    .categCard > figure {
       max-height: 150px;
@@ -385,7 +409,7 @@
       font-size: 3em;
    }
 
-   #search > input {
+   #search input {
       font-size: 20px;
    }
 
@@ -443,7 +467,7 @@
 }
 
 @media screen and (max-width: 400px) {
-   #search > input {
+   #search input {
       font-size: 17px;
    }
 
