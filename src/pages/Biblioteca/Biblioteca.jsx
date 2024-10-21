@@ -13,7 +13,7 @@ const Biblioteca = () => {
    const { estado, dispatch } = MusicValue();
    const navegar = useNavigate();
 
-   const { apanharDados: getPlaylistsDoUsuario, loadingPlaylists } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
+   const { apanharDados: getPlaylistsDoUsuario, loading: loadingPlaylists } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
       dispatch({ type: "setPlaylists", payload: v.items });
    });
 
