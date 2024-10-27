@@ -14,6 +14,8 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 
+// TippyJs
+
 // TODO: Adicionar tooltip aos elementos do App para melhorar a UX
 
 const Leitor = () => {
