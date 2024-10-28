@@ -52,6 +52,7 @@ const useControles = () => {
    }
 
    function switchRepetir() {
+      dispatch({ type: "setRepetir", payload: !estado.audioRef.loop });
       estado.audioRef.loop = !estado.audioRef.loop;
    }
 

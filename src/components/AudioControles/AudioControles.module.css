@@ -18,11 +18,11 @@
    color: white !important;
 }
 
-#cont > svg {
+#cont svg {
    transition: 0.3s ease-in-out;
 }
 
-#cont > svg:hover {
+#cont svg:hover {
    cursor: pointer;
    color: var(--cor-tema);
 }

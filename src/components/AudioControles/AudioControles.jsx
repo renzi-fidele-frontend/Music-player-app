@@ -5,23 +5,53 @@ import { BsShuffle, BsFillPauseFill, BsFillSkipEndFill, BsFillSkipStartFill, BsR
 
 import { useTranslation } from "react-i18next";
 import useControles from "../../hooks/useControles";
+import Tooltip from "../Tooltip/Tooltip";
+import { MusicValue } from "../../context/MusicContext";
 
 const AudioControles = () => {
    const { t } = useTranslation();
-   const { switchAleatorio, voltar, playPause, saltar, switchRepetir, estado } = useControles();
+   const { switchAleatorio, voltar, playPause, saltar, switchRepetir } = useControles();
+   const { estado } = MusicValue();
 
    return (
       <div id={styles.cont}>
-         <BsShuffle title={t("comps.controles.0")} className={estado.aleatorio === true && styles.ativo} onClick={switchAleatorio} />
-         <BsFillSkipStartFill title={t("comps.controles.1")} onClick={voltar} />
-         {estado.isPlaying === true ? (
-            <BsFillPauseFill title={t("comps.controles.2")} onClick={playPause} className={styles.meio} />
-         ) : (
-            <BsFillPlayFill title={t("comps.controles.3")} onClick={playPause} className={styles.meio} />
-         )}
-         <BsFillSkipEndFill title={t("comps.controles.4")} onClick={saltar} />
+         <Tooltip conteudo={t("comps.controles.0")}>
+            <i>
+               <BsShuffle className={estado.aleatorio && styles.ativo} onClick={switchAleatorio} />
+            </i>
+         </Tooltip>
 
-         <BsRepeat title={t("comps.controles.5")} className={estado.audioRef.loop === true && styles.ativo} onClick={switchRepetir} />
+         <Tooltip conteudo={t("comps.controles.1")}>
+            <i>
+               <BsFillSkipStartFill onClick={voltar} />
+            </i>
+         </Tooltip>
+
+         {estado.isPlaying === true ? (
+            <Tooltip conteudo={t("comps.controles.2")}>
+               <i>
+                  <BsFillPauseFill onClick={playPause} className={styles.meio} />
+               </i>
+            </Tooltip>
+         ) : (
+            <Tooltip conteudo={t("comps.controles.3")}>
+               <i>
+                  <BsFillPlayFill onClick={playPause} className={styles.meio} />
+               </i>
+            </Tooltip>
+         )}
+
+         <Tooltip conteudo={t("comps.controles.4")}>
+            <i>
+               <BsFillSkipEndFill onClick={saltar} />
+            </i>
+         </Tooltip>
+
+         <Tooltip conteudo={t("comps.controles.5")}>
+            <i>
+               <BsRepeat className={estado.repetir && styles.ativo} onClick={switchRepetir} />
+            </i>
+         </Tooltip>
       </div>
    );
 };
