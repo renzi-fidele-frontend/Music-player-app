@@ -3,6 +3,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import { reduzir } from "../../utils/reduzirTexto";
+import ftSpotify from "../../assets/Primary_Logo_Green_RGB.svg";
 
 const AlbumContainer = ({ track, propRef }) => {
    const { t } = useTranslation();
@@ -12,6 +13,10 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
+               <a target="blank" href={track?.external_urls?.spotify}>
+                  <img src={ftSpotify} alt="Spotify logo" />
+                  <span>Ver no Spotify</span>
+               </a>
                <img src={track?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
                   <img src={track?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
@@ -45,6 +50,10 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
+               <a target="blank" href={estado?.albumAtual[0]?.external_urls?.spotify}>
+                  <img src={ftSpotify} alt="Spotify logo" />
+                  <span>Ver no Spotify</span>
+               </a>
                <img src={estado.albumAtual[0]?.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
                   <img src={estado.albumAtual[0]?.images[0].url} alt={t("comps.albumCt.imgAlt")} />
@@ -80,6 +89,10 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
+               <a target="blank" href={estado.musicaAtual[0]?.external_urls?.spotify}>
+                  <img src={ftSpotify} alt="Spotify logo" />
+                  <span>Ver no Spotify</span>
+               </a>
                <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
                   <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />

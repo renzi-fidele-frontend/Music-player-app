@@ -14,9 +14,7 @@ import { RiPlayList2Fill } from "react-icons/ri";
 import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 
-// TippyJs
-
-// TODO: Adicionar tooltip aos elementos do App para melhorar a UX
+// TODO: Progress bar não funciona bem quando a música tem menos do 30sec
 
 const Leitor = () => {
    const { t } = useTranslation();
