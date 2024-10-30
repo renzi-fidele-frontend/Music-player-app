@@ -62,7 +62,7 @@
    cursor: pointer;
 }
 
-.artistText {
+.artistText, .artistText i {
    display: flex;
    align-items: center;
    gap: 3px;
