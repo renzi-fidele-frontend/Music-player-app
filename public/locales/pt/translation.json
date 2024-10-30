@@ -21,7 +21,8 @@
          "follow": "Seguir",
          "unfollow": "Parar de seguir",
          "addFav": "Adicionar aos favoritos",
-         "delFav": "Remover dos favoritos"
+         "delFav": "Remover dos favoritos",
+         "seeOnSpotify": "Ver no Spotify"
       },
       "destaque": {
          "tit1": "Novos lançamentos",

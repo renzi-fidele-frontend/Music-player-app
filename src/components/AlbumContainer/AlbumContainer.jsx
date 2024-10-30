@@ -15,7 +15,7 @@ const AlbumContainer = ({ track, propRef }) => {
             <div id={styles.imgsCont}>
                <a target="blank" href={track?.external_urls?.spotify}>
                   <img src={ftSpotify} alt="Spotify logo" />
-                  <span>Ver no Spotify</span>
+                  <span>{t("pages.leitor.seeOnSpotify")}</span>
                </a>
                <img src={track?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
@@ -52,7 +52,7 @@ const AlbumContainer = ({ track, propRef }) => {
             <div id={styles.imgsCont}>
                <a target="blank" href={estado?.albumAtual[0]?.external_urls?.spotify}>
                   <img src={ftSpotify} alt="Spotify logo" />
-                  <span>Ver no Spotify</span>
+                  <span>{t("pages.leitor.seeOnSpotify")}</span>
                </a>
                <img src={estado.albumAtual[0]?.images[0].url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
@@ -91,7 +91,7 @@ const AlbumContainer = ({ track, propRef }) => {
             <div id={styles.imgsCont}>
                <a target="blank" href={estado.musicaAtual[0]?.external_urls?.spotify}>
                   <img src={ftSpotify} alt="Spotify logo" />
-                  <span>Ver no Spotify</span>
+                  <span>{t("pages.leitor.seeOnSpotify")}</span>
                </a>
                <img src={estado.musicaAtual[0]?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>

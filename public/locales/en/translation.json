@@ -21,7 +21,8 @@
          "follow": "Follow",
          "unfollow": "Unfollow",
          "addFav": "Save to library",
-         "delFav": "Remove from library"
+         "delFav": "Remove from library",
+         "seeOnSpotify": "See on Spotify"
       },
       "destaque": {
          "tit1": "New releases",
