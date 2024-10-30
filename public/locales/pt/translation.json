@@ -19,7 +19,9 @@
          "destaqueCard": ["Artistas Semelhantes", "Feito para si", "Lançamentos"],
          "modal": "Artistas Semelhantes",
          "follow": "Seguir",
-         "unfollow": "Parar de seguir"
+         "unfollow": "Parar de seguir",
+         "addFav": "Adicionar aos favoritos",
+         "delFav": "Remover dos favoritos"
       },
       "destaque": {
          "tit1": "Novos lançamentos",

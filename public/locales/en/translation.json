@@ -19,7 +19,9 @@
          "destaqueCard": ["Similar Artists", "Made for you", "Releases"],
          "modal": "Similar Artists",
          "follow": "Follow",
-         "unfollow": "Unfollow"
+         "unfollow": "Unfollow",
+         "addFav": "Save to library",
+         "delFav": "Remove from library"
       },
       "destaque": {
          "tit1": "New releases",

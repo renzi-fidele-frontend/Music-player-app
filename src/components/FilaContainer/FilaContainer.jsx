@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { milliToMin } from "../../utils/milliToMin";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
+import Tooltip from "../Tooltip/Tooltip";
 
 const FilaContainer = ({ fila, propRef, playlistId }) => {
    const { t } = useTranslation();
@@ -64,7 +65,19 @@ const FilaContainer = ({ fila, propRef, playlistId }) => {
       <div ref={propRef} id={styles.cont}>
          <div className={styles.titCt}>
             <h4>{t("comps.filaCt")}</h4>
-            {guardado ? <IoMdHeart onClick={handleRemove} /> : <IoMdHeartEmpty onClick={handleSave} title="Adicionar aos favoritos" />}
+            {guardado ? (
+               <Tooltip conteudo={t("pages.leitor.delFav")}>
+                  <i>
+                     <IoMdHeart onClick={handleRemove} />
+                  </i>
+               </Tooltip>
+            ) : (
+               <Tooltip conteudo={t("pages.leitor.addFav")}>
+                  <i>
+                     <IoMdHeartEmpty onClick={handleSave} title="Adicionar aos favoritos" />
+                  </i>
+               </Tooltip>
+            )}
          </div>
 
          <div className={styles.wrapper}>
