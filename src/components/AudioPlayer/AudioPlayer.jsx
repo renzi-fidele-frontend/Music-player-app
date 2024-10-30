@@ -10,10 +10,12 @@ import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
 import Tooltip from "../Tooltip/Tooltip";
+import { useTranslation } from "react-i18next";
 
 // TODO: Adicionar feat de refresh do token de autenticação
 
 const AudioPlayer = () => {
+   const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();
    const sliderRef = useRef(null);
    const { saltar } = useControles();
@@ -160,13 +162,13 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <Tooltip conteudo="Seguir">
+                                 <Tooltip conteudo={t("pages.leitor.follow")}>
                                     <i>
                                        <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
                                     </i>
                                  </Tooltip>
                               ) : (
-                                 <Tooltip conteudo="Parar de seguir">
+                                 <Tooltip conteudo={t("pages.leitor.unfollow")}>
                                     <i>
                                        <IoMdHeart
                                           onClick={() => {
@@ -192,13 +194,13 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <Tooltip conteudo="Seguir">
+                                 <Tooltip conteudo={t("pages.leitor.follow")}>
                                     <i>
                                        <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
                                     </i>
                                  </Tooltip>
                               ) : (
-                                 <Tooltip conteudo="Parar de seguir">
+                                 <Tooltip conteudo={t("pages.leitor.unfollow")}>
                                     <i>
                                        <IoMdHeart
                                           onClick={() => {
@@ -224,7 +226,7 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <Tooltip conteudo="Seguir">
+                                 <Tooltip conteudo={t("pages.leitor.follow")}>
                                     <i>
                                        <IoMdHeartEmpty
                                           onClick={() => {
@@ -234,7 +236,7 @@ const AudioPlayer = () => {
                                     </i>
                                  </Tooltip>
                               ) : (
-                                 <Tooltip conteudo="Parar de seguir">
+                                 <Tooltip conteudo={t("pages.leitor.unfollow")}>
                                     <i>
                                        <IoMdHeart
                                           onClick={() => {

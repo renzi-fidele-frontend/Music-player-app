@@ -17,7 +17,9 @@
          "followers": "Seguidores",
          "musics": "Músicas",
          "destaqueCard": ["Artistas Semelhantes", "Feito para si", "Lançamentos"],
-         "modal": "Artistas Semelhantes"
+         "modal": "Artistas Semelhantes",
+         "follow": "Seguir",
+         "unfollow": "Parar de seguir"
       },
       "destaque": {
          "tit1": "Novos lançamentos",
