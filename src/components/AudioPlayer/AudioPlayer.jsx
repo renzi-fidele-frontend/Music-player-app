@@ -9,6 +9,7 @@ import { secToMin } from "../../utils/secToMin";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
+import Tooltip from "../Tooltip/Tooltip";
 
 // TODO: Adicionar feat de refresh do token de autenticação
 
@@ -159,13 +160,21 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                                 <Tooltip conteudo="Seguir">
+                                    <i>
+                                       <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                                    </i>
+                                 </Tooltip>
                               ) : (
-                                 <IoMdHeart
-                                    onClick={() => {
-                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
-                                    }}
-                                 />
+                                 <Tooltip conteudo="Parar de seguir">
+                                    <i>
+                                       <IoMdHeart
+                                          onClick={() => {
+                                             pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                          }}
+                                       />
+                                    </i>
+                                 </Tooltip>
                               )}
                            </span>
                         </>
@@ -183,13 +192,21 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                                 <Tooltip conteudo="Seguir">
+                                    <i>
+                                       <IoMdHeartEmpty onClick={() => seguirArtista(`me/following?ids=${v?.id}&type=artist`)} />
+                                    </i>
+                                 </Tooltip>
                               ) : (
-                                 <IoMdHeart
-                                    onClick={() => {
-                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
-                                    }}
-                                 />
+                                 <Tooltip conteudo="Parar de seguir">
+                                    <i>
+                                       <IoMdHeart
+                                          onClick={() => {
+                                             pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                          }}
+                                       />
+                                    </i>
+                                 </Tooltip>
                               )}
                            </span>
                         </>
@@ -207,17 +224,25 @@ const AudioPlayer = () => {
                            <span className={styles.artistText} key={k}>
                               {v?.name}
                               {!following[k] ? (
-                                 <IoMdHeartEmpty
-                                    onClick={() => {
-                                       seguirArtista(`me/following?ids=${v?.id}&type=artist`);
-                                    }}
-                                 />
+                                 <Tooltip conteudo="Seguir">
+                                    <i>
+                                       <IoMdHeartEmpty
+                                          onClick={() => {
+                                             seguirArtista(`me/following?ids=${v?.id}&type=artist`);
+                                          }}
+                                       />
+                                    </i>
+                                 </Tooltip>
                               ) : (
-                                 <IoMdHeart
-                                    onClick={() => {
-                                       pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
-                                    }}
-                                 />
+                                 <Tooltip conteudo="Parar de seguir">
+                                    <i>
+                                       <IoMdHeart
+                                          onClick={() => {
+                                             pararDeSeguirArtista(`me/following?type=artist&ids=${v?.id}`);
+                                          }}
+                                       />
+                                    </i>
+                                 </Tooltip>
                               )}
                            </span>
                         </>

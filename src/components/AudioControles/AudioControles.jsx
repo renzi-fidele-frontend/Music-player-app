@@ -26,7 +26,8 @@ const AudioControles = () => {
                <BsFillSkipStartFill onClick={voltar} />
             </i>
          </Tooltip>
-
+         
+         {/* TODO: Tornar o botão de play/pause indidponível quando não houver prévia */}
          {estado.isPlaying === true ? (
             <Tooltip conteudo={t("comps.controles.2")}>
                <i>
