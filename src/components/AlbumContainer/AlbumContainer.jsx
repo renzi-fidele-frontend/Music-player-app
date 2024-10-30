@@ -12,23 +12,23 @@ const AlbumContainer = ({ track, propRef }) => {
       return (
          <div ref={propRef} id={styles.cont}>
             <div id={styles.imgsCont}>
-               <img src={track?.album.images[0].url} alt={t("comps.albumCt.imgAlt")} />
+               <img src={track?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                <div id={styles.imgSombra}>
-                  <img src={track?.album.images[0].url} alt={t("comps.albumCt.imgAlt")} />
+                  <img src={track?.album?.images[0]?.url} alt={t("comps.albumCt.imgAlt")} />
                </div>
             </div>
 
             <div id={styles.animCont}>
                <div id={styles.deslizar}>
-                  <h5>{track?.album.name}</h5>
+                  <h5>{track?.album?.name}</h5>
                </div>
             </div>
 
-            <p>{`${track?.album.name} ${t("comps.albumCt.what")} ${track?.album.artists
+            <p>{`${track?.album?.name} ${t("comps.albumCt.what")} ${track?.album?.artists
                ?.map((v) => v.name)
-               .join(t("comps.albumCt.prefix"))}, ${t("comps.albumCt.has")} ${track?.album.total_tracks} ${t("comps.albumCt.music")}(s)`}</p>
+               .join(t("comps.albumCt.prefix"))}, ${t("comps.albumCt.has")} ${track?.album?.total_tracks} ${t("comps.albumCt.music")}(s)`}</p>
 
-            <span>{`${t("comps.albumCt.release")}: ${track?.album.release_date}`}</span>
+            <span>{`${t("comps.albumCt.release")}: ${track?.album?.release_date}`}</span>
 
             {/*Icone de fechar escondido */}
             <i

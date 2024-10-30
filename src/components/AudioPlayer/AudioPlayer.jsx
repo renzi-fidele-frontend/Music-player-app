@@ -11,7 +11,6 @@ import useSpotifyApi from "../../hooks/useSpotifyApi";
 import { reduzir } from "../../utils/reduzirTexto";
 
 // TODO: Adicionar feat de refresh do token de autenticação
-// TODO: Corrigir erro ao se estar no single mode e no playlist mode o app faz Crash
 
 const AudioPlayer = () => {
    const { estado, dispatch } = MusicValue();

@@ -17,27 +17,28 @@ import { MusicValue } from "../../context/MusicContext";
 const DestaquesContainer = () => {
    const { t } = useTranslation();
    const { estado } = MusicValue();
-
    const navegar = useNavigate();
 
    // Conteúdo dos cards de destaques
-   const conteudoSemelhantes = [
-      {
-         img: estado?.semelhantes[0]?.images[2]?.url,
-         subtit: estado?.semelhantes[0]?.name,
-         texto: `${estado?.semelhantes[0]?.followers?.total} ${t("pages.leitor.followers")}`,
-      },
-      {
-         img: estado?.semelhantes[1]?.images[2]?.url,
-         subtit: estado?.semelhantes[1]?.name,
-         texto: `${estado?.semelhantes[1]?.followers?.total} ${t("pages.leitor.followers")}`,
-      },
-      {
-         img: estado?.semelhantes[2]?.images[2]?.url,
-         subtit: estado?.semelhantes[2]?.name,
-         texto: `${estado?.semelhantes[2]?.followers?.total} ${t("pages.leitor.followers")}`,
-      },
-   ];
+   const conteudoSemelhantes = estado?.semelhantes
+      ? [
+           {
+              img: estado?.semelhantes[0]?.images[2]?.url,
+              subtit: estado?.semelhantes[0]?.name,
+              texto: `${estado?.semelhantes[0]?.followers?.total} ${t("pages.leitor.followers")}`,
+           },
+           {
+              img: estado?.semelhantes[1]?.images[2]?.url,
+              subtit: estado?.semelhantes[1]?.name,
+              texto: `${estado?.semelhantes[1]?.followers?.total} ${t("pages.leitor.followers")}`,
+           },
+           {
+              img: estado?.semelhantes[2]?.images[2]?.url,
+              subtit: estado?.semelhantes[2]?.name,
+              texto: `${estado?.semelhantes[2]?.followers?.total} ${t("pages.leitor.followers")}`,
+           },
+        ]
+      : undefined;
    const conteudoPlaylistsDestacadas = [
       {
          img: estado?.playlistsDestacadas[0]?.images[0]?.url,

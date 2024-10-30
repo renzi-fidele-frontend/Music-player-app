@@ -60,6 +60,8 @@ export const MusicReducer = (state, action) => {
    }
 };
 
+// TODO: Inicializar o contexto no componente individual
+
 export const MusicInitialState = {
    musicaAtual: [], // objecto Musica selecionada para tocar
    targetAtual: 0, // Index da música atual
