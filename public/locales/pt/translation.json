@@ -47,7 +47,7 @@
       "albumCt": {
          "imgAlt": "Imagem do álbum",
          "what": "é um álbum de",
-         "prefix": "e",
+         "prefix": " e ",
          "has": "que possui",
          "music": "música",
          "release": "Lançado em"

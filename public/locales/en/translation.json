@@ -47,7 +47,7 @@
       "albumCt": {
          "imgAlt": "Album image",
          "what": "is an album by",
-         "prefix": "and",
+         "prefix": " and ",
          "has": "that has",
          "music": "song",
          "release": "Released on"
