@@ -8,7 +8,7 @@ import Tooltip from "../Tooltip/Tooltip";
 
 const AlbumCard = ({ foto, nome, subtit, acao, variante = "normal" }) => {
    return (
-      <Tooltip conteudo={nome}>
+      <Tooltip tipo="light" conteudo={nome}>
          <div className={`${styles.box} ${variante === "swiper" && styles.boxSwiper}`} onClick={acao}>
             {foto && nome && subtit ? (
                <>
