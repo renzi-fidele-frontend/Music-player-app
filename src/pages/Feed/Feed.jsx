@@ -140,7 +140,6 @@ const Feed = () => {
             {/* Caso esteja na pagina de pesquisa */}
             {loc.pathname.includes("/feed/pesquisa") &&
                (pesquisaFeita ? (
-                  // TODO: Adicionar feat de pesquisar por shows locais
                   <div id={styles.searchCt}>
                      <h2 className={estiloBiblioteca.tit1}>{t("pages.feed.titSearch")}</h2>
                      <hr id={styles.barra} />

@@ -167,20 +167,11 @@
 }
 
 #ct > #left {
-   overflow-y: scroll;
+   overflow-y: auto;
    text-align: start;
    height: inherit;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-#ct > #left::-webkit-scrollbar {
-   display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-#ct > #left {
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
+   scrollbar-color: #444cf755 233656;
+   scrollbar-width: thin;
 }
 
 #fixo #right {
@@ -265,6 +256,10 @@
    #fixo {
       padding-left: 2em;
    }
+
+   #ct > #left {
+      padding-bottom: 2rem;
+   }
 }
 
 @media screen and (max-width: 1200px) {
@@ -298,7 +293,6 @@
    #search > div {
       flex-basis: 100%;
    }
-  
 }
 
 @media screen and (max-width: 1100px) {
