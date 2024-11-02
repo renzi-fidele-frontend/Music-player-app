@@ -13,6 +13,11 @@
    transition: all 0.2s ease-in-out;
 }
 
+.not {
+   opacity: 0.5;
+   cursor: not-allowed !important;
+}
+
 .meio:hover {
    box-shadow: 0px 0px 20px var(--cor-tema);
    color: white !important;
@@ -58,7 +63,7 @@
 }
 
 @media screen and (max-width: 450px) {
-     #cont {
+   #cont {
       gap: 25px;
-     }
+   }
 }

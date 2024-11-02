@@ -26,18 +26,17 @@ const AudioControles = () => {
                <BsFillSkipStartFill onClick={voltar} />
             </i>
          </Tooltip>
-         
-         {/* TODO: Tornar o botão de play/pause indidponível quando não houver prévia */}
+
          {estado.isPlaying === true ? (
             <Tooltip conteudo={t("comps.controles.2")}>
                <i>
-                  <BsFillPauseFill onClick={playPause} className={styles.meio} />
+                  <BsFillPauseFill onClick={playPause} className={styles.meio + ` ${!estado.musicaAtual[0]?.track?.preview_url && styles.not}`} />
                </i>
             </Tooltip>
          ) : (
             <Tooltip conteudo={t("comps.controles.3")}>
                <i>
-                  <BsFillPlayFill onClick={playPause} className={styles.meio} />
+                  <BsFillPlayFill onClick={playPause} className={styles.meio + ` ${!estado.musicaAtual[0]?.track?.preview_url && styles.not}`} />
                </i>
             </Tooltip>
          )}
