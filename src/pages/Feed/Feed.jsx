@@ -138,6 +138,7 @@ const Feed = () => {
             )}
 
             {/* Caso esteja na pagina de pesquisa */}
+            {/* TODO: Navegar para página de pesquisa utilizando url param ao invés de state, pois perco o valor ao se retornar para a mesma */}
             {loc.pathname.includes("/feed/pesquisa") &&
                (pesquisaFeita ? (
                   <div id={styles.searchCt}>
@@ -201,6 +202,8 @@ const Feed = () => {
                <GoSidebarExpand color="var(--cor-texto2)" />
             </i>
          </div>
+         {/* Categorias */}
+         {/* TODO: Adicionar efeito de desvanecer a parte de baixo */}
          <div id={styles.right} ref={categsCtRef}>
             <i
                id={styles.botaoFechar}

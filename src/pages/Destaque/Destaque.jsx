@@ -5,6 +5,8 @@ import { MusicValue } from "../../context/MusicContext";
 import { useTranslation } from "react-i18next";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
+// TODO: Adicionar scrollbar pois nos laptops não transmite boa UX
+
 const Destaque = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();

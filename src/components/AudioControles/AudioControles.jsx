@@ -12,6 +12,13 @@ const AudioControles = () => {
    const { t } = useTranslation();
    const { switchAleatorio, voltar, playPause, saltar, switchRepetir } = useControles();
    const { estado } = MusicValue();
+   const linkPrevia = () => {
+      if (estado.mode === "playlistMode" && !estado.singleMode) {
+         return !!estado.musicaAtual[0]?.track?.preview_url;
+      } else if (estado.mode === "albumMode" || (estado.mode === "playlistMode" && estado.singleMode)) {
+         return !!estado.musicaAtual[0]?.preview_url;
+      }
+   };
 
    return (
       <div id={styles.cont}>
@@ -30,13 +37,13 @@ const AudioControles = () => {
          {estado.isPlaying === true ? (
             <Tooltip conteudo={t("comps.controles.2")}>
                <i>
-                  <BsFillPauseFill onClick={playPause} className={styles.meio + ` ${!estado.musicaAtual[0]?.track?.preview_url && styles.not}`} />
+                  <BsFillPauseFill onClick={playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
                </i>
             </Tooltip>
          ) : (
             <Tooltip conteudo={t("comps.controles.3")}>
                <i>
-                  <BsFillPlayFill onClick={playPause} className={styles.meio + ` ${!estado.musicaAtual[0]?.track?.preview_url && styles.not}`} />
+                  <BsFillPlayFill onClick={playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
                </i>
             </Tooltip>
          )}

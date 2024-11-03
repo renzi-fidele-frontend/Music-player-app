@@ -13,7 +13,7 @@ const Notificacao = () => {
    // Controlador da notificação
    useEffect(() => {
       if (!estado?.isPlaying) {
-         if (estado.mode === "playlistMode" && estado.singleMode === false) {
+         if (estado.mode === "playlistMode" && !estado.singleMode) {
             if (estado.musicaAtual[0]?.track?.preview_url === null && estado.musicaAtual.length > 0) {
                toast("Prévia indisponível", { type: "warning", toastId: erroId });
             } else if (estado.musicaAtual[0]?.track?.preview_url !== undefined) {
@@ -25,7 +25,7 @@ const Notificacao = () => {
             } else if (estado.musicaAtual[0]?.preview_url?.length > 0) {
                toast("Prévia disponível", { type: "success", toastId: sucessId });
             }
-         } else if (estado.mode === "playlistMode" && estado.singleMode === true) {
+         } else if (estado.mode === "playlistMode" && estado.singleMode) {
             if (estado.musicaAtual[0]?.preview_url === null && estado.musicaAtual.length > 0) {
                toast("Prévia indisponível", { type: "warning", toastId: erroId });
             } else if (estado.musicaAtual[0]?.preview_url?.length > 0) {

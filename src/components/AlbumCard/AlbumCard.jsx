@@ -6,6 +6,8 @@ import Tooltip from "../Tooltip/Tooltip";
 
 // varientes são: normal, swiper
 
+// TODO: Adicionar loading a imagem caso não esteja 100% carregado
+
 const AlbumCard = ({ foto, nome, subtit, acao, variante = "normal" }) => {
    return (
       <Tooltip tipo="light" conteudo={nome}>

@@ -15,6 +15,7 @@ import { TbInfoSquareRounded } from "react-icons/tb";
 import foto from "../../assets/bird.svg";
 
 // TODO: Progress bar não funciona bem quando a música tem menos do 30sec
+// TODO: Em alguns modos a informação sobre segue ou não o artista não funciona bem
 
 const Leitor = () => {
    const { t } = useTranslation();
