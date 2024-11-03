@@ -24,33 +24,36 @@ const AudioControles = () => {
       <div id={styles.cont}>
          <Tooltip conteudo={t("comps.controles.0")}>
             <i>
-               <BsShuffle className={estado.aleatorio && styles.ativo} onClick={switchAleatorio} />
+               <BsShuffle
+                  className={`${estado.aleatorio && styles.ativo} ${estado?.aSeguir?.length === 1 && styles.not}`}
+                  onClick={estado?.aSeguir?.length > 1 && switchAleatorio}
+               />
             </i>
          </Tooltip>
 
          <Tooltip conteudo={t("comps.controles.1")}>
             <i>
-               <BsFillSkipStartFill onClick={voltar} />
+               <BsFillSkipStartFill className={estado?.aSeguir?.length === 1 && styles.not} onClick={estado?.aSeguir?.length > 1 && voltar} />
             </i>
          </Tooltip>
 
          {estado.isPlaying === true ? (
             <Tooltip conteudo={t("comps.controles.2")}>
                <i>
-                  <BsFillPauseFill onClick={playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
+                  <BsFillPauseFill onClick={linkPrevia() && playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
                </i>
             </Tooltip>
          ) : (
             <Tooltip conteudo={t("comps.controles.3")}>
                <i>
-                  <BsFillPlayFill onClick={playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
+                  <BsFillPlayFill onClick={linkPrevia() && playPause} className={styles.meio + ` ${!linkPrevia() && styles.not}`} />
                </i>
             </Tooltip>
          )}
 
          <Tooltip conteudo={t("comps.controles.4")}>
             <i>
-               <BsFillSkipEndFill onClick={saltar} />
+               <BsFillSkipEndFill className={estado?.aSeguir?.length === 1 && styles.not} onClick={estado?.aSeguir?.length > 1 && saltar} />
             </i>
          </Tooltip>
 
