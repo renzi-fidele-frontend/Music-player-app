@@ -8,8 +8,6 @@ import { useTranslation } from "react-i18next";
 import { MusicValue } from "../../context/MusicContext";
 import useSpotifyApi from "../../hooks/useSpotifyApi";
 
-// TODO: Adicionar scrollbar pois nos laptops não transmite boa UX
-
 const Favoritos = () => {
    const { t } = useTranslation();
    const { estado, dispatch } = MusicValue();

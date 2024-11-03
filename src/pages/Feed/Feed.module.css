@@ -1,6 +1,22 @@
 #ct {
    display: grid;
    grid-template-columns: 63% 37%;
+   height: 100dvh;
+   overflow-y: scroll !important;
+   text-align: start;
+   height: inherit;
+   padding-bottom: 0 !important;
+}
+
+/* Esconder scrollbar no Chrome, Safari e Opera */
+#ct::-webkit-scrollbar {
+   display: none;
+}
+
+/* Esconder scrollbar no IE, Edge e Firefox */
+#ct {
+   -ms-overflow-style: none !important; /* IE e Edge */
+   scrollbar-width: none !important; /* Firefox */
 }
 
 #search > div {
@@ -170,7 +186,7 @@
    overflow-y: auto;
    text-align: start;
    height: inherit;
-   scrollbar-color: #444cf755 233656;
+   scrollbar-color: #444cf755;
    scrollbar-width: thin;
 }
 

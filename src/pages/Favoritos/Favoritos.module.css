@@ -1,6 +1,12 @@
 #ct {
    color: var(--cor-texto2);
+   overflow-y: auto;
+
+   scrollbar-color: #444cf755;
+   scrollbar-width: thin;
 }
+
+
 
 #ct > section:last-child {
    margin-top: 1.5em;

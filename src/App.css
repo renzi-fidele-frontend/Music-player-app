@@ -34,28 +34,16 @@ a {
 }
 
 .App > #right > div {
-   overflow-y: scroll;
-   text-align: start;
-   height: inherit;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.App > #right > div::-webkit-scrollbar {
-   display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.App > #right > div {
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
-}
-
-.App > #right > div {
    background-color: var(--fundo-body);
    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #1e2a3e 20px), repeating-linear-gradient(#23365655, #233656);
    border-radius: 30px;
-   height: 100%;
    padding: 3em;
+   text-align: start;
+   height: inherit;
+   scrollbar-color: #444cf755;
+   scrollbar-width: thin;
+   overflow-y: auto;
+   
 }
 
 @media screen and (max-width: 1683px) {

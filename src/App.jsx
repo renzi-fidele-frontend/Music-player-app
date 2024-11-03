@@ -11,8 +11,6 @@ import { useEffect, useReducer } from "react";
 import Modal from "./components/Modal/Modal";
 import { MusicInitialState, MusicProvider, MusicReducer } from "./context/MusicContext";
 
-// TODO: Adicionar scrollbar, pois nos laptops o App não é transmite boa UX
-
 function App() {
    const [estado, dispatch] = useReducer(MusicReducer, MusicInitialState);
 
