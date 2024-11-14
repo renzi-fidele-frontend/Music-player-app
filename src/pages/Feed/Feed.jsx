@@ -203,7 +203,6 @@ const Feed = () => {
             </i>
          </div>
          {/* Categorias */}
-         {/* TODO: Adicionar efeito de desvanecer a parte de baixo */}
          <div id={styles.right} ref={categsCtRef}>
             <i
                id={styles.botaoFechar}

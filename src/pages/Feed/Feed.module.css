@@ -138,6 +138,7 @@
    scrollbar-width: none;
    -ms-overflow-style: none; /* IE and Edge */
    scrollbar-width: none; /* Firefox */
+   mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 77px, #000 100%);
 }
 
 #categsCt:hover {
