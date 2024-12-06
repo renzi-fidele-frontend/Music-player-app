@@ -14,6 +14,7 @@ const Biblioteca = () => {
    const navegar = useNavigate();
 
    const { apanharDados: getPlaylistsDoUsuario, loading: loadingPlaylists } = useSpotifyApi("me/playlists?limit=10", "GET", (v) => {
+      console.log(v);
       dispatch({ type: "setPlaylists", payload: v.items });
    });
 
@@ -39,19 +40,20 @@ const Biblioteca = () => {
          <h2 className={styles.tit1}>{`${t("pages.biblioteca.tit")} (${estado.playlists?.length})`}</h2>
          <div id={styles.baixo}>
             {!loadingPlaylists ? (
-               estado.playlists?.map((v, k) => {
+               // TODO: fix: Playlists pararam de ser fetchas com sucesso
+               estado?.playlists?.map((v, k) => {
                   return (
                      <AlbumCard
-                        foto={v.images[0]?.url}
-                        nome={v.name}
+                        foto={v?.images[0]?.url}
+                        nome={v?.name}
                         subtit={
-                           v.tracks.total === 1
+                           v?.tracks?.total === 1
                               ? `1 ${t("pages.biblioteca.albumCard.one")}`
-                              : `${v.tracks.total} ${t("pages.biblioteca.albumCard.many")}`
+                              : `${v?.tracks?.total} ${t("pages.biblioteca.albumCard.many")}`
                         }
                         key={k}
                         acao={() => {
-                           dispatch({ type: "setIdPlaylist", payload: v.id });
+                           dispatch({ type: "setIdPlaylist", payload: v?.id });
                            dispatch({ type: "setIdAlbum", payload: "" });
                            dispatch({ type: "setTargetAtual", payload: 0 });
                            dispatch({ type: "setMode", payload: "playlistMode" });
